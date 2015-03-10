@@ -1,0 +1,4 @@
+Minden metódus elõtt commentben írd le hogy mit csinál a függvény, és hogy ki írta. 
+Definiáld, hogy a paraméterek mit takarnak.
+A megírt business (public) metódusok mindenképpen legyenek összhangban a dokumentációval.
+Ha képet használsz, azt az assets mappába tedd.
