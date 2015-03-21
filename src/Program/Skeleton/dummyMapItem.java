@@ -1,7 +1,11 @@
 package Program.Skeleton;
 
 import java.awt.Point;
-
+/**
+ * Egy akadálynak az abasztrakt osztálya. Az akadályok tesztelésénél használt. 
+ * @author Rover
+ *
+ */
 public abstract class dummyMapItem {
 	protected Point Position;
 	
@@ -9,6 +13,8 @@ public abstract class dummyMapItem {
 		return Position;
 	}
 	
-	public abstract void SetPosition(Point place);
+	public void SetPosition(Point place) {
+		Position=place;
+	}
 	public abstract void StepIn(dummyRobot robot);
 }
