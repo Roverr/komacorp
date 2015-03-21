@@ -1,5 +1,8 @@
 package Program.Graphics;
-
+/**
+ * A pálya meghatárázosánál segédkezõ osztály.
+ * @author Rover
+ */
 public class Line {
 		public int x1;
 		public int x2;

@@ -14,12 +14,6 @@ public class dummyRagacs extends dummyMapItem {
 	}
 
 	@Override
-	public void SetPosition(Point place) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void StepIn(dummyRobot robot) {
 		// TODO Auto-generated method stub
 		
