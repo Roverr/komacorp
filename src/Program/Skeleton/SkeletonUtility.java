@@ -1,4 +1,4 @@
-package Program.Szkeleton;
+package Program.Skeleton;
 
 import java.util.HashMap;
 /**
