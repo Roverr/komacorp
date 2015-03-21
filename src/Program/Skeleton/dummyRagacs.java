@@ -2,20 +2,26 @@ package Program.Skeleton;
 
 import java.awt.Point;
 
+/**
+ * Dummy osztály amit a Ragacs akadály tesztelésére használunk
+ * 
+ * @author Rover
+ *
+ */
 public class dummyRagacs extends dummyMapItem {
-	private int StepInCounter;
 
-	public int getStepInCounter() {
-		return StepInCounter;
+	/**
+	 * A ragacsba való belelépések számát állítja be a konstruktor.
+	 * @param StepIn
+	 */
+	dummyRagacs(int StepIn) {
+		SetStepInCounter(StepIn);
 	}
-
-	public void setStepInCounter(int stepInCounter) {
-		StepInCounter = stepInCounter;
-	}
-
 	@Override
 	public void StepIn(dummyRobot robot) {
-		// TODO Auto-generated method stub
+		// TODO Ragacs logika
 		
+		//VAGY +1 ha másik irányba akarunk menni
+		SetStepInCounter(GetStepInCounter()-1);
 	}
 }

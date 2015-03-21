@@ -11,6 +11,7 @@ public abstract class dummyMapItem {
 	 * Az a pont a térképen ahol az akadály található
 	 */
 	protected Point Position;
+	private int StepInCounter;
 	
 	/**
 	 * Visszaadja az akadály pozícióját.
@@ -18,6 +19,22 @@ public abstract class dummyMapItem {
 	 */
 	public Point GetPosition() {
 		return Position;
+	}
+	
+	/**
+	 * Visszadja hányszor lehet belelépni
+	 * @return
+	 */
+	public int GetStepInCounter() {
+		return StepInCounter;
+	}
+	
+	/**
+	 * Beállítja hányszor lehet belelépni
+	 * @param value
+	 */
+	public void SetStepInCounter(int value) {
+		StepInCounter=value;
 	}
 	
 	/**
@@ -35,4 +52,5 @@ public abstract class dummyMapItem {
 	 * @param robot - Robot aki rálépett az akadályra.
 	 */
 	public abstract void StepIn(dummyRobot robot);
+
 }
