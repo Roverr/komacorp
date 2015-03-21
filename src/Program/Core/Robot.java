@@ -4,7 +4,9 @@ import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
+import Program.Helpers.Vector;
+
+import Program.Skeleton.SkeletonUtility;
 
 /**
  * A szkeleton modell mûkédésének szimulálására létrehozott Robot osztály,
@@ -34,40 +36,57 @@ public class Robot implements Serializable  {
 	 * Konstruktor a dummyRobothoz
 	 */
 	Robot() {
+		//SKELETON PART
+		SkeletonUtility.addClass(this, "Robot" + SkeletonUtility.robotCounter);
+		SkeletonUtility.robotCounter++;
+		SkeletonUtility.printCall("create Robot", this);
+		//SKELETON PART
+		
 		Alive = true;
 		Distance = 0;
 		/**TODO POSITION + List feltöltés akadályokkal**/
 		MapItemCarriedCounter = new ArrayList<Integer>();
 		
+		SkeletonUtility.printReturn("create Robot", this);
 	}
 	
 	/**
 	 * Ha a robot leesik a pályáról ez a függvény hívódik meg. 
 	 */
 	public void Die() {
+		SkeletonUtility.printCall("Die", this);
 		MapItemCarriedCounter.clear();
 		Alive = false;
-		System.out.println("Felt down!");
-		
+		//System.out.println("Felt down!");
+
+		SkeletonUtility.printReturn("Die", this);
 	}
 	
 	/**
 	 * Ragacsot dob a pályára ha van, ha nem akkor nem csinál semmit. 
 	 * @param map - Pálya amire ledobja
 	 */
-	public void DropRagacs(Map map) { 
+	public void DropRagacs(Map map) {
+		SkeletonUtility.printCall("DropRagacs", this);
 		int StepInCount = 3;
-		map.AddMapItem(new Ragacs(StepInCount));
+		Ragacs rag = new Ragacs(StepInCount);
+		rag.SetPosition(new Point(Position.x,Position.y));
+		map.AddMapItem(rag);
 		/**TODO Kikell még venni a robot belsõ listájából*/
+		SkeletonUtility.printReturn("DropRagacs", this);
 	}
 	/**
 	 * Olajat dob a pályára
 	 * @param map - A pálya ahova dobja
 	 */
 	public void DropOlaj(Map map) {
+		SkeletonUtility.printCall("DropOlaj", this);
 		int StepInCount=3;
-		map.AddMapItem(new Olaj(StepInCount));
+		Olaj olaj = new Olaj(StepInCount);
+		olaj.SetPosition(new Point(Position.x, Position.y));
+		map.AddMapItem(olaj);
 		/**TODO Kikell még venni a robot belsõ listájából*/
+		SkeletonUtility.printReturn("DropOlaj", this);
 	}
 	
 	/**
@@ -75,6 +94,8 @@ public class Robot implements Serializable  {
 	 * @return
 	 */
 	public int GetDistance() {
+		SkeletonUtility.printCall("GetDistance", this);
+		SkeletonUtility.printReturn("GetDistance", this);
 		return Distance;
 	}
 	
@@ -83,6 +104,8 @@ public class Robot implements Serializable  {
 	 * @return
 	 */
 	public Point GetPosition() {
+		SkeletonUtility.printCall("GetPosition", this);
+		SkeletonUtility.printReturn("GetPosition", this);
 		return Position;
 		
 	}
@@ -92,6 +115,9 @@ public class Robot implements Serializable  {
 	 * @return
 	 */
 	public Vector GetSpeed() {
+		SkeletonUtility.printCall("GetSpeed", this);
+
+		SkeletonUtility.printReturn("GetSpeed", this);
 		return ModSpeed;
 		
 	}
@@ -101,6 +127,8 @@ public class Robot implements Serializable  {
 	 * @return - TRUE OR FALSE
 	 */
 	public boolean isAlive() {
+		SkeletonUtility.printCall("isAlive", this);
+		SkeletonUtility.printReturn("isAlive", this);
 		return Alive;
 	}
 	
@@ -108,9 +136,11 @@ public class Robot implements Serializable  {
 	 * A robot frissítõ függvénye
 	 */
 	public void Jump() {
+		SkeletonUtility.printCall("Jump", this);
 		/**
 		 * TODO 
 		 */
+		SkeletonUtility.printReturn("Jump", this);
 	}
 	
 	/**
@@ -118,7 +148,9 @@ public class Robot implements Serializable  {
 	 * @param force - Vector amit használunk a módosítás kiszámolásához
 	 */
 	public void ModifySpeed(Vector force) {
-		
+		SkeletonUtility.printCall("ModifySpeed", this);
+
+		SkeletonUtility.printReturn("ModifySpeed", this);
 	}
 	
 	/**
@@ -126,7 +158,9 @@ public class Robot implements Serializable  {
 	 * @param place - Point ahova beállítja
 	 */
 	public void SetPosition(Point place){
+		SkeletonUtility.printCall("SetPosition", this);
 		Position=place;
+		SkeletonUtility.printReturn("SetPosition", this);
 	}
 	
 }

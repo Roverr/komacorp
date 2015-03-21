@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import Program.Graphics.Line;
+import Program.Helpers.Line;
+import Program.Skeleton.SkeletonUtility;
 
 /**
  * Olyan osztály, ami a késõbbi pályát fogja szimulálni a skeletonban való
@@ -35,10 +36,14 @@ public class Map implements Serializable {
 	 * pálya betölve, ebbõl kifolyólag nincsenek játékosok se.
 	 */
 	Map() {
+		SkeletonUtility.addClass(this, "dummyMap");
+		SkeletonUtility.printCall("create Map", this);
+		
 		CheckPoints = new ArrayList<Line>();
 		MapItems = new ArrayList<MapItem>();
 		Robots = new ArrayList<Robot>();
 		Track = new ArrayList<Line>();
+		SkeletonUtility.printReturn("create Map", this);
 	}
 
 	/**
@@ -48,7 +53,9 @@ public class Map implements Serializable {
 	 *            - Akadály amit a listára kell felvenni.
 	 */
 	public void AddMapItem(MapItem item) {
+		SkeletonUtility.printCall("AddMapItem", this);
 		MapItems.add(item);
+		SkeletonUtility.printReturn("AddMapItem", this);
 	}
 
 	/**
@@ -57,7 +64,13 @@ public class Map implements Serializable {
 	 * @return - Eredmény lista a robotokkal.
 	 */
 	public List<String> GetResult() {
-		/* !!!! TODO !!!! */
+		SkeletonUtility.printCall("GetResult", this);
+		
+		for (Robot r : Robots) {
+			int dummyint = r.GetDistance();
+		}
+		
+		SkeletonUtility.printReturn("GetResult", this);
 		return null;
 
 	}
@@ -68,6 +81,8 @@ public class Map implements Serializable {
 	 * @return - Lista a robotokkal.
 	 */
 	public List<Robot> GetRobots() {
+		SkeletonUtility.printCall("GetRobots", this);
+		SkeletonUtility.printReturn("GetRobots", this);
 		return Robots;
 	}
 
@@ -78,7 +93,16 @@ public class Map implements Serializable {
 	 *            - Amibõl belehet olvasni a mappot.
 	 */
 	public void LoadMap(String file) {
+		SkeletonUtility.printCall("LoadMap(" + file + ")", this);
 		/** TODO MAP OLVASÓ LOGIC TODO **/
+		for (int i = 0; i < 2; i++) {
+			Robots.add(new Robot());
+		}
+		
+		AddMapItem(new Olaj(3));
+		AddMapItem(new Ragacs(3));
+		
+		SkeletonUtility.printReturn("LoadMap", this);
 	}
 
 	/**
@@ -88,11 +112,13 @@ public class Map implements Serializable {
 	 *            - Akadály amit lekell szedni.
 	 */
 	public void RemoveMapItem(MapItem item) {
+		SkeletonUtility.printCall("RemoveMapItem", this);
 		try {
 			MapItems.remove(item);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		SkeletonUtility.printReturn("RemoveMapItem", this);
 	}
 
 	/**
@@ -103,6 +129,7 @@ public class Map implements Serializable {
 	 *            - Akit vizsgálni kell az akadályokhoz viszonyítva.
 	 */
 	public void ValidateState(Robot robot) {
+		SkeletonUtility.printCall("ValidateState", this);
 		/** TODO NEED MORE STABLE LOGIC **/
 
 		for (int i = 0; i < MapItems.size(); i++) {
@@ -115,10 +142,12 @@ public class Map implements Serializable {
 				if (currentItem.GetStepInCounter() - 1 == 0) {
 					currentItem.StepIn(robot);
 					MapItems.remove(currentItem);
+					//Note: listán végigfutás közben a listából törlés hibát okozhat.
 				} else {
 					currentItem.StepIn(robot);
 				}
 			}
 		}
+		SkeletonUtility.printReturn("ValidateState", this);
 	}
 }

@@ -2,6 +2,8 @@ package Program.Core;
 
 import java.awt.Point;
 import java.io.Serializable;
+
+import Program.Skeleton.SkeletonUtility;
 /**
  * Egy akadálynak az abasztrakt osztálya. Az akadályok tesztelésénél használt. 
  * @author Rover
@@ -23,6 +25,8 @@ public abstract class MapItem implements Serializable  {
 	 * @return - Position
 	 */
 	public Point GetPosition() {
+		SkeletonUtility.printCall("GetPosition", this);
+		SkeletonUtility.printReturn("GetPosition", this);
 		return Position;
 	}
 	
@@ -31,6 +35,8 @@ public abstract class MapItem implements Serializable  {
 	 * @return
 	 */
 	public int GetStepInCounter() {
+		SkeletonUtility.printCall("GetStepInCounter", this);
+		SkeletonUtility.printReturn("GetStepInCounter", this);
 		return StepInCounter;
 	}
 	
@@ -39,7 +45,9 @@ public abstract class MapItem implements Serializable  {
 	 * @param value
 	 */
 	public void SetStepInCounter(int value) {
+		SkeletonUtility.printCall("SetStepInCounter to " + value, this);
 		StepInCounter=value;
+		SkeletonUtility.printReturn("SetStepInCounter", this);
 	}
 	
 	/**
@@ -47,7 +55,9 @@ public abstract class MapItem implements Serializable  {
 	 * @param place - Az a pont ahova helyezzük az akadályt.
 	 */
 	public void SetPosition(Point place) {
+		SkeletonUtility.printCall("SetPosition", this);
 		Position=place;
+		SkeletonUtility.printReturn("SetPosition", this);
 	}
 	
 	/**

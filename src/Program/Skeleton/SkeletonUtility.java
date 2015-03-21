@@ -17,10 +17,16 @@ public class SkeletonUtility {
 	 * @attribute allowSkeleton - A skeleton csak akkor írhat ki bármit ha ez a változó true.
 	 * @attribute classTable - tartalmazza az osztályok példányainak neveit a példányokhoz rendelve.
 	 */
-	static int ident;
-	static boolean allowSkeleton;
-	static HashMap<Object, String> classTable = new HashMap<Object, String>();
+	private static int ident;
+	private static boolean allowSkeleton;
+	private static HashMap<Object, String> classTable = new HashMap<Object, String>();
 	
+	/**
+	 * Az alábbi változók az elnevezésekhez szükségesek. Amikor létrejön egy új objektum 
+	 * akkor ezt a számot a neve után írva megkülömböztethetjük a többitõl. 
+	 */
+	public static int robotCounter = 0;
+	public static int mapItemCounter = 0;
 	/**
 	 * Klasszikus konstruktor, megalkotja a teszteléshez szükséges dummy osztályokat.
 	 * Beállítja a kellõ statikus változókat.
@@ -98,5 +104,10 @@ public class SkeletonUtility {
 			return s;
 		}
 		return "";
+	}
+
+	public static void addClass(Object obj, String name) {
+		classTable.put(obj, name);
+		
 	}
 }
