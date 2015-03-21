@@ -135,17 +135,11 @@ public class Map implements Serializable {
 		for (int i = 0; i < MapItems.size(); i++) {
 
 			MapItem currentItem = MapItems.get(i);
-
+			
+			boolean doStepIn = true; //SkeletonUtility.yesOrNoQuestion("StepIn meghívódik?");
 			if (robot.GetPosition() == currentItem.GetPosition()) {
-				// Ha StepIncounter elér valamenynit, utolsó belépésre kivesszük
-				// a mapból
-				if (currentItem.GetStepInCounter() - 1 == 0) {
-					currentItem.StepIn(robot);
-					MapItems.remove(currentItem);
-					//Note: listán végigfutás közben a listából törlés hibát okozhat.
-				} else {
-					currentItem.StepIn(robot);
-				}
+				//TODO Switch, olaj vagy ragacs.
+				currentItem.StepIn(robot);
 			}
 		}
 		SkeletonUtility.printReturn("ValidateState", this);
