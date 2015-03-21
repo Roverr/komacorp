@@ -1,4 +1,4 @@
-package Program.Skeleton;
+package Program.Core;
 
 import java.awt.Point;
 import java.io.Serializable;
@@ -12,7 +12,11 @@ import java.util.Vector;
  * @author Rover
  *
  */
-public class dummyRobot implements Serializable  {
+public class Robot implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8700911186613988616L;
 	/**
 	 * Alive - Beállítható, hogy él-e még a robot
 	 * Distance - Milyen messze jutott a pályán(eredmény számoláshoz)
@@ -29,7 +33,7 @@ public class dummyRobot implements Serializable  {
 	/**
 	 * Konstruktor a dummyRobothoz
 	 */
-	dummyRobot() {
+	Robot() {
 		Alive = true;
 		Distance = 0;
 		/**TODO POSITION + List feltöltés akadályokkal**/
@@ -51,13 +55,19 @@ public class dummyRobot implements Serializable  {
 	 * Ragacsot dob a pályára ha van, ha nem akkor nem csinál semmit. 
 	 * @param map - Pálya amire ledobja
 	 */
-	public void DropRagacs(dummyMap map) { 
+	public void DropRagacs(Map map) { 
 		int StepInCount = 3;
-		map.AddMapItem(new dummyRagacs(StepInCount));
+		map.AddMapItem(new Ragacs(StepInCount));
+		/**TODO Kikell még venni a robot belsõ listájából*/
 	}
-	
-	public void DropOlaj(dummyMap map) {
-		
+	/**
+	 * Olajat dob a pályára
+	 * @param map - A pálya ahova dobja
+	 */
+	public void DropOlaj(Map map) {
+		int StepInCount=3;
+		map.AddMapItem(new Olaj(StepInCount));
+		/**TODO Kikell még venni a robot belsõ listájából*/
 	}
 	
 	/**

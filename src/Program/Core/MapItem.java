@@ -1,4 +1,4 @@
-package Program.Skeleton;
+package Program.Core;
 
 import java.awt.Point;
 import java.io.Serializable;
@@ -7,7 +7,11 @@ import java.io.Serializable;
  * @author Rover
  *
  */
-public abstract class dummyMapItem implements Serializable  {
+public abstract class MapItem implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3066714571792766849L;
 	/**
 	 * Az a pont a térképen ahol az akadály található
 	 */
@@ -52,6 +56,6 @@ public abstract class dummyMapItem implements Serializable  {
 	 * itt nem kell megvalósítani.
 	 * @param robot - Robot aki rálépett az akadályra.
 	 */
-	public abstract void StepIn(dummyRobot robot);
+	public abstract void StepIn(Robot robot);
 
 }

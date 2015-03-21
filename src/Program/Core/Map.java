@@ -1,4 +1,4 @@
-package Program.Skeleton;
+package Program.Core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,8 +13,12 @@ import Program.Graphics.Line;
  * @author Rover
  *
  */
-public class dummyMap implements Serializable {
+public class Map implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5351272359744547434L;
 	/**
 	 * Tárol minden páyaelemet CheckPoints - A játékosok menetirányának
 	 * ellenörzésére szolgál. MapItems - A pályán lévõ akadályok listája. Robots
@@ -22,18 +26,18 @@ public class dummyMap implements Serializable {
 	 * vonalakat tartalmazza.
 	 */
 	private List<Line> CheckPoints;
-	private List<dummyMapItem> MapItems;
-	private List<dummyRobot> Robots;
+	private List<MapItem> MapItems;
+	private List<Robot> Robots;
 	private List<Line> Track;
 
 	/**
 	 * Létrehozásnál létrehozzuk az üres listákat, amik üresek, mert még nincs
 	 * pálya betölve, ebbõl kifolyólag nincsenek játékosok se.
 	 */
-	dummyMap() {
+	Map() {
 		CheckPoints = new ArrayList<Line>();
-		MapItems = new ArrayList<dummyMapItem>();
-		Robots = new ArrayList<dummyRobot>();
+		MapItems = new ArrayList<MapItem>();
+		Robots = new ArrayList<Robot>();
 		Track = new ArrayList<Line>();
 	}
 
@@ -43,7 +47,7 @@ public class dummyMap implements Serializable {
 	 * @param item
 	 *            - Akadály amit a listára kell felvenni.
 	 */
-	public void AddMapItem(dummyMapItem item) {
+	public void AddMapItem(MapItem item) {
 		MapItems.add(item);
 	}
 
@@ -63,7 +67,7 @@ public class dummyMap implements Serializable {
 	 * 
 	 * @return - Lista a robotokkal.
 	 */
-	public List<dummyRobot> GetRobots() {
+	public List<Robot> GetRobots() {
 		return Robots;
 	}
 
@@ -83,7 +87,7 @@ public class dummyMap implements Serializable {
 	 * @param item
 	 *            - Akadály amit lekell szedni.
 	 */
-	public void RemoveMapItem(dummyMapItem item) {
+	public void RemoveMapItem(MapItem item) {
 		try {
 			MapItems.remove(item);
 		} catch (Exception e) {
@@ -98,12 +102,12 @@ public class dummyMap implements Serializable {
 	 * @param robot
 	 *            - Akit vizsgálni kell az akadályokhoz viszonyítva.
 	 */
-	public void ValidateState(dummyRobot robot) {
+	public void ValidateState(Robot robot) {
 		/** TODO NEED MORE STABLE LOGIC **/
 
 		for (int i = 0; i < MapItems.size(); i++) {
 
-			dummyMapItem currentItem = MapItems.get(i);
+			MapItem currentItem = MapItems.get(i);
 
 			if (robot.GetPosition() == currentItem.GetPosition()) {
 				// Ha StepIncounter elér valamenynit, utolsó belépésre kivesszük

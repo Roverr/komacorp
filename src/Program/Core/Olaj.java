@@ -1,4 +1,4 @@
-package Program.Skeleton;
+package Program.Core;
 
 import java.awt.Point;
 import java.util.Vector;
@@ -9,13 +9,13 @@ import java.util.Vector;
  * @author Rover
  *
  */
-public class dummyOlaj extends dummyMapItem {
+public class Olaj extends MapItem {
 
 	/**
 	 * Az olajba való belelépések számát állítja be a konstruktor.
 	 * @param StepIn
 	 */
-	dummyOlaj(int StepIn) {
+	Olaj(int StepIn) {
 		SetStepInCounter(StepIn);
 	}
 	/**
@@ -24,7 +24,7 @@ public class dummyOlaj extends dummyMapItem {
 	 * @param robot- Robot ami belelépett
 	 *            
 	 */
-	public void StepIn(dummyRobot robot) {
+	public void StepIn(Robot robot) {
 		/**
 		 * Visszaállítja az eredetire a sebességet // TODO Megcsinálni értelmes Logiccal
 		 */

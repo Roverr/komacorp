@@ -1,4 +1,4 @@
-package Program.Skeleton;
+package Program.Core;
 
 import java.awt.Point;
 import java.io.Serializable;
@@ -9,17 +9,17 @@ import java.io.Serializable;
  * @author Rover
  *
  */
-public class dummyRagacs extends dummyMapItem{
+public class Ragacs extends MapItem{
 
 	/**
 	 * A ragacsba való belelépések számát állítja be a konstruktor.
 	 * @param StepIn
 	 */
-	dummyRagacs(int StepIn) {
+	Ragacs(int StepIn) {
 		SetStepInCounter(StepIn);
 	}
 	@Override
-	public void StepIn(dummyRobot robot) {
+	public void StepIn(Robot robot) {
 		// TODO Ragacs logika
 		
 		//VAGY +1 ha másik irányba akarunk menni
