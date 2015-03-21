@@ -1,5 +1,6 @@
 package Program.Skeleton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,8 @@ import Program.Graphics.Line;
  * @author Rover
  *
  */
-public class dummyMap {
+public class dummyMap implements Serializable {
+
 	/**
 	 * Tárol minden páyaelemet CheckPoints - A játékosok menetirányának
 	 * ellenörzésére szolgál. MapItems - A pályán lévõ akadályok listája. Robots

@@ -1,12 +1,13 @@
 package Program.Skeleton;
 
 import java.awt.Point;
+import java.io.Serializable;
 /**
  * Egy akadálynak az abasztrakt osztálya. Az akadályok tesztelésénél használt. 
  * @author Rover
  *
  */
-public abstract class dummyMapItem {
+public abstract class dummyMapItem implements Serializable  {
 	/**
 	 * Az a pont a térképen ahol az akadály található
 	 */

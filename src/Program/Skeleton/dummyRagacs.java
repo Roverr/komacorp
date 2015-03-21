@@ -1,6 +1,7 @@
 package Program.Skeleton;
 
 import java.awt.Point;
+import java.io.Serializable;
 
 /**
  * Dummy osztály amit a Ragacs akadály tesztelésére használunk
@@ -8,7 +9,7 @@ import java.awt.Point;
  * @author Rover
  *
  */
-public class dummyRagacs extends dummyMapItem {
+public class dummyRagacs extends dummyMapItem{
 
 	/**
 	 * A ragacsba való belelépések számát állítja be a konstruktor.

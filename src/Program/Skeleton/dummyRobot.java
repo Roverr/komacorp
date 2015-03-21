@@ -1,6 +1,7 @@
 package Program.Skeleton;
 
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -11,7 +12,7 @@ import java.util.Vector;
  * @author Rover
  *
  */
-public class dummyRobot {
+public class dummyRobot implements Serializable  {
 	/**
 	 * Alive - Beállítható, hogy él-e még a robot
 	 * Distance - Milyen messze jutott a pályán(eredmény számoláshoz)
@@ -21,7 +22,7 @@ public class dummyRobot {
 	 */
 	protected boolean Alive;
 	protected int Distance;
-	protected List<dummyMapItem> MapItemCarriedCounter;
+	protected List<Integer> MapItemCarriedCounter;
 	protected Vector ModSpeed;
 	protected Point Position;
 
@@ -32,7 +33,7 @@ public class dummyRobot {
 		Alive = true;
 		Distance = 0;
 		/**TODO POSITION + List feltöltés akadályokkal**/
-		MapItemCarriedCounter = new ArrayList<dummyMapItem>();
+		MapItemCarriedCounter = new ArrayList<Integer>();
 		
 	}
 	
@@ -47,17 +48,15 @@ public class dummyRobot {
 	}
 	
 	/**
-	 * Akadályt dob a pályára
-	 * @param item - Az akadály amit hordoz a robot
-	 * @param map - A pálya ami átveszi az akadályt
+	 * Ragacsot dob a pályára ha van, ha nem akkor nem csinál semmit. 
+	 * @param map - Pálya amire ledobja
 	 */
-	public void DropMapItem(dummyMapItem item, dummyMap map) {
-		if(MapItemCarriedCounter.contains(item)) {
-			map.AddMapItem(item);
-			MapItemCarriedCounter.remove(item);
-		} else {
-			System.out.println("Cant drop this dummyMapItem, i don't have it!");
-		}
+	public void DropRagacs(dummyMap map) { 
+		int StepInCount = 3;
+		map.AddMapItem(new dummyRagacs(StepInCount));
+	}
+	
+	public void DropOlaj(dummyMap map) {
 		
 	}
 	
