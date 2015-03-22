@@ -5,16 +5,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-<<<<<<< HEAD
+
 import Program.Core.*;
-=======
+
 
 import Program.Core.Game;
 import Program.Core.Map;
 import Program.Core.Olaj;
 import Program.Core.Ragacs;
 import Program.Core.Robot;
->>>>>>> 6436fc898b3161162307f88942c11759d9e40c1c
+
 import Program.Helpers.Vector;
 /**
  * A szkeleton modell megvalósításáért felelõs osztály. A belsõ business modell a korábbiakban megbeszélt.
@@ -189,7 +189,7 @@ public class SkeletonUtility {
 	 *@author Barna
 	 * @throws IOException 
 	 */
-	public static void inputHandler() throws IOException{
+	public void inputHandler() throws IOException{
 			String line = readSkeleton();
 			String[] parts=line.split(" ");
 			String command=parts[0];
