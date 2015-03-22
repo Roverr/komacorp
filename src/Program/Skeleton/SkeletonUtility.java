@@ -262,4 +262,30 @@ public class SkeletonUtility {
 			
 			
 	}
+	/**
+	 * Robot sebességének megváltozatásához a parancs, float inputokkal. 
+	 * @param x - A vektor x komponense
+	 * @param y - A vektor y komponense
+	 */
+	public void setSpeedMod(float x, float y) {
+		Vector modifier = new Vector(x,y);
+		dummyRobot.ModifySpeed(modifier);
+	}
+	
+	/**
+	 *Robot sebességének megváltozatásához a parancs, Vector inputtal. 
+	 * @param modifier - A vetor amivel változtatni akarunk
+	 */
+	public void setSpeedMod(Vector modifier) {
+		dummyRobot.ModifySpeed(modifier);
+	}
+	
+	/**
+	 * Robot pozíciójának beállítása int inputokkal. 
+	 * @param x - x koordináta
+	 * @param y - y koordináta
+	 */
+	public void setPosition(int x, int y) {
+		dummyRobot.SetPosition(new Point(x,y));
+	}
 }
