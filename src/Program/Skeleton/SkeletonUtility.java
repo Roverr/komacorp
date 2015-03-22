@@ -53,6 +53,7 @@ public class SkeletonUtility {
 		//Create Dummy classes
 		dummyGame= new Game(270,"Halálos Kanyon",3);
 		dummyMap = new Map();
+		dummyMap.loadMap("Dummyk lankája", 3);
 		dummyRobot = new Robot();
 		dummyOlaj = new Olaj(3);
 		dummyRagacs = new Ragacs(3);
@@ -71,11 +72,15 @@ public class SkeletonUtility {
 	 * Privát kiíró függvény, gondoskodik arról hogy csak akkor kerüljön valami kiírásra, ha a Skeleton módot engedélyeztük.
 	 * @param s
 	 */
+	static boolean notificationsent = false;
 	private static void printSkeleton(String s){
 		if(allowSkeleton){
 			System.out.println(s);
 		}else{
-			System.out.println("allowSkeleton is not activated, you cant use skeleton methods");
+			if(!notificationsent){
+				System.out.println("allowSkeleton is not activated, you cant use skeleton methods");
+				notificationsent = true;
+			}
 		}
 	}
 	/**
@@ -88,7 +93,10 @@ public class SkeletonUtility {
 			String line = brKeyboard.readLine();
 			return line;
 		}else{
-			System.out.println("allowSkeleton is not activated, you cant use skeleton methods");
+			if(!notificationsent){
+				System.out.println("allowSkeleton is not activated, you cant use skeleton methods");
+				notificationsent = true;
+		}
 			return "";
 		}
 		
@@ -104,11 +112,12 @@ public class SkeletonUtility {
 		while(invalidAnswer){
 			printSkeleton(question+" yes/no y/n igen/nem");
 			String answer=readSkeleton();
-			answer.toUpperCase();/**csak a biztonság kedvéért ha gyökér a user*/
-			if("Y".equals(answer) || "YES".equals(answer) || "IGEN".equals(answer)){
+			if("Y".equals(answer) || "YES".equals(answer) || "IGEN".equals(answer)
+					||"y".equals(answer) || "yes".equals(answer) || "igen".equals(answer)){
 				isYes=true;
 				invalidAnswer = false;
-			}else if("N".equals(answer) || "NO".equals(answer) || "NEM".equals(answer)){
+			}else if("N".equals(answer) || "NO".equals(answer) || "NEM".equals(answer)
+					|| "n".equals(answer) || "no".equals(answer) || "nem".equals(answer)){
 				isYes=false;
 				invalidAnswer = false;
 			}else{ 
@@ -272,11 +281,16 @@ public class SkeletonUtility {
 			}else if(command.equals("ValidateState")){
 				if(parts.length >= 2){
 					int playernumber=Integer.parseInt(parts[1]);
-				/**
-				 * javaslat ezzel kezdeni:
-				 * result1,result2,result3:yesorno(out?,oil?,goo?)
-				 */
-				//validateState(playernumber);
+					boolean beforeAllow = allowSkeleton;
+					allowSkeleton = false;
+					if(dummyMap.getRobots().size() > playernumber){
+						Robot rob = dummyMap.getRobots().get(playernumber);
+						allowSkeleton = beforeAllow;
+						dummyMap.validateState(rob);		
+					}else{
+						wrongParameters = true;
+					}
+					allowSkeleton = beforeAllow;
 				}else{
 					wrongParameters = true;
 				}
