@@ -48,15 +48,15 @@ public class SkeletonUtility {
 	 * 
 	 */
 	public SkeletonUtility(){
-		allowSkeleton = true;
 		//Create Dummy classes
 		dummyGame= new Game(270,"Halálos Kanyon",3);
 		dummyMap = new Map();
 		dummyRobot = new Robot();
 		dummyOlaj = new Olaj(3);
 		dummyRagacs = new Ragacs(3);
-		//Set up input listening
-		//more..
+		
+		//Kiírások engedélyezése:
+		allowSkeleton = true;
 		
 		
 	}
@@ -193,9 +193,11 @@ public class SkeletonUtility {
 			boolean wrongParameters = false;
 
 			if(command.equals("LoadMap")){
-				if(parts[1] != null){
+				if(parts.length >= 2){
 					String name=parts[1];
 					chooseMap(name);
+				}else{
+					wrongParameters = true;
 				}
 			}else if(command.equals("SetPlayerCount")){
 				int number=Integer.parseInt(parts[1]);
@@ -209,29 +211,38 @@ public class SkeletonUtility {
 				//exitGame();
 				
 			}else if(command.equals("LoseGame")){
-				int playernumber=Integer.parseInt(parts[1]);
+				if(parts.length >= 2){
+				
+					int playernumber=Integer.parseInt(parts[1]);
 				//ez a két sor alább csak példa, hogy mivel kezdõdjön a 
 				//loseGame(int) metódus
 				/**boolean result;
 				*  result=yesOrNoQuestion("Only One Left?");
 				*/
 				//loseGame(playernumber);
-				
+				}else{
+					wrongParameters = true;
+				}
 			}else if(command.equals("SetSpeedMod")){
 				float x,y;
-				if(parts[1]!= null && parts[2]!= null){
+				if(parts.length >= 3){
 					x=Float.parseFloat(parts[1]);
 					y=Float.parseFloat(parts[2]);
 					Vector newvector=new Vector(x,y);
 					setSpeedModification(newvector);
+				}else{
+					wrongParameters = true;
 				}
 			}else if(command.equals("SetPos")){
 				int x,y;
-				x=Integer.parseInt(parts[1]);
-				y=Integer.parseInt(parts[2]);
-				Point newpoint=new Point(x,y);
-				setPosition(newpoint);
-				
+				if(parts.length >= 3){
+					x=Integer.parseInt(parts[1]);
+					y=Integer.parseInt(parts[2]);
+					Point newpoint=new Point(x,y);
+					setPosition(newpoint);
+				}else{
+					wrongParameters = true;
+				}
 			}else if(command.equals("SetDrop")){
 				String item=parts[1];
 				/**Megvalósítani setDrop() metódusban
@@ -255,23 +266,31 @@ public class SkeletonUtility {
 				setDropItem(item);
 				
 			}else if(command.equals("ValidateState")){
-				int playernumber=Integer.parseInt(parts[1]);
+				if(parts.length >= 2){
+					int playernumber=Integer.parseInt(parts[1]);
 				/**
 				 * javaslat ezzel kezdeni:
 				 * result1,result2,result3:yesorno(out?,oil?,goo?)
 				 */
 				//validateState(playernumber);
+				}else{
+					wrongParameters = true;
+				}
 				
 			}else if(command.equals("ModSpeed")){
 				float x,y;
-				x=Float.parseFloat(parts[1]);
-				y=Float.parseFloat(parts[2]);
-				Vector newvector=new Vector(x,y);
-				/**
-				 * javaslat ezzel kezdeni:
-				 * result1,result2:yesorno(drop oil?,drop goo?)
-				 */
-				//modifySpeed(newvector);
+				if(parts.length >= 3){
+					x=Float.parseFloat(parts[1]);
+					y=Float.parseFloat(parts[2]);
+					Vector newvector=new Vector(x,y);
+					/**
+					 * javaslat ezzel kezdeni:
+					 * result1,result2:yesorno(drop oil?,drop goo?)
+					 */
+					//modifySpeed(newvector);
+				}else{
+					wrongParameters = true;
+				}
 			}else if(command.equals("Help")){
 				printSkeleton("UseCase & Elágazások    Parancs:    paraméter\n"+
 					"Choose Map    LoadMap    string név\n"+
@@ -299,6 +318,9 @@ public class SkeletonUtility {
 			}else{
 				printSkeleton("Wrong command."); 
 				printSkeleton("Type \"Help\" to see the commands."); 
+			}
+			if(wrongParameters){
+				printSkeleton("Something Went wrong with the parameters :S .");
 			}
 		}
 					
