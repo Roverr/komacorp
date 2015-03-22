@@ -115,7 +115,6 @@ public class SkeletonUtility {
 		return isYes;
 	}
 
-	
 	/**
 	 * A szkeleton Modellben meghíváskor kiírja hogy melyik osztályban, milyen metódust hívódott meg.
 	 * A kiírás tördelt jellegét az ident változó intézi.
@@ -235,7 +234,19 @@ public class SkeletonUtility {
 				*  ......
 				*  + OIL,oil,Oil,Goo,goo,GOO, javaslom uppercaseé tenni
 				*/
-				//setDropItem(item);
+				String question = "Out of item?";
+				boolean outOfItem;
+				try{
+					outOfItem = !SkeletonUtility.yesOrNoQuestion(question);
+					if(outOfItem) {
+						//Ha nem fogyott még ki a dobnivalóból. 
+						
+						
+					}
+				}catch(Exception e) {
+					SkeletonUtility.printSkeleton(e.getMessage());
+				}
+				setDropItem(item);
 				
 			}else if(command.equals("ValidateState")){
 				int playernumber=Integer.parseInt(parts[1]);
