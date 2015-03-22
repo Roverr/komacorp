@@ -152,11 +152,11 @@ public class Map implements Serializable {
 				robot.die();
 			}
 		
-			if(SkeletonUtility.yesOrNoQuestion("Belelépett a robot egy ragacsba?")){
+			else if(SkeletonUtility.yesOrNoQuestion("Belelépett a robot egy ragacsba?")){
 				dummyRagacsForSkeleton.stepIn(robot);
 				
 			}
-			if(SkeletonUtility.yesOrNoQuestion("Belelépett a robot egy olajba?")){
+			else if(SkeletonUtility.yesOrNoQuestion("Belelépett a robot egy olajba?")){
 				dummyOlajForSkeleton.stepIn(robot);
 			}
 			//if (robot.getPosition() == currentItem.GetPosition()) {
