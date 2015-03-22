@@ -195,7 +195,7 @@ public class SkeletonUtility {
 				
 			}else if(command.equals("SetPlayerCount")){
 				int number=Integer.parseInt(parts[1]);
-				//chooseNumberOfPlayers(number);
+				chooseNumberOfPlayers(number);
 				
 			}else if(command.equals("WinGame")){
 				int playernumber=Integer.parseInt(parts[1]);
@@ -218,14 +218,14 @@ public class SkeletonUtility {
 				x=Float.parseFloat(parts[1]);
 				y=Float.parseFloat(parts[2]);
 				Vector newvector=new Vector(x,y);
-				//setSpeedModification(newvector);
+				setSpeedModification(newvector);
 				
 			}else if(command.equals("SetPos")){
 				int x,y;
 				x=Integer.parseInt(parts[1]);
 				y=Integer.parseInt(parts[2]);
 				Point newpoint=new Point(x,y);
-				//setPosition(newpoint);
+				setPosition(newpoint);
 				
 			}else if(command.equals("SetDrop")){
 				String item=parts[1];
@@ -274,7 +274,7 @@ public class SkeletonUtility {
 	 * @param x - A vektor x komponense
 	 * @param y - A vektor y komponense
 	 */
-	public void setSpeedMod(float x, float y) {
+	public void setSpeedModification(float x, float y) {
 		Vector modifier = new Vector(x,y);
 		dummyRobot.ModifySpeed(modifier);
 	}
@@ -283,7 +283,7 @@ public class SkeletonUtility {
 	 *Robot sebességének megváltozatásához a parancs, Vector inputtal. 
 	 * @param modifier - A vetor amivel változtatni akarunk
 	 */
-	public void setSpeedMod(Vector modifier) {
+	public void setSpeedModification(Vector modifier) {
 		dummyRobot.ModifySpeed(modifier);
 	}
 	
@@ -309,7 +309,7 @@ public class SkeletonUtility {
 	 * @param what - A string, ami kiválasztja, hogy mit dobjon a robot. 
 	 * String, mert az jobban olvasható kódot szül. 
 	 */
-	public void setDrop(String what) {
+	public void setDropItem(String what) {
 		what = what.toLowerCase();
 		if(what=="ragacs") {
 			dummyRobot.DropRagacs(dummyMap);
