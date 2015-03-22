@@ -218,21 +218,17 @@ public class SkeletonUtility {
 				
 			}else if(command.equals("WinGame")){
 				int playernumber=Integer.parseInt(parts[1]);
-				//winGame(playernumber);
+				winGame(playernumber);
 				
 			}else if(command.equals("Exit")){
-				//exitGame();
+				exitGame();
 				
 			}else if(command.equals("LoseGame")){
 				if(parts.length >= 2){
 				
 					int playernumber=Integer.parseInt(parts[1]);
-				//ez a két sor alább csak példa, hogy mivel kezdõdjön a 
-				//loseGame(int) metódus
-				/**boolean result;
-				*  result=yesOrNoQuestion("Only One Left?");
-				*/
-				//loseGame(playernumber);
+				
+				loseGame(playernumber);
 				}else{
 					wrongParameters = true;
 				}
@@ -419,4 +415,33 @@ public class SkeletonUtility {
 	 */
 	private static String previousname="Halálos Kanyon";
 	private static int previousnumberofplayers=2;
+	/**
+	 * A megadott játékos megnyeri a játékot
+	 * @param player
+	 * @author Barna
+	 */
+	private void winGame(int player){
+		dummyGame.EndGame();
+		printSkeleton(player+" megnyerte a játékot!");
+	}
+	/**
+	 * A megadott játékos elveszti a játékot
+	 * @param player
+	 * @author Barna
+	 */
+	private void loseGame(int player){
+		dummyGame.EndGame();
+		printSkeleton(player+" elvesztette a játékot!");
+	}
+	/**
+	 * 
+	 * @author Barna
+	 * @throws IOException 
+	 */
+	private void exitGame() throws IOException{
+		if(yesOrNoQuestion("Biztos hogy meg akarod szakítani a meccset? Ha másoknak még van esélye nyerni, elveszed tõlük a lehetõséget."))
+		dummyGame.EndGame();
+		else printSkeleton("Helyes, egy igazi BME-s a végsõkig küzd!");
+	}
+	
 }
