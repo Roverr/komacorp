@@ -5,9 +5,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.Map;
 
 import Program.Core.Game;
+import Program.Core.Map;
 import Program.Core.Olaj;
 import Program.Core.Ragacs;
 import Program.Core.Robot;
@@ -53,6 +53,10 @@ public class SkeletonUtility {
 		allowSkeleton = true;
 		//Create Dummy classes
 		dummyGame= new Game(270,"Halálos Kanyon",3);
+		dummyMap = new Map();
+		dummyRobot = new Robot();
+		dummyOlaj = new Olaj(3);
+		dummyRagacs = new Ragacs(3);
 		//Set up input listening
 		//more..
 		

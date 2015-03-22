@@ -17,7 +17,7 @@ public class Ragacs extends MapItem{
 	 * A ragacsba való belelépések számát állítja be a konstruktor.
 	 * @param StepIn
 	 */
-	Ragacs(int StepIn) {
+	public Ragacs(int StepIn) {
 		SkeletonUtility.addClass(this, "Ragacs" + SkeletonUtility.mapItemCounter);
 		SkeletonUtility.mapItemCounter++;
 		SkeletonUtility.printCall("create Ragacs", this);

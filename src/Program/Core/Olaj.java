@@ -17,7 +17,7 @@ public class Olaj extends MapItem {
 	 * Az olajba való belelépések számát állítja be a konstruktor.
 	 * @param StepIn
 	 */
-	Olaj(int StepIn) {
+	public Olaj(int StepIn) {
 		SkeletonUtility.addClass(this, "Olaj" + SkeletonUtility.mapItemCounter);
 		SkeletonUtility.mapItemCounter++;
 		SkeletonUtility.printCall("create Olaj", this);

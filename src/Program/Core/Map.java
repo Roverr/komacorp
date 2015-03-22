@@ -35,7 +35,7 @@ public class Map implements Serializable {
 	 * Létrehozásnál létrehozzuk az üres listákat, amik üresek, mert még nincs
 	 * pálya betölve, ebbõl kifolyólag nincsenek játékosok se.
 	 */
-	Map() {
+	public Map() {
 		SkeletonUtility.addClass(this, "dummyMap");
 		SkeletonUtility.printCall("create Map", this);
 		
