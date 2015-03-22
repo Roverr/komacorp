@@ -276,7 +276,40 @@ public class SkeletonUtility {
 		dummyMap.LoadMap(name,previousnumberofplayers);
 	}
 	/**
-	*Ez választ játékosszámot, és betölti a pályát újra, csak a játékosok számát változtatva.
+	 * Robot sebességének megváltozatásához a parancs, float inputokkal. 
+	 * @param x - A vektor x komponense
+	 * @param y - A vektor y komponense
+	 */
+	public void setSpeedMod(float x, float y) {
+		Vector modifier = new Vector(x,y);
+		dummyRobot.ModifySpeed(modifier);
+	}
+	
+	/**
+	 *Robot sebességének megváltozatásához a parancs, Vector inputtal. 
+	 * @param modifier - A vetor amivel változtatni akarunk
+	 */
+	public void setSpeedMod(Vector modifier) {
+		dummyRobot.ModifySpeed(modifier);
+	}
+	
+	/**
+	 * Robot pozíciójának beállítása int inputokkal. 
+	 * @param x - x koordináta
+	 * @param y - y koordináta
+	 */
+	public void setPosition(int x, int y) {
+		dummyRobot.SetPosition(new Point(x,y));
+	}
+	
+	/**
+	 * Robot pozíciójának beállítása int inputokkal. 
+	 * @param to - A pont ahova a robotot akarjuk tenni.
+	 */
+	public void setPosition(Point to) {
+		dummyRobot.SetPosition(to);
+	}
+	/*Ez választ játékosszámot, és betölti a pályát újra, csak a játékosok számát változtatva.
 	 *@author Bence
 	 */
 	private void chooseNumberOfPlayers(int number){
