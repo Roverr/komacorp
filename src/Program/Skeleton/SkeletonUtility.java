@@ -5,12 +5,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+<<<<<<< HEAD
+import Program.Core.*;
+=======
 
 import Program.Core.Game;
 import Program.Core.Map;
 import Program.Core.Olaj;
 import Program.Core.Ragacs;
 import Program.Core.Robot;
+>>>>>>> 6436fc898b3161162307f88942c11759d9e40c1c
 import Program.Helpers.Vector;
 /**
  * A szkeleton modell megvalósításáért felelõs osztály. A belsõ business modell a korábbiakban megbeszélt.
@@ -193,7 +197,7 @@ public class SkeletonUtility {
 
 			if(command.equals("LoadMap")){
 				String name=parts[1];
-				//chooseMap(name,count);
+				chooseMap(name);
 				
 			}else if(command.equals("SetPlayerCount")){
 				int number=Integer.parseInt(parts[1]);
@@ -260,7 +264,16 @@ public class SkeletonUtility {
 				
 			}else printSkeleton("Wrong command"); 
 			
-			
+					
+		
+	}
+	/**
+	*Ez választ pályát, és be is tölti azt, a korábban elfogadott játékosszámmal
+	 *@author Bence
+	 */
+	private void chooseMap(String name){
+		
+		dummyMap.LoadMap(name,previousnumberofplayers);
 	}
 	/**
 	 * Robot sebességének megváltozatásához a parancs, float inputokkal. 
@@ -288,4 +301,25 @@ public class SkeletonUtility {
 	public void setPosition(int x, int y) {
 		dummyRobot.SetPosition(new Point(x,y));
 	}
+	
+	/**
+	 * Robot pozíciójának beállítása int inputokkal. 
+	 * @param to - A pont ahova a robotot akarjuk tenni.
+	 */
+	public void setPosition(Point to) {
+		dummyRobot.SetPosition(to);
+	}
+	/*Ez választ játékosszámot, és betölti a pályát újra, csak a játékosok számát változtatva.
+	 *@author Bence
+	 */
+	private void chooseNumberOfPlayers(int number){
+		
+		dummyMap.LoadMap(previousname, number);
+	}
+	/**
+	 * @attribute previousname - Elmenti az aktuális pálya nevét, alapértelmezett a Halálos Kanyon
+	 * @attribute previousnumberofplayers - Elmenti a aktuális játékosok számát, 2 az alapértelmezett.
+	 */
+	private static String previousname="Halálos Kanyon";
+	private static int previousnumberofplayers=2;
 }
