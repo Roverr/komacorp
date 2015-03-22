@@ -54,6 +54,7 @@ public class Robot implements Serializable  {
 		modSpeed=new Vector(0,0);
 		alive = true;
 		distance = 0;
+		position = new Point(3,4);
 		/**TODO POSITION + List feltöltés akadályokkal**/
 		mapItemCarriedCounter = new ArrayList<Integer>();
 		
