@@ -26,10 +26,10 @@ public class Map implements Serializable {
 	 * - A versenyben lévõ robotok listája. Track - A pálya szélét definiáló
 	 * vonalakat tartalmazza.
 	 */
-	private List<Line> CheckPoints;
-	private List<MapItem> MapItems;
-	private List<Robot> Robots;
-	private List<Line> Track;
+	private List<Line> checkPoints;
+	private List<MapItem> mapItems;
+	private List<Robot> robots;
+	private List<Line> track;
 
 	/**
 	 * Létrehozásnál létrehozzuk az üres listákat, amik üresek, mert még nincs
@@ -39,10 +39,10 @@ public class Map implements Serializable {
 		SkeletonUtility.addClass(this, "dummyMap");
 		SkeletonUtility.printCall("create Map", this);
 		
-		CheckPoints = new ArrayList<Line>();
-		MapItems = new ArrayList<MapItem>();
-		Robots = new ArrayList<Robot>();
-		Track = new ArrayList<Line>();
+		checkPoints = new ArrayList<Line>();
+		mapItems = new ArrayList<MapItem>();
+		robots = new ArrayList<Robot>();
+		track = new ArrayList<Line>();
 		SkeletonUtility.printReturn("create Map", this);
 	}
 
@@ -54,7 +54,7 @@ public class Map implements Serializable {
 	 */
 	public void AddMapItem(MapItem item) {
 		SkeletonUtility.printCall("AddMapItem", this);
-		MapItems.add(item);
+		mapItems.add(item);
 		SkeletonUtility.printReturn("AddMapItem", this);
 	}
 
@@ -66,7 +66,7 @@ public class Map implements Serializable {
 	public List<String> GetResult() {
 		SkeletonUtility.printCall("GetResult", this);
 		
-		for (Robot r : Robots) {
+		for (Robot r : robots) {
 			int dummyint = r.GetDistance();
 		}
 		
@@ -83,7 +83,7 @@ public class Map implements Serializable {
 	public List<Robot> GetRobots() {
 		SkeletonUtility.printCall("GetRobots", this);
 		SkeletonUtility.printReturn("GetRobots", this);
-		return Robots;
+		return robots;
 	}
 
 	/**
@@ -92,11 +92,19 @@ public class Map implements Serializable {
 	 * @param file
 	 *            - Amibõl belehet olvasni a mappot.
 	 */
-	public void LoadMap(String file) {
+	/**
+	 * Szerintem ez szükséges még a LoadMaphoz, ne legyenek rajta fölös robotok
+	 * Lehet 0 robottal is?!?!?!?!, ekkor csak a pálya megnézése a cél
+	 * de mivel állapotot nem tárolunk, tehát meg kell kérdezni a felhasználótól h 
+	 * hány robottal akarjuk megcsinálni
+	 * @author Barna
+	 * @param numberOfPlayers
+	 */
+	public void LoadMap(String file,int numberOfPlayers) {
 		SkeletonUtility.printCall("LoadMap(" + file + ")", this);
 		/** TODO MAP OLVASÓ LOGIC TODO **/
-		for (int i = 0; i < 2; i++) {
-			Robots.add(new Robot());
+		for (int i = 0; i < numberOfPlayers; i++) {
+			robots.add(new Robot());
 		}
 		
 		AddMapItem(new Olaj(3));
@@ -114,7 +122,7 @@ public class Map implements Serializable {
 	public void RemoveMapItem(MapItem item) {
 		SkeletonUtility.printCall("RemoveMapItem", this);
 		try {
-			MapItems.remove(item);
+			mapItems.remove(item);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -132,9 +140,9 @@ public class Map implements Serializable {
 		SkeletonUtility.printCall("ValidateState", this);
 		/** TODO NEED MORE STABLE LOGIC **/
 
-		for (int i = 0; i < MapItems.size(); i++) {
+		for (int i = 0; i < mapItems.size(); i++) {
 
-			MapItem currentItem = MapItems.get(i);
+			MapItem currentItem = mapItems.get(i);
 			
 			boolean doStepIn = true; //SkeletonUtility.yesOrNoQuestion("StepIn meghívódik?");
 			if (robot.GetPosition() == currentItem.GetPosition()) {

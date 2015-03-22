@@ -25,15 +25,24 @@ public class Robot implements Serializable  {
 	 * MapItemCarriedCounter - Map itemek amik még a robotnál vannak.
 	 * ModSpeed- Vektor amivel a user módosíthatja a robot sebességét
 	 * Position - A térképen való pozícióját jelöli
+	 * @author Rover
+	 * 
+	 * Speed ami a robot elõzõ sebességét tárolja, ehhez adódik hozzá a modSpeed
+	 * @author Barna
 	 */
-	protected boolean Alive;
-	protected int Distance;
-	protected List<Integer> MapItemCarriedCounter;
-	protected Vector ModSpeed;
-	protected Point Position;
+	protected boolean alive;
+	protected int distance;
+	protected List<Integer> mapItemCarriedCounter;
+	protected Vector speed;
+	protected Vector modSpeed;
+	protected Point position;
 
 	/**
 	 * Konstruktor a dummyRobothoz
+	 * 
+	 * 
+	 * Added speed beállítás,modSpeed beállítása 0-ra
+	 * @author Barna
 	 */
 	Robot() {
 		//SKELETON PART
@@ -41,11 +50,12 @@ public class Robot implements Serializable  {
 		SkeletonUtility.robotCounter++;
 		SkeletonUtility.printCall("create Robot", this);
 		//SKELETON PART
-		
-		Alive = true;
-		Distance = 0;
+		speed=new Vector(0, 0);
+		modSpeed=new Vector(0,0);
+		alive = true;
+		distance = 0;
 		/**TODO POSITION + List feltöltés akadályokkal**/
-		MapItemCarriedCounter = new ArrayList<Integer>();
+		mapItemCarriedCounter = new ArrayList<Integer>();
 		
 		SkeletonUtility.printReturn("create Robot", this);
 	}
@@ -55,8 +65,8 @@ public class Robot implements Serializable  {
 	 */
 	public void Die() {
 		SkeletonUtility.printCall("Die", this);
-		MapItemCarriedCounter.clear();
-		Alive = false;
+		mapItemCarriedCounter.clear();
+		alive = false;
 		//System.out.println("Felt down!");
 
 		SkeletonUtility.printReturn("Die", this);
@@ -70,7 +80,7 @@ public class Robot implements Serializable  {
 		SkeletonUtility.printCall("DropRagacs", this);
 		int StepInCount = 3;
 		Ragacs rag = new Ragacs(StepInCount);
-		rag.SetPosition(new Point(Position.x,Position.y));
+		rag.SetPosition(new Point(position.x,position.y));
 		map.AddMapItem(rag);
 		/**TODO Kikell még venni a robot belsõ listájából*/
 		SkeletonUtility.printReturn("DropRagacs", this);
@@ -83,7 +93,7 @@ public class Robot implements Serializable  {
 		SkeletonUtility.printCall("DropOlaj", this);
 		int StepInCount=3;
 		Olaj olaj = new Olaj(StepInCount);
-		olaj.SetPosition(new Point(Position.x, Position.y));
+		olaj.SetPosition(new Point(position.x, position.y));
 		map.AddMapItem(olaj);
 		/**TODO Kikell még venni a robot belsõ listájából*/
 		SkeletonUtility.printReturn("DropOlaj", this);
@@ -96,7 +106,7 @@ public class Robot implements Serializable  {
 	public int GetDistance() {
 		SkeletonUtility.printCall("GetDistance", this);
 		SkeletonUtility.printReturn("GetDistance", this);
-		return Distance;
+		return distance;
 	}
 	
 	/**
@@ -106,7 +116,7 @@ public class Robot implements Serializable  {
 	public Point GetPosition() {
 		SkeletonUtility.printCall("GetPosition", this);
 		SkeletonUtility.printReturn("GetPosition", this);
-		return Position;
+		return position;
 		
 	}
 	
@@ -118,7 +128,7 @@ public class Robot implements Serializable  {
 		SkeletonUtility.printCall("GetSpeed", this);
 
 		SkeletonUtility.printReturn("GetSpeed", this);
-		return ModSpeed;
+		return modSpeed;
 		
 	}
 	
@@ -129,7 +139,7 @@ public class Robot implements Serializable  {
 	public boolean isAlive() {
 		SkeletonUtility.printCall("isAlive", this);
 		SkeletonUtility.printReturn("isAlive", this);
-		return Alive;
+		return alive;
 	}
 	
 	/**
@@ -159,7 +169,7 @@ public class Robot implements Serializable  {
 	 */
 	public void SetPosition(Point place){
 		SkeletonUtility.printCall("SetPosition", this);
-		Position=place;
+		position=place;
 		SkeletonUtility.printReturn("SetPosition", this);
 	}
 	

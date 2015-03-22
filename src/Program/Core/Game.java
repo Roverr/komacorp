@@ -6,6 +6,22 @@ import Program.Skeleton.SkeletonUtility;
 public class Game {
 		private Map GameMap;
 		
+		/**
+		 * Csinálok egy construktort amit a Program.java main metódusa hív meg
+		 * Ez reprezentálja ha a menüben beállítottunk mindent és azt mondjuk h Game
+		 * Szerintem kell még +1 változó h hány játékos legyen
+		 * Ezzel tesztelõdik a LoadMap metódus is
+		 * 
+		 * Lehetséges hogy szét kell választani a játékosszámot a loadmaptól, 
+		 * ezt el kell dönteni
+		 * @author Barna
+		 */
+		public Game(int seconds,String mapname,int numberOfPlayers){
+			SkeletonUtility.printCall("Game", this);
+			Map GameMap=new Map();
+			GameMap.LoadMap(mapname,numberOfPlayers);
+			SkeletonUtility.printReturn("Game", this);
+		}
 
 		public void StartGame(){
 			SkeletonUtility.printCall("StartGame", this);
