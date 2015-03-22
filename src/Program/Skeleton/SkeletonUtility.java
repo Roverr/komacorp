@@ -254,26 +254,47 @@ public class SkeletonUtility {
 				}
 			}else if(command.equals("SetDrop")){
 				String item=parts[1];
-				/**Megvalósítani setDrop() metódusban
-				 * boolean result;
-				*  result=yesOrNoQuestion("Out of Item?");
-				*  ......
-				*  + OIL,oil,Oil,Goo,goo,GOO, javaslom uppercaseé tenni
+				/**
+				 * Out of item?
+				 * Yes-re nem történik semmi.
+				 * No-ra kérdezünk. 
+				 * Drop Ragacs?
+				 * Yes-re eldobjuk a ragacsot
+				 * No-ra kérdezünk
+				 * Drop Olaj?
+				 * Yes-re Olajat dobunk
+				 * No-ra közöljük, hogy nincs más dobnivaló. 
 				*/
 				String question = "Out of item?";
 				boolean outOfItem;
 				try{
-					outOfItem = !SkeletonUtility.yesOrNoQuestion(question);
+					outOfItem = yesOrNoQuestion(question);
 					if(outOfItem) {
 						//Ha nem fogyott még ki a dobnivalóból. 
+						question = "Drop Ragacs?";
+						boolean goo;
+						goo = yesOrNoQuestion(question);
+						
+						if(goo) {
+							setDropItem("ragacs");
+						} else {
+							
+							boolean oil;
+							question = "Drop Olaj?";
+							oil = yesOrNoQuestion(question);
+							
+							if(oil) {
+								setDropItem("olaj");
+							} else {
+								printSkeleton("Can't drop other traps!");
+							}
+						}
 						
 						
 					}
 				}catch(Exception e) {
-					SkeletonUtility.printSkeleton(e.getMessage());
+					printSkeleton(e.getMessage());
 				}
-				setDropItem(item);
-				
 			}else if(command.equals("ValidateState")){
 				if(parts.length >= 2){
 					int playernumber=Integer.parseInt(parts[1]);
