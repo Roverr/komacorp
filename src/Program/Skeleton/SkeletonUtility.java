@@ -244,7 +244,7 @@ public class SkeletonUtility {
 		
 	}
 	/**
-	*Ez v√°laszt p√°ly√°t, √©s be is t√∂lti azt.
+	*Ez v·laszt p·ly·t, Ès be is tˆlti azt.
 	 *@author Bence
 	 */
 	private void chooseMap(String name){
