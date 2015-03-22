@@ -5,10 +5,22 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+<<<<<<< HEAD
 
 import Program.Core.*;
 
 
+import Program.Core.Game;
+import Program.Core.Map;
+import Program.Core.Olaj;
+import Program.Core.Ragacs;
+import Program.Core.Robot;
+
+=======
+
+
+import Program.Core.*;
+>>>>>>> 3becfb53cce0580be80d03b4cda33cc02c029845
 import Program.Helpers.Vector;
 /**
  * A szkeleton modell megvalósításáért felelõs osztály. A belsõ business modell a korábbiakban megbeszélt.
@@ -267,7 +279,7 @@ public class SkeletonUtility {
 	 */
 	private static void chooseMap(String name){
 		
-		dummyMap.loadMap(name,previousnumberofplayers);
+		dummyMap.LoadMap(name,previousnumberofplayers);
 	}
 	/**
 	 * Robot sebességének megváltozatásához a parancs, float inputokkal. 
@@ -276,7 +288,7 @@ public class SkeletonUtility {
 	 */
 	public void setSpeedMod(float x, float y) {
 		Vector modifier = new Vector(x,y);
-		dummyRobot.modifySpeed(modifier);
+		dummyRobot.ModifySpeed(modifier);
 	}
 	
 	/**
@@ -284,7 +296,7 @@ public class SkeletonUtility {
 	 * @param modifier - A vetor amivel változtatni akarunk
 	 */
 	public void setSpeedMod(Vector modifier) {
-		dummyRobot.modifySpeed(modifier);
+		dummyRobot.ModifySpeed(modifier);
 	}
 	
 	/**
@@ -293,7 +305,7 @@ public class SkeletonUtility {
 	 * @param y - y koordináta
 	 */
 	public void setPosition(int x, int y) {
-		dummyRobot.setPosition(new Point(x,y));
+		dummyRobot.SetPosition(new Point(x,y));
 	}
 	
 	/**
@@ -301,14 +313,14 @@ public class SkeletonUtility {
 	 * @param to - A pont ahova a robotot akarjuk tenni.
 	 */
 	public void setPosition(Point to) {
-		dummyRobot.setPosition(to);
+		dummyRobot.SetPosition(to);
 	}
 	/*Ez választ játékosszámot, és betölti a pályát újra, csak a játékosok számát változtatva.
 	 *@author Bence
 	 */
 	private void chooseNumberOfPlayers(int number){
 		
-		dummyMap.loadMap(previousname, number);
+		dummyMap.LoadMap(previousname, number);
 	}
 	/**
 	 * @attribute previousname - Elmenti az aktuális pálya nevét, alapértelmezett a Halálos Kanyon

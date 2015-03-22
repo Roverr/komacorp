@@ -21,7 +21,7 @@ public class Olaj extends MapItem {
 		SkeletonUtility.addClass(this, "Olaj" + SkeletonUtility.mapItemCounter);
 		SkeletonUtility.mapItemCounter++;
 		SkeletonUtility.printCall("create Olaj", this);
-		SetStepInCounter(StepIn);
+		setStepInCounter(StepIn);
 		SkeletonUtility.printReturn("create Olaj", this);
 	}
 	/**
@@ -30,14 +30,14 @@ public class Olaj extends MapItem {
 	 * @param robot- Robot ami belelépett
 	 *            
 	 */
-	public void StepIn(Robot robot) {
+	public void stepIn(Robot robot) {
 		SkeletonUtility.printCall("StepIn", this);
 		/**
 		 * Visszaállítja az eredetire a sebességet // TODO Megcsinálni értelmes Logiccal
 		 */
-		robot.ModifySpeed(robot.GetSpeed());
+		robot.modifySpeed(robot.getSpeed());
 		// VAGY +1 ha másik irányba akarunk menni
-		SetStepInCounter(GetStepInCounter() - 1);
+		setStepInCounter(getStepInCounter() - 1);
 		SkeletonUtility.printReturn("StepIn", this);
 	}
 

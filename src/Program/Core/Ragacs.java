@@ -21,16 +21,16 @@ public class Ragacs extends MapItem{
 		SkeletonUtility.addClass(this, "Ragacs" + SkeletonUtility.mapItemCounter);
 		SkeletonUtility.mapItemCounter++;
 		SkeletonUtility.printCall("create Ragacs", this);
-		SetStepInCounter(StepIn);
+		setStepInCounter(StepIn);
 		SkeletonUtility.printReturn("create Ragacs", this);
 	}
 	@Override
-	public void StepIn(Robot robot) {
+	public void stepIn(Robot robot) {
 		SkeletonUtility.printCall("StepIn", this);
 		// TODO Ragacs logika
 		
 		//VAGY +1 ha másik irányba akarunk menni
-		SetStepInCounter(GetStepInCounter()-1);
+		setStepInCounter(getStepInCounter()-1);
 		SkeletonUtility.printReturn("StepIn", this);
 	}
 }

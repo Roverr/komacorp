@@ -24,7 +24,7 @@ public abstract class MapItem implements Serializable  {
 	 * Visszaadja az akadály pozícióját.
 	 * @return - Position
 	 */
-	public Point GetPosition() {
+	public Point getPosition() {
 		SkeletonUtility.printCall("GetPosition", this);
 		SkeletonUtility.printReturn("GetPosition", this);
 		return position;
@@ -34,7 +34,7 @@ public abstract class MapItem implements Serializable  {
 	 * Visszadja hányszor lehet belelépni
 	 * @return
 	 */
-	public int GetStepInCounter() {
+	public int getStepInCounter() {
 		SkeletonUtility.printCall("GetStepInCounter", this);
 		SkeletonUtility.printReturn("GetStepInCounter", this);
 		return stepInCounter;
@@ -44,7 +44,7 @@ public abstract class MapItem implements Serializable  {
 	 * Beállítja hányszor lehet belelépni
 	 * @param value
 	 */
-	public void SetStepInCounter(int value) {
+	public void setStepInCounter(int value) {
 		SkeletonUtility.printCall("SetStepInCounter to " + value, this);
 		stepInCounter=value;
 		SkeletonUtility.printReturn("SetStepInCounter", this);
@@ -54,7 +54,7 @@ public abstract class MapItem implements Serializable  {
 	 * Beállítja az akadály pozícióját.
 	 * @param place - Az a pont ahova helyezzük az akadályt.
 	 */
-	public void SetPosition(Point place) {
+	public void setPosition(Point place) {
 		SkeletonUtility.printCall("SetPosition", this);
 		position=place;
 		SkeletonUtility.printReturn("SetPosition", this);
@@ -66,6 +66,6 @@ public abstract class MapItem implements Serializable  {
 	 * itt nem kell megvalósítani.
 	 * @param robot - Robot aki rálépett az akadályra.
 	 */
-	public abstract void StepIn(Robot robot);
+	public abstract void stepIn(Robot robot);
 
 }

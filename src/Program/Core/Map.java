@@ -1,5 +1,6 @@
 package Program.Core;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,8 @@ public class Map implements Serializable {
 	 */
 	private List<Line> checkPoints;
 	private List<MapItem> mapItems;
+	private Ragacs dummyRagacsForSkeleton=new Ragacs(2);
+	private Olaj dummyOlajForSkeleton=new Olaj(2);
 	private List<Robot> robots;
 	private List<Line> track;
 
@@ -67,7 +70,7 @@ public class Map implements Serializable {
 		SkeletonUtility.printCall("GetResult", this);
 		
 		for (Robot r : robots) {
-			int dummyint = r.GetDistance();
+			int dummyint = r.getDistance();
 		}
 		
 		SkeletonUtility.printReturn("GetResult", this);
@@ -80,7 +83,7 @@ public class Map implements Serializable {
 	 * 
 	 * @return - Lista a robotokkal.
 	 */
-	public List<Robot> GetRobots() {
+	public List<Robot> getRobots() {
 		SkeletonUtility.printCall("GetRobots", this);
 		SkeletonUtility.printReturn("GetRobots", this);
 		return robots;
@@ -100,7 +103,7 @@ public class Map implements Serializable {
 	 * @author Barna
 	 * @param numberOfPlayers
 	 */
-	public void LoadMap(String file,int numberOfPlayers) {
+	public void loadMap(String file,int numberOfPlayers) {
 		SkeletonUtility.printCall("LoadMap(" + file + ")", this);
 		/** TODO MAP OLVASÓ LOGIC TODO **/
 		for (int i = 0; i < numberOfPlayers; i++) {
@@ -119,7 +122,7 @@ public class Map implements Serializable {
 	 * @param item
 	 *            - Akadály amit lekell szedni.
 	 */
-	public void RemoveMapItem(MapItem item) {
+	public void removeMapItem(MapItem item) {
 		SkeletonUtility.printCall("RemoveMapItem", this);
 		try {
 			mapItems.remove(item);
@@ -135,21 +138,31 @@ public class Map implements Serializable {
 	 * 
 	 * @param robot
 	 *            - Akit vizsgálni kell az akadályokhoz viszonyítva.
+	 * @throws IOException 
 	 */
-	public void ValidateState(Robot robot) {
+	public void validateState(Robot robot) throws IOException {
 		SkeletonUtility.printCall("ValidateState", this);
 		/** TODO NEED MORE STABLE LOGIC **/
+		robot.getPosition();
+		//for (int i = 0; i < mapItems.size(); i++) {
 
-		for (int i = 0; i < mapItems.size(); i++) {
-
-			MapItem currentItem = mapItems.get(i);
-			
-			boolean doStepIn = true; //SkeletonUtility.yesOrNoQuestion("StepIn meghívódik?");
-			if (robot.GetPosition() == currentItem.GetPosition()) {
-				//TODO Switch, olaj vagy ragacs.
-				currentItem.StepIn(robot);
+			//MapItem currentItem = mapItems.get(i);
+			if(SkeletonUtility.yesOrNoQuestion("Kiestél a pályáról?")){
+				robot.die();
 			}
-		}
+		
+			if(SkeletonUtility.yesOrNoQuestion("Belelépett a robot egy ragacsba?")){
+				dummyRagacsForSkeleton.stepIn(robot);
+				
+			}
+			if(SkeletonUtility.yesOrNoQuestion("Belelépett a robot egy olajba?")){
+				dummyOlajForSkeleton.stepIn(robot);
+			}
+			//if (robot.getPosition() == currentItem.GetPosition()) {
+				//TODO Switch, olaj vagy ragacs.
+				//currentItem.StepIn(robot);
+			//}
+		//}
 		SkeletonUtility.printReturn("ValidateState", this);
 	}
 }
