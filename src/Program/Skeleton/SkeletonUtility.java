@@ -340,7 +340,7 @@ public class SkeletonUtility {
 					String question = "Out of item?";
 					boolean outOfItem;
 					try {
-						outOfItem = yesOrNoQuestion(question);
+						outOfItem = !yesOrNoQuestion(question);
 
 						if (outOfItem) {
 							question = "Drop Ragacs?";
