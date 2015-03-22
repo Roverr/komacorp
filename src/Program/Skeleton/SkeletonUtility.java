@@ -332,7 +332,7 @@ public class SkeletonUtility {
 			//throw new OutOfShitError();
 		}
 	}
-	/*Ez választ játékosszámot, és betölti a pályát újra, csak a játékosok számát változtatva.
+	/**Ez választ játékosszámot, és betölti a pályát újra, csak a játékosok számát változtatva.
 	 *@author Bence
 	 */
 	private void chooseNumberOfPlayers(int number){
