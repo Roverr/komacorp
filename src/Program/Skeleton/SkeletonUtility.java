@@ -305,8 +305,6 @@ public class SkeletonUtility {
 					wrongParameters = true;
 				}
 			} else if (command.equals("SetDrop")) {
-				if (parts.length >= 2) {
-					String item = parts[1];
 					/**
 					 * Out of item? Yes-re nem történik semmi. No-ra kérdezünk. 
 					 * Drop Ragacs? Yes-re eldobjuk a ragacsot No-ra kérdezünk.
@@ -342,9 +340,6 @@ public class SkeletonUtility {
 					} catch (Exception e) {
 						printSkeleton(e.getMessage());
 					}
-				} else {
-					wrongParameters = true;
-				}
 			} else if (command.equals("ValidateState")) {
 				if (parts.length >= 2) {
 					int playernumber = Integer.parseInt(parts[1]);
@@ -543,7 +538,7 @@ public class SkeletonUtility {
 	 */
 	private void winGame(int player) {
 		dummyGame.EndGame();
-		printSkeleton(player + " megnyerte a játékot!");
+		printSkeleton("Játékos " + player + " megnyerte a játékot!");
 	}
 
 	/**
