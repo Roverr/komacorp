@@ -17,6 +17,7 @@ public class Game {
 		 * @author Barna
 		 */
 		public Game(int seconds,String mapname,int numberOfPlayers){
+			SkeletonUtility.addClass(this, "dummyGame");
 			SkeletonUtility.printCall("Game", this);
 			Map GameMap=new Map();
 			GameMap.LoadMap(mapname,numberOfPlayers);

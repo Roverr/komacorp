@@ -44,7 +44,7 @@ public class Robot implements Serializable  {
 	 * Added speed beállítás,modSpeed beállítása 0-ra
 	 * @author Barna
 	 */
-	Robot() {
+	public Robot() {
 		//SKELETON PART
 		SkeletonUtility.addClass(this, "Robot" + SkeletonUtility.robotCounter);
 		SkeletonUtility.robotCounter++;
