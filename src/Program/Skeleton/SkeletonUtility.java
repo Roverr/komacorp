@@ -301,7 +301,7 @@ public class SkeletonUtility {
 					 * javaslat ezzel kezdeni:
 					 * result1,result2:yesorno(drop oil?,drop goo?)
 					 */
-					//modifySpeed(newvector);
+					dummyRobot.modifySpeed(newvector);
 				}else{
 					wrongParameters = true;
 				}
