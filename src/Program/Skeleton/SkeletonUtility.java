@@ -245,6 +245,8 @@ public class SkeletonUtility {
 
 			boolean wrongParameters = false;
 
+			//Egy pálya betöltésének az use-case.
+			//paraméter: pályanév.
 			if (command.equals("LoadMap")) {
 				if (parts.length >= 2) {
 					String name = parts[1];
@@ -252,14 +254,24 @@ public class SkeletonUtility {
 				} else {
 					wrongParameters = true;
 				}
+			//Játékoszám beállításának use-case.
+			//Paraméter játékosszám.
 			} else if (command.equals("SetPlayerCount")) {
-				int number = Integer.parseInt(parts[1]);
-				chooseNumberOfPlayers(number);
-
+				if (parts.length >= 2) {
+					int number = Integer.parseInt(parts[1]);
+					chooseNumberOfPlayers(number);
+				} else {
+					wrongParameters = true;
+				}
+			//A játék megnyerésének az use-case.
 			} else if (command.equals("WinGame")) {
-				int playernumber = Integer.parseInt(parts[1]);
-				winGame(playernumber);
-
+				if (parts.length >= 2) {
+					int playernumber = Integer.parseInt(parts[1]);
+					winGame(playernumber);
+				} else {
+					wrongParameters = true;
+				}
+			//Kilépés a játékból Use-case.
 			} else if (command.equals("Exit")) {
 				exitGame();
 
@@ -293,41 +305,45 @@ public class SkeletonUtility {
 					wrongParameters = true;
 				}
 			} else if (command.equals("SetDrop")) {
-				String item = parts[1];
-				/**
-				 * Out of item? Yes-re nem történik semmi. No-ra kérdezünk. 
-				 * Drop Ragacs? Yes-re eldobjuk a ragacsot No-ra kérdezünk.
-				 * Drop Olaj? Yes-re Olajat dobunk No-ra közöljük, hogy nincs más
-				 * dobnivaló.
-				 */
-				String question = "Out of item?";
-				boolean outOfItem;
-				try {
-					outOfItem = yesOrNoQuestion(question);
-
-					if (outOfItem) {
-						question = "Drop Ragacs?";
-						boolean goo;
-						goo = yesOrNoQuestion(question);
-
-						if (goo) {
-							setDropItem("ragacs");
-						} else {
-
-							boolean oil;
-							question = "Drop Olaj?";
-							oil = yesOrNoQuestion(question);
-
-							if (oil) {
-								setDropItem("olaj");
+				if (parts.length >= 2) {
+					String item = parts[1];
+					/**
+					 * Out of item? Yes-re nem történik semmi. No-ra kérdezünk. 
+					 * Drop Ragacs? Yes-re eldobjuk a ragacsot No-ra kérdezünk.
+					 * Drop Olaj? Yes-re Olajat dobunk No-ra közöljük, hogy nincs más
+					 * dobnivaló.
+					 */
+					String question = "Out of item?";
+					boolean outOfItem;
+					try {
+						outOfItem = yesOrNoQuestion(question);
+	
+						if (!outOfItem) {
+							question = "Drop Ragacs?";
+							boolean goo;
+							goo = yesOrNoQuestion(question);
+	
+							if (goo) {
+								setDropItem("ragacs");
 							} else {
-								printSkeleton("Can't drop other traps!");
+	
+								boolean oil;
+								question = "Drop Olaj?";
+								oil = yesOrNoQuestion(question);
+	
+								if (oil) {
+									setDropItem("olaj");
+								} else {
+									printSkeleton("Can't drop other traps!");
+								}
 							}
+	
 						}
-
+					} catch (Exception e) {
+						printSkeleton(e.getMessage());
 					}
-				} catch (Exception e) {
-					printSkeleton(e.getMessage());
+				} else {
+					wrongParameters = true;
 				}
 			} else if (command.equals("ValidateState")) {
 				if (parts.length >= 2) {
@@ -535,10 +551,13 @@ public class SkeletonUtility {
 	 * 
 	 * @param player
 	 * @author Barna
+	 * @throws IOException 
 	 */
-	private void loseGame(int player) {
-		dummyGame.EndGame();
+	private void loseGame(int player) throws IOException {
 		printSkeleton(player + " elvesztette a játékot!");
+		if(yesOrNoQuestion("Ez volt az utolsó játékos?")){
+			dummyGame.EndGame();
+		}
 	}
 
 	/**
