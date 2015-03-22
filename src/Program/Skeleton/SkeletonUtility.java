@@ -275,7 +275,7 @@ public class SkeletonUtility {
 				} else {
 					wrongParameters = true;
 				}
-			} else if (command.equals("SetPos")) {
+			} else if (command.equals("setpos")) {
 				int x, y;
 				if (parts.length >= 3) {
 					x = Integer.parseInt(parts[1]);
