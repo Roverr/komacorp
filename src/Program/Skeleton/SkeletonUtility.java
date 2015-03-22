@@ -81,7 +81,7 @@ public class SkeletonUtility {
 		if(allowSkeleton){
 			BufferedReader brKeyboard = new BufferedReader(new InputStreamReader(System.in));
 			String line = brKeyboard.readLine();
-			brKeyboard.close();
+			//brKeyboard.close();
 			return line;
 		}else{
 			System.out.println("allowSkeleton is not activated, you cant use skeleton methods");
@@ -183,15 +183,20 @@ public class SkeletonUtility {
 	 * @throws IOException 
 	 */
 	public void inputHandler() throws IOException{
+		boolean quit = false;
+		while(!quit){
+			printSkeleton("Please enter a valid command:");
 			String line = readSkeleton();
 			String[] parts=line.split(" ");
 			String command=parts[0];
 			
+			boolean wrongParameters = false;
 
 			if(command.equals("LoadMap")){
-				String name=parts[1];
-				chooseMap(name);
-				
+				if(parts[1] != null){
+					String name=parts[1];
+					chooseMap(name);
+				}
 			}else if(command.equals("SetPlayerCount")){
 				int number=Integer.parseInt(parts[1]);
 				chooseNumberOfPlayers(number);
@@ -214,11 +219,12 @@ public class SkeletonUtility {
 				
 			}else if(command.equals("SetSpeedMod")){
 				float x,y;
-				x=Float.parseFloat(parts[1]);
-				y=Float.parseFloat(parts[2]);
-				Vector newvector=new Vector(x,y);
-				setSpeedModification(newvector);
-				
+				if(parts[1]!= null && parts[2]!= null){
+					x=Float.parseFloat(parts[1]);
+					y=Float.parseFloat(parts[2]);
+					Vector newvector=new Vector(x,y);
+					setSpeedModification(newvector);
+				}
 			}else if(command.equals("SetPos")){
 				int x,y;
 				x=Integer.parseInt(parts[1]);
@@ -266,11 +272,37 @@ public class SkeletonUtility {
 				 * result1,result2:yesorno(drop oil?,drop goo?)
 				 */
 				//modifySpeed(newvector);
-				
-			}else printSkeleton("Wrong command"); 
-			
+			}else if(command.equals("Help")){
+				printSkeleton("UseCase & Elágazások    Parancs:    paraméter\n"+
+					"Choose Map    LoadMap    string név\n"+
+					"Choose Number of Players    SetPlayerCount    int 1..3\n"+
+					"Win Game    WinGame    int whichplayer\n"+
+					"Exit Game       Exit\n"+
+					"Lose Game       LoseGame    int whichplayer\n"+
+					"	Only One Left?           y/n\n"+
+					"Set Speed Modification (In Air)    SetSpeedMod    vector float,float\n"+
+					"Set Position (In Air)    SetPos       int int\n"+
+					"Set Drop Item (In Air)    SetDrop       string olaj/ragacs\n"+
+					"	Out of Item?           y/n\n"+
+					"Validate State (On Fall)        ValidateState    int whichplayer\n"+
+					"	Out Of Map?           y/n\n"+
+					"	StepIn Olaj?           y/n\n"+
+					"	StepIn Ragacs?           y/n\n"+
+					"Modify Speed (On Launch)        ModSpeed    vector float,float\n"+
+					"	Drop Olaj?           y/n\n"+
+					"	Drop Ragacs?           y/n\n"+
+					"Quit (Kilép a Skeletonból)\n"
+						+ "\n"
+						+ "\n");
+			}else if(command.equals("Quit")){
+				quit = true;
+			}else{
+				printSkeleton("Wrong command."); 
+				printSkeleton("Type \"Help\" to see the commands."); 
+			}
+		}
 					
-		
+		printSkeleton("Skeleton is now Quitting!");
 	}
 	/**
 	*Ez választ pályát, és be is tölti azt, a korábban elfogadott játékosszámmal
