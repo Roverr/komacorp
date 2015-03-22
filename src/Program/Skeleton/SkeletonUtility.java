@@ -41,10 +41,10 @@ public class SkeletonUtility {
 	 */
 	public static int robotCounter = 0;
 	public static int mapItemCounter = 0;
-	
+
 	/**
-	 * Változók a tesztelésre. 
-	 * Minden Önálló objektumból van egy példány, amin a változtatásokat lehet végezni.
+	 * Változók a tesztelésre. Minden Önálló objektumból van egy példány, amin a
+	 * változtatásokat lehet végezni.
 	 */
 
 	private static Game dummyGame;
@@ -128,15 +128,16 @@ public class SkeletonUtility {
 	public static boolean yesOrNoQuestion(String question) throws IOException {
 		boolean isYes = false;
 		boolean invalidAnswer = true;
-		//Addig feltesszük a kérdést, amíg értelmes választ nem kapunk.
-		while(invalidAnswer){
+		// Addig feltesszük a kérdést, amíg értelmes választ nem kapunk.
+		while (invalidAnswer) {
 			// Kiírjuk a kérdést
-			printSkeleton(question+" yes/no y/n igen/nem");
-			String answer=readSkeleton();
+			printSkeleton(question + " yes/no y/n igen/nem");
+			String answer = readSkeleton();
 			// Az igen vagy nem esetek mnegállapítása:
-			if("Y".equals(answer) || "YES".equals(answer) || "IGEN".equals(answer)
-					||"y".equals(answer) || "yes".equals(answer) || "igen".equals(answer)){
-				isYes=true;
+			if ("Y".equals(answer) || "YES".equals(answer)
+					|| "IGEN".equals(answer) || "y".equals(answer)
+					|| "yes".equals(answer) || "igen".equals(answer)) {
+				isYes = true;
 				invalidAnswer = false;
 			} else if ("N".equals(answer) || "NO".equals(answer)
 					|| "NEM".equals(answer) || "n".equals(answer)
@@ -245,9 +246,8 @@ public class SkeletonUtility {
 
 			boolean wrongParameters = false;
 
-
-			//Egy pálya betöltésének az use-case.
-			//paraméter: pályanév.
+			// Egy pálya betöltésének az use-case.
+			// paraméter: pályanév.
 			if (command.equals("loadmap")) {
 				if (parts.length >= 2) {
 					String name = parts[1];
@@ -255,53 +255,78 @@ public class SkeletonUtility {
 				} else {
 					wrongParameters = true;
 				}
-			//Játékoszám beállításának use-case.
-			//Paraméter játékosszám.
+				// Játékoszám beállításának use-case.
+				// Paraméter játékosszám.
 			} else if (command.equals("setplayercount")) {
 				if (parts.length >= 2) {
-					int number = Integer.parseInt(parts[1]);
-					chooseNumberOfPlayers(number);
+					try {
+						int number = Integer.parseInt(parts[1]);
+						chooseNumberOfPlayers(number);
+					} catch (Exception e) {
+						System.out.println(e.getMessage()
+								+ "\nIt's not valid, use help!");
+					}
 				} else {
 					wrongParameters = true;
 				}
-			//A játék megnyerésének az use-case.
+				// A játék megnyerésének az use-case.
 			} else if (command.equals("wingame")) {
 				if (parts.length >= 2) {
-					int playernumber = Integer.parseInt(parts[1]);
-					winGame(playernumber);
+					try {
+						int playernumber = Integer.parseInt(parts[1]);
+						winGame(playernumber);
+					} catch (Exception e) {
+						System.out.println(e.getMessage()
+								+ "\nIt's not valid, use help!");
+					}
 				} else {
 					wrongParameters = true;
 				}
-			//Kilépés a játékból Use-case.
+				// Kilépés a játékból Use-case.
 			} else if (command.equals("exit")) {
 				exitGame();
 
 			} else if (command.equals("losegame")) {
 				if (parts.length >= 2) {
+					try {
+						int playernumber = Integer.parseInt(parts[1]);
 
-					int playernumber = Integer.parseInt(parts[1]);
+						loseGame(playernumber);
+					} catch (Exception e) {
+						System.out.println(e.getMessage()
+								+ "\nIt's not valid, use help!");
+					}
 
-					loseGame(playernumber);
 				} else {
 					wrongParameters = true;
 				}
 			} else if (command.equals("setspeedmod")) {
 				float x, y;
 				if (parts.length >= 3) {
-					x = Float.parseFloat(parts[1]);
-					y = Float.parseFloat(parts[2]);
-					Vector newvector = new Vector(x, y);
-					setSpeedModification(newvector);
+					try {
+						x = Float.parseFloat(parts[1]);
+						y = Float.parseFloat(parts[2]);
+						Vector newvector = new Vector(x, y);
+						setSpeedModification(newvector);
+					} catch (Exception e) {
+						System.out.println(e.getMessage()
+								+ "\nIt's not valid, use help!");
+					}
 				} else {
 					wrongParameters = true;
 				}
 			} else if (command.equals("setpos")) {
 				int x, y;
 				if (parts.length >= 3) {
-					x = Integer.parseInt(parts[1]);
-					y = Integer.parseInt(parts[2]);
-					Point newpoint = new Point(x, y);
-					setPosition(newpoint);
+					try {
+						x = Integer.parseInt(parts[1]);
+						y = Integer.parseInt(parts[2]);
+						Point newpoint = new Point(x, y);
+						setPosition(newpoint);
+					} catch (Exception e) {
+						System.out.println(e.getMessage()
+								+ "\nIt's not valid, use help!");
+					}
 				} else {
 					wrongParameters = true;
 				}
@@ -309,16 +334,16 @@ public class SkeletonUtility {
 				if (parts.length >= 2) {
 					String item = parts[1];
 					/**
-					 * Out of item? Yes-re nem történik semmi. No-ra kérdezünk. 
+					 * Out of item? Yes-re nem történik semmi. No-ra kérdezünk.
 					 * Drop Ragacs? Yes-re eldobjuk a ragacsot No-ra kérdezünk.
-					 * Drop Olaj? Yes-re Olajat dobunk No-ra közöljük, hogy nincs más
-					 * dobnivaló.
+					 * Drop Olaj? Yes-re Olajat dobunk No-ra közöljük, hogy
+					 * nincs más dobnivaló.
 					 */
 					String question = "Out of item?";
 					boolean outOfItem;
 					try {
 						outOfItem = yesOrNoQuestion(question);
-	
+
 						if (!outOfItem) {
 							System.out.println(item);
 							setDropItem(item);
@@ -333,17 +358,22 @@ public class SkeletonUtility {
 				}
 			} else if (command.equals("validatestate")) {
 				if (parts.length >= 2) {
-					int playernumber = Integer.parseInt(parts[1]);
-					boolean beforeAllow = allowSkeleton;
-					allowSkeleton = false;
-					if (dummyMap.getRobots().size() > playernumber) {
-						Robot rob = dummyMap.getRobots().get(playernumber);
+					try {
+						int playernumber = Integer.parseInt(parts[1]);
+						boolean beforeAllow = allowSkeleton;
+						allowSkeleton = false;
+						if (dummyMap.getRobots().size() > playernumber) {
+							Robot rob = dummyMap.getRobots().get(playernumber);
+							allowSkeleton = beforeAllow;
+							dummyMap.validateState(rob);
+						} else {
+							wrongParameters = true;
+						}
 						allowSkeleton = beforeAllow;
-						dummyMap.validateState(rob);
-					} else {
-						wrongParameters = true;
+					} catch (Exception e) {
+						System.out.println(e.getMessage()
+								+ "\nIt's not valid, use help!");
 					}
-					allowSkeleton = beforeAllow;
 				} else {
 					wrongParameters = true;
 				}
@@ -351,12 +381,13 @@ public class SkeletonUtility {
 			} else if (command.equals("modspeed")) {
 				float x, y;
 				if (parts.length >= 3) {
-					x = Float.parseFloat(parts[1]);
-					y = Float.parseFloat(parts[2]);
-					Vector modify = new Vector(x, y);
-					String question = "Out of item?";
-					boolean outOfItem;
 					try {
+						x = Float.parseFloat(parts[1]);
+						y = Float.parseFloat(parts[2]);
+						Vector modify = new Vector(x, y);
+						String question = "Out of item?";
+						boolean outOfItem;
+
 						outOfItem = !yesOrNoQuestion(question);
 
 						if (outOfItem) {
@@ -379,11 +410,11 @@ public class SkeletonUtility {
 								}
 							}
 						}
+						setSpeedModification(modify);
 					} catch (Exception e) {
 						printSkeleton(e.getMessage());
 					}
-					
-					setSpeedModification(modify);
+
 				} else {
 					wrongParameters = true;
 				}
@@ -536,11 +567,11 @@ public class SkeletonUtility {
 	 * 
 	 * @param player
 	 * @author Barna
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	private void loseGame(int player) throws IOException {
 		printSkeleton(player + " elvesztette a játékot!");
-		if(yesOrNoQuestion("Ez volt az utolsó játékos?")){
+		if (yesOrNoQuestion("Ez volt az utolsó játékos?")) {
 			dummyGame.EndGame();
 		}
 	}
