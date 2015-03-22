@@ -302,6 +302,24 @@ public class SkeletonUtility {
 	public void setPosition(Point to) {
 		dummyRobot.SetPosition(to);
 	}
+	
+	/**
+	 * Ha a robot ragacsot vagy olajat dob el akkor hívódik meg
+	 * @param what - A string, ami kiválasztja, hogy mit dobjon a robot. 
+	 * String, mert az jobban olvasható kódot szül. 
+	 */
+	public void setDrop(String what) {
+		what = what.toLowerCase();
+		if(what=="ragacs") {
+			dummyRobot.DropRagacs(dummyMap);
+		} else if(what=="olaj") {
+			dummyRobot.DropOlaj(dummyMap);
+		} else {
+			//Hibakezelés
+			SkeletonUtility.printSkeleton("I can't throw it! It's not Ragacs or Olaj!");
+			//throw new OutOfShitError();
+		}
+	}
 	/*Ez választ játékosszámot, és betölti a pályát újra, csak a játékosok számát változtatva.
 	 *@author Bence
 	 */
