@@ -37,7 +37,7 @@ public class Game {
 		
 		public void EndGame(){
 			SkeletonUtility.printCall("EndGame", this);
-			GameMap.GetResult();
+			GameMap.getResult();
 			SkeletonUtility.printReturn("EndGame", this);
 		}
 		

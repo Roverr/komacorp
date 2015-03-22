@@ -27,7 +27,7 @@ public class Program {
 		/**letrehozok egy jatekot 180 másodperc hosszú, mapnév,játékosszám
 		 * @author Barna
 		 */
-		//Game skeletonGame=new Game(180,"Halalos kanyon",3);
+		Game skeletonGame=new Game(180,"Halalos kanyon",3);
 		SkeletonUtility su = new SkeletonUtility();
 		try {
 			su.inputHandler();

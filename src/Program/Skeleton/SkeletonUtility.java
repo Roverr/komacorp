@@ -234,29 +234,29 @@ public class SkeletonUtility {
 			printSkeleton("Please enter a valid command:");
 			String line = readSkeleton();
 			String[] parts = line.split(" ");
-			String command = parts[0];
+			String command = parts[0].toLowerCase();
 
 			boolean wrongParameters = false;
 
-			if (command.equals("LoadMap")) {
+			if (command.equals("loadmap")) {
 				if (parts.length >= 2) {
 					String name = parts[1];
 					chooseMap(name);
 				} else {
 					wrongParameters = true;
 				}
-			} else if (command.equals("SetPlayerCount")) {
+			} else if (command.equals("setplayercount")) {
 				int number = Integer.parseInt(parts[1]);
 				chooseNumberOfPlayers(number);
 
-			} else if (command.equals("WinGame")) {
+			} else if (command.equals("wingame")) {
 				int playernumber = Integer.parseInt(parts[1]);
 				winGame(playernumber);
 
-			} else if (command.equals("Exit")) {
+			} else if (command.equals("exit")) {
 				exitGame();
 
-			} else if (command.equals("LoseGame")) {
+			} else if (command.equals("loseGame")) {
 				if (parts.length >= 2) {
 
 					int playernumber = Integer.parseInt(parts[1]);
@@ -265,7 +265,7 @@ public class SkeletonUtility {
 				} else {
 					wrongParameters = true;
 				}
-			} else if (command.equals("SetSpeedMod")) {
+			} else if (command.equals("setspeedmod")) {
 				float x, y;
 				if (parts.length >= 3) {
 					x = Float.parseFloat(parts[1]);
@@ -285,7 +285,7 @@ public class SkeletonUtility {
 				} else {
 					wrongParameters = true;
 				}
-			} else if (command.equals("SetDrop")) {
+			} else if (command.equals("setdrop")) {
 				String item = parts[1];
 				/**
 				 * Out of item? Yes-re nem történik semmi. No-ra kérdezünk. 
@@ -322,7 +322,7 @@ public class SkeletonUtility {
 				} catch (Exception e) {
 					printSkeleton(e.getMessage());
 				}
-			} else if (command.equals("ValidateState")) {
+			} else if (command.equals("validatestate")) {
 				if (parts.length >= 2) {
 					int playernumber = Integer.parseInt(parts[1]);
 					boolean beforeAllow = allowSkeleton;
@@ -339,7 +339,7 @@ public class SkeletonUtility {
 					wrongParameters = true;
 				}
 
-			} else if (command.equals("ModSpeed")) {
+			} else if (command.equals("modspeed")) {
 				float x, y;
 				if (parts.length >= 3) {
 					x = Float.parseFloat(parts[1]);
@@ -378,7 +378,7 @@ public class SkeletonUtility {
 				} else {
 					wrongParameters = true;
 				}
-			} else if (command.equals("Help")) {
+			} else if (command.equals("help")) {
 				printSkeleton("UseCase & Elágazások    Parancs:    paraméter\n"
 						+ "Choose Map    LoadMap    string név\n"
 						+ "Choose Number of Players    SetPlayerCount    int 1..3\n"
@@ -398,7 +398,7 @@ public class SkeletonUtility {
 						+ "	Drop Olaj?           y/n\n"
 						+ "	Drop Ragacs?           y/n\n"
 						+ "Quit (Kilép a Skeletonból)\n" + "\n" + "\n");
-			} else if (command.equals("Quit")) {
+			} else if (command.equals("quit")) {
 				quit = true;
 			} else {
 				printSkeleton("Wrong command.");
