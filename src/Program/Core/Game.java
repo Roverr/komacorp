@@ -21,7 +21,7 @@ public class Game {
 		public Game(int seconds,String mapname,int numberOfPlayers){
 			SkeletonUtility.addClass(this, "dummyGame");
 			SkeletonUtility.printCall("Game", this);
-			Map GameMap=new Map();
+			GameMap=new Map();
 			GameMap.loadMap(mapname,numberOfPlayers);
 			SkeletonUtility.printReturn("Game", this);
 		}

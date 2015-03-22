@@ -245,6 +245,9 @@ public class SkeletonUtility {
 
 			boolean wrongParameters = false;
 
+
+			//Egy pálya betöltésének az use-case.
+			//paraméter: pályanév.
 			if (command.equals("loadmap")) {
 				if (parts.length >= 2) {
 					String name = parts[1];
@@ -252,14 +255,24 @@ public class SkeletonUtility {
 				} else {
 					wrongParameters = true;
 				}
+			//Játékoszám beállításának use-case.
+			//Paraméter játékosszám.
 			} else if (command.equals("setplayercount")) {
-				int number = Integer.parseInt(parts[1]);
-				chooseNumberOfPlayers(number);
-
+				if (parts.length >= 2) {
+					int number = Integer.parseInt(parts[1]);
+					chooseNumberOfPlayers(number);
+				} else {
+					wrongParameters = true;
+				}
+			//A játék megnyerésének az use-case.
 			} else if (command.equals("wingame")) {
-				int playernumber = Integer.parseInt(parts[1]);
-				winGame(playernumber);
-
+				if (parts.length >= 2) {
+					int playernumber = Integer.parseInt(parts[1]);
+					winGame(playernumber);
+				} else {
+					wrongParameters = true;
+				}
+			//Kilépés a játékból Use-case.
 			} else if (command.equals("exit")) {
 				exitGame();
 
@@ -293,26 +306,30 @@ public class SkeletonUtility {
 					wrongParameters = true;
 				}
 			} else if (command.equals("setdrop")) {
-				String item = parts[1];
-				/**
-				 * Out of item? Yes-re nem történik semmi. No-ra kérdezünk. 
-				 * Drop Ragacs? Yes-re eldobjuk a ragacsot No-ra kérdezünk.
-				 * Drop Olaj? Yes-re Olajat dobunk No-ra közöljük, hogy nincs más
-				 * dobnivaló.
-				 */
-				String question = "Out of item?";
-				boolean outOfItem;
-				try {
-					outOfItem = yesOrNoQuestion(question);
-
-					if (!outOfItem) {
-						System.out.println(item);
-						setDropItem(item);
-					} else {
-						printSkeleton("No throwing then!");
+				if (parts.length >= 2) {
+					String item = parts[1];
+					/**
+					 * Out of item? Yes-re nem történik semmi. No-ra kérdezünk. 
+					 * Drop Ragacs? Yes-re eldobjuk a ragacsot No-ra kérdezünk.
+					 * Drop Olaj? Yes-re Olajat dobunk No-ra közöljük, hogy nincs más
+					 * dobnivaló.
+					 */
+					String question = "Out of item?";
+					boolean outOfItem;
+					try {
+						outOfItem = yesOrNoQuestion(question);
+	
+						if (!outOfItem) {
+							System.out.println(item);
+							setDropItem(item);
+						} else {
+							printSkeleton("No throwing then!");
+						}
+					} catch (Exception e) {
+						printSkeleton(e.getMessage());
 					}
-				} catch (Exception e) {
-					printSkeleton(e.getMessage());
+				} else {
+					wrongParameters = true;
 				}
 			} else if (command.equals("validatestate")) {
 				if (parts.length >= 2) {
@@ -511,7 +528,7 @@ public class SkeletonUtility {
 	 */
 	private void winGame(int player) {
 		dummyGame.EndGame();
-		printSkeleton(player + " megnyerte a játékot!");
+		printSkeleton("Játékos " + player + " megnyerte a játékot!");
 	}
 
 	/**
@@ -519,10 +536,13 @@ public class SkeletonUtility {
 	 * 
 	 * @param player
 	 * @author Barna
+	 * @throws IOException 
 	 */
-	private void loseGame(int player) {
-		dummyGame.EndGame();
+	private void loseGame(int player) throws IOException {
 		printSkeleton(player + " elvesztette a játékot!");
+		if(yesOrNoQuestion("Ez volt az utolsó játékos?")){
+			dummyGame.EndGame();
+		}
 	}
 
 	/**
