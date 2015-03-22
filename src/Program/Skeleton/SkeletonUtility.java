@@ -184,6 +184,8 @@ public class SkeletonUtility {
 	 * @throws IOException 
 	 */
 	public void inputHandler() throws IOException{
+		boolean quit = false;
+		while(!quit){
 			String line = readSkeleton();
 			String[] parts=line.split(" ");
 			String command=parts[0];
@@ -255,9 +257,12 @@ public class SkeletonUtility {
 				 * result1,result2:yesorno(drop oil?,drop goo?)
 				 */
 				//modifySpeed(newvector);
-				
-			}else printSkeleton("Wrong command"); 
-			
+			}else if(command.equals("Quit")){
+				quit = true;
+			}else{
+				printSkeleton("Wrong command"); 
+			}
+		}
 					
 		
 	}
