@@ -63,7 +63,7 @@ public class Robot implements Serializable  {
 	/**
 	 * Ha a robot leesik a pályáról ez a függvény hívódik meg. 
 	 */
-	public void Die() {
+	public void die() {
 		SkeletonUtility.printCall("Die", this);
 		mapItemCarriedCounter.clear();
 		alive = false;
@@ -76,11 +76,11 @@ public class Robot implements Serializable  {
 	 * Ragacsot dob a pályára ha van, ha nem akkor nem csinál semmit. 
 	 * @param map - Pálya amire ledobja
 	 */
-	public void DropRagacs(Map map) {
+	public void dropRagacs(Map map) {
 		SkeletonUtility.printCall("DropRagacs", this);
 		int StepInCount = 3;
 		Ragacs rag = new Ragacs(StepInCount);
-		rag.SetPosition(new Point(position.x,position.y));
+		rag.setPosition(new Point(position.x,position.y));
 		map.AddMapItem(rag);
 		/**TODO Kikell még venni a robot belsõ listájából*/
 		SkeletonUtility.printReturn("DropRagacs", this);
@@ -89,11 +89,11 @@ public class Robot implements Serializable  {
 	 * Olajat dob a pályára
 	 * @param map - A pálya ahova dobja
 	 */
-	public void DropOlaj(Map map) {
+	public void dropOlaj(Map map) {
 		SkeletonUtility.printCall("DropOlaj", this);
 		int StepInCount=3;
 		Olaj olaj = new Olaj(StepInCount);
-		olaj.SetPosition(new Point(position.x, position.y));
+		olaj.setPosition(new Point(position.x, position.y));
 		map.AddMapItem(olaj);
 		/**TODO Kikell még venni a robot belsõ listájából*/
 		SkeletonUtility.printReturn("DropOlaj", this);
@@ -103,7 +103,7 @@ public class Robot implements Serializable  {
 	 * Distance-t adja vissza
 	 * @return
 	 */
-	public int GetDistance() {
+	public int getDistance() {
 		SkeletonUtility.printCall("GetDistance", this);
 		SkeletonUtility.printReturn("GetDistance", this);
 		return distance;
@@ -113,7 +113,7 @@ public class Robot implements Serializable  {
 	 * Position-t adja vissza
 	 * @return
 	 */
-	public Point GetPosition() {
+	public Point getPosition() {
 		SkeletonUtility.printCall("GetPosition", this);
 		SkeletonUtility.printReturn("GetPosition", this);
 		return position;
@@ -124,7 +124,7 @@ public class Robot implements Serializable  {
 	 * Sebesség változtatást adja vissza.
 	 * @return
 	 */
-	public Vector GetSpeed() {
+	public Vector getSpeed() {
 		SkeletonUtility.printCall("GetSpeed", this);
 
 		SkeletonUtility.printReturn("GetSpeed", this);
@@ -145,7 +145,7 @@ public class Robot implements Serializable  {
 	/**
 	 * A robot frissítõ függvénye
 	 */
-	public void Jump() {
+	public void jump() {
 		SkeletonUtility.printCall("Jump", this);
 		/**
 		 * TODO 
@@ -157,7 +157,7 @@ public class Robot implements Serializable  {
 	 * A robot sebességét módosítja
 	 * @param force - Vector amit használunk a módosítás kiszámolásához
 	 */
-	public void ModifySpeed(Vector force) {
+	public void modifySpeed(Vector force) {
 		SkeletonUtility.printCall("ModifySpeed", this);
 
 		SkeletonUtility.printReturn("ModifySpeed", this);
@@ -167,7 +167,7 @@ public class Robot implements Serializable  {
 	 * Robot pozícióját állítja be
 	 * @param place - Point ahova beállítja
 	 */
-	public void SetPosition(Point place){
+	public void setPosition(Point place){
 		SkeletonUtility.printCall("SetPosition", this);
 		position=place;
 		SkeletonUtility.printReturn("SetPosition", this);

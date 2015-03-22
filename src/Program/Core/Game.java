@@ -1,5 +1,7 @@
 package Program.Core;
 
+import java.io.IOException;
+
 import Program.Helpers.Vector;
 import Program.Skeleton.SkeletonUtility;
 
@@ -20,14 +22,14 @@ public class Game {
 			SkeletonUtility.addClass(this, "dummyGame");
 			SkeletonUtility.printCall("Game", this);
 			Map GameMap=new Map();
-			GameMap.LoadMap(mapname,numberOfPlayers);
+			GameMap.loadMap(mapname,numberOfPlayers);
 			SkeletonUtility.printReturn("Game", this);
 		}
 
 		public void StartGame(){
 			SkeletonUtility.printCall("StartGame", this);
-			for (Robot r : GameMap.GetRobots()) {
-				r.ModifySpeed(new Vector(0,0));
+			for (Robot r : GameMap.getRobots()) {
+				r.modifySpeed(new Vector(0,0));
 			}
 			SkeletonUtility.printReturn("StartGame", this);
 		}
@@ -40,11 +42,11 @@ public class Game {
 		}
 		
 
-		public void Run(){
+		public void Run() throws IOException{
 			SkeletonUtility.printCall("Run", this);
-			for (Robot r : GameMap.GetRobots()) {
-				GameMap.ValidateState(r);
-				r.Jump();
+			for (Robot r : GameMap.getRobots()) {
+				GameMap.validateState(r);
+				r.jump();
 			}
 			SkeletonUtility.printReturn("Run", this);
 		}
