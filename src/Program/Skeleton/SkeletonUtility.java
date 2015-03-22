@@ -265,6 +265,7 @@ public class SkeletonUtility {
 					} catch (Exception e) {
 						System.out.println(e.getMessage()
 								+ "\nIt's not valid, use help!");
+						wrongParameters = true;
 					}
 				} else {
 					wrongParameters = true;
@@ -278,6 +279,7 @@ public class SkeletonUtility {
 					} catch (Exception e) {
 						System.out.println(e.getMessage()
 								+ "\nIt's not valid, use help!");
+						wrongParameters = true;
 					}
 				} else {
 					wrongParameters = true;
@@ -295,6 +297,7 @@ public class SkeletonUtility {
 					} catch (Exception e) {
 						System.out.println(e.getMessage()
 								+ "\nIt's not valid, use help!");
+						wrongParameters = true;
 					}
 
 				} else {
@@ -311,6 +314,7 @@ public class SkeletonUtility {
 					} catch (Exception e) {
 						System.out.println(e.getMessage()
 								+ "\nIt's not valid, use help!");
+						wrongParameters = true;
 					}
 				} else {
 					wrongParameters = true;
@@ -326,6 +330,7 @@ public class SkeletonUtility {
 					} catch (Exception e) {
 						System.out.println(e.getMessage()
 								+ "\nIt's not valid, use help!");
+						wrongParameters = true;
 					}
 				} else {
 					wrongParameters = true;
@@ -373,6 +378,7 @@ public class SkeletonUtility {
 					} catch (Exception e) {
 						System.out.println(e.getMessage()
 								+ "\nIt's not valid, use help!");
+						wrongParameters = true;
 					}
 				} else {
 					wrongParameters = true;
