@@ -41,6 +41,11 @@ public class SkeletonUtility {
 	 */
 	public static int robotCounter = 0;
 	public static int mapItemCounter = 0;
+	
+	/**
+	 * Változók a tesztelésre. 
+	 * Minden Önálló objektumból van egy példány, amin a változtatásokat lehet végezni.
+	 */
 
 	private static Game dummyGame;
 	private static Map dummyMap;
@@ -123,13 +128,15 @@ public class SkeletonUtility {
 	public static boolean yesOrNoQuestion(String question) throws IOException {
 		boolean isYes = false;
 		boolean invalidAnswer = true;
-		while (invalidAnswer) {
-			printSkeleton(question + " yes/no y/n igen/nem");
-			String answer = readSkeleton();
-			if ("Y".equals(answer) || "YES".equals(answer)
-					|| "IGEN".equals(answer) || "y".equals(answer)
-					|| "yes".equals(answer) || "igen".equals(answer)) {
-				isYes = true;
+		//Addig feltesszük a kérdést, amíg értelmes választ nem kapunk.
+		while(invalidAnswer){
+			// Kiírjuk a kérdést
+			printSkeleton(question+" yes/no y/n igen/nem");
+			String answer=readSkeleton();
+			// Az igen vagy nem esetek mnegállapítása:
+			if("Y".equals(answer) || "YES".equals(answer) || "IGEN".equals(answer)
+					||"y".equals(answer) || "yes".equals(answer) || "igen".equals(answer)){
+				isYes=true;
 				invalidAnswer = false;
 			} else if ("N".equals(answer) || "NO".equals(answer)
 					|| "NEM".equals(answer) || "n".equals(answer)
