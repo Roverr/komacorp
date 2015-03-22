@@ -42,21 +42,28 @@ public class SkeletonUtility {
 	private static Robot dummyRobot;
 	private static Olaj dummyOlaj;
 	private static Ragacs dummyRagacs;
+	
+	private static BufferedReader brKeyboard;
 	/**
 	 * Klasszikus konstruktor, megalkotja a teszteléshez szükséges dummy osztályokat.
 	 * Beállítja a kellõ statikus változókat.
 	 * 
 	 */
 	public SkeletonUtility(){
-		allowSkeleton = true;
 		//Create Dummy classes
 		dummyGame= new Game(270,"Halálos Kanyon",3);
 		dummyMap = new Map();
+		dummyMap.loadMap("Dummyk lankája", 3);
 		dummyRobot = new Robot();
 		dummyOlaj = new Olaj(3);
 		dummyRagacs = new Ragacs(3);
-		//Set up input listening
-		//more..
+		
+		//Kiírások engedélyezése:
+		allowSkeleton = true;
+		
+		//Input reader inicializálás:
+		brKeyboard = new BufferedReader(new InputStreamReader(System.in));
+		
 		
 		
 	}
@@ -65,11 +72,15 @@ public class SkeletonUtility {
 	 * Privát kiíró függvény, gondoskodik arról hogy csak akkor kerüljön valami kiírásra, ha a Skeleton módot engedélyeztük.
 	 * @param s
 	 */
+	static boolean notificationsent = false;
 	private static void printSkeleton(String s){
 		if(allowSkeleton){
 			System.out.println(s);
 		}else{
-			System.out.println("allowSkeleton is not activated, you cant use skeleton methods");
+			if(!notificationsent){
+				System.out.println("allowSkeleton is not activated, you cant use skeleton methods");
+				notificationsent = true;
+			}
 		}
 	}
 	/**
@@ -79,12 +90,13 @@ public class SkeletonUtility {
 	 */
 	private static String readSkeleton() throws IOException{
 		if(allowSkeleton){
-			BufferedReader brKeyboard = new BufferedReader(new InputStreamReader(System.in));
 			String line = brKeyboard.readLine();
-			//brKeyboard.close();
 			return line;
 		}else{
-			System.out.println("allowSkeleton is not activated, you cant use skeleton methods");
+			if(!notificationsent){
+				System.out.println("allowSkeleton is not activated, you cant use skeleton methods");
+				notificationsent = true;
+		}
 			return "";
 		}
 		
@@ -100,11 +112,12 @@ public class SkeletonUtility {
 		while(invalidAnswer){
 			printSkeleton(question+" yes/no y/n igen/nem");
 			String answer=readSkeleton();
-			answer.toUpperCase();/**csak a biztonság kedvéért ha gyökér a user*/
-			if("Y".equals(answer) || "YES".equals(answer) || "IGEN".equals(answer)){
+			if("Y".equals(answer) || "YES".equals(answer) || "IGEN".equals(answer)
+					||"y".equals(answer) || "yes".equals(answer) || "igen".equals(answer)){
 				isYes=true;
 				invalidAnswer = false;
-			}else if("N".equals(answer) || "NO".equals(answer) || "NEM".equals(answer)){
+			}else if("N".equals(answer) || "NO".equals(answer) || "NEM".equals(answer)
+					|| "n".equals(answer) || "no".equals(answer) || "nem".equals(answer)){
 				isYes=false;
 				invalidAnswer = false;
 			}else{ 
@@ -193,9 +206,11 @@ public class SkeletonUtility {
 			boolean wrongParameters = false;
 
 			if(command.equals("LoadMap")){
-				if(parts[1] != null){
+				if(parts.length >= 2){
 					String name=parts[1];
 					chooseMap(name);
+				}else{
+					wrongParameters = true;
 				}
 			}else if(command.equals("SetPlayerCount")){
 				int number=Integer.parseInt(parts[1]);
@@ -209,25 +224,34 @@ public class SkeletonUtility {
 				exitGame();
 				
 			}else if(command.equals("LoseGame")){
-				int playernumber=Integer.parseInt(parts[1]);
+				if(parts.length >= 2){
+				
+					int playernumber=Integer.parseInt(parts[1]);
 				
 				loseGame(playernumber);
-				
+				}else{
+					wrongParameters = true;
+				}
 			}else if(command.equals("SetSpeedMod")){
 				float x,y;
-				if(parts[1]!= null && parts[2]!= null){
+				if(parts.length >= 3){
 					x=Float.parseFloat(parts[1]);
 					y=Float.parseFloat(parts[2]);
 					Vector newvector=new Vector(x,y);
 					setSpeedModification(newvector);
+				}else{
+					wrongParameters = true;
 				}
 			}else if(command.equals("SetPos")){
 				int x,y;
-				x=Integer.parseInt(parts[1]);
-				y=Integer.parseInt(parts[2]);
-				Point newpoint=new Point(x,y);
-				setPosition(newpoint);
-				
+				if(parts.length >= 3){
+					x=Integer.parseInt(parts[1]);
+					y=Integer.parseInt(parts[2]);
+					Point newpoint=new Point(x,y);
+					setPosition(newpoint);
+				}else{
+					wrongParameters = true;
+				}
 			}else if(command.equals("SetDrop")){
 				String item=parts[1];
 				/**Megvalósítani setDrop() metódusban
@@ -251,23 +275,36 @@ public class SkeletonUtility {
 				setDropItem(item);
 				
 			}else if(command.equals("ValidateState")){
-				int playernumber=Integer.parseInt(parts[1]);
-				/**
-				 * javaslat ezzel kezdeni:
-				 * result1,result2,result3:yesorno(out?,oil?,goo?)
-				 */
-				//validateState(playernumber);
+				if(parts.length >= 2){
+					int playernumber=Integer.parseInt(parts[1]);
+					boolean beforeAllow = allowSkeleton;
+					allowSkeleton = false;
+					if(dummyMap.getRobots().size() > playernumber){
+						Robot rob = dummyMap.getRobots().get(playernumber);
+						allowSkeleton = beforeAllow;
+						dummyMap.validateState(rob);		
+					}else{
+						wrongParameters = true;
+					}
+					allowSkeleton = beforeAllow;
+				}else{
+					wrongParameters = true;
+				}
 				
 			}else if(command.equals("ModSpeed")){
 				float x,y;
-				x=Float.parseFloat(parts[1]);
-				y=Float.parseFloat(parts[2]);
-				Vector newvector=new Vector(x,y);
-				/**
-				 * javaslat ezzel kezdeni:
-				 * result1,result2:yesorno(drop oil?,drop goo?)
-				 */
-				//modifySpeed(newvector);
+				if(parts.length >= 3){
+					x=Float.parseFloat(parts[1]);
+					y=Float.parseFloat(parts[2]);
+					Vector newvector=new Vector(x,y);
+					/**
+					 * javaslat ezzel kezdeni:
+					 * result1,result2:yesorno(drop oil?,drop goo?)
+					 */
+					//modifySpeed(newvector);
+				}else{
+					wrongParameters = true;
+				}
 			}else if(command.equals("Help")){
 				printSkeleton("UseCase & Elágazások    Parancs:    paraméter\n"+
 					"Choose Map    LoadMap    string név\n"+
@@ -296,9 +333,14 @@ public class SkeletonUtility {
 				printSkeleton("Wrong command."); 
 				printSkeleton("Type \"Help\" to see the commands."); 
 			}
+			if(wrongParameters){
+				printSkeleton("Something Went wrong with the parameters :S .");
+			}
 		}
 					
 		printSkeleton("Skeleton is now Quitting!");
+
+		brKeyboard.close();
 	}
 	/**
 	*Ez választ pályát, és be is tölti azt, a korábban elfogadott játékosszámmal
