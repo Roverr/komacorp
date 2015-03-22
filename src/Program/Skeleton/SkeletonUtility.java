@@ -42,6 +42,8 @@ public class SkeletonUtility {
 	private static Robot dummyRobot;
 	private static Olaj dummyOlaj;
 	private static Ragacs dummyRagacs;
+	
+	private static BufferedReader brKeyboard;
 	/**
 	 * Klasszikus konstruktor, megalkotja a teszteléshez szükséges dummy osztályokat.
 	 * Beállítja a kellõ statikus változókat.
@@ -57,6 +59,10 @@ public class SkeletonUtility {
 		
 		//Kiírások engedélyezése:
 		allowSkeleton = true;
+		
+		//Input reader inicializálás:
+		brKeyboard = new BufferedReader(new InputStreamReader(System.in));
+		
 		
 		
 	}
@@ -79,9 +85,7 @@ public class SkeletonUtility {
 	 */
 	private static String readSkeleton() throws IOException{
 		if(allowSkeleton){
-			BufferedReader brKeyboard = new BufferedReader(new InputStreamReader(System.in));
 			String line = brKeyboard.readLine();
-			//brKeyboard.close();
 			return line;
 		}else{
 			System.out.println("allowSkeleton is not activated, you cant use skeleton methods");
@@ -325,6 +329,8 @@ public class SkeletonUtility {
 		}
 					
 		printSkeleton("Skeleton is now Quitting!");
+
+		brKeyboard.close();
 	}
 	/**
 	*Ez választ pályát, és be is tölti azt, a korábban elfogadott játékosszámmal
@@ -377,9 +383,9 @@ public class SkeletonUtility {
 	public void setDropItem(String what) {
 		what = what.toLowerCase();
 		if(what=="ragacs") {
-			dummyRobot.DropRagacs(dummyMap);
+			dummyRobot.dropRagacs(dummyMap);
 		} else if(what=="olaj") {
-			dummyRobot.DropOlaj(dummyMap);
+			dummyRobot.dropOlaj(dummyMap);
 		} else {
 			//Hibakezelés
 			SkeletonUtility.printSkeleton("I can't throw it! It's not Ragacs or Olaj!");
