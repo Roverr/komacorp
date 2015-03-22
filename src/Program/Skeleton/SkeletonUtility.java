@@ -115,7 +115,6 @@ public class SkeletonUtility {
 		return isYes;
 	}
 
-	
 	/**
 	 * A szkeleton Modellben meghíváskor kiírja hogy melyik osztályban, milyen metódust hívódott meg.
 	 * A kiírás tördelt jellegét az ident változó intézi.
@@ -200,7 +199,7 @@ public class SkeletonUtility {
 				}
 			}else if(command.equals("SetPlayerCount")){
 				int number=Integer.parseInt(parts[1]);
-				//chooseNumberOfPlayers(number);
+				chooseNumberOfPlayers(number);
 				
 			}else if(command.equals("WinGame")){
 				int playernumber=Integer.parseInt(parts[1]);
@@ -224,14 +223,14 @@ public class SkeletonUtility {
 					x=Float.parseFloat(parts[1]);
 					y=Float.parseFloat(parts[2]);
 					Vector newvector=new Vector(x,y);
-					//setSpeedModification(newvector);
+					setSpeedModification(newvector);
 				}
 			}else if(command.equals("SetPos")){
 				int x,y;
 				x=Integer.parseInt(parts[1]);
 				y=Integer.parseInt(parts[2]);
 				Point newpoint=new Point(x,y);
-				//setPosition(newpoint);
+				setPosition(newpoint);
 				
 			}else if(command.equals("SetDrop")){
 				String item=parts[1];
@@ -241,7 +240,19 @@ public class SkeletonUtility {
 				*  ......
 				*  + OIL,oil,Oil,Goo,goo,GOO, javaslom uppercaseé tenni
 				*/
-				//setDropItem(item);
+				String question = "Out of item?";
+				boolean outOfItem;
+				try{
+					outOfItem = !SkeletonUtility.yesOrNoQuestion(question);
+					if(outOfItem) {
+						//Ha nem fogyott még ki a dobnivalóból. 
+						
+						
+					}
+				}catch(Exception e) {
+					SkeletonUtility.printSkeleton(e.getMessage());
+				}
+				setDropItem(item);
 				
 			}else if(command.equals("ValidateState")){
 				int playernumber=Integer.parseInt(parts[1]);
@@ -306,7 +317,7 @@ public class SkeletonUtility {
 	 * @param x - A vektor x komponense
 	 * @param y - A vektor y komponense
 	 */
-	public void setSpeedMod(float x, float y) {
+	public void setSpeedModification(float x, float y) {
 		Vector modifier = new Vector(x,y);
 		dummyRobot.ModifySpeed(modifier);
 	}
@@ -315,7 +326,7 @@ public class SkeletonUtility {
 	 *Robot sebességének megváltozatásához a parancs, Vector inputtal. 
 	 * @param modifier - A vetor amivel változtatni akarunk
 	 */
-	public void setSpeedMod(Vector modifier) {
+	public void setSpeedModification(Vector modifier) {
 		dummyRobot.ModifySpeed(modifier);
 	}
 	
@@ -334,6 +345,24 @@ public class SkeletonUtility {
 	 */
 	public void setPosition(Point to) {
 		dummyRobot.SetPosition(to);
+	}
+	
+	/**
+	 * Ha a robot ragacsot vagy olajat dob el akkor hívódik meg
+	 * @param what - A string, ami kiválasztja, hogy mit dobjon a robot. 
+	 * String, mert az jobban olvasható kódot szül. 
+	 */
+	public void setDropItem(String what) {
+		what = what.toLowerCase();
+		if(what=="ragacs") {
+			dummyRobot.DropRagacs(dummyMap);
+		} else if(what=="olaj") {
+			dummyRobot.DropOlaj(dummyMap);
+		} else {
+			//Hibakezelés
+			SkeletonUtility.printSkeleton("I can't throw it! It's not Ragacs or Olaj!");
+			//throw new OutOfShitError();
+		}
 	}
 	/*Ez választ játékosszámot, és betölti a pályát újra, csak a játékosok számát változtatva.
 	 *@author Bence
