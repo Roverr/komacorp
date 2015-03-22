@@ -5,16 +5,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-<<<<<<< HEAD
-import Program.Core.*;
-=======
 
-import Program.Core.Game;
-import Program.Core.Map;
-import Program.Core.Olaj;
-import Program.Core.Ragacs;
-import Program.Core.Robot;
->>>>>>> 6436fc898b3161162307f88942c11759d9e40c1c
+
+import Program.Core.*;
 import Program.Helpers.Vector;
 /**
  * A szkeleton modell megvalósításáért felelõs osztály. A belsõ business modell a korábbiakban megbeszélt.
@@ -271,7 +264,7 @@ public class SkeletonUtility {
 	*Ez választ pályát, és be is tölti azt, a korábban elfogadott játékosszámmal
 	 *@author Bence
 	 */
-	private void chooseMap(String name){
+	private static void chooseMap(String name){
 		
 		dummyMap.LoadMap(name,previousnumberofplayers);
 	}
