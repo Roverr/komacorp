@@ -6,8 +6,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
-
 import Program.Core.*;
+
+
 import Program.Helpers.Vector;
 /**
  * A szkeleton modell megvalósításáért felelõs osztály. A belsõ business modell a korábbiakban megbeszélt.
@@ -182,7 +183,7 @@ public class SkeletonUtility {
 	 *@author Barna
 	 * @throws IOException 
 	 */
-	public static void inputHandler() throws IOException{
+	public void inputHandler() throws IOException{
 			String line = readSkeleton();
 			String[] parts=line.split(" ");
 			String command=parts[0];
