@@ -305,26 +305,11 @@ public class SkeletonUtility {
 				try {
 					outOfItem = yesOrNoQuestion(question);
 
-					if (outOfItem) {
-						question = "Drop Ragacs?";
-						boolean goo;
-						goo = yesOrNoQuestion(question);
-
-						if (goo) {
-							setDropItem("ragacs");
-						} else {
-
-							boolean oil;
-							question = "Drop Olaj?";
-							oil = yesOrNoQuestion(question);
-
-							if (oil) {
-								setDropItem("olaj");
-							} else {
-								printSkeleton("Can't drop other traps!");
-							}
-						}
-
+					if (!outOfItem) {
+						System.out.println(item);
+						setDropItem(item);
+					} else {
+						printSkeleton("No throwing then!");
 					}
 				} catch (Exception e) {
 					printSkeleton(e.getMessage());
@@ -485,16 +470,15 @@ public class SkeletonUtility {
 	 *            mert az jobban olvasható kódot szül.
 	 */
 	public void setDropItem(String what) {
-		what = what.toLowerCase();
-		if (what == "ragacs") {
+		if (what.equalsIgnoreCase("ragacs")) {
 			dummyRobot.dropRagacs(dummyMap);
-		} else if (what == "olaj") {
+		} else if (what.equalsIgnoreCase("olaj")) {
 			dummyRobot.dropOlaj(dummyMap);
 		} else {
 			// Hibakezelés
 			SkeletonUtility
 					.printSkeleton("I can't throw it! It's not Ragacs or Olaj!\n"
-							+ "Probebly dev Error!");
+							+ "Probebly dev Error!\n" + what);
 			// throw new OutOfShitError(); ???
 		}
 	}
