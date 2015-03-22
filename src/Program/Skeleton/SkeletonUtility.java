@@ -263,7 +263,7 @@ public class SkeletonUtility {
 			} else if (command.equals("exit")) {
 				exitGame();
 
-			} else if (command.equals("loseGame")) {
+			} else if (command.equals("losegame")) {
 				if (parts.length >= 2) {
 
 					int playernumber = Integer.parseInt(parts[1]);
