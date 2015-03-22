@@ -1,6 +1,7 @@
 package Program;
 
 import Program.Core.Game;
+import Program.Skeleton.SkeletonUtility;
 
 /**
  * Az egész projekt belépési pontja. Ez készíti el a menüket, és játék indításakor a Game osztályt.
@@ -24,7 +25,8 @@ public class Program {
 		/**letrehozok egy jatekot 180 másodperc hosszú, mapnév,játékosszám
 		 * @author Barna
 		 */
-		Game skeletonGame=new Game(180,"Halalos kanyon",3);
+		//Game skeletonGame=new Game(180,"Halalos kanyon",3);
+		SkeletonUtility su = new SkeletonUtility();
 	}
 
 }

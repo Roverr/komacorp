@@ -5,7 +5,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.Map;
 
+import Program.Core.Game;
+import Program.Core.Olaj;
+import Program.Core.Ragacs;
+import Program.Core.Robot;
 import Program.Helpers.Vector;
 /**
  * A szkeleton modell megvalósításáért felelõs osztály. A belsõ business modell a korábbiakban megbeszélt.
@@ -33,6 +38,12 @@ public class SkeletonUtility {
 	 */
 	public static int robotCounter = 0;
 	public static int mapItemCounter = 0;
+	
+	private static Game dummyGame;
+	private static Map dummyMap;
+	private static Robot dummyRobot;
+	private static Olaj dummyOlaj;
+	private static Ragacs dummyRagacs;
 	/**
 	 * Klasszikus konstruktor, megalkotja a teszteléshez szükséges dummy osztályokat.
 	 * Beállítja a kellõ statikus változókat.
@@ -41,6 +52,7 @@ public class SkeletonUtility {
 	public SkeletonUtility(){
 		allowSkeleton = true;
 		//Create Dummy classes
+		dummyGame= new Game(270,"Halálos Kanyon",3);
 		//Set up input listening
 		//more..
 		
@@ -81,16 +93,22 @@ public class SkeletonUtility {
 	 * @throws IOException 
 	 */
 	public static boolean yesOrNoQuestion(String question) throws IOException{
-		boolean isYes;
-		printSkeleton(question+" yes/no y/n igen/nem");
-		String answer=readSkeleton();
-		answer.toUpperCase();/**csak a biztonság kedvéért ha gyökér a user*/
-		if("Y".equals(answer) || "YES".equals(answer) || "IGEN".equals(answer)){
-			isYes=true;
-		}else if("N".equals(answer) || "NO".equals(answer) || "NEM".equals(answer))
-			isYes=false;
-		else{ printSkeleton("Invalid answer");
-			isYes=yesOrNoQuestion(question);
+		boolean isYes = false;
+		boolean invalidAnswer = true;
+		while(invalidAnswer){
+			printSkeleton(question+" yes/no y/n igen/nem");
+			String answer=readSkeleton();
+			answer.toUpperCase();/**csak a biztonság kedvéért ha gyökér a user*/
+			if("Y".equals(answer) || "YES".equals(answer) || "IGEN".equals(answer)){
+				isYes=true;
+				invalidAnswer = false;
+			}else if("N".equals(answer) || "NO".equals(answer) || "NEM".equals(answer)){
+				isYes=false;
+				invalidAnswer = false;
+			}else{ 
+				printSkeleton("Invalid answer");
+				invalidAnswer = true;
+			}
 		}
 		return isYes;
 	}
@@ -111,7 +129,6 @@ public class SkeletonUtility {
 		ident++; /*Az ident növelése azért szükséges, hogy a metódus belsõ hívásai már beljebb legyenek húzva.*/
 		sb.append("called ");
 		sb.append(methodname + " ");
-		sb.append("from ");
 		sb.append(matchNameToObject(caller));
 		printSkeleton(sb.toString());
 	}
@@ -125,14 +142,13 @@ public class SkeletonUtility {
 	 * @param caller A hívó osztály. (Legtöbb esetben: this)
 	 */
 	public static void printReturn(String methodname, Object caller){
-		ident--; /*Az ident csökkentése szükséges, hiszen a belsõ hívásoknak vége van.*/
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < ident; i++) {
 			sb.append("  ");
 		}
+		ident--; /*Az ident csökkentése szükséges, hiszen a belsõ hívásoknak vége van.*/
 		sb.append("return ");
 		sb.append(methodname + " ");
-		sb.append("from ");
 		sb.append(matchNameToObject(caller));
 		printSkeleton(sb.toString());
 	}
@@ -146,7 +162,7 @@ public class SkeletonUtility {
 	private static String matchNameToObject(Object caller) {
 		String s = classTable.get(caller);
 		if(s != null){
-			return s;
+			return  "- " + s;
 		}
 		return "";
 	}
@@ -241,8 +257,5 @@ public class SkeletonUtility {
 			}else printSkeleton("Wrong command"); 
 			
 			
-			
-			
-		
 	}
 }
