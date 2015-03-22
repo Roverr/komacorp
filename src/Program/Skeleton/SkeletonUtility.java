@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-
+import Program.Core.*;
 import Program.Helpers.Vector;
 /**
  * A szkeleton modell megvalÛsÌt·s·Èrt felelıs oszt·ly. A belsı business modell a kor·bbiakban megbeszÈlt.
@@ -173,7 +173,7 @@ public class SkeletonUtility {
 
 			if(command.equals("LoadMap")){
 				String name=parts[1];
-				//chooseMap(name,count);
+				chooseMap(name);
 				
 			}else if(command.equals("SetPlayerCount")){
 				int number=Integer.parseInt(parts[1]);
@@ -240,9 +240,21 @@ public class SkeletonUtility {
 				
 			}else printSkeleton("Wrong command"); 
 			
-			
-			
-			
+					
 		
+	}
+	/**
+	*Ez v√°laszt p√°ly√°t, √©s be is t√∂lti azt.
+	 *@author Bence
+	 */
+	private void chooseMap(String name){
+		Map map;
+		
+		map.LoadMap(name, 1);
+	}
+	private void chooseNumberOfPlayers(int number){
+		Map map;
+		
+		map.LoadMap("", number);
 	}
 }
