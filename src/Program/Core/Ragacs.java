@@ -46,6 +46,6 @@ public class Ragacs extends MapItem{
 	 */
 	public void stepIn(PlayerRobot playerRobot) {
 		setStepinCounter(getStepinCounter()-1);
-		playerRobot.modifySpeed(playerRobot.getSpeed().cutIntoHalf());
+		playerRobot.modifySpeed(playerRobot.getModSpeed().cutIntoHalf());
 	}
 }

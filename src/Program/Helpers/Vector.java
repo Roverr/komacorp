@@ -8,6 +8,10 @@ public class Vector {
 		this.y=y;
 	}
 	
+	/**
+	 * Ezt használja az Olaj akadály a sebesség felezésére
+	 * @return - Visszadja a sebességet elfelezve vectorként
+	 */
 	public Vector cutIntoHalf(){
 		x=x/2;
 		y=y/2;
