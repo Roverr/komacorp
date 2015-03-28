@@ -66,7 +66,7 @@ public class SkeletonUtility {
 		dummyMap = new Map();
 		dummyMap.loadMap("Dummyk lankája", 3);
 		dummyRobot = new PlayerRobot();
-		dummyOlaj = new Olaj(3);
+		dummyOlaj = new Olaj(10, new Point(0,0));
 		dummyRagacs = new Ragacs(3, new Point(0,0));
 
 		// Kiírások engedélyezése:

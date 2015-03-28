@@ -15,28 +15,22 @@ import Program.Skeleton.SkeletonUtility;
  *
  */
 public class PlayerRobot extends Robot implements Serializable  {
+	
+	
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8700911186613988616L;
-	/**
-	 * Alive - Beállítható, hogy él-e még a robot
-	 * Distance - Milyen messze jutott a pályán(eredmény számoláshoz)
 	 * MapItemCarriedCounter - Map itemek amik még a robotnál vannak.
-	 * ModSpeed- Vektor amivel a user módosíthatja a robot sebességét
-	 * Position - A térképen való pozícióját jelöli
-	 * @author Rover
-	 * 
-	 * Speed ami a robot elõzõ sebességét tárolja, ehhez adódik hozzá a modSpeed
-	 * @author Barna
+	 * wantToDrop 
+	 * - 0, ha nem szeretne dobni a robot,
+	 * - 1, ha a robot ragacsot szeretne dobni
+	 * - 2, ha a robot olajat szeretne dobni
+	 * @author Barna,Rover
 	 */
 	protected List<Integer> mapItemCarriedCounter;
+	private static final long serialVersionUID = -8700911186613988616L;
+	private int wantToDrop;
 
 	/**
-	 * Konstruktor a dummyRobothoz
-	 * 
-	 * 
-	 * Added speed beállítás,modSpeed beállítása 0-ra
+	 * Konstruktor a játékosok álltal irányított Robothoz
 	 * @author Barna
 	 */
 	public PlayerRobot() {
@@ -69,26 +63,49 @@ public class PlayerRobot extends Robot implements Serializable  {
 	 * @param map - Pálya amire ledobja
 	 */
 	public void dropRagacs(Map map) {
-		SkeletonUtility.printCall("DropRagacs", this);
-		int StepInCount = 3;
-		Ragacs rag = new Ragacs(StepInCount,getPosition());
-		rag.setPosition(new Point(position.x,position.y));
-		map.AddMapItem(rag);
-		/**TODO Kikell még venni a robot belsõ listájából*/
-		SkeletonUtility.printReturn("DropRagacs", this);
+		// 3 -szr lehet belelépni
+		int stepInCount = 3;
+		int ragacsNumberInList = 0;
+		int ragacsLeft = mapItemCarriedCounter.get(ragacsNumberInList);
+		
+		if(ragacsLeft >0 ) {
+			int ragacsNumberInDropping = 1;
+			Ragacs ragacs = new Ragacs(stepInCount,getPosition());
+			map.AddMapItem(ragacs);
+			mapItemCarriedCounter.set(ragacsNumberInList,ragacsLeft-1);
+			setWantToDrop(ragacsNumberInDropping);
+		} else {
+			int noItemToDrop = 0;
+			setWantToDrop(noItemToDrop);
+			System.out.println("No ragacs left, sorryka");
+		}
+
+		
 	}
+	
 	/**
 	 * Olajat dob a pályára
 	 * @param map - A pálya ahova dobja
 	 */
 	public void dropOlaj(Map map) {
-		SkeletonUtility.printCall("DropOlaj", this);
-		int StepInCount=3;
-		Olaj olaj = new Olaj(StepInCount);
-		olaj.setPosition(new Point(position.x, position.y));
-		map.AddMapItem(olaj);
+		// 10 körig lesz életben az olaj
+		int time = 10; 
+		int olajNumberInList = 1;
+		int olajLeft = mapItemCarriedCounter.get(olajNumberInList);
+		
+		if(olajLeft > 0) {
+			int olajNumberInDropping = 2;
+			Olaj olaj = new Olaj(time,getPosition());;
+			map.AddMapItem(olaj);
+			mapItemCarriedCounter.set(olajNumberInList, olajLeft-1);
+			setWantToDrop(olajNumberInDropping);
+		} else {
+			int nothingToDrop = 0;
+			setWantToDrop(nothingToDrop);
+			System.out.println("No olaj left, sorryka");
+		}
+		
 		/**TODO Kikell még venni a robot belsõ listájából*/
-		SkeletonUtility.printReturn("DropOlaj", this);
 	}
 	
 	/**
@@ -101,5 +118,27 @@ public class PlayerRobot extends Robot implements Serializable  {
 		 */
 		SkeletonUtility.printReturn("Jump", this);
 	}
+	
+	/**
+	 * Visszadja a bitet ami jelzi, hogy a robot szeretne akadályt dobni
+	 * @return 
+	 * - 0, ha a robot nem szeretne dobni
+	 * - 1, ha a robot ragacsot szeretne dobni
+	 * - 2, ha a robot olajat szeretne dobni
+	 * DEV:Minden más értéket errorként elkapunk.
+	 */
+	public int getWantToDrop() {
+		return wantToDrop;
+	}
+	
+	/**
+	 * Beállítja a wantToDrop értékét. 
+	 * @param to - Az érték, amire szeretnénk állítani
+	 */
+	public void setWantToDrop(int to) {
+		wantToDrop = to;
+	}
+	
+	
 	
 }

@@ -29,7 +29,6 @@ public class Map implements Serializable {
 	 */
 	private List<Line> checkPoints;
 	private List<MapItem> mapItems;
-	private Olaj dummyOlajForSkeleton=new Olaj(2);
 	private List<PlayerRobot> playerRobots;
 	private List<Line> track;
 
@@ -110,7 +109,7 @@ public class Map implements Serializable {
 			playerRobots.add(new PlayerRobot());
 		}
 		
-		AddMapItem(new Olaj(3));
+		//AddMapItem(new Olaj(3));
 		//AddMapItem(new Ragacs(3));
 		
 		SkeletonUtility.printReturn("LoadMap", this);
@@ -156,7 +155,7 @@ public class Map implements Serializable {
 				
 			}
 			else if(SkeletonUtility.yesOrNoQuestion("Belelépett a robot egy olajba?")){
-				dummyOlajForSkeleton.stepIn(playerRobot);
+				//dummyOlajForSkeleton.stepIn(playerRobot);
 			}
 			//if (robot.getPosition() == currentItem.GetPosition()) {
 				//TODO Switch, olaj vagy ragacs.

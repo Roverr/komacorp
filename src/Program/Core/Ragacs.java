@@ -6,8 +6,7 @@ import java.io.Serializable;
 import Program.Skeleton.SkeletonUtility;
 
 /**
- * Dummy osztály amit a Ragacs akadály tesztelésére használunk
- * 
+ * Ragacs osztály, ami akadályként dobható a pályára
  * @author Rover
  *
  */
@@ -29,6 +28,7 @@ public class Ragacs extends MapItem{
 		setStepinCounter(stepIn);
 		System.out.println("Test, im ready to work, i am Robot");
 	}
+	
 	/**
 	 * Beállítja azt, hogy hányszor lehet belelépni a Ragacsba
 	 * @param to - Egész szám a Ragacs maximális belelépésének lehetõségérõl. 
@@ -44,7 +44,11 @@ public class Ragacs extends MapItem{
 	public int getStepinCounter() {
 		return stepInCounter;
 	}
-	@Override
+	
+	/**
+	 * Beállítja a negatív effektust, ha egy robot belelép, illetve csökkenti a belelépés számát.
+	 * @param playerRobot - A robot, ami belelépett
+	 */
 	public void stepIn(PlayerRobot playerRobot) {
 		//SkeletonUtility.printCall("StepIn", this);
 		setStepinCounter(getStepinCounter()-1);
