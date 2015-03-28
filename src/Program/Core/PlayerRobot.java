@@ -104,8 +104,6 @@ public class PlayerRobot extends Robot implements Serializable  {
 			setWantToDrop(nothingToDrop);
 			System.out.println("No olaj left, sorryka");
 		}
-		
-		/**TODO Kikell még venni a robot belsõ listájából*/
 	}
 	
 	/**

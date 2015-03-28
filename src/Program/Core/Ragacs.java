@@ -19,11 +19,6 @@ public class Ragacs extends MapItem{
 	 * @param StepIn
 	 */
 	public Ragacs(int stepIn,Point position) {
-		/*SkeletonUtility.addClass(this, "Ragacs" + SkeletonUtility.mapItemCounter);
-		SkeletonUtility.mapItemCounter++;
-		SkeletonUtility.printCall("create Ragacs", this);
-		setStepInCounter(StepIn);
-		SkeletonUtility.printReturn("create Ragacs", this);*/
 		setPosition(position);
 		setStepinCounter(stepIn);
 		System.out.println("Test, im ready to work, i am Robot");
@@ -50,9 +45,7 @@ public class Ragacs extends MapItem{
 	 * @param playerRobot - A robot, ami belelépett
 	 */
 	public void stepIn(PlayerRobot playerRobot) {
-		//SkeletonUtility.printCall("StepIn", this);
 		setStepinCounter(getStepinCounter()-1);
 		playerRobot.modifySpeed(playerRobot.getSpeed().cutIntoHalf());
-		//SkeletonUtility.printReturn("StepIn", this);
 	}
 }
