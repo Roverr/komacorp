@@ -2,7 +2,7 @@ package Program.Core;
 
 import java.io.Serializable;
 
-public class RepairRobot extends Robot implements Serializable {
+public class CleanerRobot extends Robot implements Serializable {
 
 	@Override
 	public void die() {
