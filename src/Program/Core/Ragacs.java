@@ -47,10 +47,8 @@ public class Ragacs extends MapItem{
 	@Override
 	public void stepIn(PlayerRobot playerRobot) {
 		//SkeletonUtility.printCall("StepIn", this);
-		// TODO Ragacs logika
-		
-		//VAGY +1 ha másik irányba akarunk menni
 		setStepinCounter(getStepinCounter()-1);
+		playerRobot.modifySpeed(playerRobot.getSpeed().cutIntoHalf());
 		//SkeletonUtility.printReturn("StepIn", this);
 	}
 }

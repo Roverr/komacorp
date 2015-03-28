@@ -7,4 +7,10 @@ public class Vector {
 		this.x=x;
 		this.y=y;
 	}
+	
+	public Vector cutIntoHalf(){
+		x=x/2;
+		y=y/2;
+		return this;
+	}
 }
