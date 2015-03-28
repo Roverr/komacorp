@@ -71,7 +71,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 	public void dropRagacs(Map map) {
 		SkeletonUtility.printCall("DropRagacs", this);
 		int StepInCount = 3;
-		Ragacs rag = new Ragacs(StepInCount);
+		Ragacs rag = new Ragacs(StepInCount,getPosition());
 		rag.setPosition(new Point(position.x,position.y));
 		map.AddMapItem(rag);
 		/**TODO Kikell még venni a robot belsõ listájából*/

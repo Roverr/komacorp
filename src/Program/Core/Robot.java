@@ -3,7 +3,11 @@ package Program.Core;
 import java.awt.Point;
 
 import Program.Helpers.Vector;
-
+/**
+ * TODO: KOMMENTEZÉS
+ * @author Rover
+ *
+ */
 public abstract class Robot {
 	protected boolean alive;
 	protected int distance;

@@ -21,7 +21,6 @@ public class Olaj extends MapItem {
 		SkeletonUtility.addClass(this, "Olaj" + SkeletonUtility.mapItemCounter);
 		SkeletonUtility.mapItemCounter++;
 		SkeletonUtility.printCall("create Olaj", this);
-		setStepInCounter(StepIn);
 		SkeletonUtility.printReturn("create Olaj", this);
 	}
 	/**
@@ -36,8 +35,6 @@ public class Olaj extends MapItem {
 		 * Visszaállítja az eredetire a sebességet // TODO Megcsinálni értelmes Logiccal
 		 */
 		playerRobot.modifySpeed(playerRobot.getSpeed());
-		// VAGY +1 ha másik irányba akarunk menni
-		setStepInCounter(getStepInCounter() - 1);
 		SkeletonUtility.printReturn("StepIn", this);
 	}
 

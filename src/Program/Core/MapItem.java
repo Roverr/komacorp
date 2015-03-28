@@ -18,7 +18,6 @@ public abstract class MapItem implements Serializable  {
 	 * Az a pont a térképen ahol az akadály található
 	 */
 	protected Point position;
-	private int stepInCounter;
 	
 	/**
 	 * Visszaadja az akadály pozícióját.
@@ -28,26 +27,6 @@ public abstract class MapItem implements Serializable  {
 		SkeletonUtility.printCall("GetPosition", this);
 		SkeletonUtility.printReturn("GetPosition", this);
 		return position;
-	}
-	
-	/**
-	 * Visszadja hányszor lehet belelépni
-	 * @return
-	 */
-	public int getStepInCounter() {
-		SkeletonUtility.printCall("GetStepInCounter", this);
-		SkeletonUtility.printReturn("GetStepInCounter", this);
-		return stepInCounter;
-	}
-	
-	/**
-	 * Beállítja hányszor lehet belelépni
-	 * @param value
-	 */
-	public void setStepInCounter(int value) {
-		SkeletonUtility.printCall("SetStepInCounter to " + value, this);
-		stepInCounter=value;
-		SkeletonUtility.printReturn("SetStepInCounter", this);
 	}
 	
 	/**
