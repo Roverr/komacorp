@@ -28,7 +28,7 @@ public class Game {
 
 		public void StartGame(){
 			SkeletonUtility.printCall("StartGame", this);
-			for (Robot r : GameMap.getRobots()) {
+			for (PlayerRobot r : GameMap.getRobots()) {
 				r.modifySpeed(new Vector(0,0));
 			}
 			SkeletonUtility.printReturn("StartGame", this);
@@ -44,7 +44,7 @@ public class Game {
 
 		public void Run() throws IOException{
 			SkeletonUtility.printCall("Run", this);
-			for (Robot r : GameMap.getRobots()) {
+			for (PlayerRobot r : GameMap.getRobots()) {
 				GameMap.validateState(r);
 				r.jump();
 			}

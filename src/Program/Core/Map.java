@@ -31,7 +31,7 @@ public class Map implements Serializable {
 	private List<MapItem> mapItems;
 	private Ragacs dummyRagacsForSkeleton=new Ragacs(2);
 	private Olaj dummyOlajForSkeleton=new Olaj(2);
-	private List<Robot> robots;
+	private List<PlayerRobot> playerRobots;
 	private List<Line> track;
 
 	/**
@@ -44,7 +44,7 @@ public class Map implements Serializable {
 		
 		checkPoints = new ArrayList<Line>();
 		mapItems = new ArrayList<MapItem>();
-		robots = new ArrayList<Robot>();
+		playerRobots = new ArrayList<PlayerRobot>();
 		track = new ArrayList<Line>();
 		SkeletonUtility.printReturn("create Map", this);
 	}
@@ -69,7 +69,7 @@ public class Map implements Serializable {
 	public List<String> getResult() {
 		SkeletonUtility.printCall("GetResult", this);
 		List<String> temp = new ArrayList<String>();
-		for (Robot r : robots) {
+		for (PlayerRobot r : playerRobots) {
 			int dummyint = r.getDistance();
 			temp.add(r.toString());
 		}
@@ -84,10 +84,10 @@ public class Map implements Serializable {
 	 * 
 	 * @return - Lista a robotokkal.
 	 */
-	public List<Robot> getRobots() {
+	public List<PlayerRobot> getRobots() {
 		SkeletonUtility.printCall("GetRobots", this);
 		SkeletonUtility.printReturn("GetRobots", this);
-		return robots;
+		return playerRobots;
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class Map implements Serializable {
 		SkeletonUtility.printCall("LoadMap(" + file + ")", this);
 		/** TODO MAP OLVASÓ LOGIC TODO **/
 		for (int i = 0; i < numberOfPlayers; i++) {
-			robots.add(new Robot());
+			playerRobots.add(new PlayerRobot());
 		}
 		
 		AddMapItem(new Olaj(3));
@@ -137,27 +137,27 @@ public class Map implements Serializable {
 	 * Megnézi, hogy az adott robot belépett-e bármelyik akadályba és ha igen,
 	 * meghívja a megfelelõ StepIn metódust.
 	 * 
-	 * @param robot
+	 * @param playerRobot
 	 *            - Akit vizsgálni kell az akadályokhoz viszonyítva.
 	 * @throws IOException 
 	 */
-	public void validateState(Robot robot) throws IOException {
+	public void validateState(PlayerRobot playerRobot) throws IOException {
 		SkeletonUtility.printCall("ValidateState", this);
 		/** TODO NEED MORE STABLE LOGIC **/
-		robot.getPosition();
+		playerRobot.getPosition();
 		//for (int i = 0; i < mapItems.size(); i++) {
 
 			//MapItem currentItem = mapItems.get(i);
 			if(SkeletonUtility.yesOrNoQuestion("Kiestél a pályáról?")){
-				robot.die();
+				playerRobot.die();
 			}
 		
 			else if(SkeletonUtility.yesOrNoQuestion("Belelépett a robot egy ragacsba?")){
-				dummyRagacsForSkeleton.stepIn(robot);
+				dummyRagacsForSkeleton.stepIn(playerRobot);
 				
 			}
 			else if(SkeletonUtility.yesOrNoQuestion("Belelépett a robot egy olajba?")){
-				dummyOlajForSkeleton.stepIn(robot);
+				dummyOlajForSkeleton.stepIn(playerRobot);
 			}
 			//if (robot.getPosition() == currentItem.GetPosition()) {
 				//TODO Switch, olaj vagy ragacs.

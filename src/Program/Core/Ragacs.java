@@ -25,7 +25,7 @@ public class Ragacs extends MapItem{
 		SkeletonUtility.printReturn("create Ragacs", this);
 	}
 	@Override
-	public void stepIn(Robot robot) {
+	public void stepIn(PlayerRobot playerRobot) {
 		SkeletonUtility.printCall("StepIn", this);
 		// TODO Ragacs logika
 		

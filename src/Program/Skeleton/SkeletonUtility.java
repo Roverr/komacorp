@@ -49,7 +49,7 @@ public class SkeletonUtility {
 
 	private static Game dummyGame;
 	private static Map dummyMap;
-	private static Robot dummyRobot;
+	private static PlayerRobot dummyRobot;
 	private static Olaj dummyOlaj;
 	private static Ragacs dummyRagacs;
 
@@ -65,7 +65,7 @@ public class SkeletonUtility {
 		dummyGame = new Game(270, "Halálos Kanyon", 3);
 		dummyMap = new Map();
 		dummyMap.loadMap("Dummyk lankája", 3);
-		dummyRobot = new Robot();
+		dummyRobot = new PlayerRobot();
 		dummyOlaj = new Olaj(3);
 		dummyRagacs = new Ragacs(3);
 
@@ -368,7 +368,7 @@ public class SkeletonUtility {
 						boolean beforeAllow = allowSkeleton;
 						allowSkeleton = false;
 						if (dummyMap.getRobots().size() > playernumber) {
-							Robot rob = dummyMap.getRobots().get(playernumber);
+							PlayerRobot rob = dummyMap.getRobots().get(playernumber);
 							allowSkeleton = beforeAllow;
 							dummyMap.validateState(rob);
 						} else {

@@ -64,8 +64,8 @@ public abstract class MapItem implements Serializable  {
 	 * Ennek a függvénynek kell meghívódnia, ha a robot belelép az akadályba.
 	 * Mivel ez máshogy kell a robotot módosítsa, így ez abstract függvény,
 	 * itt nem kell megvalósítani.
-	 * @param robot - Robot aki rálépett az akadályra.
+	 * @param playerRobot - Robot aki rálépett az akadályra.
 	 */
-	public abstract void stepIn(Robot robot);
+	public abstract void stepIn(PlayerRobot playerRobot);
 
 }

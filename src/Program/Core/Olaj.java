@@ -30,12 +30,12 @@ public class Olaj extends MapItem {
 	 * @param robot- Robot ami belelépett
 	 *            
 	 */
-	public void stepIn(Robot robot) {
+	public void stepIn(PlayerRobot playerRobot) {
 		SkeletonUtility.printCall("StepIn", this);
 		/**
 		 * Visszaállítja az eredetire a sebességet // TODO Megcsinálni értelmes Logiccal
 		 */
-		robot.modifySpeed(robot.getSpeed());
+		playerRobot.modifySpeed(playerRobot.getSpeed());
 		// VAGY +1 ha másik irányba akarunk menni
 		setStepInCounter(getStepInCounter() - 1);
 		SkeletonUtility.printReturn("StepIn", this);
