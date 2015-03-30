@@ -9,10 +9,18 @@ import Program.Helpers.Vector;
  *
  */
 public abstract class Robot {
+	
+	/**
+	 * Alive - Beállítható, hogy él-e még a robot
+	 * Distance - Milyen messze jutott a pályán(eredmény számoláshoz)
+	 * ModSpeed- Vektor amivel a user módosíthatja a robot sebességét
+	 * Position - A térképen való pozícióját jelöli
+	 * Speed ami a robot elõzõ sebességét tárolja, ehhez adódik hozzá a modSpeed
+	 * @author Barna,Rover
+	 */
 	protected boolean alive;
 	protected int distance;
 	protected Vector speed;
-	protected Vector modSpeed;
 	protected Point position;
 	
 	public Robot() {
@@ -23,6 +31,7 @@ public abstract class Robot {
 	}
 	
 	public abstract void die();
+	public abstract void jump();
 	
 	public int getDistance() {
 		return distance;
@@ -39,16 +48,17 @@ public abstract class Robot {
 	public void setPosition(Point position) {
 		this.position= position;
 	}
-	public Vector getModSpeed(){
-		return modSpeed;
+	
+	public void setPosition(int x, int y) {
+		this.position = new Point(x,y);
 	}
 	
 	public boolean isAlive() {
 		return alive;
 	}
 	
-	public void modifySpeed(Vector force) {
-		modSpeed = force;
+	public void setAlive(boolean alive) {
+		this.alive = alive;
 	}
 	
 }

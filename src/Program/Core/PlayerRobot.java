@@ -23,11 +23,13 @@ public class PlayerRobot extends Robot implements Serializable  {
 	 * - 0, ha nem szeretne dobni a robot,
 	 * - 1, ha a robot ragacsot szeretne dobni
 	 * - 2, ha a robot olajat szeretne dobni
+	 * modSpeed - A sebesség változtatásnak és irány változtatásnak a vektorát tárolja
 	 * @author Barna,Rover
 	 */
 	protected List<Integer> mapItemCarriedCounter;
 	private static final long serialVersionUID = -8700911186613988616L;
 	private int wantToDrop;
+	protected Vector modSpeed;
 
 	/**
 	 * Konstruktor a játékosok álltal irányított Robothoz
@@ -81,6 +83,15 @@ public class PlayerRobot extends Robot implements Serializable  {
 		}
 
 		
+	}
+	
+	
+	public void modifySpeed(Vector force) {
+		modSpeed = force;
+	}
+	
+	public Vector getModSpeed(){
+		return modSpeed;
 	}
 	
 	/**
