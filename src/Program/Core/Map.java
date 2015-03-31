@@ -201,15 +201,7 @@ public class Map implements Serializable {
 		else
 			return true;
 	}
-	/**
-	 *Eldönti, hogy a két szakasz metszi-e egymást
-	 * @param l1 az egyik szakasz
-	 * @param l2 a mások szakasz
-	 * @author Bence
-	 */	
-	private Boolean metszes(Line l1,Line l2){
-		return false;
-	}
+
 	
 	/**
 	 *Megadja, hogy az elõzõ ugrásba áthaladt-e az ellenõrzõ ponton
@@ -220,7 +212,7 @@ public class Map implements Serializable {
 		Line ugras= new Line(robot.position.x,robot.position.y,0,0);
 		Boolean metsz=false;
 		for(Line i : checkPoints){
-		  	if (metszes(i,ugras))
+		  	if (i.metszes(ugras))
 		  		metsz=true;
 		}
 		return metsz;

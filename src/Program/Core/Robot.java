@@ -74,6 +74,6 @@ public abstract class Robot {
 	 * @author Bence
 	 */	
 	protected void countDistance(int time){
-		distance+=Math.round(Math.sqrt(speed.getX()*speed.getX()+speed.getY()*speed.getY())*time);
+		distance+=Math.round(speed.length()*time);
 	}
 }

@@ -48,4 +48,46 @@ public class Vector {
 	public void setY(float y){
 		this.y=y;
 	}
+	
+	/**
+	 * A vektorhoz egy mások vektor hozzáadása
+	 * @param - a másik vektor, amivel növeljük az aktuálisat
+	 * @author Bence
+	 */
+	public Vector add(Vector vec){
+		this.x+=vec.x;
+		this.y+=vec.y;
+		return this;
+	}
+	
+	/**
+	 * A vektorból egy mások vektor kivonása
+	 * @param - a másik vektor, amit kivonunk az aktuálisból
+	 * @author Bence
+	 */
+	public Vector subtraction(Vector vec){
+		this.x-=vec.x;
+		this.y-=vec.y;
+		return this;
+	}
+	
+	/**
+	 * A vektor hossza
+	 * @author Bence
+	 */
+	public double length(){
+		return  Math.sqrt(this.x*this.x+this.y*this.y);		
+	}
+	
+	/**
+	 * Két vektor keresztszorzata
+	 * @param
+	 * @author Bence
+	 */
+	public float descartesProduct(Vector vec){
+		return this.x*vec.y-this.y*vec.x;
+	}
+	
+	
+	
 }
