@@ -2,6 +2,7 @@ package Program.Core;
 
 import java.awt.Point;
 
+import Program.Helpers.Line;
 import Program.Helpers.Vector;
 /**
  * TODO: KOMMENTEZÉS
@@ -31,7 +32,10 @@ public abstract class Robot {
 	}
 	
 	public abstract void die();
-	public abstract void jump();
+	public void jump(){
+		if (alive)
+			countDistance();
+	}
 	
 	public int getDistance() {
 		return distance;
@@ -61,4 +65,12 @@ public abstract class Robot {
 		this.alive = alive;
 	}
 	
+	/**
+	 *Ugráskor meghívva a megtett távolságot növeli a megfelelõ értékkel.
+	 * @author Bence
+	 */	
+	private void countDistance(){
+	    const int time=1;
+		distance+=Math.sqrt(speed)
+	}
 }
