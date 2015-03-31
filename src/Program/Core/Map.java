@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
+import java.awt.Point;
 
 import Program.Helpers.Line;
 import Program.Skeleton.SkeletonUtility;
@@ -164,4 +166,50 @@ public class Map implements Serializable {
 		//}
 		SkeletonUtility.printReturn("ValidateState", this);
 	}
+	/**
+	 *Eldönti, hogy egy adott pont a pályán belül található vagy sem
+	 * @param point a pont amelyre kíváncsiak vagyunk
+	 *            - Akit vizsgálni kell az akadályokhoz viszonyítva.
+	 * @author Bence
+	 */
+	private Boolean isOnTrack(Point point){
+		//egy biztosan külsõ pont keresése
+		Point kulso=new Point(0,0);
+        for( Line i:track){
+			if (i.x1<kulso.x)
+				kulso.x=i.x1;
+			if (i.x2<kulso.x)
+				kulso.x=i.x1;
+			if (i.y1<kulso.y)
+				kulso.y=i.y1;
+			if (i.y2<kulso.y)
+				kulso.y=i.y1;
+		}
+        //biztosan ne a bal alsó sarok legyen a külsõ pont
+        kulso.x-=5;
+        kulso.y-=7;
+        Line tmpline=new Line(kulso.x, kulso.y, point.x, point.y);
+		/* megszámoljuk, hogy egy külsõ pont és az adott pont közötti szakasz
+		* hány egyenest metsz. Ha páros, akkor pályán kívüli, ha páratlan pályán belüli 
+		*/
+		int metszesszam=0;
+		for( Line i:track){
+			
+			metszes(i,tmpline);
+		}
+		if (metszesszam%2==0)
+			return false;
+		else
+			return true;
+	}
+	/**
+	 *Eldönti, hogy a két szakasz metszi-e egymást
+	 * @param l1 az egyik szakasz
+	 * @param l2 a mások szakasz
+	 * @author Bence
+	 */	
+	private Boolean metszes(Line l1,Line l2){
+		return false;
+	}
+	
 }
