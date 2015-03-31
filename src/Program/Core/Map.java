@@ -7,6 +7,7 @@ import java.util.List;
 import java.awt.Point;
 
 import Program.Helpers.Line;
+import Program.Helpers.Vector;
 import Program.Skeleton.SkeletonUtility;
 
 /**
@@ -194,7 +195,22 @@ public class Map implements Serializable {
 		int metszesszam=0;
 		for( Line i:track){
 			
-			metszes(i,tmpline);
+			//Van metszés
+			if(i.intersect(tmpline))
+			{
+				//Addig toljuk lefelé a külsõ pontot, amíg a külsõ pont és a vizsgált pont
+				//közötti szakaszon nem lesz egy pálya törés pont sem
+				Vector v=new Vector(i.getX1(),i.getY1());
+				while (tmpline.isOnLine(v))
+					tmpline.setY1(tmpline.getY1()-1);
+				 v=new Vector(i.getX2(),i.getY2());
+				 //Ha a vonal másik végére lógna rá, akkor biztosan bennt van a pont,
+				 //így nem romlik a pályánmaradás feltétele
+				while (tmpline.isOnLine(v))
+					tmpline.setY1(tmpline.getY1()-1);
+				if (i.intersect(tmpline))
+					metszesszam++;
+			}
 		}
 		if (metszesszam%2==0)
 			return false;
@@ -209,10 +225,11 @@ public class Map implements Serializable {
 	 * @author Bence
 	 */	
 	private Boolean IsCheckPointChecked(Robot robot){
+		//ugrás vonalának megadása
 		Line ugras= new Line(robot.position.x,robot.position.y,0,0);
 		Boolean metsz=false;
 		for(Line i : checkPoints){
-		  	if (i.metszes(ugras))
+		  	if (i.intersect(ugras))
 		  		metsz=true;
 		}
 		return metsz;

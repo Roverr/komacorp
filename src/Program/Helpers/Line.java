@@ -15,6 +15,74 @@ public class Line {
 			this.y2=y2;
 		}
 	
+	/**
+	 *Beállítja az egyik pont x komponensét
+	 *@param x1 - a pont x komponense
+	 * @author Bence
+	 */	
+	public void setX1(int x1){
+		this.x1=x1;
+	}
+	
+	/**
+	 *Beállítja az egyik pont y komponensét
+	 *@param y1 - a pont y komponense
+	 * @author Bence
+	 */	
+	public void setY1(int y1){
+		this.y1=y1;
+	}
+	
+	/**
+	 *Beállítja a másik pont x komponensét
+	 *@param x2 - a pont x komponense
+	 * @author Bence
+	 */	
+	public void setX2(int x2){
+		this.x2=x2;
+	}
+	
+	/**
+	 *Beállítja a másik pont y komponensét
+	 *@param y2 - a pont y komponense
+	 *@author Bence
+	 */	
+	public void setY2(int y2){
+		this.y2=y2;
+	}
+	
+	/**
+	 *Lekérdezi az egyik pont x komponensét
+	 *@author Bence
+	 */	
+	public int getX1(){
+		return this.x1;
+	}
+	
+	/**
+	 *Lekérdezi az egyik pont y komponensét
+	 *@author Bence
+	 */	
+	public int getY1(){
+		return this.y1;
+	}
+	
+	/**
+	 *Lekérdezi a másik pont x komponensét
+	 *@author Bence
+	 */	
+	public int getX2(){
+		return this.x2;
+	}
+	
+	/**
+	 *Lekérdezi a másik pont y komponensét
+	 *@author Bence
+	 */	
+	public int getY2(){
+		return this.y2;
+	}
+	
 	
 	/**
 	 *Kiszámolja a szakasz hosszát
@@ -88,5 +156,6 @@ public class Line {
 		b.subtraction(a);
 		return c.descartesProduct(b);
 	}
+	
 	
 }
