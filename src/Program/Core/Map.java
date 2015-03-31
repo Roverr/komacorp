@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import java.awt.Point;
 
 import Program.Helpers.Line;
@@ -212,6 +211,19 @@ public class Map implements Serializable {
 		return false;
 	}
 	
-	
+	/**
+	 *Megadja, hogy az elõzõ ugrásba áthaladt-e az ellenõrzõ ponton
+	 *@param robot a megadott robotra ellenõrzi az áthaladás tényét.
+	 * @author Bence
+	 */	
+	private Boolean IsCheckPointChecked(Robot robot){
+		Line ugras= new Line(robot.position.x,robot.position.y,0,0);
+		Boolean metsz=false;
+		for(Line i : checkPoints){
+		  	if (metszes(i,ugras))
+		  		metsz=true;
+		}
+		return metsz;
+	}
 	
 }

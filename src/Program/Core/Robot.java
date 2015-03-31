@@ -33,8 +33,10 @@ public abstract class Robot {
 	
 	public abstract void die();
 	public void jump(){
-		if (alive)
-			countDistance();
+		//FONTOS: a sebesség itt már az elugrási sebesség legyen
+		if (alive){
+			countDistance(10);
+		}
 	}
 	
 	public int getDistance() {
@@ -66,11 +68,12 @@ public abstract class Robot {
 	}
 	
 	/**
-	 *Ugráskor meghívva a megtett távolságot növeli a megfelelõ értékkel.
+	 *Ugráskor meghívva a megtett távolságot növeli az ugráskor megtett távolsággal.
+	 *@param time- meddig van a levegõben a robot
+	 * érdemes az értékét nem túl kicsire megválasztani a kvantálás maitt(>10)
 	 * @author Bence
 	 */	
-	private void countDistance(){
-	    const int time=1;
-		distance+=Math.sqrt(speed)
+	protected void countDistance(int time){
+		distance+=Math.round(Math.sqrt(speed.getX()*speed.getX()+speed.getY()*speed.getY())*time);
 	}
 }
