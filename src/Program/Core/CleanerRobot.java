@@ -19,7 +19,7 @@ public class CleanerRobot extends Robot implements Serializable {
 		moving
 	}
 	
-	private int remainingclean;
+	private int remainingClean;
 	
 	//Mit csinál a robot takarít, vagy a következõ oljfolthoz megy.
 	CleanerState state;
@@ -79,18 +79,18 @@ public class CleanerRobot extends Robot implements Serializable {
 			//épp most érkezik meg az olajra
 			if(state==CleanerState.moving){
 				state=CleanerState.cleaning;
-				remainingclean=2;
+				remainingClean=2;
 			}
 			else
 			{
-				if (remainingclean<=0){
+				if (remainingClean<=0){
 					state=CleanerState.moving;
                     //TODO:leszedni a mapról az olajat
 					move();
 				}
 				else
 				{
-					remainingclean--;
+					remainingClean--;
 				}
 			}
 			//Game osztály elpuszítja a targetet, itt már csak hibát kapunk el
