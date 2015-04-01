@@ -89,6 +89,17 @@ public class Map implements Serializable {
 		SkeletonUtility.printReturn("GetRobots", this);
 		return playerRobots;
 	}
+	
+	
+	/**
+	 * Visszaadja az akadályok listáját.
+	 * 
+	 * @return - Lista az akadályokról.
+	 */
+	public List<MapItem> getMapItems() {
+		
+		return mapItems;
+	}
 
 	/**
 	 * Betölti a mappot egy fileból.
@@ -220,13 +231,16 @@ public class Map implements Serializable {
 
 	
 	/**
-	 *Megadja, hogy az elõzõ ugrásba áthaladt-e az ellenõrzõ ponton
+	 *Megadja, hogy az elõzõ ugrásba áthaladt-e az ellenõrzõ ponton.
+	 *Közvetlenül ugrás után kell meghívni a helyes mûködéshez
 	 *@param robot a megadott robotra ellenõrzi az áthaladás tényét.
+	 *@param beforejump -  az ugrás elõtti pozíció
 	 * @author Bence
 	 */	
-	private Boolean IsCheckPointChecked(Robot robot){
+	private Boolean IsCheckPointChecked(Robot robot,Point beforejump){
 		//ugrás vonalának megadása
-		Line ugras= new Line(robot.position.x,robot.position.y,0,0);
+		//TODO javítani az ugrás vonalára
+		Line ugras= new Line(robot.position.x,robot.position.y,beforejump.x,beforejump.y);
 		Boolean metsz=false;
 		for(Line i : checkPoints){
 		  	if (i.intersect(ugras))

@@ -26,6 +26,10 @@ public class Olaj extends MapItem {
 		this.position = position;
 	}
 	
+	public Olaj(Point position){
+		this(20,position);
+	}
+	
 	/**
 	 * Azért felelõs, hogy a belelépett roboton negatív effektet fejtsen ki.
 	 * @param playerRobot- Robot ami belelépet        

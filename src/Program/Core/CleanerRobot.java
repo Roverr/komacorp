@@ -3,6 +3,7 @@ package Program.Core;
 import java.awt.Point;
 import java.io.Serializable;
 
+import Program.Helpers.Line;
 import Program.Helpers.Vector;
 
 /**
@@ -13,13 +14,23 @@ import Program.Helpers.Vector;
  */
 public class CleanerRobot extends Robot implements Serializable {
 
-	private Point target;
+	enum CleanerState{
+		cleaning,
+		moving
+	}
 	
+	private int remainingclean;
+	
+	//Mit csinál a robot takarít, vagy a következõ oljfolthoz megy.
+	CleanerState state;
+	
+	private Point target;
+		
 	private static final long serialVersionUID = 2858679422774498028L;
 	
 	public CleanerRobot(MapItem target) {
 		setTarget(target.getPosition());
-		Vector speedConst = new Vector(1,1);
+		Vector speedConst = new Vector(0,1);
 		setCurrentSpeed(speedConst);
 	}
 	
@@ -40,6 +51,8 @@ public class CleanerRobot extends Robot implements Serializable {
 		Vector zero = new Vector(0,0);
 		setCurrentSpeed(zero);
 		setAlive(false);
+	    Olaj olaj= new Olaj(this.position);
+	    //TODO:hozzáadni map-hez
 	}
 
 	/**
@@ -63,6 +76,23 @@ public class CleanerRobot extends Robot implements Serializable {
 	 */
 	public void jump() {
 		if(this.getPosition()==this.getTarget()) {
+			//épp most érkezik meg az olajra
+			if(state==CleanerState.moving){
+				state=CleanerState.cleaning;
+				remainingclean=2;
+			}
+			else
+			{
+				if (remainingclean<=0){
+					state=CleanerState.moving;
+                    //TODO:leszedni a mapról az olajat
+					move();
+				}
+				else
+				{
+					remainingclean--;
+				}
+			}
 			//Game osztály elpuszítja a targetet, itt már csak hibát kapunk el
 			System.out.println("Error! CleanerRobot standing on shit, and it's still alive");
 		} else {
@@ -82,14 +112,12 @@ public class CleanerRobot extends Robot implements Serializable {
 		 */
 		
 		// Ha lejebb van az X és Y tengelyen is
-		if( currentPosition.x < target.x && currentPosition.y < target.y) {
-			
-			setPosition(new Point(currentPosition.x+1 , currentPosition.y+1));
-			
-		}//Ha X-en feljebb van, de Y-on lejebb
-		else if(currentPosition.x > target.x && currentPosition.y < target.y) {
-			
-			setPosition(new Point(currentPosition.x-1,currentPosition.y+1));
+		if( currentPosition.x < target.x && currentPosition.y < target.y) 
+		{	setPosition(new Point(currentPosition.x+1 , currentPosition.y+1));
+		}	
+		//Ha X-en feljebb van, de Y-on lejebb
+		if(currentPosition.x > target.x && currentPosition.y < target.y) {
+				setPosition(new Point(currentPosition.x-1,currentPosition.y+1));
 			
 		}//Ha mind a két részen feljebb van
 		else if(currentPosition.x > target.x && currentPosition.y > target.y) {
@@ -102,6 +130,25 @@ public class CleanerRobot extends Robot implements Serializable {
 			setPosition(new Point(currentPosition.x+1,currentPosition.y-1));
 			
 		}
+	}
+	
+	/**
+	 * Kijelöli a következõ célpontot, az az olajfoltot ami a legközlebb vana robothoz
+	 */
+	private Point nextTarget(Map map){
+		Line line= new Line(this.position.x,this.position.y,0,0);
+		Point hova= new Point(this.position.x,this.position.y);
+		double minlength=1000000;
+		for(MapItem i :map.getMapItems()){
+			line.setX2(i.getPosition().x);
+			line.setY2(i.getPosition().y);
+			//rövidebb az út és olaj van ott
+			if (minlength>line.lenght() && i.getClass().equals((new Olaj(new Point(0,0))).getClass())){
+				minlength=line.lenght();
+				hova=i.getPosition();
+			}			
+		}
+		return hova;
 	}
 
 }
