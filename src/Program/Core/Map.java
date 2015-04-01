@@ -32,6 +32,7 @@ public class Map implements Serializable {
 	private List<Line> checkPoints;
 	private List<MapItem> mapItems;
 	private List<PlayerRobot> playerRobots;
+	private List<CleanerRobot> cleanerRobots;
 	private List<Line> track;
 
 	/**
@@ -55,7 +56,7 @@ public class Map implements Serializable {
 	 * @param item
 	 *            - Akadály amit a listára kell felvenni.
 	 */
-	public void AddMapItem(MapItem item) {
+	public void addMapItem(MapItem item) {
 		SkeletonUtility.printCall("AddMapItem", this);
 		mapItems.add(item);
 		SkeletonUtility.printReturn("AddMapItem", this);
@@ -237,7 +238,7 @@ public class Map implements Serializable {
 	 *@param beforejump -  az ugrás elõtti pozíció
 	 * @author Bence
 	 */	
-	private Boolean IsCheckPointChecked(Robot robot,Point beforejump){
+	private Boolean isCheckPointChecked(Robot robot,Point beforejump){
 		//ugrás vonalának megadása
 		//TODO javítani az ugrás vonalára
 		Line ugras= new Line(robot.position.x,robot.position.y,beforejump.x,beforejump.y);
@@ -247,6 +248,14 @@ public class Map implements Serializable {
 		  		metsz=true;
 		}
 		return metsz;
+	}
+
+	public List<CleanerRobot> getCleanerRobots() {
+		return cleanerRobots;
+	}
+
+	public void setCleanerRobots(List<CleanerRobot> cleanerRobots) {
+		this.cleanerRobots = cleanerRobots;
 	}
 	
 }

@@ -73,7 +73,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 		if(ragacsLeft >0 ) {
 			int ragacsNumberInDropping = 1;
 			Ragacs ragacs = new Ragacs(stepInCount,getPosition());
-			map.AddMapItem(ragacs);
+			map.addMapItem(ragacs);
 			mapItemCarriedCounter.set(ragacsNumberInList,ragacsLeft-1);
 			setWantToDrop(ragacsNumberInDropping);
 		} else {
@@ -107,7 +107,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 		if(olajLeft > 0) {
 			int olajNumberInDropping = 2;
 			Olaj olaj = new Olaj(time,getPosition());;
-			map.AddMapItem(olaj);
+			map.addMapItem(olaj);
 			mapItemCarriedCounter.set(olajNumberInList, olajLeft-1);
 			setWantToDrop(olajNumberInDropping);
 		} else {
