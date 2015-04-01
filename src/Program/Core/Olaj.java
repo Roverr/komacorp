@@ -22,7 +22,7 @@ public class Olaj extends MapItem {
 	 * @param timing - Az idõ ameddig az olaj aktív
 	 */
 	public Olaj(int timing,Point position) {
-		this.timeLeft = timing;
+		this.setTimeLeft(timing);
 		this.position = position;
 	}
 	
@@ -37,6 +37,14 @@ public class Olaj extends MapItem {
 	public void stepIn(PlayerRobot playerRobot) {
 		Vector zero = new Vector(0,0);
 		playerRobot.modifySpeed(zero);
+	}
+
+	public int getTimeLeft() {
+		return timeLeft;
+	}
+
+	public void setTimeLeft(int timeLeft) {
+		this.timeLeft = timeLeft;
 	}
 
 }
