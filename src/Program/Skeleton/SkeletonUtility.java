@@ -564,7 +564,7 @@ public class SkeletonUtility {
 	 * @author Barna
 	 */
 	private void winGame(int player) {
-		dummyGame.EndGame();
+		dummyGame.endGame();
 		printSkeleton("Játékos " + player + " megnyerte a játékot!");
 	}
 
@@ -578,7 +578,7 @@ public class SkeletonUtility {
 	private void loseGame(int player) throws IOException {
 		printSkeleton(player + " elvesztette a játékot!");
 		if (yesOrNoQuestion("Ez volt az utolsó játékos?")) {
-			dummyGame.EndGame();
+			dummyGame.endGame();
 		}
 	}
 
@@ -589,7 +589,7 @@ public class SkeletonUtility {
 	 */
 	private void exitGame() throws IOException {
 		if (yesOrNoQuestion("Biztos hogy meg akarod szakítani a meccset? Ha másoknak még van esélye nyerni, elveszed tõlük a lehetõséget."))
-			dummyGame.EndGame();
+			dummyGame.endGame();
 		else
 			printSkeleton("Helyes, egy igazi BME-s a végsõkig küzd!");
 	}

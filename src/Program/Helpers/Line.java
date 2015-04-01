@@ -88,7 +88,7 @@ public class Line {
 	 *Kiszámolja a szakasz hosszát
 	 * @author Bence
 	 */	
-	public double lenght()
+	public double length()
 	{
 		int x=this.x1-this.x2;
 		int y=this.y1-this.y2;
@@ -107,7 +107,7 @@ public class Line {
      		Math.max(this.x1,this.x2)>=vec.getX() &&
      		Math.min(this.y1, this.y2)<=vec.getY() &&
      	   	Math.max(this.y1,this.y2)>=vec.getY() && 
-     	   		forgasirany(a, b, vec)==0)
+     	   		rollDirection(a, b, vec)==0)
 			  return true;
 		
 		 return false;
@@ -124,10 +124,10 @@ public class Line {
 		Vector b= new Vector(this.x2,this.y2);
 		Vector c= new Vector(line.x1,line.y1);
 		Vector d= new Vector(line.x2,line.y2);
-		float e=forgasirany(c, d, a);
-		float f=forgasirany(c,d,b);
-		float g=forgasirany(a,b,c);
-		float h=forgasirany(a,b,d);
+		float e=rollDirection(c, d, a);
+		float f=rollDirection(c,d,b);
+		float g=rollDirection(a,b,c);
+		float h=rollDirection(a,b,d);
 		
 		if (e*f<0 && g*h<0)
 			return true;
@@ -151,7 +151,7 @@ public class Line {
 	 * @param c - harmadik pont
 	 * @author Bence
 	 */	
-	private float forgasirany(Vector a, Vector b, Vector c){
+	private float rollDirection(Vector a, Vector b, Vector c){
 		c.subtraction(a);
 		b.subtraction(a);
 		return c.descartesProduct(b);

@@ -26,7 +26,7 @@ public class Game {
 			SkeletonUtility.printReturn("Game", this);
 		}
 
-		public void StartGame(){
+		public void startGame(){
 			SkeletonUtility.printCall("StartGame", this);
 			for (PlayerRobot r : GameMap.getRobots()) {
 				r.modifySpeed(new Vector(0,0));
@@ -35,7 +35,7 @@ public class Game {
 		}
 		
 		
-		public void EndGame(){
+		public void endGame(){
 			SkeletonUtility.printCall("EndGame", this);
 			GameMap.getResult();
 			SkeletonUtility.printReturn("EndGame", this);
@@ -51,7 +51,7 @@ public class Game {
 			SkeletonUtility.printReturn("Run", this);
 		}
 		
-		public void UserControl(char interact){
+		public void userControl(char interact){
 			SkeletonUtility.printCall("UserControl", this);
 			//...//
 			SkeletonUtility.printReturn("UserControl", this);

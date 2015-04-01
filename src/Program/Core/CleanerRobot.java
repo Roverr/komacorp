@@ -143,8 +143,8 @@ public class CleanerRobot extends Robot implements Serializable {
 			line.setX2(i.getPosition().x);
 			line.setY2(i.getPosition().y);
 			//rövidebb az út és olaj van ott
-			if (minlength>line.lenght() && i.getClass().equals((new Olaj(new Point(0,0))).getClass())){
-				minlength=line.lenght();
+			if (minlength>line.length() && i.getClass().equals((new Olaj(new Point(0,0))).getClass())){
+				minlength=line.length();
 				hova=i.getPosition();
 			}			
 		}
