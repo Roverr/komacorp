@@ -1,10 +1,15 @@
 package Program.Core;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Point;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 import Program.Helpers.Line;
 import Program.Helpers.Vector;
@@ -48,6 +53,45 @@ public class Map implements Serializable {
 		playerRobots = new ArrayList<PlayerRobot>();
 		track = new ArrayList<Line>();
 		SkeletonUtility.printReturn("create Map", this);
+	}
+	
+	/**
+	 * Beállítja a tesztpályát (kör alakú (8szög), két checkpoint)
+	 * amit kiszerializál fileba
+	 * TODO delete a véglegesben
+	 */
+	public void createTestMap(String file_name){
+		/*A "kör" megadása"*/
+		track.add(new Line(100, 50, 100, 70));
+		track.add(new Line(100, 70, 80, 90));
+		track.add(new Line(80, 90, 60, 90));
+		track.add(new Line(60, 90, 40, 70));
+		track.add(new Line(40, 70, 40, 50));
+		track.add(new Line(40, 50, 60, 30));
+		track.add(new Line(60, 30, 80, 30));
+		track.add(new Line(80, 30, 100, 50));
+		track.add(new Line(80, 50, 80, 70));
+		track.add(new Line(80, 70, 60, 70));
+		track.add(new Line(60, 70, 60, 50));
+		track.add(new Line(60, 50, 80, 50));
+	
+		/*Checkpointok*/
+		checkPoints.add(new Line(80, 50, 100, 50));
+		checkPoints.add(new Line(60, 70, 60, 90));
+		
+		try {
+			FileOutputStream outFile = new FileOutputStream(file_name);
+			ObjectOutputStream out = new ObjectOutputStream(outFile);
+			out.writeObject(this);
+			out.close();
+			outFile.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -118,7 +162,27 @@ public class Map implements Serializable {
 	 */
 	public void loadMap(String file,int numberOfPlayers) {
 		SkeletonUtility.printCall("LoadMap(" + file + ")", this);
-		/** TODO MAP OLVASÓ LOGIC TODO **/
+		//Beolvassa a mapot
+		try {
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+			try {
+				Map temp = (Map)in.readObject();
+				this.track = temp.track;
+				this.checkPoints = temp.checkPoints;
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		for (int i = 0; i < numberOfPlayers; i++) {
 			playerRobots.add(new PlayerRobot());
 		}

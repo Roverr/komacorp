@@ -61,10 +61,16 @@ public class SkeletonUtility {
 	 * 
 	 */
 	public SkeletonUtility() {
+		/*Létrehozza és kiszerializálja a tesztpályát*/
+		/*TODO delete véglegesben*/
+		Map tempMap = new Map();
+		tempMap.createTestMap("Halálos Kanyon");
+		tempMap.createTestMap("Dummyk lankája");
+		
 		// Create Dummy classes
 		dummyGame = new Game(270, "Halálos Kanyon", 3);
 		dummyMap = new Map();
-		dummyMap.loadMap("Dummyk lankája", 3);
+		dummyMap.loadMap("Dummyk lankája", 3);		
 		dummyRobot = new PlayerRobot();
 		dummyOlaj = new Olaj(10, new Point(0,0));
 		dummyRagacs = new Ragacs(3, new Point(0,0));
