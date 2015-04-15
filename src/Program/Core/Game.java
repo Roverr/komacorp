@@ -51,10 +51,99 @@ public class Game {
 			SkeletonUtility.printReturn("Run", this);
 		}
 		
+		/**
+		 * Meghatározza lenyomott billentyû alapján, hogy felhasználó
+		 * mit szeretne csinálni, és meghívja a megfelelõ mûveleteket
+		 * */
 		public void userControl(char interact){
-			SkeletonUtility.printCall("UserControl", this);
-			//...//
-			SkeletonUtility.printReturn("UserControl", this);
+			/**TODO kérdések
+			 * 1) Nem kéne tudnia a függvénynek, hogy melyik robotra vonatkozik?
+			 * Úgy emlékszem, hogy valami olyasmit beszéltünk meg, hogy 
+			 * wasd mondjuk az egyik robot irányítása, uhjk a másodiké, de 
+			 * listában is ilyen sorrendben vannak letárolva?
+			 * 2) Jól emlékszem, hogy max 3 player volt?
+			 * 3) A robotnál a modifySpeed ugye még nincs kész? Mert olyasmi rémlik még
+			 * megbeszélésekrõl, hogy billentyûnyomás hozzáad a módosító sebességvektorhoz,
+			 * nem felülírja
+			 */
+			int numberOfRobots = GameMap.getRobots().size();
+			
+			/**Az elsõ robotra vonatkozó billentyûlenyomások
+			 * w: fel
+			 * s: le
+			 * a: balra
+			 * d: jobbra*/
+			PlayerRobot playerOne = GameMap.getRobots().get(0);
+			switch(interact){
+				//Fel
+				case 'w': 
+					playerOne.modifySpeed(new Vector(0, 1));
+					break;
+				//Le
+				case 's': 
+					playerOne.modifySpeed(new Vector(0, -1));
+					break;
+				//Balra
+				case 'a': 
+					playerOne.modifySpeed(new Vector(1, 0));
+					break;
+				//Jobbra
+				case 'd': 
+					playerOne.modifySpeed(new Vector(-1, 0));
+					break;
+			}
+			
+			/**Második robotra vonatkozó billentyûlenyomások
+			 * tfgh, hasonló funkcióval mint elsõnél
+			 */
+			if (numberOfRobots >= 2){
+				PlayerRobot playerTwo = GameMap.getRobots().get(1);
+				switch(interact){
+					//Fel
+					case 't': 
+						playerTwo.modifySpeed(new Vector(0, 1));
+						break;
+					//Le
+					case 'g': 
+						playerTwo.modifySpeed(new Vector(0, -1));
+						break;
+					//Balra
+					case 'f': 
+						playerTwo.modifySpeed(new Vector(1, 0));
+						break;
+					//Jobbra
+					case 'h': 
+						playerTwo.modifySpeed(new Vector(-1, 0));
+						break;
+				}
+			}
+			
+			/**Harmadik robot (ha van), irányítása: ijkl*/
+			if (numberOfRobots == 3){
+				PlayerRobot playerThree = GameMap.getRobots().get(2);
+				switch(interact){
+					//Fel
+					case 'i': 
+						playerThree.modifySpeed(new Vector(0, 1));
+						break;
+						//Le
+					case 'k': 
+						playerThree.modifySpeed(new Vector(0, -1));
+						break;
+						//Balra
+					case 'j': 
+						playerThree.modifySpeed(new Vector(1, 0));
+						break;
+						//Jobbra
+					case 'l': 
+						playerThree.modifySpeed(new Vector(-1, 0));
+						break;
+				}
+				
+				SkeletonUtility.printCall("UserControl", this);
+				//...//
+				SkeletonUtility.printReturn("UserControl", this);
+			}
 		}
 		
 }
