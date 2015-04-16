@@ -32,14 +32,7 @@ public abstract class Robot {
 	}
 	
 	public abstract void die();
-	public abstract void jump();/*{
-		//FONTOS: a sebesség itt már az elugrási sebesség legyen
-		//
-		 * Ez abstract metódus, itt szart se kéne számolni.!!! TODO: FIX PLS
-		if (alive){
-			countDistance(10);
-		}
-	};*/
+	public abstract void jump();
 	
 	public int getDistance() {
 		return distance;

@@ -124,7 +124,17 @@ public class PlayerRobot extends Robot implements Serializable  {
 		SkeletonUtility.printCall("Jump", this);
 		/**
 		 * TODO 
+		 * mennyi idõ egy ugrás??
 		 */
+		int time=10;
+		this.speed.add(this.modSpeed);
+		//Ha életben van, akkor távolságot számolunk
+		if (alive){
+			countDistance(time);
+		}
+		this.position.x+=Math.round(time*speed.getX());
+		this.position.y+=Math.round(time*speed.getY());
+		
 		SkeletonUtility.printReturn("Jump", this);
 	}
 	
