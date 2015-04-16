@@ -32,14 +32,9 @@ public abstract class Robot {
 	}
 	
 	public abstract void die();
-	public abstract void jump();/*{
-		//FONTOS: a sebesség itt már az elugrási sebesség legyen
-		//
-		 * Ez abstract metódus, itt szart se kéne számolni.!!! TODO: FIX PLS
-		if (alive){
-			countDistance(10);
-		}
-	};*/
+	/*dropOlaj és dropRagacs miatt kell a map paraméter, mert azok a függvények használják,
+	 * ezért írtam bele. (Hunor)*/
+	public abstract void jump(Map map);
 	
 	public int getDistance() {
 		return distance;

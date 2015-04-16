@@ -74,7 +74,7 @@ public class CleanerRobot extends Robot implements Serializable {
 	/**
 	 * Függvény ami a takarító robotot frissíti
 	 */
-	public void jump() {
+	public void jump(Map map) {
 		if(this.getPosition()==this.getTarget()) {
 			//épp most érkezik meg az olajra
 			if(state==CleanerState.moving){

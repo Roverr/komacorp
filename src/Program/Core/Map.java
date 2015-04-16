@@ -59,7 +59,7 @@ public class Map implements Serializable {
 	 * Beállítja a tesztpályát (kör alakú (8szög), két checkpoint)
 	 * amit kiszerializál fileba
 	 * TODO delete a véglegesben?
-	 * Hunor
+	 * @author Hunor
 	 */
 	public void createTestMap(String file_name){
 		/*A "kör" megadása"*/

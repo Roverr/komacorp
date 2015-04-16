@@ -126,33 +126,43 @@ public class PlayerRobot extends Robot implements Serializable  {
 	 * A robot frissítõ függvénye
 	 * Elugráskor a pozíciója változik a robotnak, a módosítandó sebességvektor(modSpeed)
 	 * függvényében.
+	 * @param map - Pálya, amire ledobja (dropRagacs/Olaj kapja majd paraméterként) 
 	 * @author Hunor
 	 */
-	public void jump() {
-		SkeletonUtility.printCall("Jump", this);
-		
-		/*TODO 
-		 * 1) Miért a Point-et használjuk a pozícióra?
-		 * Miért nem használjuk a Vector-t, ha már megírtuk? 
-		 * Pozíciót csak int pontosságra tárolunk? (Mert a point az int pontosságú, ezért
-		 * kell kasztolnom egy csomót, mert a vektorunk meg double)
-		 * Nem utolsó sorban hozzá se tudok adni a pozícióhoz vektort (nem ez lett
-		 * volna a modSpeed lényege?).
-		 * 2) Miért van a doksiban egy move függvény? Nem az ugráskor mozdul el a robot?*/
-		
-		/*Lekérdezem az aktuális pozíciót*/
-		int x = (int) this.getPosition().getX();
-		int y = (int) this.getPosition().getY();
-		
-		/*Meghatározom az új pozíciót (hozzáadódik a mostanihoz a sebességvektor)*/
-		x += modSpeed.getX();
-		y += modSpeed.getY();
-		Point newPosition = new Point(x, y);
-		
-		/*Módosul a pozíció*/
-		this.setPosition(newPosition);
-		
-		SkeletonUtility.printReturn("Jump", this);
+	public void jump(Map map) {
+		if (this.isAlive()){
+			SkeletonUtility.printCall("Jump", this);
+			
+			/*TODO 
+			 * 1) Miért a Point-et használjuk a pozícióra?
+			 * Miért nem használjuk a Vector-t, ha már megírtuk? 
+			 * Pozíciót csak int pontosságra tárolunk? (Mert a point az int pontosságú, ezért
+			 * kell kasztolnom egy csomót, mert a vektorunk meg double)
+			 * Nem utolsó sorban hozzá se tudok adni a pozícióhoz vektort (nem ez lett
+			 * volna a modSpeed lényege?).
+			 * 2) Miért van a doksiban egy move függvény? Nem az ugráskor mozdul el a robot?*/
+			
+			/*Lekérdezem az aktuális pozíciót*/
+			int x = (int) this.getPosition().getX();
+			int y = (int) this.getPosition().getY();
+			
+			/*Ha dobni akar valamit (1 = ragacs, 2 = olaj), akkor ledobja*/
+			if (wantToDrop == 1)
+				dropRagacs(map);
+			else if (wantToDrop == 2)
+				dropOlaj(map);
+			
+			/*Meghatározom az új pozíciót (hozzáadódik a mostanihoz a sebességvektor)*/
+			x += modSpeed.getX();
+			y += modSpeed.getY();
+			Point newPosition = new Point(x, y);
+			
+			/*Módosul a pozíció*/
+			this.setPosition(newPosition);
+			
+			
+			SkeletonUtility.printReturn("Jump", this);
+		}
 	}
 	
 	/**
