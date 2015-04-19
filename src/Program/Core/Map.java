@@ -216,7 +216,7 @@ public class Map implements Serializable {
 	 * @throws IOException 
 	 */
 	public void validateState(PlayerRobot playerRobot) throws IOException {
-		//SkeletonUtility.printCall("ValidateState", this);
+		SkeletonUtility.printCall("ValidateState", this);
 		if (!this.isOnTrack(playerRobot.getPosition()))
 			playerRobot.die();	
 		for (int i = 0; i < mapItems.size(); i++) {
@@ -228,7 +228,7 @@ public class Map implements Serializable {
 			}
 			
 		}
-			/*szkeletonos rész
+			//szkeletonos rész
 			if(SkeletonUtility.yesOrNoQuestion("Kiestél a pályáról?")){
 				playerRobot.die();
 			}
@@ -240,12 +240,8 @@ public class Map implements Serializable {
 			else if(SkeletonUtility.yesOrNoQuestion("Belelépett a robot egy olajba?")){
 				//dummyOlajForSkeleton.stepIn(playerRobot);
 			}
-			//if (robot.getPosition() == currentItem.GetPosition()) {
-				//TODO Switch, olaj vagy ragacs.
-				//currentItem.StepIn(robot);
-			//}
-		//}
-		SkeletonUtility.printReturn("ValidateState", this);*/
+		
+		SkeletonUtility.printReturn("ValidateState", this);
 	}
 	/**
 	 *Eldönti, hogy egy adott pont a pályán belül található vagy sem
@@ -307,7 +303,7 @@ public class Map implements Serializable {
 	 *@param beforejump -  az ugrás elõtti pozíció
 	 * @author Bence
 	 */	
-	private Boolean isCheckPointChecked(Robot robot,Point beforejump){
+	public Boolean isCheckPointChecked(Robot robot,Point beforejump){
 		//ugrás vonalának megadása
 		//TODO javítani az ugrás vonalára
 		Line ugras= new Line(robot.position.x,robot.position.y,beforejump.x,beforejump.y);

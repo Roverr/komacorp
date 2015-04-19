@@ -145,7 +145,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 		this.position.x+=Math.round(time*speed.getX());
 		this.position.y+=Math.round(time*speed.getY());
 		
-		SkeletonUtility.printReturn("Jump", this);
+		SkeletonUtility.printReturn("Jump", this);}
 	public void jump(Map map) {
 		if (this.isAlive()){
 			SkeletonUtility.printCall("Jump", this);
