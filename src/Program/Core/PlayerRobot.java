@@ -100,6 +100,10 @@ public class PlayerRobot extends Robot implements Serializable  {
 		return modSpeed;
 	}
 	
+	public void setModSpeed(Vector ms){
+		modSpeed = ms;
+	}
+	
 	/**
 	 * Olajat dob a pályára
 	 * @param map - A pálya ahova dobja

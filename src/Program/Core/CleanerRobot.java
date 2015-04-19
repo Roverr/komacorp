@@ -31,6 +31,11 @@ public class CleanerRobot extends Robot implements Serializable {
 		
 	private static final long serialVersionUID = 2858679422774498028L;
 	
+	public CleanerRobot(){
+		Vector speedConst = new Vector(0,1);
+		setCurrentSpeed(speedConst);
+	}
+	
 	public CleanerRobot(MapItem target) {
 		setTarget(target.getPosition());
 		Vector speedConst = new Vector(0,1);

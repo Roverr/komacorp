@@ -1,18 +1,19 @@
 package Program.Core;
 
+import java.awt.Point;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.Point;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 
 import Program.Helpers.Line;
 import Program.Helpers.Vector;
+import Program.Prototype.PrototypeUtility;
 import Program.Skeleton.SkeletonUtility;
 
 /**
@@ -45,6 +46,7 @@ public class Map implements Serializable {
 	 * pálya betölve, ebbõl kifolyólag nincsenek játékosok se.
 	 */
 	public Map() {
+		PrototypeUtility.addClass(this, "GameMap");
 		SkeletonUtility.addClass(this, "dummyMap");
 		SkeletonUtility.printCall("create Map", this);
 		

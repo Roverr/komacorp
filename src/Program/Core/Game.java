@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.util.List;
 
 import Program.Helpers.Vector;
+import Program.Prototype.PrototypeUtility;
 import Program.Skeleton.SkeletonUtility;
 
 public class Game {
 		private Map GameMap;
+		private int time;
 		
 		/**
 		 * Csinálok egy construktort amit a Program.java main metódusa hív meg
@@ -20,7 +22,7 @@ public class Game {
 		 * ezt el kell dönteni
 		 * @author Barna
 		 */
-		public Game(int seconds,String mapname,int numberOfPlayers){
+		public Game(int seconds, String mapname, int numberOfPlayers){
 			SkeletonUtility.addClass(this, "dummyGame");
 			SkeletonUtility.printCall("Game", this);
 			GameMap=new Map();
@@ -153,6 +155,11 @@ public class Game {
 				//...//
 				SkeletonUtility.printReturn("UserControl", this);
 			}
+		}
+		
+		
+		public void setTime(int time){
+			this.time = time;
 		}
 		
 }
