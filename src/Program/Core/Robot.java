@@ -35,13 +35,13 @@ public abstract class Robot {
 	}
 	
 	public abstract void die();
-<<<<<<< HEAD
+
 	public abstract void jump();
-=======
+
 	/*dropOlaj és dropRagacs miatt kell a map paraméter, mert azok a függvények használják,
 	 * ezért írtam bele. (Hunor)*/
 	public abstract void jump(Map map);
->>>>>>> 3fc59e0e382ca94312f806e9dacae45776bb984b
+
 	
 	/**
 	 * Visszadja a távolságot
