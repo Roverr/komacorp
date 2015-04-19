@@ -79,17 +79,21 @@ public class Map implements Serializable {
 	 * @author Barna
 	 */
 	public void setPlayerRobots(List<PlayerRobot> robots){
-		this.playerRobots=robots;
+		for(PlayerRobot r:robots){
+			this.addPlayerRobot(r.getName(), r.getPosition().x,r.getPosition().y);
+		}
 	}
 	
 	/**
 	 * Ez meg azért, hogy a Prototípusból elérjük a robotokat, és tudjunk addolni a testhez
 	 */
 	public void addPlayerRobot(String name,int x,int y){
-		PlayerRobot robot=new PlayerRobot();
-		robot.setName(name);
-		robot.setPosition(x, y);
-		this.playerRobots.add(robot);
+		if(playerRobots.size()<=3){	
+			PlayerRobot robot=new PlayerRobot();
+			robot.setName(name);
+			robot.setPosition(x, y);
+			this.playerRobots.add(robot);
+		}else System.out.println("Too Many Robots");
 	}
 	
 	/**	

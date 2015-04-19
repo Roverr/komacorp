@@ -1,6 +1,1 @@
-teszt:sebMod
-map:halal_kanyon loaded
-add:malzahar
-setspeed:1 0
-setmodspeed:0 1
 malzahar 2 1 VersenyzõRobot 1 1

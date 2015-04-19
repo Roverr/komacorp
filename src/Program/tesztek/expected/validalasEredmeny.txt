@@ -1,7 +1,3 @@
-teszt:validalas
-map:halal_kanyon loaded
-add:malzahar
-setspeed:-2 0
 olaj1 0 0 Olaj 1
 ragacs1 0 0 Ragacs 1
 malzahar 0 0 VersenyzõRobot -1 0

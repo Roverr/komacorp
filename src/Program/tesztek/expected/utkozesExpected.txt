@@ -1,7 +1,1 @@
-teszt:utkozes
-map:halal_kanyon loaded
-add:malzahar
-add:corki
-setspeed 0 1
-setspeed -4 1
 corki 1 1 VersenyzõRobot -2 1
