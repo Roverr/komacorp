@@ -59,6 +59,10 @@ public abstract class Robot {
 		return speed;
 	}
 	
+	public void setSpeed(Vector sp){
+		speed = sp;
+	}
+	
 	/**
 	 * Visszadja az aktuális pozíciót
 	 * @return
