@@ -88,7 +88,11 @@ public class CleanerRobot extends Robot implements Serializable {
 			{
 				if (remainingClean<=0){
 					state=CleanerState.moving;
-                    //TODO:leszedni a mapról az akadályt
+					for(MapItem mI : map.getMapItems()) {
+						if(mI.getPosition() == getTarget()) {
+							map.getMapItems().remove(mI);
+						}
+					}
 					move();
 				}
 				else
