@@ -85,7 +85,10 @@ public class Map implements Serializable {
 	/**
 	 * Ez meg azért, hogy a Prototípusból elérjük a robotokat, és tudjunk addolni a testhez
 	 */
-	public void addPlayerRobot(PlayerRobot robot){
+	public void addPlayerRobot(String name,int x,int y){
+		PlayerRobot robot=new PlayerRobot();
+		robot.setName(name);
+		robot.setPosition(x, y);
 		this.playerRobots.add(robot);
 	}
 	
