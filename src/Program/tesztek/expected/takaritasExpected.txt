@@ -1,0 +1,7 @@
+teszt:takaritas
+map:halal_kanyon loaded
+add olaj3
+add:szolga1
+
+
+szolga1 0 0 TisztítóRobot 0 0

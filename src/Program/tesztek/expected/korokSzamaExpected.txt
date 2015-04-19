@@ -1,0 +1,6 @@
+teszt:korokSzama
+map:halal_kanyon loaded
+add:malzahar
+setgamelength:4
+EndOfGame!
+EndOfGame!

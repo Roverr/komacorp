@@ -1,0 +1,5 @@
+teszt:robotKiesik
+map:halal_kanyon loaded
+add:malzahar
+setspeed:5 0
+malzahar 0 Karesz KIESETT

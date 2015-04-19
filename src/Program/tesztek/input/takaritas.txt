@@ -1,0 +1,8 @@
+beginTest takaritas
+loadMap halal_kanyon.txt
+add cleaner szolga1 0 0
+run 4
+listOlaj
+run 4
+listRagacs
+listRobots

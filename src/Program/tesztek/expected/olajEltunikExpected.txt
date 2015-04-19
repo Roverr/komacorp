@@ -1,0 +1,2 @@
+teszt:olajEltunik
+map:halal_kanyon loaded

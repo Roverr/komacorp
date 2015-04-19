@@ -1,0 +1,5 @@
+teszt:vege
+map:halal_kanyon loaded
+add:malzahar
+exit:
+malzahar 0 Barna
