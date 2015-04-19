@@ -69,7 +69,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 		int stepInCount = 3;
 		int ragacsNumberInList = 0;
 		int ragacsLeft = mapItemCarriedCounter.get(ragacsNumberInList);
-		
+		//Ha több ragacs van még a tárban, dobunk
 		if(ragacsLeft >0 ) {
 			int ragacsNumberInDropping = 1;
 			Ragacs ragacs = new Ragacs(stepInCount,getPosition());
@@ -77,6 +77,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 			mapItemCarriedCounter.set(ragacsNumberInList,ragacsLeft-1);
 			setWantToDrop(ragacsNumberInDropping);
 		} else {
+			//Ha már nincs, akkor jelezzük, hogy nem tudunk dobni. 
 			int noItemToDrop = 0;
 			setWantToDrop(noItemToDrop);
 			System.out.println("No ragacs left, sorryka");

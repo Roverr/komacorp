@@ -25,7 +25,7 @@ import Program.Skeleton.SkeletonUtility;
 public class Map implements Serializable {
 
 	/**
-	 * 
+	 * Szerializáláshoz kell
 	 */
 	private static final long serialVersionUID = -5351272359744547434L;
 	/**
@@ -314,11 +314,19 @@ public class Map implements Serializable {
 		}
 		return metsz;
 	}
-
+	
+	/**
+	 * Visszadja a takarító robotok listáját
+	 * @return
+	 */
 	public List<CleanerRobot> getCleanerRobots() {
 		return cleanerRobots;
 	}
-
+	
+	/**
+	 * Beállítja a takarító robotok listáját
+	 * @param cleanerRobots
+	 */
 	public void setCleanerRobots(List<CleanerRobot> cleanerRobots) {
 		this.cleanerRobots = cleanerRobots;
 	}

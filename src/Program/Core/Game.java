@@ -46,7 +46,7 @@ public class Game {
 			SkeletonUtility.printCall("Run", this);
 			for (PlayerRobot r : GameMap.getRobots()) {
 				GameMap.validateState(r);
-				r.jump();
+				r.jump(GameMap);
 			}
 			SkeletonUtility.printReturn("Run", this);
 		}

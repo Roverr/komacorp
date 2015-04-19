@@ -19,6 +19,9 @@ public class CleanerRobot extends Robot implements Serializable {
 		moving
 	}
 	
+	/**
+	 * Azért felelõs változó, hogy a robot takarításnál mit változtatott.  
+	 */
 	private int remainingClean;
 	
 	//Mit csinál a robot takarít, vagy a következõ oljfolthoz megy.
@@ -76,7 +79,7 @@ public class CleanerRobot extends Robot implements Serializable {
 	 */
 	public void jump(Map map) {
 		if(this.getPosition()==this.getTarget()) {
-			//épp most érkezik meg az olajra
+			//Akadályra érkezés
 			if(state==CleanerState.moving){
 				state=CleanerState.cleaning;
 				remainingClean=2;
@@ -85,7 +88,7 @@ public class CleanerRobot extends Robot implements Serializable {
 			{
 				if (remainingClean<=0){
 					state=CleanerState.moving;
-                    //TODO:leszedni a mapról az olajat
+                    //TODO:leszedni a mapról az akadályt
 					move();
 				}
 				else
