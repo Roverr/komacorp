@@ -78,11 +78,12 @@ public class CleanerRobot extends Robot implements Serializable {
 	 * Függvény ami a takarító robotot frissíti
 	 */
 	public void jump(Map map) {
+		int roundItTakesToClean = 2;
 		if(this.getPosition()==this.getTarget()) {
 			//Akadályra érkezés
 			if(state==CleanerState.moving){
 				state=CleanerState.cleaning;
-				remainingClean=2;
+				remainingClean= roundItTakesToClean;
 			}
 			else
 			{
