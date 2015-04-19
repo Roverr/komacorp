@@ -146,13 +146,18 @@ public class PrototypeUtility {
 				}
 			}
 		}else if(comm.equals("run")){
-			int t = 100;
+			int t = 1;
 			if (command.length >= 2) {
 				t = Integer.parseInt(command[1]);
 			}
 			for(int i = 0; i < t ; i++){
 				//TODO: Játék végekor ne hívjon meg több run-t.
-				testGame.run();
+				try {
+					testGame.run();
+				} catch (Exception e) {//itt az az exceptionnak a message, hogy EndOfGame!
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}else if(comm.equals("listolaj")){
 			Map m = getTestMap();
