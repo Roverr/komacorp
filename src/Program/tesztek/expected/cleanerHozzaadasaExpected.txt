@@ -1,4 +1,2 @@
-teszt:cleanerHozzaadasa
-map:halal_kanyon loaded
 
 szolga1 0 0 TisztítóRobot 0 0

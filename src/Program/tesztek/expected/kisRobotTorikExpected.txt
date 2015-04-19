@@ -1,8 +1,3 @@
-teszt:kisRobotTorik
-map:halal_kanyon loaded
-add:malzahar
-setspeed:-1 0
-add:szolga1
 olaj1 0 0 Olaj 1
 olaj2 0 0 Olaj 0
 malzahar 0 0 VersenyzõRobot 1 0

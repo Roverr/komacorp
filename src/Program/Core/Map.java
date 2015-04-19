@@ -1,9 +1,12 @@
 package Program.Core;
 
 import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -57,45 +60,6 @@ public class Map implements Serializable {
 		SkeletonUtility.printReturn("create Map", this);
 	}
 	
-	/**
-	 * Beállítja a tesztpályát (kör alakú (8szög), két checkpoint)
-	 * amit kiszerializál fileba
-	 * TODO delete a véglegesben?
-	 * @author Hunor
-	 */
-	public void createTestMap(String file_name){
-		/*A "kör" megadása"*/
-		track.add(new Line(100, 50, 100, 70));
-		track.add(new Line(100, 70, 80, 90));
-		track.add(new Line(80, 90, 60, 90));
-		track.add(new Line(60, 90, 40, 70));
-		track.add(new Line(40, 70, 40, 50));
-		track.add(new Line(40, 50, 60, 30));
-		track.add(new Line(60, 30, 80, 30));
-		track.add(new Line(80, 30, 100, 50));
-		track.add(new Line(80, 50, 80, 70));
-		track.add(new Line(80, 70, 60, 70));
-		track.add(new Line(60, 70, 60, 50));
-		track.add(new Line(60, 50, 80, 50));
-	
-		/*Checkpointok*/
-		checkPoints.add(new Line(80, 50, 100, 50));
-		checkPoints.add(new Line(60, 70, 60, 90));
-		
-		try {
-			FileOutputStream outFile = new FileOutputStream(file_name);
-			ObjectOutputStream out = new ObjectOutputStream(outFile);
-			out.writeObject(this);
-			out.close();
-			outFile.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Felvesz az akadályok listájára egy újat.
@@ -163,34 +127,57 @@ public class Map implements Serializable {
 	 * @author Barna
 	 * @param numberOfPlayers
 	 */
+	//Beolvassa a map leírását fileból
+	//A file felépítése: Soronként egy szám
 	public void loadMap(String file,int numberOfPlayers) {
 		SkeletonUtility.printCall("LoadMap(" + file + ")", this);
-		//Beolvassa a mapot
-		try {
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-			try {
-				Map temp = (Map)in.readObject();
-				this.track = temp.track;
-				this.checkPoints = temp.checkPoints;
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		
+		/*Inicializálás*/
+		track = new ArrayList<Line>();
+		checkPoints = new ArrayList<Line>();
+		
+		File f = new File(file);
+		BufferedReader reader = null;
+		//Ebben fognak tárolódni a számok
+		ArrayList<Integer> input = new ArrayList<Integer>();
+		try{
+			reader = new BufferedReader(new FileReader(f));
+			String text = null;
+			/*Beolvasunk mindent az input listába*/
+		    while ((text = reader.readLine()) != null) 
+		        input.add(Integer.parseInt(text));
+		    reader.close();
+		    
+		    /*A bemenet feldolgozása*/    
+		    //A file elsõ száma a vonalak száma, a második a checkpointok száma
+		    Integer number_of_lines = input.get(0);
+		    Integer number_of_checkpoints = input.get(1);
+		    
+		    /*A vonalakat olvassa be*/
+		    for (int i = 2; i < (number_of_lines * 4) + 2; i += 4){
+		    	int x1 = input.get(i);
+		    	int y1 = input.get(i + 1);
+		    	int x2 = input.get(i + 2);
+		    	int y2 = input.get(i + 3);
+		    	track.add(new Line(x1, y1, x2, y2));
+		    }
+		    
+		    /*A checkpointokat olvassa be*/
+		    for (int i = (number_of_lines * 4) + 2; i < (number_of_checkpoints + number_of_lines) * 4; i += 4){
+		    	int x1 = input.get(i);
+		    	int y1 = input.get(i + 1);
+		    	int x2 = input.get(i + 2);
+		    	int y2 = input.get(i + 3);
+		    	checkPoints.add(new Line(x1, y1, x2, y2));
+		    }
+		    	
 		}
-		
-		
-		for (int i = 0; i < numberOfPlayers; i++) {
-			playerRobots.add(new PlayerRobot());
+		catch (FileNotFoundException e) {
+		  e.printStackTrace();
 		}
-		
-		//AddMapItem(new Olaj(3));
-		//AddMapItem(new Ragacs(3));
-		
-		SkeletonUtility.printReturn("LoadMap", this);
+		catch (IOException e) {
+		    e.printStackTrace();
+		} 
 	}
 
 	/**

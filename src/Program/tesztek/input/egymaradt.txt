@@ -3,3 +3,4 @@ loadMap halal_kanyon.txt
 add robot malzahar 1 0
 add robot corki 30 0
 run
+result

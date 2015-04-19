@@ -1,8 +1,2 @@
-teszt:eredmeny
-map:halal_kanyon loaded
-add:malzahar
-add:corki
-setspeed 0 2
-setspeed 2 0
 malzahar 2 Barna
 corki 0 Karesz

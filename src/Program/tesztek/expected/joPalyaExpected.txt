@@ -1,7 +1,4 @@
-teszt:joPalya
-map:halal_kanyon loaded
-add:malzahar
 malzahar 0 0 VersenyzõRobot 0 0
 olaj1 0 0 Olaj 1
 ragacs1 0 0 Ragacs 0
-No such map exists!
+No such map exists:halal_kanyon.txt

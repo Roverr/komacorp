@@ -1,6 +1,2 @@
-teszt:egymaradt
-map:halal_kanyon loaded
-add:malzahar
-add:corki
 malzahar 0 Barna
 corki 0 Karesz KIESETT

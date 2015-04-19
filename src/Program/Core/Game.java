@@ -11,6 +11,7 @@ import Program.Skeleton.SkeletonUtility;
 public class Game {
 		private Map GameMap;
 		private int time;
+		private int elapsedTime;
 		
 		/**
 		 * Csinálok egy construktort amit a Program.java main metódusa hív meg
@@ -27,6 +28,7 @@ public class Game {
 			SkeletonUtility.printCall("Game", this);
 			GameMap=new Map();
 			GameMap.loadMap(mapname,numberOfPlayers);
+			this.time=seconds;
 			SkeletonUtility.printReturn("Game", this);
 		}
 		
@@ -54,17 +56,26 @@ public class Game {
 		 * Körök szimulálását végzi
 		 * @throws IOException - Exception amit elkell kapni.
 		 */
-		public void Run() throws IOException{
-			SkeletonUtility.printCall("Run", this);
-			if(!GameMap.getMapItems().isEmpty()) {
+		public void run(){
+			if(elapsedTime<=time){
+				SkeletonUtility.printCall("Run", this);
+				if(!GameMap.getMapItems().isEmpty()) {
+					
+				}
 				
-			}
-			
-			for (PlayerRobot r : GameMap.getRobots()) {
-				GameMap.validateState(r);
-				r.jump(GameMap);
-			}
-			SkeletonUtility.printReturn("Run", this);
+				for (PlayerRobot r : GameMap.getRobots()) {
+					try {
+						GameMap.validateState(r);
+						r.jump(GameMap);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+				SkeletonUtility.printReturn("Run", this);
+				elapsedTime++;
+			}else System.out.println("EndOfGame!");
 		}
 		
 		/**
