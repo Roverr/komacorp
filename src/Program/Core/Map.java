@@ -216,12 +216,19 @@ public class Map implements Serializable {
 	 * @throws IOException 
 	 */
 	public void validateState(PlayerRobot playerRobot) throws IOException {
-		SkeletonUtility.printCall("ValidateState", this);
-		/** TODO NEED MORE STABLE LOGIC **/
-		playerRobot.getPosition();
-		//for (int i = 0; i < mapItems.size(); i++) {
+		//SkeletonUtility.printCall("ValidateState", this);
+		if (!this.isOnTrack(playerRobot.getPosition()))
+			playerRobot.die();	
+		for (int i = 0; i < mapItems.size(); i++) {
 
-			//MapItem currentItem = mapItems.get(i);
+			MapItem currentItem = mapItems.get(i);
+			if ((currentItem.getPosition().getX()==playerRobot.getPosition().getX()) &&
+					(currentItem.getPosition().getY()==playerRobot.getPosition().getY())){
+			    currentItem.stepIn(playerRobot);	
+			}
+			
+		}
+			/*szkeletonos rész
 			if(SkeletonUtility.yesOrNoQuestion("Kiestél a pályáról?")){
 				playerRobot.die();
 			}
@@ -238,7 +245,7 @@ public class Map implements Serializable {
 				//currentItem.StepIn(robot);
 			//}
 		//}
-		SkeletonUtility.printReturn("ValidateState", this);
+		SkeletonUtility.printReturn("ValidateState", this);*/
 	}
 	/**
 	 *Eldönti, hogy egy adott pont a pályán belül található vagy sem

@@ -130,7 +130,6 @@ public class PlayerRobot extends Robot implements Serializable  {
 	 * @param map - Pálya, amire ledobja (dropRagacs/Olaj kapja majd paraméterként) 
 	 * @author Hunor
 	 */
-<<<<<<< HEAD
 	public void jump() {
 		SkeletonUtility.printCall("Jump", this);
 		/**
@@ -147,11 +146,11 @@ public class PlayerRobot extends Robot implements Serializable  {
 		this.position.y+=Math.round(time*speed.getY());
 		
 		SkeletonUtility.printReturn("Jump", this);
-=======
 	public void jump(Map map) {
 		if (this.isAlive()){
 			SkeletonUtility.printCall("Jump", this);
-			
+			int time=10;
+			this.speed.add(this.modSpeed);
 			/*TODO 
 			 * 1) Miért a Point-et használjuk a pozícióra?
 			 * Miért nem használjuk a Vector-t, ha már megírtuk? 
@@ -164,7 +163,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 			/*Lekérdezem az aktuális pozíciót*/
 			int x = (int) this.getPosition().getX();
 			int y = (int) this.getPosition().getY();
-			
+			Point oldPosition = new Point(x, y);
 			/*Ha dobni akar valamit (1 = ragacs, 2 = olaj), akkor ledobja*/
 			if (wantToDrop == 1)
 				dropRagacs(map);
@@ -178,11 +177,11 @@ public class PlayerRobot extends Robot implements Serializable  {
 			
 			/*Módosul a pozíció*/
 			this.setPosition(newPosition);
-			
+			map.isCheckPointChecked(this, oldPosition);
 			
 			SkeletonUtility.printReturn("Jump", this);
 		}
->>>>>>> 3fc59e0e382ca94312f806e9dacae45776bb984b
+
 	}
 	
 	/**
