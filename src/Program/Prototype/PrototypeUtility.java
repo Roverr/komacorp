@@ -4,17 +4,19 @@ import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import Program.Core.CleanerRobot;
 import Program.Core.Game;
 import Program.Core.Map;
+import Program.Core.MapItem;
 import Program.Core.Olaj;
 import Program.Core.PlayerRobot;
 import Program.Core.Ragacs;
 import Program.Core.Robot;
 import Program.Helpers.Vector;
-import Program.Skeleton.SkeletonUtility;
 
 
 /**class PrototypeUtility:
@@ -50,11 +52,19 @@ public class PrototypeUtility {
 		return parts;
 	}
 	
-	
+	/**
+	 * A következõ függvény feldolgoz egy parancsot. A parancs beazonosítása a szting tömb elsõ elemével történik,
+	 * A további elemek a parancs attribútumai. A parancsok a testGame osztállyal, és a classTable
+	 * osztálykatalógussal dolgozik.
+	 * A hosszú if-else rész végzi a külömbözõ parancsokra fellépõ akciók végrehajtását.
+	 * Leellenõrzi ha a parancs formátuma helyes. Helytelen formátum esetén nem hajtja végre a parancsot.
+	 * @param command - Széttagolt parancs, a tömb egy eleme egy attribútumot jelent.
+	 */
 	private void executeCommand(String[] command){
 		if(command!= null && command.length >= 1){
 		String comm = command[0];
 		comm.toLowerCase();
+		// A félreértések elkerülése végett kisbetûs szövegként kezeljük a parancsot.
 		if(comm.equals("begintest")){
 			if (command.length >= 2) {
 				String testName = command[1];
@@ -64,7 +74,7 @@ public class PrototypeUtility {
 		}else if(comm.equals("loadmap")){
 			if (command.length >= 2) {
 				String mapName = command[1];
-				Map m = (Map)classTable.get("GameMap");
+				Map m = getTestMap();
 				m.loadMap(mapName, 0);
 			}
 		}else if(comm.equals("setgamelength")){
@@ -79,24 +89,24 @@ public class PrototypeUtility {
 				int y = Integer.parseInt(command[4]);
 				command[1].toLowerCase();
 				if(command[1].equals("robot")){
-					Map m = (Map)classTable.get("GameMap");
+					Map m = getTestMap();
 					PlayerRobot r = new PlayerRobot();
 					r.setPosition(x, y);
 					addClass(r, name);
 					m.getRobots().add(r);
 				}else if(command[1].equals("cleaner")){
-					Map m = (Map)classTable.get("GameMap");
+					Map m = getTestMap();
 					CleanerRobot c = new CleanerRobot();
 					c.setPosition(x, y);
 					addClass(c, name);
 					m.getCleanerRobots().add(c);
 				}else if(command[1].equals("olaj")){
-					Map m = (Map)classTable.get("GameMap");
+					Map m = getTestMap();
 					Olaj o = new Olaj(new Point(x,y));
 					addClass(o, name);
 					m.addMapItem(o);
 				}else if(command[1].equals("Ragacs")){
-					Map m = (Map)classTable.get("GameMap");
+					Map m = getTestMap();
 					Ragacs o = new Ragacs(3, new Point(x,y));
 					addClass(o, name);
 					m.addMapItem(o);
@@ -135,8 +145,27 @@ public class PrototypeUtility {
 					}
 				}
 			}
+		}else if(comm.equals("run")){
+			int t = 100;
+			if (command.length >= 2) {
+				t = Integer.parseInt(command[1]);
+			}
+			for(int i = 0; i < t ; i++){
+				//TODO: Játék végekor ne hívjon meg több run-t.
+				testGame.run();
+			}
+		}else if(comm.equals("listolaj")){
+			Map m = getTestMap();
+			List<Olaj> olajok = new ArrayList<Olaj>();
+			for (MapItem item : m.getMapItems()) {
+				if(item instanceof Olaj){
+					olajok.add((Olaj) item);
+				}
+			}
+			String output = listOlaj(olajok);
+			
+			
 		}
-		
 		
 		
 		}
@@ -157,6 +186,14 @@ public class PrototypeUtility {
 		if(value.equals("yes") || value.equals("y") ){
 			return true;
 		}return false;
+	}
+	
+	public static String listOlaj(List<Olaj> list){
+		return "";
+	}
+	
+	private static Map getTestMap(){
+		return (Map)classTable.get("GameMap");
 	}
 
 	/*
