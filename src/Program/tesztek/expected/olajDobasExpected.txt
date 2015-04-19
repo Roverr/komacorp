@@ -1,8 +1,3 @@
-teszt:olajDobas
-map:halal_kanyon loaded
-add:malzahar
-setspeed:0 1
-setolaj:yes
 olaj 3
 ragacs 3
 olaj1 0 0 Olaj 1

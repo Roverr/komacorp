@@ -1,8 +1,3 @@
-teszt:ragacsjDobas
-map:halal_kanyon loaded
-add:malzahar
-setspeed:0 1
-setragacs:yes
 olaj 3
 ragacs 3
 ragacs1 0 0 Ragacs 0

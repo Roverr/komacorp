@@ -12,6 +12,7 @@ import Program.Helpers.Vector;
 public abstract class Robot {
 	
 	/**
+	 * name-legyen már kurva neve szegénynek
 	 * Alive - Beállítható, hogy él-e még a robot
 	 * Distance - Milyen messze jutott a pályán(eredmény számoláshoz)
 	 * ModSpeed- Vektor amivel a user módosíthatja a robot sebességét
@@ -19,6 +20,7 @@ public abstract class Robot {
 	 * Speed ami a robot elõzõ sebességét tárolja, ehhez adódik hozzá a modSpeed
 	 * @author Barna,Rover
 	 */
+	protected String name;
 	protected boolean alive;
 	protected int distance;
 	protected Vector speed;
@@ -102,6 +104,14 @@ public abstract class Robot {
 	 */
 	public void setAlive(boolean alive) {
 		this.alive = alive;
+	}
+	
+	public void setName(String name){
+		this.name=name;
+	}
+	
+	public String getName(){
+		return this.name;
 	}
 	
 	/**

@@ -74,6 +74,22 @@ public class Map implements Serializable {
 	}
 
 	/**
+	 * Ez azért kell, hogy a menüben kiválasztott robotokat beállítsuk
+	 * @param robots
+	 * @author Barna
+	 */
+	public void setPlayerRobots(List<PlayerRobot> robots){
+		this.playerRobots=robots;
+	}
+	
+	/**
+	 * Ez meg azért, hogy a Prototípusból elérjük a robotokat, és tudjunk addolni a testhez
+	 */
+	public void addPlayerRobot(PlayerRobot robot){
+		this.playerRobots.add(robot);
+	}
+	
+	/**	
 	 * Visszadja az eredményt
 	 * 
 	 * @return - Eredmény lista a robotokkal.

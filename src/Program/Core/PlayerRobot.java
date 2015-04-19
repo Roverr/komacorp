@@ -18,6 +18,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 	
 	
 	/**
+	 * pilot-legyen gazdája/versenyzõje
 	 * MapItemCarriedCounter - Map itemek amik még a robotnál vannak.
 	 * wantToDrop 
 	 * - 0, ha nem szeretne dobni a robot,
@@ -26,6 +27,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 	 * modSpeed - A sebesség változtatásnak és irány változtatásnak a vektorát tárolja
 	 * @author Barna,Rover
 	 */
+	protected String pilot;
 	protected List<Integer> mapItemCarriedCounter;
 	private static final long serialVersionUID = -8700911186613988616L;
 	private int wantToDrop;
@@ -44,7 +46,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 		//SKELETON PART
 		/**TODO POSITION + List feltöltés akadályokkal**/
 		mapItemCarriedCounter = new ArrayList<Integer>();
-		
+		pilot="AutoPilot";
 		SkeletonUtility.printReturn("create Robot", this);
 	}
 	
@@ -104,6 +106,13 @@ public class PlayerRobot extends Robot implements Serializable  {
 		modSpeed = ms;
 	}
 	
+	public void setPilot(String pilot){
+		this.pilot=pilot;
+	}
+	
+	public String getPilot(){
+		return this.pilot;
+	}
 	/**
 	 * Olajat dob a pályára
 	 * @param map - A pálya ahova dobja

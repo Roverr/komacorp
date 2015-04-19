@@ -1,10 +1,4 @@
-teszt:robotHozzaadasa
-map:halal_kanyon loaded
-add:malzahar
-add:corki
-add:renekton
-add:udyr
 malzahar 0 0 VersenyzõRobot 0 0
 corki 1 0 VersenyzõRobot 0 0
 renekton 2 0 VersenyzõRobot 0 0
-udyr 3 0 VersenyzõRobot 0 0
+Too Many Robots!
