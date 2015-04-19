@@ -1,6 +1,8 @@
 package Program.Core;
 
+
 import java.io.IOException;
+import java.util.List;
 
 import Program.Helpers.Vector;
 import Program.Skeleton.SkeletonUtility;
@@ -25,7 +27,10 @@ public class Game {
 			GameMap.loadMap(mapname,numberOfPlayers);
 			SkeletonUtility.printReturn("Game", this);
 		}
-
+		
+		/**
+		 * A játék elindításáért felelõs metódus
+		 */
 		public void startGame(){
 			SkeletonUtility.printCall("StartGame", this);
 			for (PlayerRobot r : GameMap.getRobots()) {
@@ -34,19 +39,28 @@ public class Game {
 			SkeletonUtility.printReturn("StartGame", this);
 		}
 		
-		
+		/**
+		 * A játék véget érésénél hívódik meg, illetve ha már nincs aktív játékos a pályán
+		 */
 		public void endGame(){
 			SkeletonUtility.printCall("EndGame", this);
 			GameMap.getResult();
 			SkeletonUtility.printReturn("EndGame", this);
 		}
 		
-
+		/**
+		 * Körök szimulálását végzi
+		 * @throws IOException - Exception amit elkell kapni.
+		 */
 		public void Run() throws IOException{
 			SkeletonUtility.printCall("Run", this);
+			if(!GameMap.getMapItems().isEmpty()) {
+				
+			}
+			
 			for (PlayerRobot r : GameMap.getRobots()) {
 				GameMap.validateState(r);
-				r.jump();
+				r.jump(GameMap);
 			}
 			SkeletonUtility.printReturn("Run", this);
 		}
@@ -57,11 +71,6 @@ public class Game {
 		 * */
 		public void userControl(char interact){
 			/**TODO kérdések
-			 * 1) Nem kéne tudnia a függvénynek, hogy melyik robotra vonatkozik?
-			 * Úgy emlékszem, hogy valami olyasmit beszéltünk meg, hogy 
-			 * wasd mondjuk az egyik robot irányítása, uhjk a másodiké, de 
-			 * listában is ilyen sorrendben vannak letárolva?
-			 * 2) Jól emlékszem, hogy max 3 player volt?
 			 * 3) A robotnál a modifySpeed ugye még nincs kész? Mert olyasmi rémlik még
 			 * megbeszélésekrõl, hogy billentyûnyomás hozzáad a módosító sebességvektorhoz,
 			 * nem felülírja

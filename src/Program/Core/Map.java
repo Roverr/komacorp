@@ -25,7 +25,7 @@ import Program.Skeleton.SkeletonUtility;
 public class Map implements Serializable {
 
 	/**
-	 * 
+	 * Szerializáláshoz kell
 	 */
 	private static final long serialVersionUID = -5351272359744547434L;
 	/**
@@ -59,7 +59,7 @@ public class Map implements Serializable {
 	 * Beállítja a tesztpályát (kör alakú (8szög), két checkpoint)
 	 * amit kiszerializál fileba
 	 * TODO delete a véglegesben?
-	 * Hunor
+	 * @author Hunor
 	 */
 	public void createTestMap(String file_name){
 		/*A "kör" megadása"*/
@@ -171,15 +171,12 @@ public class Map implements Serializable {
 				this.track = temp.track;
 				this.checkPoints = temp.checkPoints;
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -314,11 +311,19 @@ public class Map implements Serializable {
 		}
 		return metsz;
 	}
-
+	
+	/**
+	 * Visszadja a takarító robotok listáját
+	 * @return
+	 */
 	public List<CleanerRobot> getCleanerRobots() {
 		return cleanerRobots;
 	}
-
+	
+	/**
+	 * Beállítja a takarító robotok listáját
+	 * @param cleanerRobots
+	 */
 	public void setCleanerRobots(List<CleanerRobot> cleanerRobots) {
 		this.cleanerRobots = cleanerRobots;
 	}

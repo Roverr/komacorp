@@ -12,8 +12,16 @@ import Program.Skeleton.SkeletonUtility;
  */
 public class Ragacs extends MapItem{
 
+	/**
+	 * Azért felelõs, hogy hányszor lehet a ragacsba lépni
+	 */
 	private int stepInCounter;
+	
+	/**
+	 * Szerializáláshoz kell. 
+	 */
 	private static final long serialVersionUID = 6191556765398850843L;
+	
 	/**
 	 * A ragacsba való belelépések számát állítja be a konstruktor.
 	 * @param StepIn

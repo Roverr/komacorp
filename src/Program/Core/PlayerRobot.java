@@ -69,7 +69,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 		int stepInCount = 3;
 		int ragacsNumberInList = 0;
 		int ragacsLeft = mapItemCarriedCounter.get(ragacsNumberInList);
-		
+		//Ha több ragacs van még a tárban, dobunk
 		if(ragacsLeft >0 ) {
 			int ragacsNumberInDropping = 1;
 			Ragacs ragacs = new Ragacs(stepInCount,getPosition());
@@ -77,6 +77,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 			mapItemCarriedCounter.set(ragacsNumberInList,ragacsLeft-1);
 			setWantToDrop(ragacsNumberInDropping);
 		} else {
+			//Ha már nincs, akkor jelezzük, hogy nem tudunk dobni. 
 			int noItemToDrop = 0;
 			setWantToDrop(noItemToDrop);
 			System.out.println("No ragacs left, sorryka");
@@ -85,9 +86,14 @@ public class PlayerRobot extends Robot implements Serializable  {
 		
 	}
 	
-	
+	/**
+	 * Sebességet módosítja (ami a következõ ugrást határozza meg)
+	 * A sebességvektorhoz hozzáadja a paraméterként kapott vektort
+	 * @param force
+	 * @author Hunor
+	 */
 	public void modifySpeed(Vector force) {
-		modSpeed = force;
+		modSpeed.add(force);
 	}
 	
 	public Vector getModSpeed(){
@@ -119,7 +125,12 @@ public class PlayerRobot extends Robot implements Serializable  {
 	
 	/**
 	 * A robot frissítõ függvénye
+	 * Elugráskor a pozíciója változik a robotnak, a módosítandó sebességvektor(modSpeed)
+	 * függvényében.
+	 * @param map - Pálya, amire ledobja (dropRagacs/Olaj kapja majd paraméterként) 
+	 * @author Hunor
 	 */
+<<<<<<< HEAD
 	public void jump() {
 		SkeletonUtility.printCall("Jump", this);
 		/**
@@ -136,6 +147,42 @@ public class PlayerRobot extends Robot implements Serializable  {
 		this.position.y+=Math.round(time*speed.getY());
 		
 		SkeletonUtility.printReturn("Jump", this);
+=======
+	public void jump(Map map) {
+		if (this.isAlive()){
+			SkeletonUtility.printCall("Jump", this);
+			
+			/*TODO 
+			 * 1) Miért a Point-et használjuk a pozícióra?
+			 * Miért nem használjuk a Vector-t, ha már megírtuk? 
+			 * Pozíciót csak int pontosságra tárolunk? (Mert a point az int pontosságú, ezért
+			 * kell kasztolnom egy csomót, mert a vektorunk meg double)
+			 * Nem utolsó sorban hozzá se tudok adni a pozícióhoz vektort (nem ez lett
+			 * volna a modSpeed lényege?).
+			 * 2) Miért van a doksiban egy move függvény? Nem az ugráskor mozdul el a robot?*/
+			
+			/*Lekérdezem az aktuális pozíciót*/
+			int x = (int) this.getPosition().getX();
+			int y = (int) this.getPosition().getY();
+			
+			/*Ha dobni akar valamit (1 = ragacs, 2 = olaj), akkor ledobja*/
+			if (wantToDrop == 1)
+				dropRagacs(map);
+			else if (wantToDrop == 2)
+				dropOlaj(map);
+			
+			/*Meghatározom az új pozíciót (hozzáadódik a mostanihoz a sebességvektor)*/
+			x += modSpeed.getX();
+			y += modSpeed.getY();
+			Point newPosition = new Point(x, y);
+			
+			/*Módosul a pozíció*/
+			this.setPosition(newPosition);
+			
+			
+			SkeletonUtility.printReturn("Jump", this);
+		}
+>>>>>>> 3fc59e0e382ca94312f806e9dacae45776bb984b
 	}
 	
 	/**
@@ -157,7 +204,6 @@ public class PlayerRobot extends Robot implements Serializable  {
 	public void setWantToDrop(int to) {
 		wantToDrop = to;
 	}
-	
 	
 	
 }
