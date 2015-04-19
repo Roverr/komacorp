@@ -1,9 +1,18 @@
 package Program.Helpers;
+
+import java.io.Serializable;
+
 /**
  * A pálya meghatárázosánál segédkezõ osztály.
  * @author Rover
  */
-public class Line {
+public class Line implements Serializable{
+
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 		public int x1;
 		public int x2;
 		public int y1;

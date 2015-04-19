@@ -24,6 +24,9 @@ public abstract class Robot {
 	protected Vector speed;
 	protected Point position;
 	
+	/**
+	 * Publikus Robot õskonstruktor
+	 */
 	public Robot() {
 		speed = new Vector(0,0);
 		position = new Point(0,0);
@@ -32,39 +35,63 @@ public abstract class Robot {
 	}
 	
 	public abstract void die();
-	public abstract void jump();/*{
-		//FONTOS: a sebesség itt már az elugrási sebesség legyen
-		//
-		 * Ez abstract metódus, itt szart se kéne számolni.!!! TODO: FIX PLS
-		if (alive){
-			countDistance(10);
-		}
-	};*/
+	/*dropOlaj és dropRagacs miatt kell a map paraméter, mert azok a függvények használják,
+	 * ezért írtam bele. (Hunor)*/
+	public abstract void jump(Map map);
 	
+	/**
+	 * Visszadja a távolságot
+	 * @return
+	 */
 	public int getDistance() {
 		return distance;
 	}
 	
+	/**
+	 * Visszadja az aktuális sebességet
+	 * @return
+	 */
 	public Vector getSpeed() {
 		return speed;
 	}
 	
+	/**
+	 * Visszadja az aktuális pozíciót
+	 * @return
+	 */
 	public Point getPosition() {
 		return position;
 	}
 	
+	/**
+	 * Beállítja az akutális pozíciót.
+	 * @param position
+	 */
 	public void setPosition(Point position) {
 		this.position= position;
 	}
 	
+	/**
+	 * Beállítja az aktuális pozíciót két int pont alapján.
+	 * @param x - X koordináta
+	 * @param y - Y koordináta
+	 */
 	public void setPosition(int x, int y) {
 		this.position = new Point(x,y);
 	}
 	
+	/**
+	 * Annak a lekérdezésére, hogy él-e még a robot.
+	 * @return
+	 */
 	public boolean isAlive() {
 		return alive;
 	}
 	
+	/**
+	 * Beállítja, hogy él -e a robot. 
+	 * @param alive
+	 */
 	public void setAlive(boolean alive) {
 		this.alive = alive;
 	}
