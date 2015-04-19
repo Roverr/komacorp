@@ -1,0 +1,6 @@
+teszt:cleanerIrany
+map:halal_kanyon loaded
+add olaj2
+add olaj3
+add:szolga1
+szolga1 0 0 TisztítóRobot 1 1

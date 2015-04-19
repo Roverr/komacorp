@@ -1,0 +1,6 @@
+beginTest robotKiesik
+loadMap halal_kanyon.txt
+add robot malzahar 10 0
+set malzahar speed 5 0
+run
+result

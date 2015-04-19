@@ -1,0 +1,12 @@
+teszt:olajDobas
+map:halal_kanyon loaded
+add:malzahar
+setspeed:0 1
+setolaj:yes
+olaj 3
+ragacs 3
+olaj1 0 0 Olaj 1
+olaj2 5 5 Olaj 0
+malzahar 5 6 VersenyzõRobot 0 1
+olaj 2
+ragacs 3

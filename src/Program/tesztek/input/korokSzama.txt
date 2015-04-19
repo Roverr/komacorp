@@ -1,0 +1,7 @@
+beginTest korokSzama
+loadMap halal_kanyon.txt
+add robot malzahar 0 0
+setGameLength 4
+run 4
+run
+run

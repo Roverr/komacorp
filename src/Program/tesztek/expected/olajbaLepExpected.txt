@@ -1,0 +1,8 @@
+teszt:olajbaLep
+map:halal_kanyon loaded
+add:malzahar
+add:olaj2
+setspeed:0 2
+malzahar 1 2 VersenyzõRobot 0 2
+setmodspeed:4 0
+malzahar 1 4 VersenyzõRobot 0 2

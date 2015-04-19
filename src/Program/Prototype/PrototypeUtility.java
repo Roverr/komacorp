@@ -62,5 +62,14 @@ public class PrototypeUtility {
 	}
 	
 	
+	/*
+	 * Gondolom én, ide jönnek a teszteset kiválasztáshoz a beolvasás inputról,
+	 *  amit aztán át tudunk adni annak a logikának ami kiolvassa az elõre megadott file-okból 
+	 *  a commandokat, és átadja az executecommandnak
+	 *  Még az a gondom, hogy a valós logikát tartalmazó függvények honnan tudják hogy hova kell kiírniuk azt hogy
+	 *  mit csinálnak
+	 * @author Barna
+	 */
+	
 	
 }

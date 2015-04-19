@@ -1,0 +1,11 @@
+teszt:ragacsEltunik
+map:halal_kanyon loaded
+add:malzahar
+setspeed:-1 0
+setspeed:0 2
+setspeed:0 -1
+setspeed:0 2
+setspeed:0 -1
+setspeed:0 2
+ragacs1 0 0 Ragacs 3
+setspeed:0 -1
