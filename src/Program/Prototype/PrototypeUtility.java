@@ -152,7 +152,12 @@ public class PrototypeUtility {
 				t = Integer.parseInt(command[1]);
 			}
 			for(int i = 0; i < t ; i++){
-				testGame.run();
+				try {
+					testGame.run();
+				} catch (Exception e) {//itt az az exceptionnak a message, hogy EndOfGame!
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}else if(comm.equals("listolaj")){
 			Map m = getTestMap();

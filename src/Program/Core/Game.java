@@ -54,9 +54,10 @@ public class Game {
 		
 		/**
 		 * Körök szimulálását végzi
+		 * @throws Exception 
 		 * @throws IOException - Exception amit elkell kapni.
 		 */
-		public void run(){
+		public void run() throws Exception{
 			if(elapsedTime<=time){
 				SkeletonUtility.printCall("Run", this);
 				if(!GameMap.getMapItems().isEmpty()) {
@@ -75,7 +76,7 @@ public class Game {
 				}
 				SkeletonUtility.printReturn("Run", this);
 				elapsedTime++;
-			}else System.out.println("EndOfGame!");
+			}else throw new Exception("EndOfGame!");
 		}
 		
 		/**
