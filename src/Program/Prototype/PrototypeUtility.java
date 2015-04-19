@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import Program.Core.CleanerRobot;
 import Program.Core.Game;
@@ -146,12 +147,11 @@ public class PrototypeUtility {
 				}
 			}
 		}else if(comm.equals("run")){
-			int t = 100;
+			int t = 1;
 			if (command.length >= 2) {
 				t = Integer.parseInt(command[1]);
 			}
 			for(int i = 0; i < t ; i++){
-				//TODO: Játék végekor ne hívjon meg több run-t.
 				testGame.run();
 			}
 		}else if(comm.equals("listolaj")){
@@ -163,7 +163,7 @@ public class PrototypeUtility {
 				}
 			}
 			String output = listOlaj(olajok);
-			
+			//TODO kimenetre írás
 			
 		}
 		
@@ -189,21 +189,26 @@ public class PrototypeUtility {
 	}
 	
 	public static String listOlaj(List<Olaj> list){
-		return "";
+		StringBuilder builder = new StringBuilder();
+		for (Olaj olaj : list) {
+			String name = "";
+			
+			for (Entry<String, Object> entry : classTable.entrySet()) {
+	            if (entry.getValue().equals(olaj)) {
+	                name = entry.getKey();
+	            }
+	        }
+			
+			builder.append(name + " "+  
+					olaj.getPosition().x + " " + olaj.getPosition().y + 
+					" Olaj " + olaj.getTimeLeft() + "\n");
+		}
+		return builder.toString();
 	}
 	
 	private static Map getTestMap(){
 		return (Map)classTable.get("GameMap");
 	}
-
-	/*
-	 * Gondolom én, ide jönnek a teszteset kiválasztáshoz a beolvasás inputról,
-	 *  amit aztán át tudunk adni annak a logikának ami kiolvassa az elõre megadott file-okból 
-	 *  a commandokat, és átadja az executecommandnak
-	 *  Még az a gondom, hogy a valós logikát tartalmazó függvények honnan tudják hogy hova kell kiírniuk azt hogy
-	 *  mit csinálnak
-	 * @author Barna
-	 */
 
 	
 	
