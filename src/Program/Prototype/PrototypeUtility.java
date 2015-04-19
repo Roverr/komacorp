@@ -205,6 +205,51 @@ public class PrototypeUtility {
 		}
 		return builder.toString();
 	}
+
+	public static String listRagacs(List<Ragacs> list){
+		StringBuilder builder = new StringBuilder();
+		for (Ragacs ragacs : list) {
+			String name = "";
+			
+			for (Entry<String, Object> entry : classTable.entrySet()) {
+	            if (entry.getValue().equals(ragacs)) {
+	                name = entry.getKey();
+	            }
+	        }
+			
+			builder.append(name + " "+  
+					ragacs.getPosition().x + " " + ragacs.getPosition().y + 
+					" Olaj " + ragacs.getStepinCounter() + "\n");
+		}
+		return builder.toString();
+	}
+	
+
+	public static String listRobots(List<Robot> list){
+		StringBuilder builder = new StringBuilder();
+		for (Robot robot : list) {
+			String name = "";
+			
+			for (Entry<String, Object> entry : classTable.entrySet()) {
+	            if (entry.getValue().equals(robot)) {
+	                name = entry.getKey();
+	            }
+	        }
+			
+			String robotType = "Robot";
+			if(robot instanceof PlayerRobot){
+				robotType = "PlayerRobot";
+			}else if(robot instanceof CleanerRobot){
+				robotType = "CleanerRobot";
+			}
+			
+			builder.append(name + " "+  
+					robot.getPosition().x + " " + robot.getPosition().y + 
+					" " + robotType +" " + 
+					robot.getSpeed().getX() + " " + robot.getSpeed().getY() + "\n");
+		}
+		return builder.toString();
+	}
 	
 	private static Map getTestMap(){
 		return (Map)classTable.get("GameMap");
