@@ -36,7 +36,7 @@ public abstract class Robot {
 	
 	public abstract void die();
 
-	public abstract void jump();
+	
 
 	/*dropOlaj és dropRagacs miatt kell a map paraméter, mert azok a függvények használják,
 	 * ezért írtam bele. (Hunor)*/
