@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +44,7 @@ public class PrototypeUtility {
 	private String inputFileName;
 	private String outputFileName = "latestTest.txt";
 	private BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
+	private PrintWriter outputWriter = new PrintWriter(System.out); 
 	private Game testGame;
 	
 	public static boolean allowDebug = false;
@@ -169,7 +171,8 @@ public class PrototypeUtility {
 			for(int i = 0; i < t ; i++){
 				try {
 					testGame.run();
-				} catch (Exception e) {//itt az az exceptionnak a message, hogy EndOfGame!
+				} catch (Exception e) {
+					//itt az az exceptionnak a message, hogy EndOfGame!
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					//ide lehet a fájlkiloggolós logikát megírni :)
@@ -185,8 +188,28 @@ public class PrototypeUtility {
 				}
 			}
 			String output = listOlaj(olajok);
-			//TODO kimenetre írás
-			
+			outputWriter.print(output);
+		}else if(comm.equals("listragacs")){
+			Map m = getTestMap();
+			List<Ragacs> ragacsok = new ArrayList<Ragacs>();
+			for (MapItem item : m.getMapItems()) {
+				if(item instanceof Ragacs){
+					ragacsok.add((Ragacs) item);
+				}
+			}
+			String output = listRagacs(ragacsok);
+			outputWriter.print(output);
+		}else if(comm.equals("listrobots")){
+			Map m = getTestMap();
+			List<Robot> robotok = new ArrayList<Robot>();
+			for (Robot robot : m.getRobots()) {
+				robotok.add(robot);
+			}
+			for (Robot robot : m.getCleanerRobots()) {
+				robotok.add(robot);
+			}
+			String output = listRobots(robotok);
+			outputWriter.print(output);
 		}
 		
 		
