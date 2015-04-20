@@ -159,12 +159,11 @@ public class Map implements Serializable {
 	//A file felépítése: Soronként egy szám
 	public void loadMap(String file,int numberOfPlayers) throws MyFileNotFoundException{
 		SkeletonUtility.printCall("LoadMap(" + file + ")", this);
-		
 		/*Inicializálás*/
 		track = new ArrayList<Line>();
 		checkPoints = new ArrayList<Line>();
 		
-		File f = new File(System.getProperty("user.dir") + file + ".txt");
+		File f = new File(System.getProperty("user.dir") + "\\" + file + ".txt");
 		BufferedReader reader = null;
 		//Ebben fognak tárolódni a számok
 		ArrayList<Integer> input = new ArrayList<Integer>();

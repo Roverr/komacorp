@@ -34,6 +34,7 @@ public class Game {
 				GameMap.loadMap(mapname,numberOfPlayers);
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
 				throw new MyFileNotFoundException();
 			}
 			this.time=seconds;
@@ -73,7 +74,6 @@ public class Game {
 				if(!GameMap.getMapItems().isEmpty()) {
 					
 				}
-				if(GameMap.getRobots() != null)System.out.println("napasztmek");
 				for (PlayerRobot r : GameMap.getRobots()) {
 					try {
 						GameMap.validateState(r);
