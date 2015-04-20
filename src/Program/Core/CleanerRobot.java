@@ -164,4 +164,10 @@ public class CleanerRobot extends Robot implements Serializable {
 		return hova;
 	}
 
+	@Override
+	public void collide(Robot robot) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

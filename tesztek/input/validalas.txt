@@ -1,5 +1,5 @@
 beginTest validalas
-loadMap halal_kanyon.txt
+loadMap Tesztmap
 add robot malzahar 2 0
 set malzahar speed -2 0
 run

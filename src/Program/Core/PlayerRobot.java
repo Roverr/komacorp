@@ -221,6 +221,12 @@ public class PlayerRobot extends Robot implements Serializable  {
 	public void setWantToDrop(int to) {
 		wantToDrop = to;
 	}
+
+	@Override
+	public void collide(Robot robot) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

@@ -1,5 +1,5 @@
 beginTest robotKiesik
-loadMap halal_kanyon.txt
+loadMap Tesztmap
 add robot malzahar 10 0
 set malzahar speed 5 0
 run

@@ -1,7 +1,7 @@
 beginTest joPalya
-loadMap halal_kanyon.txt
+loadMap tesztmap
 add robot malzahar 0 0
 listRobots
 listOlaj
 listRagacs
-loadMap nincs_ilyen_palya.txt
+loadMap nincs_ilyen_palya

@@ -1,5 +1,5 @@
 beginTest takaritas
-loadMap halal_kanyon.txt
+loadMap Tesztmap
 add cleaner szolga1 0 0
 run 4
 listOlaj
