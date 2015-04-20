@@ -57,9 +57,9 @@ public class PrototypeUtility {
 		return parts;
 	}
 	
-	private void runTest(String testName){
+	public void runTest(String testName){
 		try {
-			inputReader = new BufferedReader(new FileReader("tesztek\\input\\" + testName + ".txt"));
+			inputReader = new BufferedReader(new FileReader(System.getProperty("user.dir") +  "\\tesztek\\input\\" + testName + ".txt"));
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
