@@ -245,10 +245,11 @@ public class PrototypeUtility {
 			String output = listRagacs(ragacsok);
 			outputWriter.print(output);
 		}else if(comm.equals("listRobots")){
-			outputWriter.println("listing them robotz:");
+			if(allowDebug)System.out.println("listing them robotz:");
 			Map m = getTestMap();
 			List<Robot> robotok = new ArrayList<Robot>();
 			for (Robot robot : m.getRobots()) {
+				if(allowDebug)System.out.println("Booyaa DID my RESEArch");
 				robotok.add(robot);
 			}
 			for (Robot robot : m.getCleanerRobots()) {
@@ -332,10 +333,12 @@ public class PrototypeUtility {
 		StringBuilder builder = new StringBuilder();
 		for (Robot robot : list) {
 			String name = "";
-			
+			if(allowDebug)System.out.println("Search  Hu2EHEHEHEHE");
 			for (Entry<String, Object> entry : classTable.entrySet()) {
 	            if (entry.getValue().equals(robot)) {
 	                name = entry.getKey();
+
+	    			if(allowDebug)System.out.println("ROBOT FOUND HEHEHEHEHE");
 	            }
 	        }
 			
