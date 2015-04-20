@@ -6,6 +6,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import Program.Helpers.Output_Tester;
+
+/**
+ * Az alábbi osztály a tesztelési felületet biztosítja a felhasználók számára.
+ * Egy egyszerû menübõl a felhasználó tesztelési módokat választhat. Kiléphet a programból.
+ * A .txt kiterjesztésû teszt fájlokat a tesztek\input mappába másolva a saját tesztek 
+ * is lefuttathatóak. Ha az expected mappában létezik a teszthez illõ elvárt kimenet, 
+ * akkor ezzel összehasonlítja a teszt során.
+ * @author Karesz
+ *
+ */
+
 public class TestRunner {
 	
 	private static String menu =    "1 - Teszt írása (Standard bemenetrõl érkezõ teszt lefuttatása)\n" +
@@ -19,6 +31,9 @@ public class TestRunner {
 		
 	}
 	
+	/*
+	 * Ez a függvény végzi a felhasználóval a kommunikációt. Végrehajtja az utasításokat
+	 */
 	public void handleInputs() throws IOException{
 		PrototypeUtility pr = new PrototypeUtility();
 		boolean quit = false;
@@ -34,10 +49,17 @@ public class TestRunner {
 			 */
 			if(!awaitTestNumber){
 				//Nem vagyunk az almenüben, tehát kiírjuk a fõmenüt,
+				System.out.println("");
 				System.out.println(menu);
 				// majd beolvassuk a felhasználó válaszát.
 				String line = input.readLine();
-				int choice = Integer.parseInt(line);
+				int choice = -1;
+				try {
+					choice = Integer.parseInt(line);
+				} catch (NumberFormatException e) {
+					choice = -1;
+					System.out.println("\n Adj meg egy valid számot!");
+				}
 				if(choice == 1){
 					pr.runTest("");
 					//Üres paraméterû runTest a standard bemenetrõl várja a tesztesetet.
@@ -48,8 +70,9 @@ public class TestRunner {
 					//Az összes teszt lefuttatása, használja a kiértékelõprogramot.
 					ArrayList<String> tests = listTests();
 					for (String string : tests) {
+						pr.setOutput("testLog");
 						pr.runTest(string);
-						//TODO kiértékelés
+						kiertekel(string);
 					}
 				}else if(choice == 4){
 					quit = true;
@@ -57,6 +80,7 @@ public class TestRunner {
 			}else{
 				//Az almenüben vagyunk, amíg nem kapunk egy értelmes választ addig ott is maradunk.
 				while(awaitTestNumber){
+					System.out.println("");
 					ArrayList<String> tests = listTests();
 					// A menü kiírása:
 					for (int i = 0; i < tests.size(); i++) {
@@ -66,13 +90,21 @@ public class TestRunner {
 					
 					//Válasz beolvasása
 					String line = input.readLine();
-					int choice = Integer.parseInt(line);
+					int choice = -1;
+					try {
+						choice = Integer.parseInt(line);
+					} catch (NumberFormatException e) {
+						choice = -1;
+						System.out.println("\n Adj meg egy valid számot!");
+					}
+					
 					//A felhasználói kényelem miatt 1-tõl kezdjük a számozást,
 					//Ezért néhol az indexelést módosítgatni kell.
 					if((choice > 0) && (choice - 1 <= tests.size())){
 						//Tehát valid teszt számot adtunk meg
+						pr.setOutput("testLog");
 						pr.runTest(tests.get(choice-1));
-						//TODO kiértékelés
+						kiertekel(tests.get(choice-1));
 						awaitTestNumber = false; //kilépés az almenübõl
 					}else if(choice - 1 == tests.size()){
 						//Az utolsó menüpont a kilépés az almenübõl
@@ -83,6 +115,21 @@ public class TestRunner {
 		}
 	}
 	
+	private void kiertekel(String string) {
+		String offset = System.getProperty("user.dir");
+		Output_Tester ot = new Output_Tester(offset + "\\testLog.txt", offset+"\\tesztek\\expected\\" + string + "Expected.txt");
+		printResult(ot.compare());
+	}
+
+	private void printResult(boolean valid) {
+		if(valid){
+			System.out.println("Gratulálunk a teszt sikeres volt.");
+		}else{
+			System.out.println("A teszt helyenként eltér.");
+		}
+		
+	}
+
 	private ArrayList<String> listTests(){
 		//A tesztesetek a következõ mappában helyezkednek el, innen kell õket kilistázni:
 		File testDir = new File(System.getProperty("user.dir") + "\\tesztek\\input");

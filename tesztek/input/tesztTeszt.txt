@@ -1,0 +1,5 @@
+beginTest tesztTeszt
+loadMap Tesztmap
+loadMap lol.koma.xD
+run
+run

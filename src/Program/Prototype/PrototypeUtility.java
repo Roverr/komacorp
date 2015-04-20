@@ -3,6 +3,7 @@ package Program.Prototype;
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -42,14 +43,20 @@ public class PrototypeUtility {
 	 */
 	private static HashMap<String, Object> classTable = new HashMap<String, Object>();
 	
+	/*
+	 * A következõ változók a be- és kimenet intézéséért felelnek.
+	 * 
+	 */
 	private boolean fromFile = false;
 	private String inputFileName;
 	private String outputFileName = "latestTest.txt";
 	private BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
 	private PrintWriter outputWriter = new PrintWriter(System.out);
+	
+	//A tesztosztály, amin a módosításokat végezzük. minden beginTest alkalmával új készül.
 	private Game testGame;
 	
-	public static boolean allowDebug = false;
+	public static boolean allowDebug = true;
 	
 	private String[] readCommand() throws IOException{
 		String line = null;
@@ -118,7 +125,7 @@ public class PrototypeUtility {
 				try {
 					testGame = new Game(100, "Tesztmap", 2);
 					testGame.startGame();
-					outputWriter.println("created game osztály");
+					if(allowDebug)System.out.println("created game osztály");
 				} catch (MyFileNotFoundException e) {
 					// TODO Auto-generated catch block
 					outputWriter.println(e.getMessage());
@@ -127,7 +134,7 @@ public class PrototypeUtility {
 				
 			}
 		}else if(comm.equals("loadMap")){//értelmezi a loadmap parancsot
-			outputWriter.println("loadMap.");
+			if(allowDebug)System.out.println("loadMap.");
 			if (command.length >= 2) {
 				String mapName = command[1];
 				Map m =new Map();// getTestMap();
@@ -360,6 +367,20 @@ public class PrototypeUtility {
 	
 	private static Map getTestMap(){
 		return (Map)classTable.get("GameMap");
+	}
+
+	public void setOutput(String outputString) {
+		if(!outputString.equals("")){
+			try {
+				outputWriter = new PrintWriter(
+					new FileOutputStream(System.getProperty("user.dir") +  "\\" + outputString + ".txt"));
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				System.out.println(e1.getMessage().toString());
+			}
+		}
+		
 	}
 
 	
