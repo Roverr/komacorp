@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,7 +46,7 @@ public class PrototypeUtility {
 	private String inputFileName;
 	private String outputFileName = "latestTest.txt";
 	private BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
-	private PrintWriter outputWriter = new PrintWriter(System.out); 
+	private PrintWriter outputWriter = new PrintWriter(System.out);
 	private Game testGame;
 	
 	public static boolean allowDebug = false;
@@ -86,6 +87,13 @@ public class PrototypeUtility {
 				e.printStackTrace();
 			}
 		}
+		try {
+			inputReader.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		inputReader=new BufferedReader(new InputStreamReader(System.in));
 		outputWriter.close();
 	}
 	
@@ -107,14 +115,15 @@ public class PrototypeUtility {
 		if(comm.equals("beginTest")){
 			if (command.length >= 2) {
 				String testName = command[1];
-				outputWriter.println("beginTest.");
+				System.out.println("begintest");
 				try {
 					testGame = new Game(100, "Tesztmap", 2);
 					testGame.startGame();
 					outputWriter.println("created game osztály");
 				} catch (MyFileNotFoundException e) {
 					// TODO Auto-generated catch block
-					String output=e.getMessage();
+					outputWriter.println(e.getMessage());
+					System.out.println(e.getMessage());
 				}
 				
 			}
@@ -122,13 +131,13 @@ public class PrototypeUtility {
 			outputWriter.println("loadMap.");
 			if (command.length >= 2) {
 				String mapName = command[1];
-				Map m = getTestMap();
+				Map m =new Map();// getTestMap();
 				try {
 					m.loadMap(mapName, 0);
 				} catch (MyFileNotFoundException e) {
 					// TODO Auto-generated catch block
-					String output=e.getMessage();
 					outputWriter.println("No such map exists!");
+					System.out.println(e.getMessage());
 				}
 			}
 		}else if(comm.equals("setgamelength")){
