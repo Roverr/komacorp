@@ -3,6 +3,7 @@ package Program.Core;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 import Program.Helpers.Vector;
 import Program.Prototype.MyFileNotFoundException;
@@ -85,6 +86,22 @@ public class Game {
 					
 				}*/
 				elapsedTime++;
+				//új cleaner robot felvétele
+				List<CleanerRobot> takker= GameMap.getCleanerRobots();
+				if (takker.size()<3 && elapsedTime %10==1){
+					boolean ures=true;
+					for(CleanerRobot r:takker){						
+						if(r.getPosition().getX()==0 && r.getPosition().getY()==0)
+						  ures=false;
+					}
+					if (ures){
+						CleanerRobot tmp= new CleanerRobot();
+						tmp.setPosition(0, 0);
+				    	takker.add(tmp);
+					}
+				}
+				
+				
 			}else throw new Exception("EndOfGame!");
 			SkeletonUtility.printReturn("Run", this);
 		}
