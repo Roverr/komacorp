@@ -63,13 +63,15 @@ public class PrototypeUtility {
 	}
 	
 	public void runTest(String testName){
-		try {
-			inputReader = new BufferedReader(
+		if(!testName.equals("")){
+			try {
+				inputReader = new BufferedReader(
 					new FileReader(System.getProperty("user.dir") +  "\\tesztek\\input\\" + testName + ".txt"));
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			System.out.println(e1.getMessage().toString());
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				System.out.println(e1.getMessage().toString());
+			}
 		}
 		System.out.println("Running test...." + testName);
 		
@@ -107,11 +109,8 @@ public class PrototypeUtility {
 	 * @param command - Széttagolt parancs, a tömb egy eleme egy attribútumot jelent.
 	 */
 	private void executeCommand(String[] command){
-		outputWriter.println("Just like snap");
 		if(command!= null && command.length >= 1){
 		String comm = command[0];
-		comm.toLowerCase();
-		// A félreértések elkerülése végett kisbetûs szövegként kezeljük a parancsot.
 		if(comm.equals("beginTest")){
 			if (command.length >= 2) {
 				String testName = command[1];

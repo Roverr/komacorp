@@ -2,9 +2,7 @@ package Program;
 
 import java.io.IOException;
 
-import Program.Core.Game;
-import Program.Prototype.PrototypeUtility;
-import Program.Skeleton.SkeletonUtility;
+import Program.Prototype.TestRunner;
 
 /**
  * Az egész projekt belépési pontja. Ez készíti el a menüket, és játék indításakor a Game osztályt.
@@ -30,8 +28,16 @@ public class Program {
 		 */
 		//Game skeletonGame=new Game(180,"Halalos kanyon",3);
 		//SkeletonUtility su = new SkeletonUtility();
-		PrototypeUtility pu= new PrototypeUtility();
-		pu.runTest("egymaradt");
+//		PrototypeUtility pu= new PrototypeUtility();
+//		pu.runTest("joPalya");
+		
+		TestRunner tr = new TestRunner();
+		try {
+			tr.handleInputs();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
