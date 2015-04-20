@@ -2,13 +2,14 @@ package Program.Skeleton;
 
 import java.awt.Point;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import Program.Core.*;
-
 import Program.Helpers.Vector;
+import Program.Prototype.MyFileNotFoundException;
 
 /**
  * A szkeleton modell megvalósításáért felelõs osztály. A belsõ business modell
@@ -66,9 +67,19 @@ public class SkeletonUtility {
 		
 		
 		// Create Dummy classes
-		dummyGame = new Game(270, "halal_kanyon.txt", 3);
+		try {
+			dummyGame = new Game(270, "halal_kanyon.txt", 3);
+		} catch (MyFileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		dummyMap = new Map();
-		dummyMap.loadMap("halal_kanyon.txt", 3);		
+		try {
+			dummyMap.loadMap("halal_kanyon.txt", 3);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		dummyRobot = new PlayerRobot();
 		dummyOlaj = new Olaj(10, new Point(0,0));
 		dummyRagacs = new Ragacs(3, new Point(0,0));
@@ -472,7 +483,12 @@ public class SkeletonUtility {
 	 */
 	private static void chooseMap(String name) {
 
-		dummyMap.loadMap(name, previousnumberofplayers);
+		try {
+			dummyMap.loadMap(name, previousnumberofplayers);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -549,7 +565,12 @@ public class SkeletonUtility {
 	 */
 	private void chooseNumberOfPlayers(int number) {
 
-		dummyMap.loadMap(previousname, number);
+		try {
+			dummyMap.loadMap(previousname, number);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

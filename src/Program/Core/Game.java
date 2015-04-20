@@ -1,10 +1,12 @@
 package Program.Core;
 
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 import Program.Helpers.Vector;
+import Program.Prototype.MyFileNotFoundException;
 import Program.Prototype.PrototypeUtility;
 import Program.Skeleton.SkeletonUtility;
 
@@ -22,12 +24,18 @@ public class Game {
 		 * Lehetséges hogy szét kell választani a játékosszámot a loadmaptól, 
 		 * ezt el kell dönteni
 		 * @author Barna
+		 * @throws MyFileNotFoundException 
 		 */
-		public Game(int seconds, String mapname, int numberOfPlayers){
+		public Game(int seconds, String mapname, int numberOfPlayers) throws MyFileNotFoundException{
 			SkeletonUtility.addClass(this, "dummyGame");
 			SkeletonUtility.printCall("Game", this);
 			GameMap=new Map();
-			GameMap.loadMap(mapname,numberOfPlayers);
+			try {
+				GameMap.loadMap(mapname,numberOfPlayers);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				throw new MyFileNotFoundException();
+			}
 			this.time=seconds;
 			SkeletonUtility.printReturn("Game", this);
 		}

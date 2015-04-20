@@ -2,6 +2,7 @@ package Program.Prototype;
 
 import java.awt.Point;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -68,14 +69,24 @@ public class PrototypeUtility {
 		if(comm.equals("begintest")){
 			if (command.length >= 2) {
 				String testName = command[1];
-				testGame = new Game(100, testName, 0);
+				try {
+					testGame = new Game(100, "halal_kanyon.txt", 0);
+				} catch (MyFileNotFoundException e) {
+					// TODO Auto-generated catch block
+					String output=e.getMessage();
+				}
 				
 			}
-		}else if(comm.equals("loadmap")){
+		}else if(comm.equals("loadmap")){//értelmezi a loadmap parancsot
 			if (command.length >= 2) {
 				String mapName = command[1];
 				Map m = getTestMap();
-				m.loadMap(mapName, 0);
+				try {
+					m.loadMap(mapName, 0);
+				} catch (MyFileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}else if(comm.equals("setgamelength")){
 			if (command.length >= 2) {
@@ -91,9 +102,13 @@ public class PrototypeUtility {
 				if(command[1].equals("robot")){
 					Map m = getTestMap();
 					PlayerRobot r = new PlayerRobot();
-					r.setPosition(x, y);
 					addClass(r, name);
-					m.getRobots().add(r);
+					try {
+						m.addPlayerRobot(name, x, y);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						String output=e.getMessage();
+					}
 				}else if(command[1].equals("cleaner")){
 					Map m = getTestMap();
 					CleanerRobot c = new CleanerRobot();
@@ -157,6 +172,8 @@ public class PrototypeUtility {
 				} catch (Exception e) {//itt az az exceptionnak a message, hogy EndOfGame!
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					//ide lehet a fájlkiloggolós logikát megírni :)
+					String output = e.getMessage();
 				}
 			}
 		}else if(comm.equals("listolaj")){

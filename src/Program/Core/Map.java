@@ -16,6 +16,7 @@ import java.util.List;
 
 import Program.Helpers.Line;
 import Program.Helpers.Vector;
+import Program.Prototype.MyFileNotFoundException;
 import Program.Prototype.PrototypeUtility;
 import Program.Skeleton.SkeletonUtility;
 
@@ -77,8 +78,9 @@ public class Map implements Serializable {
 	 * Ez azért kell, hogy a menüben kiválasztott robotokat beállítsuk
 	 * @param robots
 	 * @author Barna
+	 * @throws Exception 
 	 */
-	public void setPlayerRobots(List<PlayerRobot> robots){
+	public void setPlayerRobots(List<PlayerRobot> robots) throws Exception{
 		for(PlayerRobot r:robots){
 			this.addPlayerRobot(r.getName(), r.getPosition().x,r.getPosition().y);
 		}
@@ -86,14 +88,15 @@ public class Map implements Serializable {
 	
 	/**
 	 * Ez meg azért, hogy a Prototípusból elérjük a robotokat, és tudjunk addolni a testhez
+	 * @throws Exception 
 	 */
-	public void addPlayerRobot(String name,int x,int y){
+	public void addPlayerRobot(String name,int x,int y) throws Exception{
 		if(playerRobots.size()<=3){	
 			PlayerRobot robot=new PlayerRobot();
 			robot.setName(name);
 			robot.setPosition(x, y);
 			this.playerRobots.add(robot);
-		}else System.out.println("Too Many Robots");
+		}else throw new Exception("Too Many Robots");
 	}
 	
 	/**	
@@ -149,10 +152,12 @@ public class Map implements Serializable {
 	 * hány robottal akarjuk megcsinálni
 	 * @author Barna
 	 * @param numberOfPlayers
+	 * @throws MyFileNotFoundException 
+	 * @throws FileNotFoundException 
 	 */
 	//Beolvassa a map leírását fileból
 	//A file felépítése: Soronként egy szám
-	public void loadMap(String file,int numberOfPlayers) {
+	public void loadMap(String file,int numberOfPlayers) throws MyFileNotFoundException{
 		SkeletonUtility.printCall("LoadMap(" + file + ")", this);
 		
 		/*Inicializálás*/
@@ -163,13 +168,29 @@ public class Map implements Serializable {
 		BufferedReader reader = null;
 		//Ebben fognak tárolódni a számok
 		ArrayList<Integer> input = new ArrayList<Integer>();
-		try{
-			reader = new BufferedReader(new FileReader(f));
+			try {
+				reader = new BufferedReader(new FileReader(f));
+			} catch (FileNotFoundException e2) {
+				throw new MyFileNotFoundException();
+			}
 			String text = null;
 			/*Beolvasunk mindent az input listába*/
-		    while ((text = reader.readLine()) != null) 
-		        input.add(Integer.parseInt(text));
-		    reader.close();
+		    try {
+				while ((text = reader.readLine()) != null) 
+				    input.add(Integer.parseInt(text));
+			} catch (NumberFormatException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		    try {
+				reader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		    
 		    /*A bemenet feldolgozása*/    
 		    //A file elsõ száma a vonalak száma, a második a checkpointok száma
@@ -193,14 +214,6 @@ public class Map implements Serializable {
 		    	int y2 = input.get(i + 3);
 		    	checkPoints.add(new Line(x1, y1, x2, y2));
 		    }
-		    	
-		}
-		catch (FileNotFoundException e) {
-		  e.printStackTrace();
-		}
-		catch (IOException e) {
-		    e.printStackTrace();
-		} 
 	}
 
 	/**
