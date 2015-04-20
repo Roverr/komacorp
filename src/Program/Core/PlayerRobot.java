@@ -113,6 +113,11 @@ public class PlayerRobot extends Robot implements Serializable  {
 	public String getPilot(){
 		return this.pilot;
 	}
+	
+	public List<Integer> getItemsContained(){
+		return mapItemCarriedCounter;
+	}
+	
 	/**
 	 * Olajat dob a pályára
 	 * @param map - A pálya ahova dobja
