@@ -3,6 +3,7 @@ package Program;
 import java.io.IOException;
 
 import Program.Core.Game;
+import Program.Prototype.PrototypeUtility;
 import Program.Skeleton.SkeletonUtility;
 
 /**
@@ -28,9 +29,10 @@ public class Program {
 		 * @author Barna
 		 */
 		//Game skeletonGame=new Game(180,"Halalos kanyon",3);
-		SkeletonUtility su = new SkeletonUtility();
+		//SkeletonUtility su = new SkeletonUtility();
+		PrototypeUtility pu= new PrototypeUtility();
 		try {
-			su.inputHandler();
+			pu.inputHandler();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
