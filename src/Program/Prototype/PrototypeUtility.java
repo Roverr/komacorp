@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,13 +42,6 @@ public class PrototypeUtility {
 	 */
 	private static HashMap<String, Object> classTable = new HashMap<String, Object>();
 	
-	/*
-	 * A következõ változók a be- és kimenet intézéséért felelnek.
-	 * 
-	 */
-	private boolean fromFile = false;
-	private String inputFileName;
-	private String outputFileName = "latestTest.txt";
 	private BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
 	private PrintWriter outputWriter = new PrintWriter(System.out);
 	
@@ -120,7 +112,6 @@ public class PrototypeUtility {
 		String comm = command[0];
 		if(comm.equals("beginTest")){
 			if (command.length >= 2) {
-				String testName = command[1];
 				System.out.println("begintest");
 				try {
 					testGame = new Game(100, "Tesztmap", 2);
@@ -164,8 +155,7 @@ public class PrototypeUtility {
 					try {
 						m.addPlayerRobot(name, x, y);
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						String output=e.getMessage();
+						e.getMessage();
 					}
 				}else if(command[1].equals("cleaner")){
 					Map m = getTestMap();
@@ -231,8 +221,7 @@ public class PrototypeUtility {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					System.out.println(e.getMessage());
-					//ide lehet a fájlkiloggolós logikát megírni :)
-					String output = e.getMessage();
+					e.getMessage();
 				}
 			}
 		}else if(comm.equals("listOlaj")){

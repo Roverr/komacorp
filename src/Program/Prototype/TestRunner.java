@@ -118,7 +118,12 @@ public class TestRunner {
 	private void kiertekel(String string) {
 		String offset = System.getProperty("user.dir");
 		Output_Tester ot = new Output_Tester(offset + "\\testLog.txt", offset+"\\tesztek\\expected\\" + string + "Expected.txt");
-		printResult(ot.compare());
+		try {
+			printResult(ot.compare());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void printResult(boolean valid) {

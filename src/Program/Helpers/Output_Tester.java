@@ -1,7 +1,6 @@
 package Program.Helpers;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,7 +22,7 @@ public class Output_Tester {
 	}
 	
 	/*Igazat ad vissza, ha az elvárt kimenet és kapott kimenet tartalma egyezik*/
-	public boolean compare(){
+	public boolean compare() throws IOException{
 		boolean match = true;
 		try {
 			FileInputStream f1 = new FileInputStream(recievedOutputFileName);
@@ -58,10 +57,12 @@ public class Output_Tester {
 			      	match = false;
 			    }
 			  }
+			in1.close();in2.close();
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
 		/*Visszatérünk azzal, hogy egyezik-e vagy sem*/
+		
 		return match;
 	}
 }

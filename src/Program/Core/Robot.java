@@ -2,7 +2,6 @@ package Program.Core;
 
 import java.awt.Point;
 
-import Program.Helpers.Line;
 import Program.Helpers.Vector;
 /**
  * TODO: KOMMENTEZÉS

@@ -168,7 +168,6 @@ public class PlayerRobot extends Robot implements Serializable  {
 	public void jump(Map map) {
 		if (this.isAlive()){
 			SkeletonUtility.printCall("Jump", this);
-			int time=10;
 			this.speed.add(this.modSpeed);
 			/*TODO 
 			 * 1) Miért a Point-et használjuk a pozícióra?
