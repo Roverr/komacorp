@@ -1,0 +1,4 @@
+beginTest olajEltunik
+loadMap halal_kanyon.txt
+run 4
+listOlaj

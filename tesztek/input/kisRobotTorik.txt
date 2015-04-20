@@ -1,0 +1,8 @@
+beginTest kisRobotTorik
+loadMap halal_kanyon.txt
+add robot malzahar 2 0
+set malzahar modSpeed -2 0
+add cleaner szolga1 0 0
+run
+listOlaj
+listRobots

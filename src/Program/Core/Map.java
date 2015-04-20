@@ -164,7 +164,7 @@ public class Map implements Serializable {
 		track = new ArrayList<Line>();
 		checkPoints = new ArrayList<Line>();
 		
-		File f = new File(file);
+		File f = new File(System.getProperty("user.dir") + file + ".txt");
 		BufferedReader reader = null;
 		//Ebben fognak tárolódni a számok
 		ArrayList<Integer> input = new ArrayList<Integer>();

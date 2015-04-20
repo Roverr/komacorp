@@ -52,18 +52,24 @@ public class PrototypeUtility {
 	
 	private String[] readCommand() throws IOException{
 		String line = null;
-		inputReader.readLine();
-		String[] parts = line.split(" ");
+		String[] parts = null;
+		line = inputReader.readLine();
+		System.out.println(line);
+		if(line != null){
+			parts = line.split(" ");	
+		}
 		return parts;
 	}
 	
 	public void runTest(String testName){
 		try {
-			inputReader = new BufferedReader(new FileReader(System.getProperty("user.dir") +  "\\tesztek\\input\\" + testName + ".txt"));
+			inputReader = new BufferedReader(
+					new FileReader(System.getProperty("user.dir") +  "\\tesztek\\input\\" + testName + ".txt"));
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		System.out.println("Running test...." + testName);
 		
 		boolean endOfTest = false;
 		while(!endOfTest){
@@ -79,6 +85,7 @@ public class PrototypeUtility {
 				e.printStackTrace();
 			}
 		}
+		outputWriter.close();
 	}
 	
 	
@@ -91,22 +98,27 @@ public class PrototypeUtility {
 	 * @param command - Széttagolt parancs, a tömb egy eleme egy attribútumot jelent.
 	 */
 	private void executeCommand(String[] command){
+		outputWriter.println("Just like snap");
 		if(command!= null && command.length >= 1){
 		String comm = command[0];
 		comm.toLowerCase();
 		// A félreértések elkerülése végett kisbetûs szövegként kezeljük a parancsot.
-		if(comm.equals("begintest")){
+		if(comm.equals("beginTest")){
 			if (command.length >= 2) {
 				String testName = command[1];
+				outputWriter.println("beginTest.");
 				try {
-					testGame = new Game(100, "halal_kanyon.txt", 0);
+					testGame = new Game(100, "Tesztmap", 2);
+					testGame.startGame();
+					outputWriter.println("created game osztály");
 				} catch (MyFileNotFoundException e) {
 					// TODO Auto-generated catch block
 					String output=e.getMessage();
 				}
 				
 			}
-		}else if(comm.equals("loadmap")){//értelmezi a loadmap parancsot
+		}else if(comm.equals("loadMap")){//értelmezi a loadmap parancsot
+			outputWriter.println("loadMap.");
 			if (command.length >= 2) {
 				String mapName = command[1];
 				Map m = getTestMap();
@@ -115,6 +127,7 @@ public class PrototypeUtility {
 				} catch (MyFileNotFoundException e) {
 					// TODO Auto-generated catch block
 					String output=e.getMessage();
+					outputWriter.println("No such map exists!");
 				}
 			}
 		}else if(comm.equals("setgamelength")){
@@ -201,6 +214,7 @@ public class PrototypeUtility {
 					//itt az az exceptionnak a message, hogy EndOfGame!
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					System.out.println(e.getMessage());
 					//ide lehet a fájlkiloggolós logikát megírni :)
 					String output = e.getMessage();
 				}
@@ -226,6 +240,7 @@ public class PrototypeUtility {
 			String output = listRagacs(ragacsok);
 			outputWriter.print(output);
 		}else if(comm.equals("listrobots")){
+			outputWriter.println("listing them robotz:");
 			Map m = getTestMap();
 			List<Robot> robotok = new ArrayList<Robot>();
 			for (Robot robot : m.getRobots()) {

@@ -37,6 +37,7 @@ public class Game {
 				throw new MyFileNotFoundException();
 			}
 			this.time=seconds;
+			elapsedTime = 0;
 			SkeletonUtility.printReturn("Game", this);
 		}
 		
@@ -44,6 +45,7 @@ public class Game {
 		 * A játék elindításáért felelõs metódus
 		 */
 		public void startGame(){
+			elapsedTime = 0;
 			SkeletonUtility.printCall("StartGame", this);
 			for (PlayerRobot r : GameMap.getRobots()) {
 				r.modifySpeed(new Vector(0,0));
@@ -66,25 +68,26 @@ public class Game {
 		 * @throws IOException - Exception amit elkell kapni.
 		 */
 		public void run() throws Exception{
-			if(elapsedTime<=time){
+			if(elapsedTime <= time){
 				SkeletonUtility.printCall("Run", this);
 				if(!GameMap.getMapItems().isEmpty()) {
 					
 				}
-				
+				if(GameMap.getRobots() != null)System.out.println("napasztmek");
 				for (PlayerRobot r : GameMap.getRobots()) {
 					try {
 						GameMap.validateState(r);
 						r.jump(GameMap);
 					} catch (IOException e) {
+						System.out.println("Itt bent van a hiba :)");
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					
 				}
-				SkeletonUtility.printReturn("Run", this);
 				elapsedTime++;
 			}else throw new Exception("EndOfGame!");
+			SkeletonUtility.printReturn("Run", this);
 		}
 		
 		/**

@@ -1,0 +1,7 @@
+beginTest egymaradt
+loadMap Tesztmap
+add robot malzahar 1 0
+add robot corki 30 0
+run
+listRobots
+result

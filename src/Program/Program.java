@@ -31,12 +31,8 @@ public class Program {
 		//Game skeletonGame=new Game(180,"Halalos kanyon",3);
 		//SkeletonUtility su = new SkeletonUtility();
 		PrototypeUtility pu= new PrototypeUtility();
-		try {
-			pu.inputHandler();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		pu.runTest("egymaradt");
+		
 	}
 
 }

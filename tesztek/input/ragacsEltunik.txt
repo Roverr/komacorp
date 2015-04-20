@@ -1,0 +1,20 @@
+beginTest ragacsEltunik
+loadMap halal_kanyon.txt
+add robot malzahar 1 0
+run4
+set malzahar speed -1 0
+run
+set malzahar speed 0 2
+run
+set malzahar speed 0 -1
+run
+set malzahar speed 0 2
+run
+set malzahar speed 0 -1
+run
+set malzahar speed 0 2
+run
+listRagacs
+set malzahar speed 0 -1
+run
+listRagacs

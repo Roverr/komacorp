@@ -1,0 +1,7 @@
+beginTest robotHozzaadasa
+loadMap halal_kanyon.txt
+add robot malzahar 0 0
+add robot corki 1 0
+add robot renekton 2 0
+add robot udyr 3 0
+listRobots

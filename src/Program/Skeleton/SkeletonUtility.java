@@ -98,7 +98,7 @@ public class SkeletonUtility {
 	 * 
 	 * @param s
 	 */
-	static boolean notificationsent = false;
+	static boolean notificationsent = true;
 
 	private static void printSkeleton(String s) {
 		if (allowSkeleton) {
