@@ -71,7 +71,8 @@ public class Game {
 		public void run() throws Exception{
 			if(elapsedTime <= time){
 				SkeletonUtility.printCall("Run", this);
-				if(!GameMap.getMapItems().isEmpty()) {
+				GameMap.validateStates();
+				/*if(!GameMap.getMapItems().isEmpty()) {
 					
 				}
 				for (PlayerRobot r : GameMap.getRobots()) {
@@ -84,7 +85,7 @@ public class Game {
 						e.printStackTrace();
 					}
 					
-				}
+				}*/
 				elapsedTime++;
 			}else throw new Exception("EndOfGame!");
 			SkeletonUtility.printReturn("Run", this);

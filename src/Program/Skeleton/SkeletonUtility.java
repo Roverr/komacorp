@@ -376,7 +376,7 @@ public class SkeletonUtility {
 				} else {
 					wrongParameters = true;
 				}
-			} else if (command.equals("validatestate")) {
+			} else if (command.equals("validatestates")) {
 				if (parts.length >= 2) {
 					try {
 						int playernumber = Integer.parseInt(parts[1]);
@@ -385,7 +385,7 @@ public class SkeletonUtility {
 						if (dummyMap.getRobots().size() > playernumber) {
 							PlayerRobot rob = dummyMap.getRobots().get(playernumber);
 							allowSkeleton = beforeAllow;
-							dummyMap.validateState(rob);
+							dummyMap.validateStates();
 						} else {
 							wrongParameters = true;
 						}

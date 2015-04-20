@@ -40,10 +40,12 @@ public abstract class Robot {
 	
 	
 	/**
+	 * a thesame paraméter azt mutatja hogy a két robot ugyanolyan típusú-e, 
+	 * mivel a fõnök szerint tilos robot.class.equals(PlayerRobot.class)-t használni
 	 * @author Barna
 	 * @param robot
 	 */
-	public abstract void collide(Robot robot,Map map);
+	public abstract void collide(Robot robot,Map map,boolean thesame);
 
 	/*dropOlaj és dropRagacs miatt kell a map paraméter, mert azok a függvények használják,
 	 * ezért írtam bele. (Hunor)*/

@@ -191,8 +191,8 @@ public class CleanerRobot extends Robot implements Serializable {
 	 * @author Barna
 	 */
 	@Override
-	public void collide(Robot robot, Map map) {
-		if (robot.getClass().equals(CleanerRobot.class)) {
+	public void collide(Robot robot, Map map,boolean thesame) {
+		if (thesame) {
 			this.nextTarget(map, "abnormal");
 		} else
 			this.die(map);

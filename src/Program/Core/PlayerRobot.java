@@ -226,9 +226,9 @@ public class PlayerRobot extends Robot implements Serializable  {
 	 * @author Barna
 	 */
 	@Override
-	public void collide(Robot robot,Map map) {
+	public void collide(Robot robot,Map map,boolean thesame) {
 		// TODO Auto-generated method stub
-		if(robot.getClass().equals(PlayerRobot.class)){
+		if(thesame){
 			if(this.speed.length()<robot.getSpeed().length())
 				this.die(map);
 			else this.setSpeed(Vector.average(this.speed,robot.getSpeed()));

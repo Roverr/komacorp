@@ -230,39 +230,49 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * Megnézi, hogy az adott robot belépett-e bármelyik akadályba és ha igen,
-	 * meghívja a megfelelõ StepIn metódust.
-	 * 
+	 * Végignézi az összes PlayerRobot-PlayerRobot,PlayerRobot-CleanerRobot,PlayerRobot-MapItem objektumokat,
+	 * ütközést, belelépést detektál
+	 * CleanerRobot-CleanerRobot ütközést is
+	 * CleanerRobot-Mapitem ütközés különleges eset, nem itt kezeljük
+	 * MapItem-Mapitem, nem kell kezelni
 	 * @param playerRobot
 	 *            - Akit vizsgálni kell az akadályokhoz viszonyítva.
 	 * @throws IOException 
 	 */
-	public void validateState(PlayerRobot playerRobot) throws IOException {
-		SkeletonUtility.printCall("ValidateState", this);
-		if (!this.isOnTrack(playerRobot.getPosition()))
-			playerRobot.die(this);	
-		for (int i = 0; i < mapItems.size(); i++) {
-
-			MapItem currentItem = mapItems.get(i);
-			if ((currentItem.getPosition().getX()==playerRobot.getPosition().getX()) &&
-					(currentItem.getPosition().getY()==playerRobot.getPosition().getY())){
-			    currentItem.stepIn(playerRobot);	
+	public void validateStates() throws IOException {
+		SkeletonUtility.printCall("ValidateState", this);	
+		for (PlayerRobot probot:playerRobots){
+			
+			if(!this.isOnTrack(probot.getPosition()))
+				probot.die(this);
+			for(PlayerRobot probotcompare:playerRobots){
+				if(!probot.equals(probotcompare) && probot.getPosition().equals(probotcompare.getPosition())){
+					probot.collide(probotcompare, this,true);
+					probotcompare.collide(probot, this, true);
+				}
+			}
+			for(CleanerRobot crobot:cleanerRobots){
+				if(probot.getPosition().equals(crobot.getPosition())){
+					probot.collide(crobot, this,false);
+					crobot.collide(probot, this, false);
+				}
+			}
+			for (MapItem currentItem:mapItems) {
+				if (currentItem.getPosition().equals(probot.getPosition())){
+				    currentItem.stepIn(probot);	
+				}
 			}
 			
+		}	
+		
+		for (CleanerRobot crobot:cleanerRobots){
+			for(CleanerRobot crobotcompare:cleanerRobots){
+				if(!crobot.equals(crobotcompare) && crobot.getPosition().equals(crobotcompare.getPosition())){
+					crobot.collide(crobotcompare, this,true);
+					crobotcompare.collide(crobot, this, true);
+				}
+			}
 		}
-			//szkeletonos rész
-			if(SkeletonUtility.yesOrNoQuestion("Kiestél a pályáról?")){
-				playerRobot.die(this);
-			}
-		
-			else if(SkeletonUtility.yesOrNoQuestion("Belelépett a robot egy ragacsba?")){
-				//dummyRagacsForSkeleton.stepIn(playerRobot);
-				
-			}
-			else if(SkeletonUtility.yesOrNoQuestion("Belelépett a robot egy olajba?")){
-				//dummyOlajForSkeleton.stepIn(playerRobot);
-			}
-		
 		SkeletonUtility.printReturn("ValidateState", this);
 	}
 	/**
