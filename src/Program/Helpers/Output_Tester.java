@@ -33,24 +33,30 @@ public class Output_Tester {
 			
 			String line1 = null, line2 = null;
 			boolean EOF = false;
+			int linecount = 0;
 			
 			while (!EOF) {  
 				/*Próbálunk beolvasni sorokat*/
 				try {
 			    	   line1 = in1.readLine();
 			       	   line2 = in2.readLine();
+			       	   linecount++;
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			    /*Ha az egyik file végére értünk, vége a hasonlítgatásnak*/
-			    if (line1 == null || line2 == null)
+			    if (line1 == null || line2 == null){
 			      	 EOF = true;
+			    }
 			    /*Ha az egyik file-nak a végére értünk, de a másiknak nem, akkor nem jó*/
-			    else if (((line1 == null) && (line2 != null)) || ((line1 == null) && (line2 != null)))
+			    if (((line1 == null) && (line2 != null)) || ((line1 == null) && (line2 != null))){
 			       	match = false;
+			    }
 			    /*Ha eltér a két sor*/
-			    else if (!line1.equals(line2))
+			    else if (!line1.equals(line2)){
+			    	System.out.println("Kiértékelés: A " + linecount +". sorban eltérés van.");
 			      	match = false;
+			    }
 			  }
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
