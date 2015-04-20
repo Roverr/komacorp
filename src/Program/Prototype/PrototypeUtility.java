@@ -210,6 +210,15 @@ public class PrototypeUtility {
 			}
 			String output = listRobots(robotok);
 			outputWriter.print(output);
+		}else if(comm.equals("listrobotitems")){
+			if (command.length >= 2) {
+				String name = command[1];
+				PlayerRobot r = (PlayerRobot)classTable.get(name);
+				List<Integer> items = r.getItemsContained();
+				outputWriter.println("Ragacs " + items.get(0));
+				outputWriter.println("Olaj " + items.get(1));
+			}
+				
 		}
 		
 		
