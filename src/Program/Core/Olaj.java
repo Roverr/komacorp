@@ -3,7 +3,6 @@ package Program.Core;
 import java.awt.Point;
 
 import Program.Helpers.Vector;
-import Program.Skeleton.SkeletonUtility;
 
 /**
  * Olaj osztály , ami akadályként dobható a pályára.

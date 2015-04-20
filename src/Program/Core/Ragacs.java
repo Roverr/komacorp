@@ -1,9 +1,6 @@
 package Program.Core;
 
 import java.awt.Point;
-import java.io.Serializable;
-
-import Program.Skeleton.SkeletonUtility;
 
 /**
  * Ragacs osztály, ami akadályként dobható a pályára

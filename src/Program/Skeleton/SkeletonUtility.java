@@ -51,9 +51,6 @@ public class SkeletonUtility {
 	private static Game dummyGame;
 	private static Map dummyMap;
 	private static PlayerRobot dummyRobot;
-	private static Olaj dummyOlaj;
-	private static Ragacs dummyRagacs;
-
 	private static BufferedReader brKeyboard;
 
 	/**
@@ -81,8 +78,8 @@ public class SkeletonUtility {
 			e.printStackTrace();
 		}		
 		dummyRobot = new PlayerRobot();
-		dummyOlaj = new Olaj(10, new Point(0,0));
-		dummyRagacs = new Ragacs(3, new Point(0,0));
+		new Olaj(10, new Point(0,0));
+		new Ragacs(3, new Point(0,0));
 
 		// Kiírások engedélyezése:
 		allowSkeleton = true;
@@ -383,7 +380,7 @@ public class SkeletonUtility {
 						boolean beforeAllow = allowSkeleton;
 						allowSkeleton = false;
 						if (dummyMap.getRobots().size() > playernumber) {
-							PlayerRobot rob = dummyMap.getRobots().get(playernumber);
+							dummyMap.getRobots().get(playernumber);
 							allowSkeleton = beforeAllow;
 							dummyMap.validateStates();
 						} else {

@@ -3,11 +3,9 @@ package Program.Core;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 
 import Program.Helpers.Vector;
 import Program.Prototype.MyFileNotFoundException;
-import Program.Prototype.PrototypeUtility;
 import Program.Skeleton.SkeletonUtility;
 
 public class Game {
