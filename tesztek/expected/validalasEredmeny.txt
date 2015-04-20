@@ -1,3 +1,3 @@
 olaj1 0 0 Olaj 1
 ragacs1 0 0 Ragacs 1
-malzahar 0 0 VersenyzõRobot -1 0
+malzahar 0 0 PlayerRobot -1 0

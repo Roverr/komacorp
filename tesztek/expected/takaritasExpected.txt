@@ -1,3 +1,1 @@
-
-
-szolga1 0 0 TisztítóRobot 0 0
+szolga1 0 0 PlayerRobot 0 0

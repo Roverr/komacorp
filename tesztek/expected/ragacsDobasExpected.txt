@@ -2,6 +2,6 @@ olaj 3
 ragacs 3
 ragacs1 0 0 Ragacs 0
 ragacs2 5 5 Ragacs 0
-malzahar 5 6 VersenyzõRobot 0 1
+malzahar 5 6 PlayerRobot 0 1
 olaj 3
 ragacs 2

@@ -1,2 +1,2 @@
-malzahar 1 2 VersenyzõRobot 0 2
-malzahar 1 3 VersenyzõRobot 0 1
+malzahar 1 2 PlayerRobot 0 2
+malzahar 1 3 PlayerRobot 0 1
