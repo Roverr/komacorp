@@ -3,6 +3,7 @@ package Program.Prototype;
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -55,6 +56,31 @@ public class PrototypeUtility {
 		String[] parts = line.split(" ");
 		return parts;
 	}
+	
+	private void runTest(String testName){
+		try {
+			inputReader = new BufferedReader(new FileReader("tesztek\\input\\" + testName + ".txt"));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		boolean endOfTest = false;
+		while(!endOfTest){
+			try {
+				String[] command = readCommand();
+				if(command != null){
+					executeCommand(command);
+				}else{
+					endOfTest = true;
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	
 	/**
 	 * A következõ függvény feldolgoz egy parancsot. A parancs beazonosítása a szting tömb elsõ elemével történik,
@@ -224,6 +250,9 @@ public class PrototypeUtility {
 		
 		}
 	}
+	
+	
+	
 	
 	private static int classTableNameCntr = 0;
 	public static void addClass(Object obj, String name){
