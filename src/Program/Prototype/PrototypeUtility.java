@@ -86,7 +86,7 @@ public class PrototypeUtility {
 					m.loadMap(mapName, 0);
 				} catch (MyFileNotFoundException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					String output=e.getMessage();
 				}
 			}
 		}else if(comm.equals("setgamelength")){
