@@ -245,7 +245,7 @@ public class PrototypeUtility {
 			String output = listRagacs(ragacsok);
 			outputWriter.print(output);
 		}else if(comm.equals("listRobots")){
-			outputWriter.println("listing them robotz:");
+			//outputWriter.println("listing them robotz:");
 			Map m = getTestMap();
 			List<Robot> robotok = new ArrayList<Robot>();
 			for (Robot robot : m.getRobots()) {
