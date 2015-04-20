@@ -54,7 +54,7 @@ public class PrototypeUtility {
 		String line = null;
 		String[] parts = null;
 		line = inputReader.readLine();
-		System.out.println(line);
+		System.out.println("readcommand:"+line);
 		if(line != null){
 			parts = line.split(" ");	
 		}
@@ -68,6 +68,7 @@ public class PrototypeUtility {
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			System.out.println(e1.getMessage().toString());
 		}
 		System.out.println("Running test...." + testName);
 		

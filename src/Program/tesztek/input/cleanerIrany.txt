@@ -1,8 +1,0 @@
-beginTest cleanerIrany
-loadMap halal_kanyon.txt
-add olaj olaj2 1 1
-add olaj olaj3 0 10
-add cleaner szolga1 0 0
-run 4
-run 4
-listRobots

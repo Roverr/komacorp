@@ -1,4 +1,0 @@
-beginTest vege
-loadMap halal_kanyon.txt
-add robot malzahar 1 0
-exit

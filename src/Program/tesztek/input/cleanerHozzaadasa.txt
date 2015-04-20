@@ -1,5 +1,0 @@
-beginTest cleanerHozzaadasa
-loadMap halal_kanyon.txt
-listRobots
-run 5
-listRobots
