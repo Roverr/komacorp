@@ -36,14 +36,14 @@ public abstract class Robot {
 		distance = 0;
 	}
 	
-	public abstract void die();
+	public abstract void die(Map map);
 	
 	
 	/**
 	 * @author Barna
 	 * @param robot
 	 */
-	public abstract void collide(Robot robot);
+	public abstract void collide(Robot robot,Map map);
 
 	/*dropOlaj és dropRagacs miatt kell a map paraméter, mert azok a függvények használják,
 	 * ezért írtam bele. (Hunor)*/
