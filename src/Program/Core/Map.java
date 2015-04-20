@@ -57,6 +57,7 @@ public class Map implements Serializable {
 		checkPoints = new ArrayList<Line>();
 		mapItems = new ArrayList<MapItem>();
 		playerRobots = new ArrayList<PlayerRobot>();
+		cleanerRobots = new ArrayList<CleanerRobot>();
 		track = new ArrayList<Line>();
 		SkeletonUtility.printReturn("create Map", this);
 	}
@@ -178,16 +179,13 @@ public class Map implements Serializable {
 				while ((text = reader.readLine()) != null) 
 				    input.add(Integer.parseInt(text));
 			} catch (NumberFormatException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		    try {
 				reader.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		    

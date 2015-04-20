@@ -35,7 +35,6 @@ public class Program {
 		try {
 			tr.handleInputs();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
