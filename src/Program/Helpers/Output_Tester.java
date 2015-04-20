@@ -53,7 +53,7 @@ public class Output_Tester {
 			       	match = false;
 			    }
 			    /*Ha eltér a két sor*/
-			    else if (!line1.equals(line2)){
+			    else if (line1!=null && line2!=null && !line1.equals(line2)){
 			    	System.out.println("Kiértékelés: A " + linecount +". sorban eltérés van.");
 			      	match = false;
 			    }
