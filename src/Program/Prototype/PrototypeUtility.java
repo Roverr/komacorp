@@ -140,7 +140,7 @@ public class PrototypeUtility {
 					System.out.println(e.getMessage());
 				}
 			}
-		}else if(comm.equals("setgamelength")){
+		}else if(comm.equals("setGameLength")){
 			if (command.length >= 2) {
 				int time = Integer.parseInt(command[1]);
 				testGame.setTime(time);
@@ -229,7 +229,7 @@ public class PrototypeUtility {
 					String output = e.getMessage();
 				}
 			}
-		}else if(comm.equals("listolaj")){
+		}else if(comm.equals("listOlaj")){
 			Map m = getTestMap();
 			List<Olaj> olajok = new ArrayList<Olaj>();
 			for (MapItem item : m.getMapItems()) {
@@ -239,7 +239,7 @@ public class PrototypeUtility {
 			}
 			String output = listOlaj(olajok);
 			outputWriter.print(output);
-		}else if(comm.equals("listragacs")){
+		}else if(comm.equals("listRagacs")){
 			Map m = getTestMap();
 			List<Ragacs> ragacsok = new ArrayList<Ragacs>();
 			for (MapItem item : m.getMapItems()) {
@@ -249,7 +249,7 @@ public class PrototypeUtility {
 			}
 			String output = listRagacs(ragacsok);
 			outputWriter.print(output);
-		}else if(comm.equals("listrobots")){
+		}else if(comm.equals("listRobots")){
 			outputWriter.println("listing them robotz:");
 			Map m = getTestMap();
 			List<Robot> robotok = new ArrayList<Robot>();
@@ -261,7 +261,7 @@ public class PrototypeUtility {
 			}
 			String output = listRobots(robotok);
 			outputWriter.print(output);
-		}else if(comm.equals("listrobotitems")){
+		}else if(comm.equals("listRobotItems")){
 			if (command.length >= 2) {
 				String name = command[1];
 				PlayerRobot r = (PlayerRobot)classTable.get(name);
