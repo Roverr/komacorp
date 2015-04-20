@@ -1,5 +1,5 @@
 beginTest joPalya
-loadMap tesztmap
+loadMap Tesztmap
 add robot malzahar 0 0
 listRobots
 listOlaj

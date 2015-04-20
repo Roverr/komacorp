@@ -1,6 +1,7 @@
 package Program.Core;
 
 import java.awt.Point;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 	/**
 	 * Ha a robot leesik a pályáról ez a függvény hívódik meg. 
 	 */
-	public void die() {
+	public void die(Map map) {
 		SkeletonUtility.printCall("Die", this);
 		mapItemCarriedCounter.clear();
 		alive = false;
@@ -221,10 +222,17 @@ public class PlayerRobot extends Robot implements Serializable  {
 	public void setWantToDrop(int to) {
 		wantToDrop = to;
 	}
-
+	/**Lekezeli a PlayerRobot ütközését valami mással
+	 * @author Barna
+	 */
 	@Override
-	public void collide(Robot robot) {
+	public void collide(Robot robot,Map map) {
 		// TODO Auto-generated method stub
+		if(robot.getClass().equals(PlayerRobot.class)){
+			if(this.speed.length()<robot.getSpeed().length())
+				this.die(map);
+			else this.setSpeed(Vector.average(this.speed,robot.getSpeed()));
+		}
 		
 	}
 	

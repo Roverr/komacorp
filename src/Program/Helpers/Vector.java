@@ -88,6 +88,12 @@ public class Vector {
 		return this.x*vec.y-this.y*vec.x;
 	}
 	
-	
+	/**
+	 * Két vektor vektorátlaga
+	 * @author Barna
+	 */
+	public static Vector average(Vector vec1,Vector vec2){
+		return new Vector((vec1.getX()+vec2.getX())/2, (vec1.getY()+vec2.getY())/2);
+	}
 	
 }

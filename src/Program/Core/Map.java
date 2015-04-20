@@ -240,7 +240,7 @@ public class Map implements Serializable {
 	public void validateState(PlayerRobot playerRobot) throws IOException {
 		SkeletonUtility.printCall("ValidateState", this);
 		if (!this.isOnTrack(playerRobot.getPosition()))
-			playerRobot.die();	
+			playerRobot.die(this);	
 		for (int i = 0; i < mapItems.size(); i++) {
 
 			MapItem currentItem = mapItems.get(i);
@@ -252,7 +252,7 @@ public class Map implements Serializable {
 		}
 			//szkeletonos rész
 			if(SkeletonUtility.yesOrNoQuestion("Kiestél a pályáról?")){
-				playerRobot.die();
+				playerRobot.die(this);
 			}
 		
 			else if(SkeletonUtility.yesOrNoQuestion("Belelépett a robot egy ragacsba?")){
