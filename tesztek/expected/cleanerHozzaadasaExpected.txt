@@ -1,1 +1,2 @@
-szolga1 0.0 0.0 CleanerRobot 0.0 1.0 ALIVE
+szolga1 10.0 10.0 CleanerRobot 1.0 1.0 ALIVE
+szolga2 0.0 0.0 CleanerRobot 1.0 1.0 ALIVE
