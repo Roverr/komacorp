@@ -102,7 +102,7 @@ public class CleanerRobot extends Robot implements Serializable {
 				state = CleanerState.cleaning;
 				remainingClean = roundItTakesToClean;
 				MapItem myTarget = findMyTarget(map);
-				myTarget.state = CleaningState.beingCleaned;
+
 			} else {
 				if (remainingClean <= 0) {
 					target = nextTarget(map, "");// VÁLTOZÁS! MIUTÁN
@@ -117,7 +117,9 @@ public class CleanerRobot extends Robot implements Serializable {
 					} else{
 						state = CleanerState.moving;
 					}
-					for (MapItem mI : map.getMapItems()) {
+					MapItem mI;
+					for (int i = 0; i < map.getMapItems().size(); i++) {
+						mI = map.getMapItems().get(i);
 						boolean isItTarget = (mI.getPosition().getX() == getTarget().getX() && mI.getPosition().getY() == getTarget().getY());
 						if (isItTarget) {
 							map.getMapItems().remove(mI);
