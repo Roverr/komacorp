@@ -315,7 +315,7 @@ public class PrototypeUtility {
 			String name = nameTable.get(olaj);
 			
 			builder.append(name + " "+  
-					olaj.getPosition().getX() + " " + olaj.getPosition().getY() + 
+					numOut(olaj.getPosition().getX()) + " " + numOut(olaj.getPosition().getY()) + 
 					" Olaj " + olaj.getTimeLeft() + "\n");
 		}
 		return builder.toString();
@@ -327,8 +327,8 @@ public class PrototypeUtility {
 			String name = nameTable.get(ragacs);
 			
 			builder.append(name + " "+  
-					ragacs.getPosition().getX() + " " + ragacs.getPosition().getY() + 
-					" Olaj " + ragacs.getStepinCounter() + "\n");
+					numOut(ragacs.getPosition().getX()) + " " + numOut(ragacs.getPosition().getY()) + 
+					" Ragacs " + ragacs.getStepinCounter() + "\n");
 		}
 		return builder.toString();
 	}
@@ -352,9 +352,9 @@ public class PrototypeUtility {
 				alive = "DEAD";
 			}
 			builder.append(name + " "+  
-					robot.getPosition().getX() + " " + robot.getPosition().getY() + 
+					numOut(robot.getPosition().getX()) + " " + numOut(robot.getPosition().getY()) + 
 					" " + robotType +" " + 
-					robot.getSpeed().getX() + " " + robot.getSpeed().getY() + " " + alive +"\n");
+					numOut(robot.getSpeed().getX()) + " " + numOut(robot.getSpeed().getY() )+ alive + "\n");
 			
 		}
 		return builder.toString();
@@ -362,6 +362,12 @@ public class PrototypeUtility {
 	
 	private static Map getTestMap(){
 		return (Map)classTable.get("GameMap");
+	}
+	
+	//Visszatér a két tizedesjegyre kerekített változattal
+	private static float numOut(float f){
+		float o = Math.round(f * 100) / 100f;
+		return o;
 	}
 
 	public void setOutput(String outputString) {

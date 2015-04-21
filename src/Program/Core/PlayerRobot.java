@@ -65,33 +65,6 @@ public class PlayerRobot extends Robot implements Serializable  {
 
 		SkeletonUtility.printReturn("Die", this);
 	}
-	
-	/**
-	 * Ragacsot dob a pályára ha van, ha nem akkor nem csinál semmit. 
-	 * @param map - Pálya amire ledobja
-	 */
-	public void dropRagacs(Map map) {
-		// 3 -szr lehet belelépni
-		int stepInCount = 3;
-		int ragacsNumberInList = 0;
-		int ragacsLeft = mapItemCarriedCounter.get(ragacsNumberInList);
-		//Ha több ragacs van még a tárban, dobunk
-		if(ragacsLeft >0 ) {
-			int ragacsNumberInDropping = 1;
-			Ragacs ragacs = new Ragacs(stepInCount,getPosition());
-			map.addMapItem(ragacs);
-			mapItemCarriedCounter.set(ragacsNumberInList,ragacsLeft-1);
-			setWantToDrop(ragacsNumberInDropping);
-		} else {
-			//Ha már nincs, akkor jelezzük, hogy nem tudunk dobni. 
-			int noItemToDrop = 0;
-			setWantToDrop(noItemToDrop);
-			System.out.println("No ragacs left, sorryka");
-		}
-
-		
-	}
-	
 	/**
 	 * Sebességet módosítja (ami a következõ ugrást határozza meg)
 	 * A sebességvektorhoz hozzáadja a paraméterként kapott vektort,
@@ -130,7 +103,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 	 */
 	public void dropOlaj(Map map) {
 		// 10 körig lesz életben az olaj
-		int time = 10; 
+		int time = 11; //Plusz 1 kell, mert az elsõ run is öregíti már. 
 		int olajNumberInList = 1;
 		int olajLeft = mapItemCarriedCounter.get(olajNumberInList);
 		
@@ -138,13 +111,41 @@ public class PlayerRobot extends Robot implements Serializable  {
 			int olajNumberInDropping = 2;
 			Olaj olaj = new Olaj(time,getPosition());
 			PrototypeUtility.addClass(olaj, "olaj"+Game.olajId);
+			Game.olajId++;
 			map.addMapItem(olaj);
 			if(PrototypeUtility.allowDebug)System.out.println("Olaj Deployed");
 			mapItemCarriedCounter.set(olajNumberInList, olajLeft-1);
 			wantToDrop = 0;
 		} else {
-			System.out.println("No olaj left, sorryka");
+			if(PrototypeUtility.allowDebug)System.out.println("No olaj left, sorryka");
 		}
+	}
+
+	
+	/**
+	 * Ragacsot dob a pályára ha van, ha nem akkor nem csinál semmit. 
+	 * @param map - Pálya amire ledobja
+	 */
+	public void dropRagacs(Map map) {
+		// 3 -szor lehet belelépni
+		int stepInCount = 3;
+		int ragacsNumberInList = 0;
+		int ragacsLeft = mapItemCarriedCounter.get(ragacsNumberInList);
+		//Ha több ragacs van még a tárban, dobunk
+		if(ragacsLeft >0 ) {
+			int ragacsNumberInDropping = 1;
+			Ragacs ragacs = new Ragacs(stepInCount,getPosition());
+			PrototypeUtility.addClass(ragacs, "ragacs"+Game.ragacsId);
+			Game.ragacsId++;
+			map.addMapItem(ragacs);
+			mapItemCarriedCounter.set(ragacsNumberInList, ragacsLeft-1);
+			setWantToDrop(0);
+		} else {
+			//Ha már nincs, akkor jelezzük, hogy nem tudunk dobni. 
+			if(PrototypeUtility.allowDebug)System.out.println("No ragacs left, sorryka");
+		}
+
+		
 	}
 	
 	/**
