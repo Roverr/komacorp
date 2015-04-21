@@ -230,6 +230,8 @@ public class PlayerRobot extends Robot implements Serializable  {
 			if(this.speed.length()<robot.getSpeed().length())
 				this.die(map);
 			else this.setSpeed(Vector.average(this.speed,robot.getSpeed()));
+		} else {
+			robot.die(map);
 		}
 		
 	}

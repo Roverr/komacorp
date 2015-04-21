@@ -2,6 +2,8 @@ package Program.Core;
 
 import java.awt.Point;
 
+import Program.Core.MapItem.CleaningState;
+
 /**
  * Ragacs osztály, ami akadályként dobható a pályára
  * @author Rover
@@ -26,7 +28,7 @@ public class Ragacs extends MapItem{
 	public Ragacs(int stepIn,Point position) {
 		setPosition(position);
 		setStepinCounter(stepIn);
-		System.out.println("Test, im ready to work, i am Robot");
+		state = CleaningState.canBeCleaned;
 	}
 	
 	/**

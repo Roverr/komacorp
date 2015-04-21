@@ -27,6 +27,7 @@ public class Olaj extends MapItem {
 	public Olaj(int timing,Point position) {
 		this.setTimeLeft(timing);
 		this.position = position;
+		state = CleaningState.canBeCleaned;
 	}
 	
 	/**
@@ -35,6 +36,7 @@ public class Olaj extends MapItem {
 	 */
 	public Olaj(Point position){
 		this(20,position);
+		state = CleaningState.canBeCleaned;
 	}
 	
 	/**

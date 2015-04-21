@@ -10,6 +10,10 @@ import Program.Skeleton.SkeletonUtility;
  *
  */
 public abstract class MapItem implements Serializable  {
+	enum CleaningState {
+		beingCleaned,
+		canBeCleaned
+	}
 	/**
 	 * 
 	 */
@@ -18,6 +22,8 @@ public abstract class MapItem implements Serializable  {
 	 * Az a pont a térképen ahol az akadály található
 	 */
 	protected Point position;
+	
+	public CleaningState state;
 	
 	/**
 	 * Visszaadja az akadály pozícióját.

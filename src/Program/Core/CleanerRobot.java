@@ -39,12 +39,14 @@ public class CleanerRobot extends Robot implements Serializable {
 		Vector speedConst = new Vector(0, 1);
 		setCurrentSpeed(speedConst);
 		target = nextTarget(m, "normal");
+		state = CleanerState.moving;
 	}
 
 	public CleanerRobot(MapItem target) {
 		setTarget(target.getPosition());
 		Vector speedConst = new Vector(0, 1);
 		setCurrentSpeed(speedConst);
+		state = CleanerState.moving;
 	}
 
 	/**
@@ -96,7 +98,8 @@ public class CleanerRobot extends Robot implements Serializable {
 		int roundItTakesToClean = 2;
 		//TODO Position detection based on distance.
 		//TODO Moving = speed vektor a target irányába.
-		if (this.getPosition() == this.getTarget()) {
+		boolean isItThere = (this.getPosition().getX() == this.getTarget().getX() && getPosition().getY() == getTarget().getY());
+		if (isItThere) {
 			// Akadályra érkezés
 			if (state == CleanerState.moving) {
 				state = CleanerState.cleaning;
@@ -112,8 +115,10 @@ public class CleanerRobot extends Robot implements Serializable {
 						state = CleanerState.moving;
 					}
 					for (MapItem mI : map.getMapItems()) {
-						if (mI.getPosition() == getTarget()) {
+						boolean isItTarget = (mI.getPosition().getX() == getTarget().getX() && mI.getPosition().getY() == getTarget().getY());
+						if (isItTarget) {
 							map.getMapItems().remove(mI);
+							System.out.println("Removed " + getNameFromType(mI));
 						}
 					}
 					move();
@@ -122,12 +127,25 @@ public class CleanerRobot extends Robot implements Serializable {
 				}
 			}
 			// Game osztály elpuszítja a targetet, itt már csak hibát kapunk el
-			if(PrototypeUtility.allowDebug)System.out
-					.println("Error! CleanerRobot standing on shit, and it's still alive");
+			/*if(PrototypeUtility.allowDebug)System.out
+					.println("Error! CleanerRobot standing on shit, and it's still alive");*/
 		} else {
 			move();
 		}
 
+	}
+	
+	/**
+	 * Hacking........ Get name from Class's file name. 
+	 * @param mi
+	 * @return
+	 */
+	private String getNameFromType(MapItem mi){
+		if(mi.toString().contains("Olaj")){
+			return "Olaj";
+		} else {
+			return "Ragacs";
+		}
 	}
 
 	/**
@@ -162,7 +180,7 @@ public class CleanerRobot extends Robot implements Serializable {
 
 		}
 	}
-
+	
 	/**
 	 * Kijelöli a következõ célpontot,azt a mapitemet ami a legközelebb van
 	 * 
@@ -201,10 +219,10 @@ public class CleanerRobot extends Robot implements Serializable {
 	@Override
 	public void collide(Robot robot, Map map, boolean thesame) {
 		if (thesame) {
-			this.nextTarget(map, "abnormal");
-		} else
+			nextTarget(map, "abnormal");
+		} else {
 			this.die(map);
-
+		}
 	}
 
 }
