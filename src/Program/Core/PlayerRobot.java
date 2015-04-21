@@ -48,6 +48,9 @@ public class PlayerRobot extends Robot implements Serializable  {
 		/**TODO POSITION + List feltöltés akadályokkal**/
 		mapItemCarriedCounter = new ArrayList<Integer>();
 		pilot="AutoPilot";
+		mapItemCarriedCounter=new ArrayList<Integer>();
+		mapItemCarriedCounter.add(3);
+		mapItemCarriedCounter.add(3);
 		SkeletonUtility.printReturn("create Robot", this);
 	}
 	
