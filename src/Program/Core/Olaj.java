@@ -63,5 +63,17 @@ public class Olaj extends MapItem {
 	public void setTimeLeft(int timeLeft) {
 		this.timeLeft = timeLeft;
 	}
+	
+	/**
+	 * Öregíti az olajat ha megvan hívódva.
+	 */
+	public void update(){
+		timeLeft --;
+	}
+
+	@Override
+	public boolean isAlive() {
+		return (timeLeft > 0);
+	}
 
 }

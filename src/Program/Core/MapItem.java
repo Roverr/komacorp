@@ -52,5 +52,11 @@ public abstract class MapItem implements Serializable  {
 	 * @param playerRobot - Robot aki rálépett az akadályra.
 	 */
 	public abstract void stepIn(PlayerRobot playerRobot);
+	/**
+	 * Az update függvény meghívódik minden run alkalmával. Ez teszi lehetõvé az Olaj öregítését.
+	 */
+	public abstract void update();
+
+	public abstract boolean isAlive();
 
 }

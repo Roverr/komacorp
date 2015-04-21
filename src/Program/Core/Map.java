@@ -117,7 +117,6 @@ public class Map implements Serializable {
 			}
 			temp.add(r.name + " " + r.distance + kiesett);
 		}
-
 		SkeletonUtility.printReturn("GetResult", this);
 		return temp;
 
@@ -246,8 +245,8 @@ public class Map implements Serializable {
 	 *            - Akit vizsgálni kell az akadályokhoz viszonyítva.
 	 * @throws IOException
 	 */
-	public void validateStates() throws IOException {
-		SkeletonUtility.printCall("ValidateState", this);
+	public void validateStates() {
+		SkeletonUtility.printCall("ValidateStates", this);
 		//TODO Checkpointon keresztülmenés (PlayerRobotban változtat valamit).
 		for (PlayerRobot probot : playerRobots) {
 
@@ -287,6 +286,12 @@ public class Map implements Serializable {
 		SkeletonUtility.printReturn("ValidateState", this);
 	}
 	
+	/**
+	 * Give back true, if the two given position are the same
+	 * @param a
+	 * @param b
+	 * @return
+	 */
 	private boolean samePosition(FloatPoint a, FloatPoint b) {
 		if(a.getX() == b.getX() && a.getY() == b.getY()) {
 			return true;

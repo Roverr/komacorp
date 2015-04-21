@@ -267,6 +267,7 @@ public class PrototypeUtility {
 				
 		}else if(comm.equals("result")){
 			String res = testGame.endResult;
+			System.out.println(res);
 			if(res != null){
 				outputWriter.print(res);
 			}
