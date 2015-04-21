@@ -55,9 +55,10 @@ public class Ragacs extends MapItem{
 	 */
 	public void stepIn(PlayerRobot playerRobot) {
 		if(PrototypeUtility.allowDebug)System.out.println("Ragacs - stepin +" + playerRobot.name);
-		stepInCounter = stepInCounter--;
-		playerRobot.modifySpeed(playerRobot.getSpeed().cutIntoHalf());
+		stepInCounter = stepInCounter-1;
+		playerRobot.setSpeed(playerRobot.getSpeed().cutIntoHalf());
 	}
+	
 	
 	public void update(){
 		//Mivel körönként nem kell frissíteni, ide semmi nem kerül.

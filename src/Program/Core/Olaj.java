@@ -47,7 +47,9 @@ public class Olaj extends MapItem {
 	public void stepIn(PlayerRobot playerRobot) {
 		if(PrototypeUtility.allowDebug)System.out.println("Olaj - stepin +" + playerRobot.name);
 		Vector zero = new Vector(0,0);
-		playerRobot.modifySpeed(zero);
+		System.out.println(playerRobot.getModSpeed().getX() + " " + playerRobot.getModSpeed().getY());
+		playerRobot.setModSpeed(zero);
+		System.out.println(playerRobot.getModSpeed().getX() + " " + playerRobot.getModSpeed().getY());
 	}
 	
 	/**
