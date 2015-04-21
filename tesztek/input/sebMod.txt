@@ -1,5 +1,5 @@
 beginTest sebMod
-loadMap Tesztmap
+loadMap mezo
 add robot malzahar 1 0
 set malzahar speed 1 0
 set malzahar modSpeed 0 1

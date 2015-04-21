@@ -116,7 +116,7 @@ public class Game {
 				//Az eltelt idõ nõ.
 				elapsedTime++;
 				if(PrototypeUtility.allowDebug)System.out.println("time = " + elapsedTime + " < " + time);
-				if(elapsedTime == time || elapsedTime+1 == time){
+				if(elapsedTime+1 == time) {
 					endGame();
 				}
 				//új cleaner robot felvétele.

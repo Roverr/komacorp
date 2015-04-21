@@ -1,4 +1,4 @@
 beginTest vege
-loadMap Tesztmap
+loadMap mezo
 add robot malzahar 1 0
 exit

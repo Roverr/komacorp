@@ -1,5 +1,5 @@
 beginTest olajEltunik
-loadMap Tesztmap
+loadMap mezo
 add olaj1 0 0
 run 4
 listOlaj
