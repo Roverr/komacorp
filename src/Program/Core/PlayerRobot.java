@@ -176,6 +176,17 @@ public class PlayerRobot extends Robot implements Serializable  {
 	
 	
 	
+			
+			
+			
+
+
+
+	
+	public int newDistance(FloatPoint newPosition){
+		return (int)(Math.sqrt(newPosition.getX()*newPosition.getX()+newPosition.getY()*newPosition.getY()));
+	}
+	
 	/**
 	 * Visszadja a bitet ami jelzi, hogy a robot szeretne akadályt dobni
 	 * @return 
