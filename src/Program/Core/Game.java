@@ -82,29 +82,30 @@ public class Game {
 		public void run() throws Exception{
 			if(elapsedTime < time){
 				SkeletonUtility.printCall("Run", this);
-				GameMap.validateStates();
-				//TODO Update MapItems (Olajok felszáradnak)
-				//TODO Update PlayerRobots (if alive ValidateState, if still alive Jump)
 				//TODO dropOlaj, és dropRagacsot innen meghívni!
-				/*if(!GameMap.getMapItems().isEmpty()) {
-					
-				}
-				for (PlayerRobot r : GameMap.getRobots()) {
-					try {
-						GameMap.validateState(r);
-						r.jump(GameMap);
-					} catch (IOException e) {
-						System.out.println("Itt bent van a hiba :)");
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					
-				}*/
+				//Ellenõrzi az !összes! robot pozícióját
+				GameMap.validateStates();
 				
-				//TODO ValidateState for cleaner robot, for collison check.
+				//Update PlayerRobots (if alive ValidateState, if still alive Jump)
+				for (PlayerRobot r : GameMap.getRobots()) {
+					if(r.isAlive()){
+						r.jump(GameMap);
+					}
+				}
+				
 				for (CleanerRobot cl : GameMap.getCleanerRobots()) {
 					cl.jump(GameMap);
+				}
+				
+
+				//Update MapItems (Olajok felszáradnak)
+				if(!GameMap.getMapItems().isEmpty()) {
+					for(MapItem mi : GameMap.getMapItems()){
+						mi.update();
+						if(mi.isAlive()){
+							GameMap.removeMapItem(mi);
+						}
+					}
 				}
 				
 				//Az eltelt idõ nõ.
