@@ -165,12 +165,12 @@ public class PrototypeUtility {
 					m.getCleanerRobots().add(c);
 				}else if(command[1].equals("olaj")){
 					Map m = getTestMap();
-					Olaj o = new Olaj(new Point(x,y));
+					Olaj o = new Olaj(new FloatPoint(x,y));
 					addClass(o, name);
 					m.addMapItem(o);
 				}else if(command[1].equals("Ragacs")){
 					Map m = getTestMap();
-					Ragacs o = new Ragacs(3, new Point(x,y));
+					Ragacs o = new Ragacs(3, new FloatPoint(x,y));
 					addClass(o, name);
 					m.addMapItem(o);
 				}
@@ -303,7 +303,7 @@ public class PrototypeUtility {
 			String name = nameTable.get(olaj);
 			
 			builder.append(name + " "+  
-					olaj.getPosition().x + " " + olaj.getPosition().y + 
+					olaj.getPosition().getX() + " " + olaj.getPosition().getY() + 
 					" Olaj " + olaj.getTimeLeft() + "\n");
 		}
 		return builder.toString();
@@ -315,7 +315,7 @@ public class PrototypeUtility {
 			String name = nameTable.get(ragacs);
 			
 			builder.append(name + " "+  
-					ragacs.getPosition().x + " " + ragacs.getPosition().y + 
+					ragacs.getPosition().getX() + " " + ragacs.getPosition().getY() + 
 					" Olaj " + ragacs.getStepinCounter() + "\n");
 		}
 		return builder.toString();
@@ -335,7 +335,7 @@ public class PrototypeUtility {
 			}
 			
 			builder.append(name + " "+  
-					robot.getPosition().x + " " + robot.getPosition().y + 
+					robot.getPosition().getX() + " " + robot.getPosition().getY() + 
 					" " + robotType +" " + 
 					robot.getSpeed().getX() + " " + robot.getSpeed().getY() + "\n");
 		}

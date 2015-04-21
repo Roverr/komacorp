@@ -135,31 +135,31 @@ public class CleanerRobot extends Robot implements Serializable {
 	 * Metódus ami elõre lépteti a takarító robotot.
 	 */
 	private void move() {
-		Point currentPosition = getPosition();
+		FloatPoint currentPosition = getPosition();
 		
 		//TODO Ez itt hibásan mûködik.
 		//Pl mivan akkor ha egyenlõ az egyik kordináta?
 
 		// Ha lejebb van az X tengelyen 
-		if (currentPosition.x < target.x) {
-			setPosition(new Point(currentPosition.x + 1, currentPosition.y));
+		if (currentPosition.getX() < target.getX()) {
+			setPosition(new FloatPoint(currentPosition.getX() + 1, currentPosition.getY()));
 			return;
 		}
 		// Ha X-en feljebb van
-		if (currentPosition.x > target.x ) {
-			setPosition(new Point(currentPosition.x - 1, currentPosition.y ));
+		if (currentPosition.getX() > target.getX() ) {
+			setPosition(new FloatPoint(currentPosition.getX() - 1, currentPosition.getY() ));
 			return;
 
 		}// Ha Y szerint lentebb van
-		else if (currentPosition.y > target.y ) {
+		else if (currentPosition.getY() > target.getY() ) {
 
-			setPosition(new Point(currentPosition.x, currentPosition.y-1 ));
+			setPosition(new FloatPoint(currentPosition.getX(), currentPosition.getY()-1 ));
 			return;
 
 		}// Ha Y szerint fentebb van
-		else if (currentPosition.y < target.y ){
+		else if (currentPosition.getY() < target.getY()){
 
-			setPosition(new Point(currentPosition.x , currentPosition.y + 1));
+			setPosition(new FloatPoint(currentPosition.getX() , currentPosition.getY() + 1));
 
 		}
 	}
@@ -168,9 +168,9 @@ public class CleanerRobot extends Robot implements Serializable {
 	 * Kijelöli a következõ célpontot,azt a mapitemet ami a legközelebb van
 	 * 
 	 */
-	private Point nextTarget(Map map, String mode) {
-		Line line = new Line(this.position.x, this.position.y, 0, 0);
-		Point hova = new Point(this.position.x, this.position.y);
+	private FloatPoint nextTarget(Map map, String mode) {
+		Line line = new Line(this.position.getX(), this.position.getY(), 0, 0);
+		FloatPoint hova = new FloatPoint(this.position.getX(), this.position.getY());
 		double minlength = 1000000;
 		if (mode.equals("abnormal")) {// ez az irányváltoztatáshoz kell, nem
 										// definiált irányba mennek tovább
@@ -180,8 +180,8 @@ public class CleanerRobot extends Robot implements Serializable {
 			hova = map.getMapItems().get(index).getPosition();
 		} else {
 			for (MapItem i : map.getMapItems()) {
-				line.setX2(i.getPosition().x);
-				line.setY2(i.getPosition().y);
+				line.setX2(i.getPosition().getX());
+				line.setY2(i.getPosition().getY());
 				// rövidebb az út és olaj van ott
 				if (minlength > line.length()){
 					minlength = line.length();
