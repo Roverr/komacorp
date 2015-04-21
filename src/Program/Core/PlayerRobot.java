@@ -67,14 +67,14 @@ public class PlayerRobot extends Robot implements Serializable  {
 	}
 	/**
 	 * Sebességet módosítja (ami a következõ ugrást határozza meg)
-	 * A sebességvektorhoz hozzáadja a paraméterként kapott vektort
+	 * A sebességvektorhoz hozzáadja a paraméterként kapott vektort,
+	 * majd a hosszát egységnyire változtatja (normalizálja)
 	 * @param force
 	 * @author Hunor
 	 */
 	public void modifySpeed(Vector force) {
-		//modSpeed.add(force)
-		//Ezt megváltoztattam, szerintem így helyes
-		setModSpeed(force);
+		modSpeed.add(force);
+		modSpeed.normalize();
 	}
 	
 	public Vector getModSpeed(){
@@ -219,6 +219,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 			else this.setSpeed(Vector.average(this.speed,robot.getSpeed()));
 		} else {
 			robot.die(map);
+			if(PrototypeUtility.allowDebug)System.out.println("Cleaner robot destroyed");
 		}
 		
 	}

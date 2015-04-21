@@ -174,7 +174,7 @@ public class PrototypeUtility {
 					addClass(o, name);
 					m.addMapItem(o);
 				}
-			}
+			} 
 		}else if(comm.equals("set")){
 			if (command.length >= 3) {
 				String name = command[1];
@@ -220,23 +220,24 @@ public class PrototypeUtility {
 					testGame.run();
 				} catch (Exception e) {
 					//itt az az exceptionnak a message, hogy EndOfGame!
-					e.printStackTrace();
 					outputWriter.println(e.getMessage());
 				}
 			}
 		}else if(comm.equals("listOlaj")){
-			if(allowDebug)System.out.println(" Fuck. My. Life.");
 			Map m = getTestMap();
 			List<Olaj> olajok = new ArrayList<Olaj>();
 			for (MapItem item : m.getMapItems()) {
-					if(allowDebug)System.out.println(" (Not) Added an olaj ot the output list.");
 				if(item instanceof Olaj){
 					olajok.add((Olaj) item);
+					if(allowDebug)System.out.println("Added an olaj to the output list. Number of them:" + olajok.size());
 				}
+
 			}
 			String output = listOlaj(olajok);
-			if(output!= null){
+			if(output != null && !output.equalsIgnoreCase("")){
 				outputWriter.print(output);
+			} else {
+				outputWriter.print("No olaj on the map");
 			}
 		}else if(comm.equals("listRagacs")){
 			Map m = getTestMap();
@@ -247,8 +248,10 @@ public class PrototypeUtility {
 				}
 			}
 			String output = listRagacs(ragacsok);
-			if(output!= null){
+			if(output!= null && !output.equalsIgnoreCase("")){
 				outputWriter.print(output);
+			} else {
+				outputWriter.print("No ragacs on the map");
 			}
 		}else if(comm.equals("listRobots")){
 			Map m = getTestMap();
@@ -342,10 +345,16 @@ public class PrototypeUtility {
 			}else if(robot instanceof CleanerRobot){
 				robotType = "CleanerRobot";
 			}
+			String alive = "";
+			if(robot.isAlive()) {
+				alive = "ALIVE";
+			} else {
+				alive = "DEAD";
+			}
 			builder.append(name + " "+  
 					numOut(robot.getPosition().getX()) + " " + numOut(robot.getPosition().getY()) + 
 					" " + robotType +" " + 
-					numOut(robot.getSpeed().getX()) + " " + numOut(robot.getSpeed().getY() )+ "\n");
+					numOut(robot.getSpeed().getX()) + " " + numOut(robot.getSpeed().getY() )+ alive + "\n");
 			
 		}
 		return builder.toString();

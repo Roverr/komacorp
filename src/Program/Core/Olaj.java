@@ -35,7 +35,7 @@ public class Olaj extends MapItem {
 	 * @param position
 	 */
 	public Olaj(FloatPoint position){
-		this(20,position);
+		this(3,position);
 		state = CleaningState.canBeCleaned;
 	}
 	
@@ -68,7 +68,7 @@ public class Olaj extends MapItem {
 	 * Öregíti az olajat ha megvan hívódva.
 	 */
 	public void update(){
-		timeLeft --;
+		timeLeft = timeLeft-1;
 	}
 
 	@Override

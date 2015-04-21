@@ -1,7 +1,10 @@
 beginTest kisRobotTorik
 loadMap mezo
-add robot malzahar 2 0
-set malzahar modSpeed -2 0
+add robot malzahar 3 3
+set malzahar modSpeed -1 -1
 run
+listRobots
+run
+listRobots
 run
 listRobots

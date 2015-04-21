@@ -109,8 +109,9 @@ public class Game {
 				}
 				
 				for (CleanerRobot cl : GameMap.getCleanerRobots()) {
+					//if(PrototypeUtility.allowDebug)System.out.println("Cleaner robot before jump: X:" + cl.getPosition().getX()+" Y:"+cl.getPosition().getY());
 					cl.jump(GameMap);
-					if(PrototypeUtility.allowDebug)System.out.println("Cleaner robot did jump.");
+					//if(PrototypeUtility.allowDebug)System.out.println("Cleaner robot did jump: X:" + cl.getPosition().getX()+" Y:"+cl.getPosition().getY());
 				}
 				
 				//Update MapItems (Olajok felszáradnak)
@@ -119,6 +120,7 @@ public class Game {
 					for(int i = 0; i < GameMap.getMapItems().size(); i++){
 						mi = GameMap.getMapItems().get(i);
 						mi.update();
+						System.out.println(mi.isAlive());
 						if(!mi.isAlive()){
 							GameMap.removeMapItem(mi);
 						}
@@ -141,7 +143,8 @@ public class Game {
 					if (ures){
 						CleanerRobot tmp= new CleanerRobot(GameMap);
 						//TODO This position should depend on map (Start checkpoint felezõ?)
-						tmp.setPosition(0, 0);
+						tmp.setPosition(0,0);
+						tmp.setSpeed(new Vector(1,1));
 				    	GameMap.getCleanerRobots().add(tmp);
 				    	PrototypeUtility.addClass(tmp, "szolga"+cleanerId);
 				    	cleanerId++;

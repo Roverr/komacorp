@@ -261,7 +261,7 @@ public class Map implements Serializable {
 				}
 			}
 			for (CleanerRobot crobot : cleanerRobots) {
-				if (probot.getPosition().equals(crobot.getPosition())) {
+				if (samePosition(crobot.getPosition(),probot.getPosition())) {
 					probot.collide(crobot, this, false);
 					crobot.collide(probot, this, false);
 				}
