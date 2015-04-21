@@ -3,6 +3,7 @@ package Program.Core;
 
 import Program.Helpers.FloatPoint;
 import Program.Helpers.Vector;
+import Program.Prototype.PrototypeUtility;
 
 /**
  * Olaj osztály , ami akadályként dobható a pályára.
@@ -44,6 +45,7 @@ public class Olaj extends MapItem {
 	 * @param playerRobot- Robot ami belelépet        
 	 */
 	public void stepIn(PlayerRobot playerRobot) {
+		if(PrototypeUtility.allowDebug)System.out.println("Olaj - stepin +" + playerRobot.name);
 		Vector zero = new Vector(0,0);
 		playerRobot.modifySpeed(zero);
 	}

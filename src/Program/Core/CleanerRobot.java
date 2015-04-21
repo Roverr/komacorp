@@ -40,8 +40,7 @@ public class CleanerRobot extends Robot implements Serializable {
 		target = nextTarget(m, "normal");
 		state = CleanerState.moving;
 		Vector sp = new Vector(target.getX()- position.getX(), target.getY()- position.getY());
-		sp.setX((float) (sp.getX()/sp.length())); 
-		sp.setY((float) (sp.getY()/sp.length())); 
+		sp.normalize();
 		setCurrentSpeed(sp);
 	}
 
@@ -50,8 +49,7 @@ public class CleanerRobot extends Robot implements Serializable {
 		setTarget(trg.getPosition());
 		state = CleanerState.moving;
 		Vector sp = new Vector(target.getX()- position.getX(), target.getY()- position.getY());
-		sp.setX((float) (sp.getX()/sp.length())); 
-		sp.setY((float) (sp.getY()/sp.length())); 
+		sp.normalize();
 		setCurrentSpeed(sp);
 	}
 
@@ -73,8 +71,9 @@ public class CleanerRobot extends Robot implements Serializable {
 		Vector zero = new Vector(0, 0);
 		setCurrentSpeed(zero);
 		setAlive(false);
-		Olaj olaj = new Olaj(this.position);
-		// TODO:hozzáadni map-hez
+		Olaj olaj = new Olaj(11, this.position);
+		PrototypeUtility.addClass(olaj, "olaj"+Game.olajId);
+		Game.olajId++;
 		map.addMapItem(olaj); // ;)
 	}
 
@@ -120,8 +119,7 @@ public class CleanerRobot extends Robot implements Serializable {
 //															// VÉGZETT MEGY A
 //															// KÖVETKEZÕHÖZ
 //					Vector sp = new Vector(target.getX()- position.getX(), target.getY()- position.getY());
-//					sp.setX((float) (sp.getX()/sp.length())); 
-//					sp.setY((float) (sp.getY()/sp.length())); 
+//					sp.normalize();
 //					setCurrentSpeed(sp);
 //					//Sebesség beállítása, hogy 1 hosszú legyen;
 //					if (target.equals(position)) {

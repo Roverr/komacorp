@@ -3,6 +3,7 @@ package Program.Core;
 
 import Program.Core.MapItem.CleaningState;
 import Program.Helpers.FloatPoint;
+import Program.Prototype.PrototypeUtility;
 
 
 /**
@@ -53,8 +54,9 @@ public class Ragacs extends MapItem{
 	 * @param playerRobot - A robot, ami belelépett
 	 */
 	public void stepIn(PlayerRobot playerRobot) {
+		if(PrototypeUtility.allowDebug)System.out.println("Ragacs - stepin +" + playerRobot.name);
 		stepInCounter = stepInCounter--;
-		playerRobot.modifySpeed(playerRobot.getModSpeed().cutIntoHalf());
+		playerRobot.modifySpeed(playerRobot.getSpeed().cutIntoHalf());
 	}
 	
 	public void update(){

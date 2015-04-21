@@ -267,7 +267,7 @@ public class Map implements Serializable {
 				}
 			}
 			for (MapItem currentItem : mapItems) {
-				if (currentItem.getPosition().equals(probot.getPosition())) {
+				if (currentItem.getPosition().distance(probot.getPosition()) < 1) {
 					currentItem.stepIn(probot);
 				}
 			}
