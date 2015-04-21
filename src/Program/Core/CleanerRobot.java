@@ -70,13 +70,9 @@ public class CleanerRobot extends Robot implements Serializable {
 		Vector zero = new Vector(0, 0);
 		setCurrentSpeed(zero);
 		setAlive(false);
-<<<<<<< HEAD
-		Olaj olaj = new Olaj(this.position);
-=======
 		Olaj olaj = new Olaj(11, this.position);
 		PrototypeUtility.addClass(olaj, "olaj"+Game.olajId);
 		Game.olajId++;
->>>>>>> d99a553ec02907d21fdadbda190480cbface336f
 		map.addMapItem(olaj); // ;)
 	}
 
@@ -105,7 +101,6 @@ public class CleanerRobot extends Robot implements Serializable {
 	public void jump(Map map) {
 		int roundItTakesToClean = 2;
 		position.add(speed);
-<<<<<<< HEAD
 		boolean isItThere = (position.distance(target) < 1f);
 		if (isItThere) {
 			speed = new Vector(0f,0f);
@@ -145,51 +140,6 @@ public class CleanerRobot extends Robot implements Serializable {
 					.println("Error! CleanerRobot standing on shit, and it's still alive");
 		} else {
 		}
-=======
-		//TODO Position detection based on distance.
-		//TODO Moving = speed vektor a target irányába.
-//		boolean isItThere = (position.distance(target) < 1f);
-//		if (isItThere) {
-//			speed = new Vector(0f,0f);
-//			// Akadályra érkezés
-//			if (state == CleanerState.moving) {
-//				state = CleanerState.cleaning;
-//				remainingClean = roundItTakesToClean;
-//				MapItem myTarget = findMyTarget(map);
-//				myTarget.state = CleaningState.beingCleaned;
-//			} else {
-//				if (remainingClean <= 0) {
-//					target = nextTarget(map, "");// VÁLTOZÁS! MIUTÁN
-//															// VÉGZETT MEGY A
-//															// KÖVETKEZÕHÖZ
-//					Vector sp = new Vector(target.getX()- position.getX(), target.getY()- position.getY());
-//					sp.normalize();
-//					setCurrentSpeed(sp);
-//					//Sebesség beállítása, hogy 1 hosszú legyen;
-//					if (target.equals(position)) {
-//						state = CleanerState.waiting;
-//					} else{
-//						state = CleanerState.moving;
-//					}
-//					for (MapItem mI : map.getMapItems()) {
-//						boolean isItTarget = (mI.getPosition().getX() == getTarget().getX() && mI.getPosition().getY() == getTarget().getY());
-//						if (isItTarget) {
-//							map.getMapItems().remove(mI);
-//							System.out.println("Removed " + getNameFromType(mI));
-//						}
-//					}
-//					//move();
-//				} else {
-//					remainingClean--;
-//				}
-//			}
-//			// Game osztály elpuszítja a targetet, itt már csak hibát kapunk el
-//			/*if(PrototypeUtility.allowDebug)System.out
-//					.println("Error! CleanerRobot standing on shit, and it's still alive");*/
-//		} else {
-//			//move();
-//		}
->>>>>>> d99a553ec02907d21fdadbda190480cbface336f
 
 	}
 	
