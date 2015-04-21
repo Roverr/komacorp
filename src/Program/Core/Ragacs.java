@@ -59,6 +59,7 @@ public class Ragacs extends MapItem{
 	
 	public void update(){
 		//Mivel körönként nem kell frissíteni, ide semmi nem kerül.
+		return;
 	}
 
 	@Override

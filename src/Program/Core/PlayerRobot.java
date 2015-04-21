@@ -218,6 +218,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 			else this.setSpeed(Vector.average(this.speed,robot.getSpeed()));
 		} else {
 			robot.die(map);
+			if(PrototypeUtility.allowDebug)System.out.println("Cleaner robot destroyed");
 		}
 		
 	}
