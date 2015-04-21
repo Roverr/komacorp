@@ -1,0 +1,3 @@
+olaj1 0.0 0.0 Olaj 8
+ragacs1 0.0 0.0 Ragacs 2
+malzahar 0.0 0.0 PlayerRobot -1.0 0.0 ALIVE

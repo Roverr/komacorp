@@ -1,1 +1,2 @@
-malzahar 2.0 1.0 PlayerRobot 1.0 1.0
+malzahar 2.0 1.0 PlayerRobot 1.0 1.0 ALIVE
+szolga1 0.0 0.0 CleanerRobot 1.0 1.0 ALIVE

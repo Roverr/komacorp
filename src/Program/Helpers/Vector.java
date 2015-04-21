@@ -90,10 +90,12 @@ public class Vector {
 		return this.x*vec.y-this.y*vec.x;
 	}
 	
-	/*Normalizálja a vektort, a hossza egységnyi lesz, iránya marad */
+	/**
+	 * Normalizálja a vektort, a hossza egységnyi lesz, iránya marad 
+	 */
 	public void normalize(){
 		//Meghatározza a vektor hosszát
-		float length = (float) Math.sqrt(x * x + y * y);
+		float length = (float) length();
 		//Normalizálja a vektor koordinátáit
 		x /= length;
 		y /= length;
