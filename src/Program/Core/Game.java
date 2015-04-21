@@ -151,9 +151,7 @@ public class Game {
 			/**
 			 *  :(
 			 */
-			if(elapsedTime == time){
-				endGame();
-			}
+			endGame();
 			}else{
 				if(PrototypeUtility.allowDebug)System.out.println("Game Ended by now.");
 				throw new Exception("EndOfGame!");

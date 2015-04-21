@@ -349,6 +349,7 @@ public class Map implements Serializable {
 					metszesszam++;
 			}
 		}
+		System.out.println(metszesszam);
 		if (metszesszam % 2 == 0)
 			return false;
 		else
