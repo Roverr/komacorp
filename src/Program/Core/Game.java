@@ -110,7 +110,9 @@ public class Game {
 				
 				//Update MapItems (Olajok felszáradnak)
 				if(!GameMap.getMapItems().isEmpty()) {
-					for(MapItem mi : GameMap.getMapItems()){
+					MapItem mi = null;
+					for(int i = 0; i < GameMap.getMapItems().size(); i++){
+						mi = GameMap.getMapItems().get(i);
 						mi.update();
 						if(mi.isAlive()){
 							GameMap.removeMapItem(mi);
