@@ -92,7 +92,7 @@ public class Map implements Serializable {
 	 * @throws Exception
 	 */
 	public void addPlayerRobot(String name, float x, float y) throws Exception {
-		if (playerRobots.size() <= 3) {
+		if (playerRobots.size() < 3) {
 			PlayerRobot robot = new PlayerRobot();
 			PrototypeUtility.addClass(robot, name);
 			robot.setName(name);

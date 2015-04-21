@@ -155,7 +155,7 @@ public class PrototypeUtility {
 					try {
 						m.addPlayerRobot(name, x, y);
 					} catch (Exception e) {
-						e.getMessage();
+						outputWriter.println(e.getMessage());
 					}
 				}else if(command[1].equals("cleaner")){
 					Map m = getTestMap();
