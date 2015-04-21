@@ -1,7 +1,7 @@
 beginTest olajbaLep
 loadMap Tesztmap
 add robot malzahar 1 0
-add olaj olaj2 1 2
+add olaj olaj1 1 2
 set malzahar speed 0 2
 run
 listRobots

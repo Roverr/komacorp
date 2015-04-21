@@ -1,1 +1,1 @@
-szolga1 0 0 PlayerRobot 0 0
+szolga1 2 1 PlayerRobot 0 0

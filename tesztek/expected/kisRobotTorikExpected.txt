@@ -1,3 +1,2 @@
-olaj1 0 0 Olaj 1
-olaj2 0 0 Olaj 0
+olaj1 0 0 Olaj 0
 malzahar 0 0 PlayerRobot 1 0

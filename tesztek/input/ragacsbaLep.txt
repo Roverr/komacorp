@@ -1,7 +1,7 @@
 beginTest ragacsbaLep
 loadMap Tesztmap
 add robot malzahar 1 0
-add ragacs ragacs2 1 2
+add ragacs ragacs1 1 2
 set malzahar speed 0 2
 run
 listRobots

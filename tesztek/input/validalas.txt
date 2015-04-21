@@ -1,5 +1,7 @@
 beginTest validalas
 loadMap Tesztmap
+add olaj olaj1 0 0
+add ragacs ragacs1 0 0
 add robot malzahar 2 0
 set malzahar speed -2 0
 run
