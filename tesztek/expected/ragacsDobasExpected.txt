@@ -1,6 +1,7 @@
-olaj 3
-ragacs 3
-ragacs1 5.0 5.0 Ragacs 0
+Olaj 3
+Ragacs 3
+ragacs1 5.0 6.0 Ragacs 3
 malzahar 5.0 6.0 PlayerRobot 0.0 1.0
-olaj 3
-ragacs 2
+szolga1 0.0 0.0 CleanerRobot 0.64 0.99
+Olaj 3
+Ragacs 2
