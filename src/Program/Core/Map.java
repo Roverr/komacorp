@@ -1,6 +1,5 @@
 package Program.Core;
 
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,6 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import Program.Core.CleanerRobot.CleanerState;
+import Program.Core.MapItem.CleaningState;
 import Program.Helpers.FloatPoint;
 import Program.Helpers.Line;
 import Program.Helpers.Vector;
@@ -80,8 +81,8 @@ public class Map implements Serializable {
 	 */
 	public void setPlayerRobots(List<PlayerRobot> robots) throws Exception {
 		for (PlayerRobot r : robots) {
-			this.addPlayerRobot(r.getName(), r.getPosition().getX(),
-					r.getPosition().getY());
+			this.addPlayerRobot(r.getName(), r.getPosition().getX(), r
+					.getPosition().getY());
 		}
 	}
 
@@ -112,7 +113,7 @@ public class Map implements Serializable {
 		List<String> temp = new ArrayList<String>();
 		for (PlayerRobot r : playerRobots) {
 			String kiesett = "";
-			if(!r.isAlive()){
+			if (!r.isAlive()) {
 				kiesett = " KIESETT";
 			}
 			temp.add(r.name + " " + r.distance + kiesett);
@@ -247,21 +248,24 @@ public class Map implements Serializable {
 	 */
 	public void validateStates() {
 		SkeletonUtility.printCall("ValidateStates", this);
-		//TODO Checkpointon keresztülmenés (PlayerRobotban változtat valamit).
+		// TODO Checkpointon keresztülmenés (PlayerRobotban változtat valamit).
 		for (PlayerRobot probot : playerRobots) {
 
 			if (!this.isOnTrack(probot.getPosition()))
 				probot.die(this);
 			for (PlayerRobot probotcompare : playerRobots) {
 				if (!probot.equals(probotcompare)
-						&& probotcompare.getPosition().distance(probot.getPosition()) < 1f) {
+						&& probotcompare.getPosition().distance(
+								probot.getPosition()) < 1f) {
 					probot.collide(probotcompare, this, true);
+					
 				}
 			}
 			for (CleanerRobot crobot : cleanerRobots) {
 				if (crobot.getPosition().distance(probot.getPosition()) < 1f) {
 					probot.collide(crobot, this, false);
-				} 
+					
+				}
 			}
 			for (MapItem currentItem : mapItems) {
 				if (currentItem.getPosition().distance(probot.getPosition()) < 1f) {
@@ -274,7 +278,8 @@ public class Map implements Serializable {
 		for (CleanerRobot crobot : cleanerRobots) {
 			for (CleanerRobot crobotcompare : cleanerRobots) {
 				if (!crobot.equals(crobotcompare)
-						&& crobot.getPosition().distance(crobotcompare.getPosition()) < 1f) {
+						&& crobot.getPosition().distance(
+								crobotcompare.getPosition()) < 1f) {
 					crobot.collide(crobotcompare, this, true);
 				}
 			}
@@ -284,17 +289,57 @@ public class Map implements Serializable {
 				}
 			}
 		}
+		
+		for (MapItem mi : mapItems) {
+			if (mi.getState().equals(CleaningState.canBeCleaned)) {
+				CleanerRobot nearestCleaner = null;
+				Vector nearestDistance=null;
+				for (CleanerRobot crobot : cleanerRobots) {
+					if (crobot.getState().equals(CleanerState.waiting)) {//olyan robotok közül választ akik épp várakoznak
+						Vector tempDistance=new Vector(  Math.abs(mi.getPosition().getX()-crobot.getPosition().getX()), Math.abs( mi.getPosition().getY()-crobot.getPosition().getY() ));
+						if (nearestCleaner == null){//ha még nincs szabad robot hozzárendelve
+							nearestCleaner = crobot;
+							nearestDistance = tempDistance;
+							nearestCleaner.setState(CleanerState.moving);
+						}else {
+							if(tempDistance.length()<nearestDistance.length()){
+								
+								nearestDistance=tempDistance;
+								nearestCleaner=crobot;
+							}
+
+						}
+					}
+				}
+				
+				if(!(nearestCleaner==null)){//tehát találtunk megfelelõ robotot
+					nearestCleaner.setTarget(mi.getPosition());
+					nearestCleaner.setState(CleanerState.moving);
+				}
+				
+			}
+		}
+		
+		//ez azért kell hogy azok a robotok amiknek nincs irányuk egy helyben várakozzanak
+		for (CleanerRobot crobot : cleanerRobots) {
+			if(crobot.getTarget()==null){
+				crobot.setSpeed(new Vector(0,0));
+				crobot.setState(CleanerState.waiting);
+			}
+		}
+
 		SkeletonUtility.printReturn("ValidateState", this);
 	}
-	
+
 	/**
 	 * Give back true, if the two given position are the same
+	 * 
 	 * @param a
 	 * @param b
 	 * @return
 	 */
 	private boolean samePosition(FloatPoint a, FloatPoint b) {
-		if(a.getX() == b.getX() && a.getY() == b.getY()) {
+		if (a.getX() == b.getX() && a.getY() == b.getY()) {
 			return true;
 		}
 		return false;
@@ -317,12 +362,12 @@ public class Map implements Serializable {
 			if (i.x2 < kulso.getX())
 				kulso.setX(i.x1);
 			if (i.y1 < kulso.getY())
-				kulso.setY( i.y1);
+				kulso.setY(i.y1);
 			if (i.y2 < kulso.getY())
 				kulso.setY(i.y1);
 		}
 		// biztosan ne a bal alsó sarok legyen a külsõ pont
-		kulso.setX(kulso.getX()-5);
+		kulso.setX(kulso.getX()-5); 
 		kulso.setY(kulso.getY()-7);
 		Line tmpline = new Line(kulso.getX(), point.getX(),  kulso.getY(), point.getY());
 		/*

@@ -36,7 +36,7 @@ public class Olaj extends MapItem {
 	 * @param position
 	 */
 	public Olaj(FloatPoint position){
-		this(3,position);
+		this(10,position);
 		state = CleaningState.canBeCleaned;
 	}
 	

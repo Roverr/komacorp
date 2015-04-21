@@ -56,6 +56,10 @@ public abstract class MapItem implements Serializable  {
 	 * Az update függvény meghívódik minden run alkalmával. Ez teszi lehetõvé az Olaj öregítését.
 	 */
 	public abstract void update();
+	
+	public CleaningState getState(){
+		return this.state;
+	}
 
 	public abstract boolean isAlive();
 
