@@ -99,7 +99,7 @@ public class Map implements Serializable {
 			robot.setPosition(x, y);
 			this.playerRobots.add(robot);
 		} else
-			throw new Exception("Too Many Robots");
+			throw new Exception("Too Many Robots!");
 	}
 
 	/**
