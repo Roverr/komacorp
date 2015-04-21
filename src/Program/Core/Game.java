@@ -94,12 +94,18 @@ public class Game {
 				for (PlayerRobot r : GameMap.getRobots()) {
 					if(r.isAlive()){
 						r.jump(GameMap);
+						if(r.wantToDrop == 1){
+							r.dropRagacs(GameMap);
+						}else if(r.wantToDrop == 2){
+							r.dropOlaj(GameMap);
+						}
 						aliveCount++;
 					}
 				}
 				
 				for (CleanerRobot cl : GameMap.getCleanerRobots()) {
 					cl.jump(GameMap);
+					if(PrototypeUtility.allowDebug)System.out.println("Cleaner robot did jump.");
 				}
 				
 				//Update MapItems (Olajok felszáradnak)
@@ -135,15 +141,15 @@ public class Game {
 					}
 				}
 			
-			int howManyDead = 0;
-			for(PlayerRobot pRobot : GameMap.getRobots()) {
-				if(pRobot.alive == false) {
-					howManyDead++;
-				}
-			}
-			if(howManyDead+1 >= GameMap.getRobots().size()) {
-				endGame();
-			}
+			/**
+			 * Ez nem kell most prototípusba.
+			 */
+//			if(aliveCount <= 1) {
+//				endGame();
+//			}
+			/**
+			 *  :(
+			 */
 			if(elapsedTime == time){
 				endGame();
 			}

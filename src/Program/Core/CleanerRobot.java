@@ -46,9 +46,8 @@ public class CleanerRobot extends Robot implements Serializable {
 	}
 
 	public CleanerRobot(MapItem trg) {
+		if(PrototypeUtility.allowDebug)System.out.println("Cleaner robot did jump?");
 		setTarget(trg.getPosition());
-		Vector speedConst = new Vector(0, 1);
-		setCurrentSpeed(speedConst);
 		state = CleanerState.moving;
 		Vector sp = new Vector(target.getX()- position.getX(), target.getY()- position.getY());
 		sp.setX((float) (sp.getX()/sp.length())); 
@@ -106,48 +105,48 @@ public class CleanerRobot extends Robot implements Serializable {
 		position.add(speed);
 		//TODO Position detection based on distance.
 		//TODO Moving = speed vektor a target irányába.
-		boolean isItThere = (position.distance(target) < 1f);
-		if (isItThere) {
-			speed = new Vector(0f,0f);
-			// Akadályra érkezés
-			if (state == CleanerState.moving) {
-				state = CleanerState.cleaning;
-				remainingClean = roundItTakesToClean;
-				MapItem myTarget = findMyTarget(map);
-				myTarget.state = CleaningState.beingCleaned;
-			} else {
-				if (remainingClean <= 0) {
-					target = nextTarget(map, "");// VÁLTOZÁS! MIUTÁN
-															// VÉGZETT MEGY A
-															// KÖVETKEZÕHÖZ
-					Vector sp = new Vector(target.getX()- position.getX(), target.getY()- position.getY());
-					sp.setX((float) (sp.getX()/sp.length())); 
-					sp.setY((float) (sp.getY()/sp.length())); 
-					setCurrentSpeed(sp);
-					//Sebesség beállítása, hogy 1 hosszú legyen;
-					if (target.equals(position)) {
-						state = CleanerState.waiting;
-					} else{
-						state = CleanerState.moving;
-					}
-					for (MapItem mI : map.getMapItems()) {
-						boolean isItTarget = (mI.getPosition().getX() == getTarget().getX() && mI.getPosition().getY() == getTarget().getY());
-						if (isItTarget) {
-							map.getMapItems().remove(mI);
-							System.out.println("Removed " + getNameFromType(mI));
-						}
-					}
-					//move();
-				} else {
-					remainingClean--;
-				}
-			}
-			// Game osztály elpuszítja a targetet, itt már csak hibát kapunk el
-			/*if(PrototypeUtility.allowDebug)System.out
-					.println("Error! CleanerRobot standing on shit, and it's still alive");*/
-		} else {
-			//move();
-		}
+//		boolean isItThere = (position.distance(target) < 1f);
+//		if (isItThere) {
+//			speed = new Vector(0f,0f);
+//			// Akadályra érkezés
+//			if (state == CleanerState.moving) {
+//				state = CleanerState.cleaning;
+//				remainingClean = roundItTakesToClean;
+//				MapItem myTarget = findMyTarget(map);
+//				myTarget.state = CleaningState.beingCleaned;
+//			} else {
+//				if (remainingClean <= 0) {
+//					target = nextTarget(map, "");// VÁLTOZÁS! MIUTÁN
+//															// VÉGZETT MEGY A
+//															// KÖVETKEZÕHÖZ
+//					Vector sp = new Vector(target.getX()- position.getX(), target.getY()- position.getY());
+//					sp.setX((float) (sp.getX()/sp.length())); 
+//					sp.setY((float) (sp.getY()/sp.length())); 
+//					setCurrentSpeed(sp);
+//					//Sebesség beállítása, hogy 1 hosszú legyen;
+//					if (target.equals(position)) {
+//						state = CleanerState.waiting;
+//					} else{
+//						state = CleanerState.moving;
+//					}
+//					for (MapItem mI : map.getMapItems()) {
+//						boolean isItTarget = (mI.getPosition().getX() == getTarget().getX() && mI.getPosition().getY() == getTarget().getY());
+//						if (isItTarget) {
+//							map.getMapItems().remove(mI);
+//							System.out.println("Removed " + getNameFromType(mI));
+//						}
+//					}
+//					//move();
+//				} else {
+//					remainingClean--;
+//				}
+//			}
+//			// Game osztály elpuszítja a targetet, itt már csak hibát kapunk el
+//			/*if(PrototypeUtility.allowDebug)System.out
+//					.println("Error! CleanerRobot standing on shit, and it's still alive");*/
+//		} else {
+//			//move();
+//		}
 
 	}
 	
