@@ -245,8 +245,8 @@ public class Map implements Serializable {
 	 *            - Akit vizsgálni kell az akadályokhoz viszonyítva.
 	 * @throws IOException
 	 */
-	public void validateStates() throws IOException {
-		SkeletonUtility.printCall("ValidateState", this);
+	public void validateStates() {
+		SkeletonUtility.printCall("ValidateStates", this);
 		//TODO Checkpointon keresztülmenés (PlayerRobotban változtat valamit).
 		for (PlayerRobot probot : playerRobots) {
 
