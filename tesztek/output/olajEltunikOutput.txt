@@ -1,3 +1,3 @@
 olaj1 0.0 0.0 Olaj 9
 olaj1 0.0 0.0 Olaj 8
-No olaj on the map
+olaj1 0.0 0.0 Olaj 6

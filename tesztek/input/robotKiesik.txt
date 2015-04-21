@@ -3,4 +3,5 @@ loadMap kanyon
 add robot malzahar 65 0
 set malzahar speed 6 0
 run
+run
 result

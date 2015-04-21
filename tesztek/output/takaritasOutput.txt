@@ -1,0 +1,16 @@
+Takker 0.71 0.71 CleanerRobot 0.0 0.0 ALIVE
+Takker 0.71 0.71 CleanerRobot 0.0 0.0 ALIVE
+Takker 0.71 0.71 CleanerRobot 0.0 0.0 ALIVE
+Takker 0.71 0.71 CleanerRobot 0.71 0.71 ALIVE
+Takker 1.41 1.41 CleanerRobot 0.71 0.71 ALIVE
+No ragacs on the map
+Takker 2.12 2.12 CleanerRobot 0.71 0.71 ALIVE
+Takker 2.83 2.83 CleanerRobot 0.71 0.71 ALIVE
+Takker 3.54 3.54 CleanerRobot 0.71 0.71 ALIVE
+Takker 4.24 4.24 CleanerRobot 0.71 0.71 ALIVE
+szolga1 0.0 0.0 CleanerRobot 1.0 1.0 ALIVE
+Takker 4.95 4.95 CleanerRobot 0.71 0.71 ALIVE
+szolga1 1.0 1.0 CleanerRobot 1.0 1.0 ALIVE
+Olajfolt 2.0 1.0 Olaj 5
+Takker 4.95 4.95 CleanerRobot 0.71 0.71 ALIVE
+szolga1 1.0 1.0 CleanerRobot 1.0 1.0 ALIVE

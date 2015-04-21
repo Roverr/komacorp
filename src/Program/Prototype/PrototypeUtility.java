@@ -49,13 +49,13 @@ public class PrototypeUtility {
 	//A tesztosztály, amin a módosításokat végezzük. minden beginTest alkalmával új készül.
 	private Game testGame;
 	
-	public static boolean allowDebug = true;
+	public static boolean allowDebug = false;
 	
 	private String[] readCommand() throws IOException{
 		String line = null;
 		String[] parts = null;
 		line = inputReader.readLine();
-		System.out.println("readcommand:"+line);
+		if(allowDebug)System.out.println("readcommand:"+line);
 		if(line != null){
 			parts = line.split(" ");	
 		}
@@ -70,10 +70,9 @@ public class PrototypeUtility {
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-				System.out.println(e1.getMessage().toString());
+				if(allowDebug)System.out.println(e1.getMessage().toString());
 			}
 		}
-		System.out.println("Running test...." + testName);
 		
 		boolean endOfTest = false;
 		while(!endOfTest){
@@ -113,20 +112,18 @@ public class PrototypeUtility {
 		String comm = command[0];
 		if(comm.equals("beginTest")){
 			if (command.length >= 2) {
-				System.out.println("begintest");
+				if(allowDebug)System.out.println("begintest");
 				try {
 					testGame = new Game(100, "Tesztmap", 2);
 					testGame.startGame();
-					if(allowDebug)System.out.println("created game osztály");
 				} catch (MyFileNotFoundException e) {
 					// TODO Auto-generated catch block
 					outputWriter.println(e.getMessage());
-					System.out.println(e.getMessage());
+					if(allowDebug)System.out.println(e.getMessage());
 				}
 				
 			}
 		}else if(comm.equals("loadMap")){//értelmezi a loadmap parancsot
-			if(allowDebug)System.out.println("loadMap.");
 			if (command.length >= 2) {
 				String mapName = command[1];
 				Map m =new Map();// getTestMap();
@@ -165,7 +162,7 @@ public class PrototypeUtility {
 					m.getCleanerRobots().add(c);
 				}else if(command[1].equals("olaj")){
 					Map m = getTestMap();
-					Olaj o = new Olaj(3, new FloatPoint(x,y));
+					Olaj o = new Olaj(10, new FloatPoint(x,y));
 					addClass(o, name);
 					m.addMapItem(o);
 				}else if(command[1].equals("ragacs")){
@@ -218,7 +215,7 @@ public class PrototypeUtility {
 					testGame.run();
 				} catch (Exception e) {
 					//itt az az exceptionnak a message, hogy EndOfGame!
-					e.printStackTrace();
+					if(allowDebug)e.printStackTrace();
 					outputWriter.println(e.getMessage());
 				}
 			}
@@ -266,7 +263,7 @@ public class PrototypeUtility {
 			} else {
 				outputWriter.println("No robots on the map");
 			}
-			System.out.println(output);
+			if(allowDebug)System.out.println(output);
 		}else if(comm.equals("listRobotItems")){
 			if (command.length >= 2) {
 				String name = command[1];
@@ -278,14 +275,14 @@ public class PrototypeUtility {
 				
 		}else if(comm.equals("result")){
 			String res = testGame.endResult;
-			System.out.println(res);
+			if(allowDebug)System.out.println(res);
 			if(res != null){
 				outputWriter.print(res);
 			}
 		}else if(comm.equals("exit")){
 			testGame.endGame();
 			String res = testGame.endResult;
-			System.out.println(res);
+			if(allowDebug)System.out.println(res);
 			if(res != null){
 				outputWriter.print(res);
 			}
