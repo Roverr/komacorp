@@ -135,31 +135,31 @@ public class CleanerRobot extends Robot implements Serializable {
 	 * Metódus ami elõre lépteti a takarító robotot.
 	 */
 	private void move() {
-		Point currentPosition = getPosition();
+		FloatPoint currentPosition = getPosition();
 		
 		//TODO Ez itt hibásan mûködik.
 		//Pl mivan akkor ha egyenlõ az egyik kordináta?
 
 		// Ha lejebb van az X tengelyen 
-		if (currentPosition.x < target.x) {
-			setPosition(new Point(currentPosition.x + 1, currentPosition.y));
+		if (currentPosition.getX()< target.getX()) {
+			setPosition(new FloatPoint(currentPosition.getX() + 1, currentPosition.getY()));
 			return;
 		}
 		// Ha X-en feljebb van
-		if (currentPosition.x > target.x ) {
-			setPosition(new Point(currentPosition.x - 1, currentPosition.y ));
+		if (currentPosition.getX() > target.getX() ) {
+			setPosition(new FloatPoint(currentPosition.getX() - 1, currentPosition.getY() ));
 			return;
 
 		}// Ha Y szerint lentebb van
-		else if (currentPosition.y > target.y ) {
+		else if (currentPosition.getY() > target.getY() ) {
 
-			setPosition(new Point(currentPosition.x, currentPosition.y-1 ));
+			setPosition(new FloatPoint(currentPosition.getX(), currentPosition.getY()-1 ));
 			return;
 
 		}// Ha Y szerint fentebb van
-		else if (currentPosition.y < target.y ){
+		else if (currentPosition.getY() < target.getY() ){
 
-			setPosition(new Point(currentPosition.x , currentPosition.y + 1));
+			setPosition(new FloatPoint(currentPosition.getX() , currentPosition.getY() + 1));
 
 		}
 	}
