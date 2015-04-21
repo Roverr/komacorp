@@ -342,10 +342,16 @@ public class PrototypeUtility {
 			}else if(robot instanceof CleanerRobot){
 				robotType = "CleanerRobot";
 			}
+			String alive = "";
+			if(robot.isAlive()) {
+				alive = "ALIVE";
+			} else {
+				alive = "DEAD";
+			}
 			builder.append(name + " "+  
 					robot.getPosition().getX() + " " + robot.getPosition().getY() + 
 					" " + robotType +" " + 
-					robot.getSpeed().getX() + " " + robot.getSpeed().getY() + "\n");
+					robot.getSpeed().getX() + " " + robot.getSpeed().getY() + " " + alive +"\n");
 			
 		}
 		return builder.toString();
