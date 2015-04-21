@@ -1,4 +1,4 @@
 beginTest cleanerHozzaadasa
 loadMap mezo
-run 1
+run
 listRobots
