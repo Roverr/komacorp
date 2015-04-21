@@ -356,7 +356,7 @@ public class PrototypeUtility {
 			if(robot.isAlive()) {
 				alive = "ALIVE";
 			} else {
-				alive = " DEAD";
+				alive = "DEAD";
 			}
 			builder.append(name + " "+  
 					numOut(robot.getPosition().getX()) + " " + numOut(robot.getPosition().getY()) + 

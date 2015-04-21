@@ -1,8 +1,8 @@
 beginTest validalas
 loadMap mezo
-add olaj olaj1 0 0
-add ragacs ragacs1 0 0
-add robot malzahar 2 0
+add olaj olaj1 0 1
+add ragacs ragacs1 0 1
+add robot malzahar 2 1
 set malzahar speed -2 0
 run
 set malzahar modSpeed 0 1
