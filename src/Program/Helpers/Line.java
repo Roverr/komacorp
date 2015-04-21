@@ -13,11 +13,11 @@ public class Line implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-		public int x1;
-		public int x2;
-		public int y1;
-		public int y2;
-	public	Line(int x1, int x2, int y1, int y2) {
+		public float x1;
+		public float x2;
+		public float y1;
+		public float y2;
+	public	Line(float x1, float x2, float y1, float y2) {
 			this.x1=x1;
 			this.x2=x2;
 			this.y1=y1;
@@ -29,7 +29,7 @@ public class Line implements Serializable{
 	 *@param x1 - a pont x komponense
 	 * @author Bence
 	 */	
-	public void setX1(int x1){
+	public void setX1(float x1){
 		this.x1=x1;
 	}
 	
@@ -38,7 +38,7 @@ public class Line implements Serializable{
 	 *@param y1 - a pont y komponense
 	 * @author Bence
 	 */	
-	public void setY1(int y1){
+	public void setY1(float y1){
 		this.y1=y1;
 	}
 	
@@ -47,7 +47,7 @@ public class Line implements Serializable{
 	 *@param x2 - a pont x komponense
 	 * @author Bence
 	 */	
-	public void setX2(int x2){
+	public void setX2(float x2){
 		this.x2=x2;
 	}
 	
@@ -56,7 +56,7 @@ public class Line implements Serializable{
 	 *@param y2 - a pont y komponense
 	 *@author Bence
 	 */	
-	public void setY2(int y2){
+	public void setY2(float y2){
 		this.y2=y2;
 	}
 	
@@ -64,7 +64,7 @@ public class Line implements Serializable{
 	 *Lekérdezi az egyik pont x komponensét
 	 *@author Bence
 	 */	
-	public int getX1(){
+	public float getX1(){
 		return this.x1;
 	}
 	
@@ -72,7 +72,7 @@ public class Line implements Serializable{
 	 *Lekérdezi az egyik pont y komponensét
 	 *@author Bence
 	 */	
-	public int getY1(){
+	public float getY1(){
 		return this.y1;
 	}
 	
@@ -80,7 +80,7 @@ public class Line implements Serializable{
 	 *Lekérdezi a másik pont x komponensét
 	 *@author Bence
 	 */	
-	public int getX2(){
+	public float getX2(){
 		return this.x2;
 	}
 	
@@ -88,7 +88,7 @@ public class Line implements Serializable{
 	 *Lekérdezi a másik pont y komponensét
 	 *@author Bence
 	 */	
-	public int getY2(){
+	public float getY2(){
 		return this.y2;
 	}
 	
@@ -99,8 +99,8 @@ public class Line implements Serializable{
 	 */	
 	public double length()
 	{
-		int x=this.x1-this.x2;
-		int y=this.y1-this.y2;
+		float x=this.x1-this.x2;
+		float y=this.y1-this.y2;
 		return  Math.sqrt(x*x+y*y);	
 	}
 	

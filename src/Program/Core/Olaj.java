@@ -1,6 +1,5 @@
 package Program.Core;
 
-import java.awt.Point;
 
 import Program.Helpers.FloatPoint;
 import Program.Helpers.Vector;

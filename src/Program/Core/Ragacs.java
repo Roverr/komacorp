@@ -1,6 +1,5 @@
 package Program.Core;
 
-import java.awt.Point;
 
 import Program.Core.MapItem.CleaningState;
 import Program.Helpers.FloatPoint;

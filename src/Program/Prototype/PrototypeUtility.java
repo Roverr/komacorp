@@ -1,6 +1,5 @@
 package Program.Prototype;
 
-import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

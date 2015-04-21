@@ -1,6 +1,6 @@
 package Program.Core;
 
-import java.awt.Point;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -298,21 +298,20 @@ public class Map implements Serializable {
 	 */
 	private Boolean isOnTrack(FloatPoint point) {
 		// egy biztosan külsõ pont keresése
-		Point kulso = new Point(0, 0);
+		FloatPoint kulso = new FloatPoint(0, 0);
 		for (Line i : track) {
-			if (i.x1 < kulso.x)
-				kulso.x = i.x1;
-			if (i.x2 < kulso.x)
-				kulso.x = i.x1;
-			if (i.y1 < kulso.y)
-				kulso.y = i.y1;
-			if (i.y2 < kulso.y)
-				kulso.y = i.y1;
+			if (i.x1 < kulso.getX())
+				kulso.setX(i.x1);
+			if (i.x2 < kulso.getX())
+				kulso.setX(i.x1);
+			if (i.y1 < kulso.getY())
+				kulso.setY( i.y1);
+			if (i.y2 < kulso.getY())
+				kulso.setY(i.y1);
 		}
 		// biztosan ne a bal alsó sarok legyen a külsõ pont
-		kulso.x -= 5;
-		kulso.y -= 7;
-		Line tmpline = new Line(kulso.x, kulso.y, (int)point.getX(), (int)point.getY());
+		kulso.setX(kulso.getX()-5); 
+		Line tmpline = new Line(kulso.getX(), kulso.getY(), point.getX(), point.getY());
 		/*
 		 * megszámoljuk, hogy egy külsõ pont és az adott pont közötti szakasz
 		 * hány egyenest metsz. Ha páros, akkor pályán kívüli, ha páratlan
@@ -355,11 +354,10 @@ public class Map implements Serializable {
 	 *            - az ugrás elõtti pozíció
 	 * @author Bence
 	 */
-	public Boolean isCheckPointChecked(Robot robot, Point beforejump) {
+	public Boolean isCheckPointChecked(Robot robot, FloatPoint beforejump) {
 		// ugrás vonalának megadása
-		// TODO javítani az ugrás vonalára
-		Line ugras = new Line((int)robot.position.getX(), (int)robot.position.getY(), beforejump.x,
-				beforejump.y);
+		Line ugras = new Line(robot.position.getX(), robot.position.getY(), beforejump.getX(),
+				beforejump.getY());
 		Boolean metsz = false;
 		for (Line i : checkPoints) {
 			if (i.intersect(ugras))

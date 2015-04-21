@@ -1,6 +1,5 @@
 package Program.Core;
 
-import java.awt.Point;
 import java.io.Serializable;
 import java.util.Random;
 
@@ -162,7 +161,7 @@ public class CleanerRobot extends Robot implements Serializable {
 		//Pl mivan akkor ha egyenlõ az egyik kordináta?
 
 		// Ha lejebb van az X tengelyen 
-		if (currentPosition.getX()< target.getX()) {
+		if (currentPosition.getX() < target.getX()) {
 			setPosition(new FloatPoint(currentPosition.getX() + 1, currentPosition.getY()));
 			return;
 		}
@@ -178,10 +177,8 @@ public class CleanerRobot extends Robot implements Serializable {
 			return;
 
 		}// Ha Y szerint fentebb van
-		else if (currentPosition.getY() < target.getY() ){
-
+		else if (currentPosition.getY() < target.getY()){
 			setPosition(new FloatPoint(currentPosition.getX() , currentPosition.getY() + 1));
-
 		}
 	}
 	
@@ -190,7 +187,7 @@ public class CleanerRobot extends Robot implements Serializable {
 	 * 
 	 */
 	private FloatPoint nextTarget(Map map, String mode) {
-		Line line = new Line((int)this.position.getX(), (int)this.position.getY(), 0, 0);
+		Line line = new Line(this.position.getX(), this.position.getY(), 0, 0);
 		FloatPoint hova = new FloatPoint(this.position.getX(), this.position.getY());
 		double minlength = 1000000;
 		if (mode.equals("abnormal")) {// ez az irányváltoztatáshoz kell, nem
@@ -201,8 +198,8 @@ public class CleanerRobot extends Robot implements Serializable {
 			hova = map.getMapItems().get(index).getPosition();
 		} else {
 			for (MapItem i : map.getMapItems()) {
-				line.setX2((int)i.getPosition().getX());
-				line.setY2((int)i.getPosition().getY());
+				line.setX2(i.getPosition().getX());
+				line.setY2(i.getPosition().getY());
 				// rövidebb az út és olaj van ott
 				if (minlength > line.length()){
 					minlength = line.length();

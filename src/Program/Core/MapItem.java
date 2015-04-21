@@ -1,6 +1,5 @@
 package Program.Core;
 
-import java.awt.Point;
 import java.io.Serializable;
 
 import Program.Helpers.FloatPoint;
