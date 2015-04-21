@@ -97,8 +97,10 @@ public class Vector {
 		//Meghatározza a vektor hosszát
 		float length = (float) length();
 		//Normalizálja a vektor koordinátáit
+		if(length()!=0) {
 		x /= length;
 		y /= length;
+		}
 	}
 	
 	/**

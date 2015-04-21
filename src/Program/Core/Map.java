@@ -263,7 +263,7 @@ public class Map implements Serializable {
 				if (crobot.getPosition().distance(probot.getPosition()) < 1f) {
 					probot.collide(crobot, this, false);
 					crobot.collide(probot, this, false);
-				}
+				} 
 			}
 			for (MapItem currentItem : mapItems) {
 				if (currentItem.getPosition().distance(probot.getPosition()) < 1f) {

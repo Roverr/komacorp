@@ -140,6 +140,7 @@ public class Game {
 						  ures = false;
 					}
 					if (ures){
+						
 						CleanerRobot tmp= new CleanerRobot(GameMap);
 						//TODO This position should depend on map (Start checkpoint felezõ?)
 						tmp.setPosition(0,0);

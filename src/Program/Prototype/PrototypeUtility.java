@@ -165,7 +165,7 @@ public class PrototypeUtility {
 					m.getCleanerRobots().add(c);
 				}else if(command[1].equals("olaj")){
 					Map m = getTestMap();
-					Olaj o = new Olaj(10, new FloatPoint(x,y));
+					Olaj o = new Olaj(3, new FloatPoint(x,y));
 					addClass(o, name);
 					m.addMapItem(o);
 				}else if(command[1].equals("ragacs")){
@@ -218,6 +218,7 @@ public class PrototypeUtility {
 					testGame.run();
 				} catch (Exception e) {
 					//itt az az exceptionnak a message, hogy EndOfGame!
+					e.printStackTrace();
 					outputWriter.println(e.getMessage());
 				}
 			}
@@ -360,7 +361,7 @@ public class PrototypeUtility {
 			builder.append(name + " "+  
 					numOut(robot.getPosition().getX()) + " " + numOut(robot.getPosition().getY()) + 
 					" " + robotType +" " + 
-					numOut(robot.getSpeed().getX()) + " " + numOut(robot.getSpeed().getY() )+ " " + alive + "\n");
+					numOut(robot.getSpeed().getX()) + " " + numOut(robot.getSpeed().getY())+ " " + alive + "\n");
 			
 		}
 		return builder.toString();

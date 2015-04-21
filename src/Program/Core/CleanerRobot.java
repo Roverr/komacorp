@@ -38,8 +38,10 @@ public class CleanerRobot extends Robot implements Serializable {
 	public CleanerRobot(Map m) {
 		target = nextTarget(m, "normal");
 		state = CleanerState.moving;
+		
 		Vector sp = new Vector(target.getX()- position.getX(), target.getY()- position.getY());
 		sp.normalize();
+		//System.out.println(sp.getX());
 		setCurrentSpeed(sp);
 	}
 
@@ -92,7 +94,7 @@ public class CleanerRobot extends Robot implements Serializable {
 	public void jump(Map map) {
 		int roundItTakesToClean = 2;
 		position.add(speed);
-		boolean isItThere = (position.distance(target) < 1f);
+		boolean isItThere = (position.distance(target) < 1f && map.getMapItems().size() >= 1);
 		if (isItThere) {
 			speed = new Vector(0f,0f);
 			// Akadályra érkezés
@@ -127,9 +129,10 @@ public class CleanerRobot extends Robot implements Serializable {
 				}
 			}
 			// Game osztály elpuszítja a targetet, itt már csak hibát kapunk el
-			if(PrototypeUtility.allowDebug)System.out
-					.println("Error! CleanerRobot standing on shit, and it's still alive");
+			
 		} else {
+			if(PrototypeUtility.allowDebug)System.out
+			.println("Error! CleanerRobot standing on shit, and it's still alive");
 		}
 
 	}
