@@ -1,2 +1,2 @@
 malzahar 1.0 1.0 PlayerRobot 0.0 1.0 DEAD
-corki 1.0 1.0 PlayerRobot -2.0 1.0 ALIVE
+corki -1.0 2.5 PlayerRobot -2.0 1.5 ALIVE

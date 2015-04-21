@@ -1,8 +1,8 @@
 beginTest utkozes
 loadMap mezo
-add robot malzahar 1 0
-add robot corki 5 0
-set malzahar speed 0 1
-set corki speed -4 1
-run
+add robot malzahar 1.0 0.0
+add robot corki 5.0 -1.0
+set malzahar speed 0.0 1.0
+set corki speed -4.0 2.0
+run 2
 listRobots

@@ -157,33 +157,19 @@ public class PlayerRobot extends Robot implements Serializable  {
 	 */
 	public void jump(Map map) {
 		SkeletonUtility.printCall("Jump", this);
-		/**
-		 * TODO 
-		 * mennyi idõ egy ugrás??
-		 *  : 1 run hívás = 1 ugrás.
-		 */
 		int time=1;
 		this.speed.add(this.modSpeed);
 		this.setModSpeed(new Vector(0,0));
 		//Ha életben van, akkor távolságot számolunk
 		if (alive){
-			countDistance(time);
-			FloatPoint newPosition=new FloatPoint(this.position.getX()+Math.round(time*speed.getX()),this.position.getY()+Math.round(time*speed.getY()));
-			this.setPosition(newPosition);
+			distance += speed.length();
+			this.setPosition(new FloatPoint(position.getX()+speed.getX() , position.getY()+speed.getY()  ));
 		}
 		
 		SkeletonUtility.printReturn("Jump", this);
 	}
 	
-	
-	
-			
-			
-			
 
-
-
-	
 	public int newDistance(FloatPoint newPosition){
 		return (int)(Math.sqrt(newPosition.getX()*newPosition.getX()+newPosition.getY()*newPosition.getY()));
 	}
@@ -214,9 +200,13 @@ public class PlayerRobot extends Robot implements Serializable  {
 	public void collide(Robot robot,Map map,boolean thesame) {
 		// TODO Auto-generated method stub
 		if(thesame){
-			if(this.speed.length()<robot.getSpeed().length())
+			if(this.speed.length()<robot.getSpeed().length()){
 				this.die(map);
-			else this.setSpeed(Vector.average(this.speed,robot.getSpeed()));
+				//this.speed = new Vector(0,0);
+			}
+			else{
+				this.setSpeed(Vector.average(this.speed,robot.getSpeed()));
+			}
 		} else {
 			if(robot.isAlive()) {
 			robot.die(map);

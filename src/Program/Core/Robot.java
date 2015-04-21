@@ -119,14 +119,4 @@ public abstract class Robot {
 	public String getName(){
 		return this.name;
 	}
-	
-	/**
-	 *Ugráskor meghívva a megtett távolságot növeli az ugráskor megtett távolsággal.
-	 *@param time- meddig van a levegõben a robot
-	 * érdemes az értékét nem túl kicsire megválasztani a kvantálás maitt(>10)
-	 * @author Bence
-	 */	
-	protected void countDistance(int time){
-		distance+=Math.round(speed.length()*time);
-	}
 }
