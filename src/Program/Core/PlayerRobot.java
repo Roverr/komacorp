@@ -199,9 +199,15 @@ public class PlayerRobot extends Robot implements Serializable  {
 			this.setPosition(newPosition);
 			map.isCheckPointChecked(this, oldPosition);
 			
+			
+			countDistance(1);
 			SkeletonUtility.printReturn("Jump", this);
 		}
 
+	}
+	
+	public int newDistance(FloatPoint newPosition){
+		return (int)(Math.sqrt(newPosition.getX()*newPosition.getX()+newPosition.getY()*newPosition.getY()));
 	}
 	
 	/**
