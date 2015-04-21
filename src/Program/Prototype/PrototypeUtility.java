@@ -41,6 +41,7 @@ public class PrototypeUtility {
 	 * @attribute classTable - Tartalmazza a parancsokkal létrehozott osztályokat a nevük alapján
 	 */
 	private static HashMap<String, Object> classTable = new HashMap<String, Object>();
+	private static HashMap<Object, String> nameTable = new HashMap<Object, String>();
 	
 	private BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
 	private PrintWriter outputWriter = new PrintWriter(System.out);
@@ -131,6 +132,7 @@ public class PrototypeUtility {
 				Map m =new Map();// getTestMap();
 				try {
 					m.loadMap(mapName, 0);
+					testGame.setMap(m);
 				} catch (MyFileNotFoundException e) {
 					// TODO Auto-generated catch block
 					outputWriter.println("No such map exists!");
@@ -150,8 +152,6 @@ public class PrototypeUtility {
 				command[1].toLowerCase();
 				if(command[1].equals("robot")){
 					Map m = getTestMap();
-					PlayerRobot r = new PlayerRobot();
-					addClass(r, name);
 					try {
 						m.addPlayerRobot(name, x, y);
 					} catch (Exception e) {
@@ -282,6 +282,7 @@ public class PrototypeUtility {
 			classTableNameCntr++;
 		}
 		classTable.put(name, obj);
+		nameTable.put(obj, name);
 	}
 	
 
@@ -295,13 +296,7 @@ public class PrototypeUtility {
 	public static String listOlaj(List<Olaj> list){
 		StringBuilder builder = new StringBuilder();
 		for (Olaj olaj : list) {
-			String name = "";
-			
-			for (Entry<String, Object> entry : classTable.entrySet()) {
-	            if (entry.getValue().equals(olaj)) {
-	                name = entry.getKey();
-	            }
-	        }
+			String name = nameTable.get(olaj);
 			
 			builder.append(name + " "+  
 					olaj.getPosition().x + " " + olaj.getPosition().y + 
@@ -313,13 +308,7 @@ public class PrototypeUtility {
 	public static String listRagacs(List<Ragacs> list){
 		StringBuilder builder = new StringBuilder();
 		for (Ragacs ragacs : list) {
-			String name = "";
-			
-			for (Entry<String, Object> entry : classTable.entrySet()) {
-	            if (entry.getValue().equals(ragacs)) {
-	                name = entry.getKey();
-	            }
-	        }
+			String name = nameTable.get(ragacs);
 			
 			builder.append(name + " "+  
 					ragacs.getPosition().x + " " + ragacs.getPosition().y + 
@@ -332,15 +321,7 @@ public class PrototypeUtility {
 	public static String listRobots(List<Robot> list){
 		StringBuilder builder = new StringBuilder();
 		for (Robot robot : list) {
-			String name = "";
-			if(allowDebug)System.out.println("Search  Hu2EHEHEHEHE");
-			for (Entry<String, Object> entry : classTable.entrySet()) {
-	            if (entry.getValue().equals(robot)) {
-	                name = entry.getKey();
-
-	    			if(allowDebug)System.out.println("ROBOT FOUND HEHEHEHEHE");
-	            }
-	        }
+			String name = nameTable.get(robot);
 			
 			String robotType = "Robot";
 			if(robot instanceof PlayerRobot){

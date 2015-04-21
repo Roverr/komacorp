@@ -92,6 +92,7 @@ public class Map implements Serializable {
 	public void addPlayerRobot(String name, int x, int y) throws Exception {
 		if (playerRobots.size() <= 3) {
 			PlayerRobot robot = new PlayerRobot();
+			PrototypeUtility.addClass(robot, name);
 			robot.setName(name);
 			robot.setPosition(x, y);
 			this.playerRobots.add(robot);

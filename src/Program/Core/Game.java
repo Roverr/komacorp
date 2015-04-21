@@ -7,6 +7,7 @@ import java.util.List;
 
 import Program.Helpers.Vector;
 import Program.Prototype.MyFileNotFoundException;
+import Program.Prototype.PrototypeUtility;
 import Program.Skeleton.SkeletonUtility;
 
 public class Game {
@@ -62,6 +63,7 @@ public class Game {
 			SkeletonUtility.printReturn("EndGame", this);
 		}
 		
+		private static int cleanerId = 1;
 		/**
 		 * Körök szimulálását végzi
 		 * @throws Exception 
@@ -86,18 +88,22 @@ public class Game {
 					
 				}*/
 				elapsedTime++;
+				System.out.println("time = " + elapsedTime);
 				//új cleaner robot felvétele
 				List<CleanerRobot> takker= GameMap.getCleanerRobots();
-				if (takker.size()<3 && elapsedTime %10==1){
-					boolean ures=true;
-					for(CleanerRobot r:takker){						
-						if(r.getPosition().getX()==0 && r.getPosition().getY()==0)
-						  ures=false;
+				if (takker.size()<3 && elapsedTime % 10 == 1){
+					boolean ures = true;
+					for(CleanerRobot r : takker){						
+						if(r.getPosition().getX() == 0 && r.getPosition().getY() == 0)
+						  ures = false;
 					}
 					if (ures){
+						System.out.println("a nézését meg a járását");
 						CleanerRobot tmp= new CleanerRobot();
 						tmp.setPosition(0, 0);
-				    	takker.add(tmp);
+				    	GameMap.getCleanerRobots().add(tmp);
+				    	PrototypeUtility.addClass(tmp, "szolga"+cleanerId);
+				    	cleanerId++;
 					}
 				}
 				
@@ -199,6 +205,10 @@ public class Game {
 		
 		public void setTime(int time){
 			this.time = time;
+		}
+
+		public void setMap(Map m) {
+			GameMap = m;
 		}
 		
 }

@@ -1,6 +1,4 @@
 beginTest cleanerHozzaadasa
 loadMap Tesztmap
-add robot Chappie 0 0
-listRobots
-run 5
+run 2
 listRobots
