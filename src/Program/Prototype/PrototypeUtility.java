@@ -255,6 +255,7 @@ public class PrototypeUtility {
 			}
 			String output = listRobots(robotok);
 			outputWriter.print(output);
+			System.out.println(output);
 		}else if(comm.equals("listRobotItems")){
 			if (command.length >= 2) {
 				String name = command[1];
