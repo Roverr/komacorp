@@ -4,17 +4,11 @@ add robot malzahar 1 0
 add ragacs ragacs1 0 0
 set malzahar speed -1 0
 run
-set malzahar speed 0 2
-run
-set malzahar speed 0 -1
-run
-set malzahar speed 0 2
-run
-set malzahar speed 0 -1
-run
-set malzahar speed 0 2
+listRagacs
+set malzahar speed 0 0
 run
 listRagacs
-set malzahar speed 0 -1
+run
+listRagacs
 run
 listRagacs

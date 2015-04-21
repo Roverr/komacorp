@@ -54,7 +54,7 @@ public class Ragacs extends MapItem{
 	 */
 	public void stepIn(PlayerRobot playerRobot) {
 		stepInCounter = stepInCounter-1;
-		playerRobot.setSpeed(playerRobot.getSpeed().add(playerRobot.getModSpeed()).cutIntoHalf());
+		playerRobot.setSpeed(playerRobot.getSpeed().cutIntoHalf());
 	}
 	public void update(){
 		//Mivel körönként nem kell frissíteni, ide semmi nem kerül.

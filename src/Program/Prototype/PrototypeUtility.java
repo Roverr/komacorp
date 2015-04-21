@@ -237,7 +237,7 @@ public class PrototypeUtility {
 			if(output != null && !output.equalsIgnoreCase("")){
 				outputWriter.print(output);
 			} else {
-				outputWriter.print("No olaj on the map");
+				outputWriter.print("No olaj on the map\n");
 			}
 		}else if(comm.equals("listRagacs")){
 			Map m = getTestMap();
@@ -251,7 +251,7 @@ public class PrototypeUtility {
 			if(output!= null && !output.equalsIgnoreCase("")){
 				outputWriter.print(output);
 			} else {
-				outputWriter.print("No ragacs on the map");
+				outputWriter.print("No ragacs on the map\n");
 			}
 		}else if(comm.equals("listRobots")){
 			Map m = getTestMap();
