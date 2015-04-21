@@ -287,6 +287,12 @@ public class Map implements Serializable {
 		SkeletonUtility.printReturn("ValidateState", this);
 	}
 	
+	/**
+	 * Give back true, if the two given position are the same
+	 * @param a
+	 * @param b
+	 * @return
+	 */
 	private boolean samePosition(FloatPoint a, FloatPoint b) {
 		if(a.getX() == b.getX() && a.getY() == b.getY()) {
 			return true;
