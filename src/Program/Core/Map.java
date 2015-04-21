@@ -256,13 +256,11 @@ public class Map implements Serializable {
 				if (!probot.equals(probotcompare)
 						&& probotcompare.getPosition().distance(probot.getPosition()) < 1f) {
 					probot.collide(probotcompare, this, true);
-					//probotcompare.collide(probot, this, true);
 				}
 			}
 			for (CleanerRobot crobot : cleanerRobots) {
 				if (crobot.getPosition().distance(probot.getPosition()) < 1f) {
 					probot.collide(crobot, this, false);
-					crobot.collide(probot, this, false);
 				} 
 			}
 			for (MapItem currentItem : mapItems) {
@@ -278,7 +276,11 @@ public class Map implements Serializable {
 				if (!crobot.equals(crobotcompare)
 						&& crobot.getPosition().distance(crobotcompare.getPosition()) < 1f) {
 					crobot.collide(crobotcompare, this, true);
-					crobotcompare.collide(crobot, this, true);
+				}
+			}
+			for (PlayerRobot probot : playerRobots) {
+				if (probot.getPosition().distance(crobot.getPosition()) < 1f) {
+					crobot.collide(probot, this, false);
 				}
 			}
 		}

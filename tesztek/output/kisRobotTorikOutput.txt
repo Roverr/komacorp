@@ -1,0 +1,8 @@
+malzahar 2.0 2.0 PlayerRobot -1.0 -1.0 ALIVE
+szolga1 0.0 0.0 CleanerRobot 0.0 0.0 ALIVE
+malzahar 1.0 1.0 PlayerRobot -1.0 -1.0 ALIVE
+szolga1 0.0 0.0 CleanerRobot 0.0 0.0 ALIVE
+malzahar 0.0 0.0 PlayerRobot -1.0 -1.0 ALIVE
+szolga1 0.0 0.0 CleanerRobot 0.0 0.0 ALIVE
+malzahar -1.0 -1.0 PlayerRobot -1.0 -1.0 ALIVE
+szolga1 0.0 0.0 CleanerRobot 0.0 0.0 DEAD

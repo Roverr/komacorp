@@ -70,9 +70,13 @@ public class TestRunner {
 					//Az összes teszt lefuttatása, használja a kiértékelõprogramot.
 					ArrayList<String> tests = listTests();
 					for (String string : tests) {
-						pr.setOutput("testLog");
+						System.out.println("-------------------");
+						System.out.println("Teszt futtatása: "+ string);
+						System.out.println("");
+						String fn = "tesztek\\output\\"+ string + "Output";
+						pr.setOutput(fn);
 						pr.runTest(string);
-						kiertekel(string);
+						kiertekel(string, fn);
 					}
 				}else if(choice == 4){
 					quit = true;
@@ -100,11 +104,15 @@ public class TestRunner {
 					
 					//A felhasználói kényelem miatt 1-tõl kezdjük a számozást,
 					//Ezért néhol az indexelést módosítgatni kell.
-					if((choice > 0) && (choice - 1 <= tests.size())){
+					if((choice > 0) && (choice - 1 < tests.size())){
 						//Tehát valid teszt számot adtunk meg
+						System.out.println("-------------------");
+						System.out.println("Teszt futtatása: "+ tests.get(choice-1));
+						System.out.println("");
+						
 						pr.setOutput("testLog");
 						pr.runTest(tests.get(choice-1));
-						kiertekel(tests.get(choice-1));
+						kiertekel(tests.get(choice-1), "testLog");
 						awaitTestNumber = false; //kilépés az almenübõl
 					}else if(choice - 1 == tests.size()){
 						//Az utolsó menüpont a kilépés az almenübõl
@@ -115,9 +123,9 @@ public class TestRunner {
 		}
 	}
 	
-	private void kiertekel(String string) {
+	private void kiertekel(String string, String outputFile) {
 		String offset = System.getProperty("user.dir");
-		Output_Tester ot = new Output_Tester(offset + "\\testLog.txt", offset+"\\tesztek\\expected\\" + string + "Expected.txt");
+		Output_Tester ot = new Output_Tester(offset + "\\" + outputFile + ".txt", offset+"\\tesztek\\expected\\" + string + "Expected.txt");
 		try {
 			printResult(ot.compare());
 		} catch (IOException e) {

@@ -5,6 +5,5 @@ run
 listOlaj
 run
 listOlaj
-run
-run
+run 8
 listOlaj

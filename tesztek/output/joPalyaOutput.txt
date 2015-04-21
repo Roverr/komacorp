@@ -1,0 +1,4 @@
+malzahar 0.0 0.0 PlayerRobot 0.0 0.0 ALIVE
+No olaj on the map
+No ragacs on the map
+No such map exists!

@@ -1,0 +1,4 @@
+ragacs1 0.0 0.0 Ragacs 3
+ragacs1 0.0 0.0 Ragacs 2
+ragacs1 0.0 0.0 Ragacs 1
+No ragacs on the map
