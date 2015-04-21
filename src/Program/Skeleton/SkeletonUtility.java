@@ -1,6 +1,5 @@
 package Program.Skeleton;
 
-import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,9 +7,9 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import Program.Core.*;
+import Program.Helpers.FloatPoint;
 import Program.Helpers.Vector;
 import Program.Prototype.MyFileNotFoundException;
-
 /**
  * A szkeleton modell megvalósításáért felelõs osztály. A belsõ business modell
  * a korábbiakban megbeszélt. A SkeletonUtility osztály létrehozza a
@@ -78,8 +77,9 @@ public class SkeletonUtility {
 			e.printStackTrace();
 		}		
 		dummyRobot = new PlayerRobot();
-		new Olaj(10, new Point(0,0));
-		new Ragacs(3, new Point(0,0));
+		new Olaj(10, new FloatPoint(0,0));
+		new Ragacs(3, new FloatPoint(0,0));
+
 
 		// Kiírások engedélyezése:
 		allowSkeleton = true;
@@ -337,7 +337,7 @@ public class SkeletonUtility {
 					try {
 						x = Integer.parseInt(parts[1]);
 						y = Integer.parseInt(parts[2]);
-						Point newpoint = new Point(x, y);
+						FloatPoint newpoint = new FloatPoint(x, y);
 						setPosition(newpoint);
 					} catch (Exception e) {
 						System.out.println(e.getMessage()
@@ -520,7 +520,7 @@ public class SkeletonUtility {
 	 *            - y koordináta
 	 */
 	public void setPosition(int x, int y) {
-		dummyRobot.setPosition(new Point(x, y));
+		dummyRobot.setPosition(new FloatPoint(x, y));
 	}
 
 	/**
@@ -529,7 +529,7 @@ public class SkeletonUtility {
 	 * @param to
 	 *            - A pont ahova a robotot akarjuk tenni.
 	 */
-	public void setPosition(Point to) {
+	public void setPosition(FloatPoint to) {
 		dummyRobot.setPosition(to);
 	}
 

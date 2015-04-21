@@ -1,6 +1,6 @@
 package Program.Core;
 
-import java.awt.Point;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -81,7 +81,7 @@ public class Map implements Serializable {
 	public void setPlayerRobots(List<PlayerRobot> robots) throws Exception {
 		for (PlayerRobot r : robots) {
 			this.addPlayerRobot(r.getName(), r.getPosition().getX(),
-					r.getPosition().y);
+					r.getPosition().getY());
 		}
 	}
 
@@ -278,14 +278,20 @@ public class Map implements Serializable {
 		for (CleanerRobot crobot : cleanerRobots) {
 			for (CleanerRobot crobotcompare : cleanerRobots) {
 				if (!crobot.equals(crobotcompare)
-						&& crobot.getPosition().equals(
-								crobotcompare.getPosition())) {
+						&& samePosition(crobot.getPosition(),crobotcompare.getPosition())) {
 					crobot.collide(crobotcompare, this, true);
 					crobotcompare.collide(crobot, this, true);
 				}
 			}
 		}
 		SkeletonUtility.printReturn("ValidateState", this);
+	}
+	
+	private boolean samePosition(FloatPoint a, FloatPoint b) {
+		if(a.getX() == b.getX() && a.getY() == b.getY()) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -298,21 +304,20 @@ public class Map implements Serializable {
 	 */
 	private Boolean isOnTrack(FloatPoint point) {
 		// egy biztosan külsõ pont keresése
-		Point kulso = new Point(0, 0);
+		FloatPoint kulso = new FloatPoint(0, 0);
 		for (Line i : track) {
-			if (i.x1 < kulso.x)
-				kulso.x = i.x1;
-			if (i.x2 < kulso.x)
-				kulso.x = i.x1;
-			if (i.y1 < kulso.y)
-				kulso.y = i.y1;
-			if (i.y2 < kulso.y)
-				kulso.y = i.y1;
+			if (i.x1 < kulso.getX())
+				kulso.setX(i.x1);
+			if (i.x2 < kulso.getX())
+				kulso.setX(i.x1);
+			if (i.y1 < kulso.getY())
+				kulso.setY( i.y1);
+			if (i.y2 < kulso.getY())
+				kulso.setY(i.y1);
 		}
 		// biztosan ne a bal alsó sarok legyen a külsõ pont
-		kulso.x -= 5;
-		kulso.y -= 7;
-		Line tmpline = new Line(kulso.x, kulso.y, point.x, point.y);
+		kulso.setX(kulso.getX()-5); 
+		Line tmpline = new Line(kulso.getX(), kulso.getY(), point.getX(), point.getY());
 		/*
 		 * megszámoljuk, hogy egy külsõ pont és az adott pont közötti szakasz
 		 * hány egyenest metsz. Ha páros, akkor pályán kívüli, ha páratlan
@@ -355,11 +360,10 @@ public class Map implements Serializable {
 	 *            - az ugrás elõtti pozíció
 	 * @author Bence
 	 */
-	public Boolean isCheckPointChecked(Robot robot, Point beforejump) {
+	public Boolean isCheckPointChecked(Robot robot, FloatPoint beforejump) {
 		// ugrás vonalának megadása
-		// TODO javítani az ugrás vonalára
-		Line ugras = new Line(robot.position.x, robot.position.y, beforejump.x,
-				beforejump.y);
+		Line ugras = new Line(robot.position.getX(), robot.position.getY(), beforejump.getX(),
+				beforejump.getY());
 		Boolean metsz = false;
 		for (Line i : checkPoints) {
 			if (i.intersect(ugras))

@@ -1,6 +1,5 @@
 package Program.Core;
 
-import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -180,7 +179,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 			/*Lekérdezem az aktuális pozíciót*/
 			int x = (int) this.getPosition().getX();
 			int y = (int) this.getPosition().getY();
-			Point oldPosition = new Point(x, y);
+			FloatPoint oldPosition = new FloatPoint(x, y);
 			/*Ha dobni akar valamit (1 = ragacs, 2 = olaj), akkor ledobja*/
 			//TODO Ezt a mapból kéne meghívni...
 			if (wantToDrop == 1)
@@ -231,6 +230,8 @@ public class PlayerRobot extends Robot implements Serializable  {
 			if(this.speed.length()<robot.getSpeed().length())
 				this.die(map);
 			else this.setSpeed(Vector.average(this.speed,robot.getSpeed()));
+		} else {
+			robot.die(map);
 		}
 		
 	}

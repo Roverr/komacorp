@@ -1,6 +1,5 @@
 package Program.Prototype;
 
-import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -334,11 +333,11 @@ public class PrototypeUtility {
 			}else if(robot instanceof CleanerRobot){
 				robotType = "CleanerRobot";
 			}
-			
 			builder.append(name + " "+  
 					robot.getPosition().getX() + " " + robot.getPosition().getY() + 
 					" " + robotType +" " + 
 					robot.getSpeed().getX() + " " + robot.getSpeed().getY() + "\n");
+			
 		}
 		return builder.toString();
 	}
