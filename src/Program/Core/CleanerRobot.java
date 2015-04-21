@@ -26,7 +26,7 @@ public class CleanerRobot extends Robot implements Serializable {
 	/**
 	 * Azért felelõs változó, hogy a robot takarításnál mit változtatott.
 	 */
-	private int remainingClean;
+	private int remainingClean = 0;
 	// Mit csinál a robot takarít, vagy a következõ oljfolthoz megy.
 	CleanerState state;
 
@@ -193,9 +193,17 @@ public class CleanerRobot extends Robot implements Serializable {
 		if (mode.equals("abnormal")) {// ez az irányváltoztatáshoz kell, nem
 										// definiált irányba mennek tovább
 			int meret = map.getMapItems().size();
+			if(meret > 0) {
 			Random random = new Random();
 			int index = random.nextInt(meret);
 			hova = map.getMapItems().get(index).getPosition();
+			} else {
+				if(getTarget() != null) {
+					hova = getTarget();
+				} else {
+					hova = new FloatPoint(0,0);
+				}
+			}
 		} else {
 			for (MapItem i : map.getMapItems()) {
 				line.setX2(i.getPosition().getX());
@@ -221,8 +229,8 @@ public class CleanerRobot extends Robot implements Serializable {
 	public void collide(Robot robot, Map map, boolean thesame) {
 		if (thesame) {
 			MapItem myTarget = findMyTarget(map);
-			if(myTarget.state == CleaningState.beingCleaned) {
-				nextTarget(map,"abnormal");
+			if(myTarget.state == CleaningState.beingCleaned && remainingClean==0) {
+				target = nextTarget(map,"abnormal");
 			}
 		} else {
 			this.die(map);

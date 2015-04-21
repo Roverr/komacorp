@@ -278,14 +278,20 @@ public class Map implements Serializable {
 		for (CleanerRobot crobot : cleanerRobots) {
 			for (CleanerRobot crobotcompare : cleanerRobots) {
 				if (!crobot.equals(crobotcompare)
-						&& crobot.getPosition().equals(
-								crobotcompare.getPosition())) {
+						&& samePosition(crobot.getPosition(),crobotcompare.getPosition())) {
 					crobot.collide(crobotcompare, this, true);
 					crobotcompare.collide(crobot, this, true);
 				}
 			}
 		}
 		SkeletonUtility.printReturn("ValidateState", this);
+	}
+	
+	private boolean samePosition(FloatPoint a, FloatPoint b) {
+		if(a.getX() == b.getX() && a.getY() == b.getY()) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
