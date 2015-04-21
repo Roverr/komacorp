@@ -1,4 +1,4 @@
-malzahar 0 0 PlayerRobot 0 0
-corki 1 0 PlayerRobot 0 0
-renekton 2 0 PlayerRobot 0 0
+malzahar 0.0 0.0 PlayerRobot 0.0 0.0
+corki 1.0 0.0 PlayerRobot 0.0 0.0
+renekton 2.0 0.0 PlayerRobot 0.0 0.0
 Too Many Robots!

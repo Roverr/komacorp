@@ -1,2 +1,2 @@
-malzahar 0 0 PlayerRobot 0.0 0.0
+malzahar 0.0 0.0 PlayerRobot 0.0 0.0
 No such map exists!

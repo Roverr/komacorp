@@ -1,1 +1,1 @@
-malzahar 2 1 PlayerRobot 1 1
+malzahar 2.0 1.0 PlayerRobot 1.0 1.0
