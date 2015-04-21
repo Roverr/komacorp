@@ -154,7 +154,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 	 * @param map - Pálya, amire ledobja (dropRagacs/Olaj kapja majd paraméterként) 
 	 * @author Hunor
 	 */
-	public void jump() {
+	public void jump(Map map) {
 		SkeletonUtility.printCall("Jump", this);
 		/**
 		 * TODO 
@@ -163,6 +163,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 		 */
 		int time=1;
 		this.speed.add(this.modSpeed);
+		this.setModSpeed(new Vector(0,0));
 		//Ha életben van, akkor távolságot számolunk
 		if (alive){
 			countDistance(time);
@@ -171,38 +172,9 @@ public class PlayerRobot extends Robot implements Serializable  {
 		}
 		
 		SkeletonUtility.printReturn("Jump", this);
-		}
-	
-	
-	public void jump(Map map) {
-		if (this.isAlive()){
-			SkeletonUtility.printCall("Jump", this);
-			this.speed.add(this.modSpeed);
-
-			/*Lekérdezem az aktuális pozíciót*/
-			int x = (int) this.getPosition().getX();
-			int y = (int) this.getPosition().getY();
-			FloatPoint oldPosition = new FloatPoint(x, y);
-			/*Ha dobni akar valamit (1 = ragacs, 2 = olaj), akkor ledobja*/
-			//TODO Ezt a mapból kéne meghívni...
-			if (wantToDrop == 1)
-				dropRagacs(map);
-			else if (wantToDrop == 2)
-				dropOlaj(map);
-			
-			/*Meghatározom az új pozíciót (hozzáadódik a mostanihoz a sebességvektor)*/
-			x += modSpeed.getX();
-			y += modSpeed.getY();
-			FloatPoint newPosition = new FloatPoint(x, y);
-			
-			/*Módosul a pozíció*/
-			this.setPosition(newPosition);
-			map.isCheckPointChecked(this, oldPosition);
-			
-			SkeletonUtility.printReturn("Jump", this);
-		}
-
 	}
+	
+	
 	
 	/**
 	 * Visszadja a bitet ami jelzi, hogy a robot szeretne akadályt dobni
