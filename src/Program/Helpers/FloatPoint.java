@@ -21,4 +21,15 @@ public class FloatPoint {
 	public void setY(float newy){
 		this.y=newy;
 	}
+	
+	/**
+	 * Két pont közti távolság
+	 * @param fp - a második pont
+	 * @return
+	 */
+	public float distance(FloatPoint fp){
+		 float hor = x - fp.x;
+		 float ver = y - fp.y;
+		 return (float) Math.sqrt(hor*hor + ver*ver);
+	}
 }
