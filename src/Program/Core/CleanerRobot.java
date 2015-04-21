@@ -244,7 +244,11 @@ public class CleanerRobot extends Robot implements Serializable {
 	public void collide(Robot robot, Map map, boolean thesame) {
 		if (thesame) {
 			MapItem myTarget = findMyTarget(map);
+			if(myTarget!=null){
 			if(myTarget.state == CleaningState.beingCleaned && remainingClean==0) {
+				target = nextTarget(map,"abnormal");
+			}
+			} else {
 				target = nextTarget(map,"abnormal");
 			}
 		} else {

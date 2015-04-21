@@ -94,7 +94,6 @@ public class Game {
 				//Ellenõrzi az !összes! robot pozícióját
 				GameMap.validateStates();
 				
-				
 				int aliveCount = 0;
 				//Update PlayerRobots (if alive ValidateState, if still alive Jump)
 				for (PlayerRobot r : GameMap.getRobots()) {
@@ -156,14 +155,11 @@ public class Game {
 			/**
 			 *  :(
 			 */
-			if(elapsedTime == time){
-				endGame();
-			}
+			endGame();
 			}else{
 				if(PrototypeUtility.allowDebug)System.out.println("Game Ended by now.");
 				throw new Exception("EndOfGame!");
 			}
-			
 			SkeletonUtility.printReturn("Run", this);
 		}
 		
