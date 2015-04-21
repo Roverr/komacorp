@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+encoding//src/Program/Core/CleanerRobot.java=UTF-8
+encoding//src/Program/Core/Game.java=UTF-8
+encoding//src/Program/Core/Map.java=UTF-8
+encoding//src/Program/Core/MapItem.java=UTF-8
+encoding//src/Program/Core/Olaj.java=UTF-8
+encoding//src/Program/Core/PlayerRobot.java=UTF-8
+encoding//src/Program/Core/Ragacs.java=UTF-8
+encoding//src/Program/Core/Robot.java=UTF-8
+encoding//src/Program/Helpers/Line.java=UTF-8
+encoding//src/Program/Helpers/Output_Tester.java=UTF-8
+encoding//src/Program/Helpers/Vector.java=UTF-8
+encoding//src/Program/Program.java=UTF-8
+encoding//src/Program/Prototype/MyFileNotFoundException.java=UTF-8
+encoding//src/Program/Prototype/PrototypeUtility.java=UTF-8
+encoding//src/Program/Prototype/TestRunner.java=UTF-8
+encoding//src/Program/Skeleton/SkeletonUtility.java=UTF-8

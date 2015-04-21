@@ -159,7 +159,7 @@ public class PrototypeUtility {
 					}
 				}else if(command[1].equals("cleaner")){
 					Map m = getTestMap();
-					CleanerRobot c = new CleanerRobot();
+					CleanerRobot c = new CleanerRobot(m);
 					c.setPosition(x, y);
 					addClass(c, name);
 					m.getCleanerRobots().add(c);
@@ -266,6 +266,11 @@ public class PrototypeUtility {
 				outputWriter.println("Olaj " + items.get(1));
 			}
 				
+		}else if(comm.equals("result")){
+			String res = testGame.endResult;
+			if(res != null){
+				outputWriter.print(res);
+			}
 		}
 		
 		

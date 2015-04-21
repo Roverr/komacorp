@@ -6,6 +6,7 @@ import java.util.Random;
 
 import Program.Helpers.Line;
 import Program.Helpers.Vector;
+import Program.Prototype.PrototypeUtility;
 
 /**
  * A takarító robotok osztálya, amik Robot leszármazottak, de nem lehet a
@@ -32,9 +33,10 @@ public class CleanerRobot extends Robot implements Serializable {
 
 	private static final long serialVersionUID = 2858679422774498028L;
 
-	public CleanerRobot() {
+	public CleanerRobot(Map m) {
 		Vector speedConst = new Vector(0, 1);
 		setCurrentSpeed(speedConst);
+		target = nextTarget(m, "normal");
 	}
 
 	public CleanerRobot(MapItem target) {
@@ -97,11 +99,11 @@ public class CleanerRobot extends Robot implements Serializable {
 				remainingClean = roundItTakesToClean;
 			} else {
 				if (remainingClean <= 0) {
-					this.target = this.nextTarget(map, "");// VÁLTOZÁS! MIUTÁN
+					target = nextTarget(map, "");// VÁLTOZÁS! MIUTÁN
 															// VÉGZETT MEGY A
 															// KÖVETKEZÕHÖZ
-					if (this.target.equals(this.position)) {
-						this.state = CleanerState.waiting;
+					if (target.equals(position)) {
+						state = CleanerState.waiting;
 					} else
 						state = CleanerState.moving;
 					for (MapItem mI : map.getMapItems()) {
@@ -115,7 +117,7 @@ public class CleanerRobot extends Robot implements Serializable {
 				}
 			}
 			// Game osztály elpuszítja a targetet, itt már csak hibát kapunk el
-			System.out
+			if(PrototypeUtility.allowDebug)System.out
 					.println("Error! CleanerRobot standing on shit, and it's still alive");
 		} else {
 			move();
@@ -191,7 +193,7 @@ public class CleanerRobot extends Robot implements Serializable {
 	 * @author Barna
 	 */
 	@Override
-	public void collide(Robot robot, Map map,boolean thesame) {
+	public void collide(Robot robot, Map map, boolean thesame) {
 		if (thesame) {
 			this.nextTarget(map, "abnormal");
 		} else

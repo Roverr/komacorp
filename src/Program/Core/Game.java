@@ -57,9 +57,19 @@ public class Game {
 		/**
 		 * A játék véget érésénél hívódik meg, illetve ha már nincs aktív játékos a pályán
 		 */
+		public String endResult;
 		public void endGame(){
 			SkeletonUtility.printCall("EndGame", this);
-			GameMap.getResult();
+			
+			StringBuilder sb = new StringBuilder();
+			//Egy stringbe fûzzük az eredményeket:
+			for (String s :  GameMap.getResult()) {
+				sb.append(s);
+				sb.append("\n");
+			}
+			
+			endResult = sb.toString();
+			
 			SkeletonUtility.printReturn("EndGame", this);
 		}
 		
@@ -70,7 +80,7 @@ public class Game {
 		 * @throws IOException - Exception amit elkell kapni.
 		 */
 		public void run() throws Exception{
-			if(elapsedTime <= time){
+			if(elapsedTime < time){
 				SkeletonUtility.printCall("Run", this);
 				GameMap.validateStates();
 				/*if(!GameMap.getMapItems().isEmpty()) {
@@ -86,9 +96,15 @@ public class Game {
 						e.printStackTrace();
 					}
 					
+					
 				}*/
+				
+				for (CleanerRobot cl : GameMap.getCleanerRobots()) {
+					cl.jump(GameMap);
+				}
+				
 				elapsedTime++;
-				System.out.println("time = " + elapsedTime);
+				System.out.println("time = " + elapsedTime + " < " + time);
 				//új cleaner robot felvétele
 				List<CleanerRobot> takker= GameMap.getCleanerRobots();
 				if (takker.size()<3 && elapsedTime % 10 == 1){
@@ -98,8 +114,7 @@ public class Game {
 						  ures = false;
 					}
 					if (ures){
-						System.out.println("a nézését meg a járását");
-						CleanerRobot tmp= new CleanerRobot();
+						CleanerRobot tmp= new CleanerRobot(GameMap);
 						tmp.setPosition(0, 0);
 				    	GameMap.getCleanerRobots().add(tmp);
 				    	PrototypeUtility.addClass(tmp, "szolga"+cleanerId);
@@ -108,7 +123,11 @@ public class Game {
 				}
 				
 				
-			}else throw new Exception("EndOfGame!");
+			}else{
+				if(PrototypeUtility.allowDebug)System.out.println("Game Ends now.");
+				endGame();
+				throw new Exception("EndOfGame!");
+			}
 			SkeletonUtility.printReturn("Run", this);
 		}
 		
@@ -210,5 +229,6 @@ public class Game {
 		public void setMap(Map m) {
 			GameMap = m;
 		}
+		
 		
 }
