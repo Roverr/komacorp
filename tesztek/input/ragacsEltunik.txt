@@ -1,5 +1,5 @@
 beginTest ragacsEltunik
-loadMap Tesztmap
+loadMap mezo
 add robot malzahar 1 0
 add ragacs ragacs1 0 0
 set malzahar speed -1 0

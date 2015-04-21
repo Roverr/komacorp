@@ -1,5 +1,5 @@
 beginTest takaritas
-loadMap Tesztmap
+loadMap mezo
 add ragacs ragacs1 1 1
 add cleaner szolga1 0 0
 run 4

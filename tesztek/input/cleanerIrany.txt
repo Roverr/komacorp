@@ -1,5 +1,5 @@
 beginTest cleanerIrany
-loadMap Tesztmap
+loadMap mezo
 add olaj olaj1 1 1
 add olaj olaj2 0 10
 add cleaner Takker 0 0

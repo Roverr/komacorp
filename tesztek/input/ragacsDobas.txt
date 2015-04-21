@@ -1,5 +1,5 @@
 beginTest ragacsDobas
-loadMap Tesztmap
+loadMap mezo
 add robot malzahar 5 5
 set malzahar modSpeed 0 1
 set malzahar dropRagacs yes

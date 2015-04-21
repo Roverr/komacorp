@@ -1,5 +1,5 @@
 beginTest validalas
-loadMap Tesztmap
+loadMap mezo
 add olaj olaj1 0 0
 add ragacs ragacs1 0 0
 add robot malzahar 2 0

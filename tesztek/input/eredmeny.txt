@@ -1,5 +1,5 @@
 beginTest eredmeny
-loadMap Tesztmap
+loadMap mezo
 setGameLength 2
 add robot malzahar 1 0
 add robot corki 2 0
