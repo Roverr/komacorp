@@ -165,7 +165,7 @@ public class PrototypeUtility {
 					m.getCleanerRobots().add(c);
 				}else if(command[1].equals("olaj")){
 					Map m = getTestMap();
-					Olaj o = new Olaj(new FloatPoint(x,y));
+					Olaj o = new Olaj(10, new FloatPoint(x,y));
 					addClass(o, name);
 					m.addMapItem(o);
 				}else if(command[1].equals("ragacs")){
@@ -191,12 +191,10 @@ public class PrototypeUtility {
 					float y = Float.parseFloat(command[4]);
 					r.setModSpeed(new Vector(x,y));
 				}else if(attr.equals("dropOlaj") && obj instanceof PlayerRobot && command.length >= 4){
-					if(allowDebug)System.out.println("Want Drop the Olaj got this far.");
 					PlayerRobot r = (PlayerRobot) obj;
 					boolean drop = yesOrNo(command[3]);
 					if(drop){
 						r.setWantToDrop(2);
-						if(allowDebug)System.out.println("Want Drop the Olaj set.");
 					}else{
 						r.setWantToDrop(0);
 					}
@@ -229,7 +227,6 @@ public class PrototypeUtility {
 			for (MapItem item : m.getMapItems()) {
 				if(item instanceof Olaj){
 					olajok.add((Olaj) item);
-					if(allowDebug)System.out.println("Added an olaj to the output list. Number of them:" + olajok.size());
 				}
 
 			}
@@ -265,6 +262,8 @@ public class PrototypeUtility {
 			String output = listRobots(robotok);
 			if(output!= null){
 				outputWriter.print(output);
+			} else {
+				outputWriter.println("No robots on the map");
 			}
 			System.out.println(output);
 		}else if(comm.equals("listRobotItems")){
@@ -277,6 +276,13 @@ public class PrototypeUtility {
 			}
 				
 		}else if(comm.equals("result")){
+			String res = testGame.endResult;
+			System.out.println(res);
+			if(res != null){
+				outputWriter.print(res);
+			}
+		}else if(comm.equals("exit")){
+			testGame.endGame();
 			String res = testGame.endResult;
 			System.out.println(res);
 			if(res != null){
@@ -347,9 +353,9 @@ public class PrototypeUtility {
 			}
 			String alive = "";
 			if(robot.isAlive()) {
-				alive = "ALIVE";
+				alive = " ALIVE";
 			} else {
-				alive = "DEAD";
+				alive = " DEAD";
 			}
 			builder.append(name + " "+  
 					numOut(robot.getPosition().getX()) + " " + numOut(robot.getPosition().getY()) + 

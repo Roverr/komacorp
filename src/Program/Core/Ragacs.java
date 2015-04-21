@@ -3,6 +3,7 @@ package Program.Core;
 
 import Program.Core.MapItem.CleaningState;
 import Program.Helpers.FloatPoint;
+import Program.Prototype.PrototypeUtility;
 
 
 /**
@@ -53,9 +54,12 @@ public class Ragacs extends MapItem{
 	 * @param playerRobot - A robot, ami belelépett
 	 */
 	public void stepIn(PlayerRobot playerRobot) {
+		if(PrototypeUtility.allowDebug)System.out.println("Ragacs - stepin +" + playerRobot.name);
 		stepInCounter = stepInCounter-1;
 		playerRobot.setSpeed(playerRobot.getSpeed().cutIntoHalf());
 	}
+	
+	
 	public void update(){
 		//Mivel körönként nem kell frissíteni, ide semmi nem kerül.
 		return;

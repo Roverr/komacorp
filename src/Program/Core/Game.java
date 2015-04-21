@@ -132,7 +132,7 @@ public class Game {
 				//új cleaner robot felvétele.
 				//Mindíg 10 körönként történik, egyszerre 3 cleanerRobot van max a pályán.
 				List<CleanerRobot> takker= GameMap.getCleanerRobots();
-				if (takker.size()<3 && elapsedTime % 10 == 1){
+				if (takker.size()<3 && elapsedTime % 10 == 9){
 					boolean ures = true;
 					for(CleanerRobot r : takker){
 						//TODO Check for PlayerRobots as well.
