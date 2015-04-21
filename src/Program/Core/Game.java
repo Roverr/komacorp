@@ -98,6 +98,7 @@ public class Game {
 				//Update PlayerRobots (if alive ValidateState, if still alive Jump)
 				for (PlayerRobot r : GameMap.getRobots()) {
 					if(r.isAlive()){
+						System.out.println(r.modSpeed.getX() + " " + r.modSpeed.getY());
 						r.jump(GameMap);
 						if(r.wantToDrop == 1){
 							r.dropRagacs(GameMap);
@@ -120,7 +121,6 @@ public class Game {
 					for(int i = 0; i < GameMap.getMapItems().size(); i++){
 						mi = GameMap.getMapItems().get(i);
 						mi.update();
-						System.out.println(mi.isAlive());
 						if(!mi.isAlive()){
 							GameMap.removeMapItem(mi);
 						}
