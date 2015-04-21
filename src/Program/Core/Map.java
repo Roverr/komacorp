@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import Program.Helpers.FloatPoint;
 import Program.Helpers.Line;
 import Program.Helpers.Vector;
 import Program.Prototype.MyFileNotFoundException;
@@ -78,8 +80,8 @@ public class Map implements Serializable {
 	 */
 	public void setPlayerRobots(List<PlayerRobot> robots) throws Exception {
 		for (PlayerRobot r : robots) {
-			this.addPlayerRobot(r.getName(), r.getPosition().x,
-					r.getPosition().y);
+			this.addPlayerRobot(r.getName(), r.getPosition().getX(),
+					r.getPosition().getY());
 		}
 	}
 
@@ -89,7 +91,7 @@ public class Map implements Serializable {
 	 * 
 	 * @throws Exception
 	 */
-	public void addPlayerRobot(String name, int x, int y) throws Exception {
+	public void addPlayerRobot(String name, float x, float y) throws Exception {
 		if (playerRobots.size() <= 3) {
 			PlayerRobot robot = new PlayerRobot();
 			PrototypeUtility.addClass(robot, name);
@@ -294,7 +296,7 @@ public class Map implements Serializable {
 	 *            akadályokhoz viszonyítva.
 	 * @author Bence
 	 */
-	private Boolean isOnTrack(Point point) {
+	private Boolean isOnTrack(FloatPoint point) {
 		// egy biztosan külsõ pont keresése
 		Point kulso = new Point(0, 0);
 		for (Line i : track) {
@@ -310,7 +312,7 @@ public class Map implements Serializable {
 		// biztosan ne a bal alsó sarok legyen a külsõ pont
 		kulso.x -= 5;
 		kulso.y -= 7;
-		Line tmpline = new Line(kulso.x, kulso.y, point.x, point.y);
+		Line tmpline = new Line(kulso.x, kulso.y, (int)point.getX(), (int)point.getY());
 		/*
 		 * megszámoljuk, hogy egy külsõ pont és az adott pont közötti szakasz
 		 * hány egyenest metsz. Ha páros, akkor pályán kívüli, ha páratlan
@@ -356,7 +358,7 @@ public class Map implements Serializable {
 	public Boolean isCheckPointChecked(Robot robot, Point beforejump) {
 		// ugrás vonalának megadása
 		// TODO javítani az ugrás vonalára
-		Line ugras = new Line(robot.position.x, robot.position.y, beforejump.x,
+		Line ugras = new Line((int)robot.position.getX(), (int)robot.position.getY(), beforejump.x,
 				beforejump.y);
 		Boolean metsz = false;
 		for (Line i : checkPoints) {

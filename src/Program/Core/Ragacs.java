@@ -3,6 +3,8 @@ package Program.Core;
 import java.awt.Point;
 
 import Program.Core.MapItem.CleaningState;
+import Program.Helpers.FloatPoint;
+
 
 /**
  * Ragacs osztály, ami akadályként dobható a pályára
@@ -25,7 +27,7 @@ public class Ragacs extends MapItem{
 	 * A ragacsba való belelépések számát állítja be a konstruktor.
 	 * @param StepIn
 	 */
-	public Ragacs(int stepIn,Point position) {
+	public Ragacs(int stepIn,FloatPoint position) {
 		setPosition(position);
 		setStepinCounter(stepIn);
 		state = CleaningState.canBeCleaned;

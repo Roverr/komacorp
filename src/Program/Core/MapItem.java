@@ -3,6 +3,7 @@ package Program.Core;
 import java.awt.Point;
 import java.io.Serializable;
 
+import Program.Helpers.FloatPoint;
 import Program.Skeleton.SkeletonUtility;
 /**
  * Egy akadálynak az abasztrakt osztálya. Az akadályok tesztelésénél használt. 
@@ -21,7 +22,7 @@ public abstract class MapItem implements Serializable  {
 	/**
 	 * Az a pont a térképen ahol az akadály található
 	 */
-	protected Point position;
+	protected FloatPoint position;
 	
 	public CleaningState state;
 	
@@ -29,7 +30,7 @@ public abstract class MapItem implements Serializable  {
 	 * Visszaadja az akadály pozícióját.
 	 * @return - Position
 	 */
-	public Point getPosition() {
+	public FloatPoint getPosition() {
 		SkeletonUtility.printCall("GetPosition", this);
 		SkeletonUtility.printReturn("GetPosition", this);
 		return position;
@@ -39,7 +40,7 @@ public abstract class MapItem implements Serializable  {
 	 * Beállítja az akadály pozícióját.
 	 * @param place - Az a pont ahova helyezzük az akadályt.
 	 */
-	public void setPosition(Point place) {
+	public void setPosition(FloatPoint place) {
 		SkeletonUtility.printCall("SetPosition", this);
 		position=place;
 		SkeletonUtility.printReturn("SetPosition", this);
