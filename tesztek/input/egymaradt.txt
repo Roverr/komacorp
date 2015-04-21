@@ -1,6 +1,8 @@
 beginTest egymaradt
-loadMap mezo
+loadMap kanyon
 add robot malzahar 65 0
-add robot corki 0 0
+set malzahar speed 6 0
+add robot corki 65 5
 run 
+run
 result

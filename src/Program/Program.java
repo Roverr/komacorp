@@ -21,15 +21,6 @@ public class Program {
 	 * @author Karesz
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		// new Game(180 seconds, map:"Halálos kanyon");
-		/**letrehozok egy jatekot 180 másodperc hosszú, mapnév,játékosszám
-		 * @author Barna
-		 */
-		//Game skeletonGame=new Game(180,"Halalos kanyon",3);
-		//SkeletonUtility su = new SkeletonUtility();
-//		PrototypeUtility pu= new PrototypeUtility();
-//		pu.runTest("joPalya");
 		
 		TestRunner tr = new TestRunner();
 		try {
