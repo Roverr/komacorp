@@ -136,13 +136,13 @@ public class PlayerRobot extends Robot implements Serializable  {
 		
 		if(olajLeft > 0) {
 			int olajNumberInDropping = 2;
-			Olaj olaj = new Olaj(time,getPosition());;
+			Olaj olaj = new Olaj(time,getPosition());
+			PrototypeUtility.addClass(olaj, "olaj"+Game.olajId);
 			map.addMapItem(olaj);
+			if(PrototypeUtility.allowDebug)System.out.println("Olaj Deployed");
 			mapItemCarriedCounter.set(olajNumberInList, olajLeft-1);
-			setWantToDrop(olajNumberInDropping);
+			wantToDrop = 0;
 		} else {
-			int nothingToDrop = 0;
-			setWantToDrop(nothingToDrop);
 			System.out.println("No olaj left, sorryka");
 		}
 	}
