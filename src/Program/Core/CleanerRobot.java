@@ -40,12 +40,14 @@ public class CleanerRobot extends Robot implements Serializable {
 		Vector speedConst = new Vector(0, 1);
 		setCurrentSpeed(speedConst);
 		target = nextTarget(m, "normal");
+		state = CleanerState.moving;
 	}
 
 	public CleanerRobot(MapItem target) {
 		setTarget(target.getPosition());
 		Vector speedConst = new Vector(0, 1);
 		setCurrentSpeed(speedConst);
+		state = CleanerState.moving;
 	}
 
 	/**
@@ -97,7 +99,8 @@ public class CleanerRobot extends Robot implements Serializable {
 		int roundItTakesToClean = 2;
 		//TODO Position detection based on distance.
 		//TODO Moving = speed vektor a target irányába.
-		if (this.getPosition() == this.getTarget()) {
+		boolean isItThere = (this.getPosition().getX() == this.getTarget().getX() && getPosition().getY() == getTarget().getY());
+		if (isItThere) {
 			// Akadályra érkezés
 			if (state == CleanerState.moving) {
 				state = CleanerState.cleaning;
@@ -113,8 +116,10 @@ public class CleanerRobot extends Robot implements Serializable {
 						state = CleanerState.moving;
 					}
 					for (MapItem mI : map.getMapItems()) {
-						if (mI.getPosition() == getTarget()) {
+						boolean isItTarget = (mI.getPosition().getX() == getTarget().getX() && mI.getPosition().getY() == getTarget().getY());
+						if (isItTarget) {
 							map.getMapItems().remove(mI);
+							System.out.println("Removed " + getNameFromType(mI));
 						}
 					}
 					move();
@@ -123,12 +128,25 @@ public class CleanerRobot extends Robot implements Serializable {
 				}
 			}
 			// Game osztály elpuszítja a targetet, itt már csak hibát kapunk el
-			if(PrototypeUtility.allowDebug)System.out
-					.println("Error! CleanerRobot standing on shit, and it's still alive");
+			/*if(PrototypeUtility.allowDebug)System.out
+					.println("Error! CleanerRobot standing on shit, and it's still alive");*/
 		} else {
 			move();
 		}
 
+	}
+	
+	/**
+	 * Hacking........ Get name from Class's file name. 
+	 * @param mi
+	 * @return
+	 */
+	private String getNameFromType(MapItem mi){
+		if(mi.toString().contains("Olaj")){
+			return "Olaj";
+		} else {
+			return "Ragacs";
+		}
 	}
 
 	/**
@@ -141,7 +159,11 @@ public class CleanerRobot extends Robot implements Serializable {
 		//Pl mivan akkor ha egyenlõ az egyik kordináta?
 
 		// Ha lejebb van az X tengelyen 
+<<<<<<< HEAD
 		if (currentPosition.getX() < target.getX()) {
+=======
+		if (currentPosition.getX()< target.getX()) {
+>>>>>>> 78f8f5e5dea59d76998a5fd3df59c4c65360813a
 			setPosition(new FloatPoint(currentPosition.getX() + 1, currentPosition.getY()));
 			return;
 		}
@@ -157,19 +179,27 @@ public class CleanerRobot extends Robot implements Serializable {
 			return;
 
 		}// Ha Y szerint fentebb van
+<<<<<<< HEAD
 		else if (currentPosition.getY() < target.getY()){
+=======
+		else if (currentPosition.getY() < target.getY() ){
+>>>>>>> 78f8f5e5dea59d76998a5fd3df59c4c65360813a
 
 			setPosition(new FloatPoint(currentPosition.getX() , currentPosition.getY() + 1));
 
 		}
 	}
-
+	
 	/**
 	 * Kijelöli a következõ célpontot,azt a mapitemet ami a legközelebb van
 	 * 
 	 */
 	private FloatPoint nextTarget(Map map, String mode) {
+<<<<<<< HEAD
 		Line line = new Line(this.position.getX(), this.position.getY(), 0, 0);
+=======
+		Line line = new Line((int)this.position.getX(), (int)this.position.getY(), 0, 0);
+>>>>>>> 78f8f5e5dea59d76998a5fd3df59c4c65360813a
 		FloatPoint hova = new FloatPoint(this.position.getX(), this.position.getY());
 		double minlength = 1000000;
 		if (mode.equals("abnormal")) {// ez az irányváltoztatáshoz kell, nem
@@ -180,8 +210,13 @@ public class CleanerRobot extends Robot implements Serializable {
 			hova = map.getMapItems().get(index).getPosition();
 		} else {
 			for (MapItem i : map.getMapItems()) {
+<<<<<<< HEAD
 				line.setX2(i.getPosition().getX());
 				line.setY2(i.getPosition().getY());
+=======
+				line.setX2((int)i.getPosition().getX());
+				line.setY2((int)i.getPosition().getY());
+>>>>>>> 78f8f5e5dea59d76998a5fd3df59c4c65360813a
 				// rövidebb az út és olaj van ott
 				if (minlength > line.length()){
 					minlength = line.length();
@@ -202,10 +237,10 @@ public class CleanerRobot extends Robot implements Serializable {
 	@Override
 	public void collide(Robot robot, Map map, boolean thesame) {
 		if (thesame) {
-			this.nextTarget(map, "abnormal");
-		} else
+			nextTarget(map, "abnormal");
+		} else {
 			this.die(map);
-
+		}
 	}
 
 }

@@ -21,6 +21,7 @@ import Program.Core.Olaj;
 import Program.Core.PlayerRobot;
 import Program.Core.Ragacs;
 import Program.Core.Robot;
+import Program.Helpers.FloatPoint;
 import Program.Helpers.Vector;
 
 
@@ -147,8 +148,8 @@ public class PrototypeUtility {
 		}else if(comm.equals("add")){
 			if (command.length >= 5) {
 				String name = command[2];
-				int x = Integer.parseInt(command[3]);
-				int y = Integer.parseInt(command[4]);
+				float x = Float.parseFloat(command[3]);
+				float y = Float.parseFloat(command[4]);
 				command[1].toLowerCase();
 				if(command[1].equals("robot")){
 					Map m = getTestMap();
