@@ -120,6 +120,7 @@ public class Game {
 					for(int i = 0; i < GameMap.getMapItems().size(); i++){
 						mi = GameMap.getMapItems().get(i);
 						mi.update();
+						System.out.println(mi.isAlive());
 						if(!mi.isAlive()){
 							GameMap.removeMapItem(mi);
 						}
