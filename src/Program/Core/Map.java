@@ -261,10 +261,10 @@ public class Map implements Serializable {
 				}
 			}
 			for (CleanerRobot crobot : cleanerRobots) {
-				if (samePosition(crobot.getPosition(),probot.getPosition())) {
+				if (samePosition(crobot.getPosition(),probot.getPosition())) { 
 					probot.collide(crobot, this, false);
 					crobot.collide(probot, this, false);
-				}
+				} 
 			}
 			for (MapItem currentItem : mapItems) {
 				if (currentItem.getPosition().distance(probot.getPosition()) < 1) {
