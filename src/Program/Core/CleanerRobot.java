@@ -37,17 +37,23 @@ public class CleanerRobot extends Robot implements Serializable {
 	//TODO A normal way to get the active Map, and thus the closest target.
 
 	public CleanerRobot(Map m) {
-		Vector speedConst = new Vector(0, 1);
-		setCurrentSpeed(speedConst);
 		target = nextTarget(m, "normal");
 		state = CleanerState.moving;
+		Vector sp = new Vector(target.getX()- position.getX(), target.getY()- position.getY());
+		sp.setX((float) (sp.getX()/sp.length())); 
+		sp.setY((float) (sp.getY()/sp.length())); 
+		setCurrentSpeed(sp);
 	}
 
-	public CleanerRobot(MapItem target) {
-		setTarget(target.getPosition());
+	public CleanerRobot(MapItem trg) {
+		setTarget(trg.getPosition());
 		Vector speedConst = new Vector(0, 1);
 		setCurrentSpeed(speedConst);
 		state = CleanerState.moving;
+		Vector sp = new Vector(target.getX()- position.getX(), target.getY()- position.getY());
+		sp.setX((float) (sp.getX()/sp.length())); 
+		sp.setY((float) (sp.getY()/sp.length())); 
+		setCurrentSpeed(sp);
 	}
 
 	/**
@@ -97,10 +103,12 @@ public class CleanerRobot extends Robot implements Serializable {
 	 */
 	public void jump(Map map) {
 		int roundItTakesToClean = 2;
+		position.add(speed);
 		//TODO Position detection based on distance.
 		//TODO Moving = speed vektor a target irányába.
-		boolean isItThere = (this.getPosition().getX() == this.getTarget().getX() && getPosition().getY() == getTarget().getY());
+		boolean isItThere = (position.distance(target) < 1f);
 		if (isItThere) {
+			speed = new Vector(0f,0f);
 			// Akadályra érkezés
 			if (state == CleanerState.moving) {
 				state = CleanerState.cleaning;
@@ -112,6 +120,11 @@ public class CleanerRobot extends Robot implements Serializable {
 					target = nextTarget(map, "");// VÁLTOZÁS! MIUTÁN
 															// VÉGZETT MEGY A
 															// KÖVETKEZÕHÖZ
+					Vector sp = new Vector(target.getX()- position.getX(), target.getY()- position.getY());
+					sp.setX((float) (sp.getX()/sp.length())); 
+					sp.setY((float) (sp.getY()/sp.length())); 
+					setCurrentSpeed(sp);
+					//Sebesség beállítása, hogy 1 hosszú legyen;
 					if (target.equals(position)) {
 						state = CleanerState.waiting;
 					} else{
@@ -124,7 +137,7 @@ public class CleanerRobot extends Robot implements Serializable {
 							System.out.println("Removed " + getNameFromType(mI));
 						}
 					}
-					move();
+					//move();
 				} else {
 					remainingClean--;
 				}
@@ -133,7 +146,7 @@ public class CleanerRobot extends Robot implements Serializable {
 			/*if(PrototypeUtility.allowDebug)System.out
 					.println("Error! CleanerRobot standing on shit, and it's still alive");*/
 		} else {
-			move();
+			//move();
 		}
 
 	}
@@ -159,7 +172,10 @@ public class CleanerRobot extends Robot implements Serializable {
 		
 		//TODO Ez itt hibásan mûködik.
 		//Pl mivan akkor ha egyenlõ az egyik kordináta?
-
+		
+		
+		
+/*
 		// Ha lejebb van az X tengelyen 
 		if (currentPosition.getX() < target.getX()) {
 			setPosition(new FloatPoint(currentPosition.getX() + 1, currentPosition.getY()));
@@ -179,7 +195,7 @@ public class CleanerRobot extends Robot implements Serializable {
 		}// Ha Y szerint fentebb van
 		else if (currentPosition.getY() < target.getY()){
 			setPosition(new FloatPoint(currentPosition.getX() , currentPosition.getY() + 1));
-		}
+		}*/
 	}
 	
 	/**

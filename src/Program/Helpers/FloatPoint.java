@@ -32,4 +32,9 @@ public class FloatPoint {
 		 float ver = y - fp.y;
 		 return (float) Math.sqrt(hor*hor + ver*ver);
 	}
+
+	public void add(Vector speed) {
+		x += speed.getX();
+		y += speed.getY();
+	}
 }
