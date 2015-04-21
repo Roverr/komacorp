@@ -139,23 +139,26 @@ public class CleanerRobot extends Robot implements Serializable {
 		//TODO Ez itt hibásan mûködik.
 		//Pl mivan akkor ha egyenlõ az egyik kordináta?
 
-		// Ha lejebb van az X és Y tengelyen is
-		if (currentPosition.x < target.x && currentPosition.y < target.y) {
-			setPosition(new Point(currentPosition.x + 1, currentPosition.y + 1));
+		// Ha lejebb van az X tengelyen 
+		if (currentPosition.x < target.x) {
+			setPosition(new Point(currentPosition.x + 1, currentPosition.y));
+			return;
 		}
-		// Ha X-en feljebb van, de Y-on lejebb
-		if (currentPosition.x > target.x && currentPosition.y < target.y) {
-			setPosition(new Point(currentPosition.x - 1, currentPosition.y + 1));
+		// Ha X-en feljebb van
+		if (currentPosition.x > target.x ) {
+			setPosition(new Point(currentPosition.x - 1, currentPosition.y ));
+			return;
 
-		}// Ha mind a két részen feljebb van
-		else if (currentPosition.x > target.x && currentPosition.y > target.y) {
+		}// Ha Y szerint lentebb van
+		else if (currentPosition.y > target.y ) {
 
-			setPosition(new Point(currentPosition.x - 1, currentPosition.y - 1));
+			setPosition(new Point(currentPosition.x, currentPosition.y-1 ));
+			return;
 
-		}// Ha X-en lejebb van, de Y-on feljebb
-		else {
+		}// Ha Y szerint fentebb van
+		else if (currentPosition.y < target.y ){
 
-			setPosition(new Point(currentPosition.x + 1, currentPosition.y - 1));
+			setPosition(new Point(currentPosition.x , currentPosition.y + 1));
 
 		}
 	}
