@@ -1,12 +1,12 @@
 package Program.Core;
 
 import java.awt.Point;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import Program.Helpers.Vector;
 
+import Program.Helpers.Vector;
+import Program.Prototype.PrototypeUtility;
 import Program.Skeleton.SkeletonUtility;
 
 /**
@@ -32,7 +32,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 	protected List<Integer> mapItemCarriedCounter;
 	private static final long serialVersionUID = -8700911186613988616L;
 	private int wantToDrop;
-	protected Vector modSpeed;
+	protected Vector modSpeed = new Vector(0,0);
 
 	/**
 	 * Konstruktor a játékosok álltal irányított Robothoz
@@ -58,7 +58,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 		SkeletonUtility.printCall("Die", this);
 		mapItemCarriedCounter.clear();
 		alive = false;
-		//System.out.println("Felt down!");
+		if(PrototypeUtility.allowDebug)System.out.println("Felt down!");
 
 		SkeletonUtility.printReturn("Die", this);
 	}

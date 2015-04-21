@@ -122,10 +122,11 @@ public class Game {
 					}
 				}
 				
-				
+			if(elapsedTime == time){
+				endGame();
+			}
 			}else{
 				if(PrototypeUtility.allowDebug)System.out.println("Game Ends now.");
-				endGame();
 				throw new Exception("EndOfGame!");
 			}
 			SkeletonUtility.printReturn("Run", this);

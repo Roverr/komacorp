@@ -218,10 +218,8 @@ public class PrototypeUtility {
 					testGame.run();
 				} catch (Exception e) {
 					//itt az az exceptionnak a message, hogy EndOfGame!
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					System.out.println(e.getMessage());
-					e.getMessage();
+					//e.printStackTrace();
+					outputWriter.println(e.getMessage());
 				}
 			}
 		}else if(comm.equals("listOlaj")){

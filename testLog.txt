@@ -1,2 +1,4 @@
-malzahar 0 KIESETT
-corki 0 KIESETT
+malzahar 1 0 PlayerRobot 0.0 2.0
+szolga9 0 0 CleanerRobot 0.0 1.0
+malzahar 1 0 PlayerRobot 0.0 2.0
+szolga9 1 -1 CleanerRobot 0.0 1.0

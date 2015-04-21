@@ -1,6 +1,6 @@
 beginTest eredmeny
 loadMap Tesztmap
-setGameLength 1
+setGameLength 2
 add robot malzahar 1 0
 add robot corki 2 0
 set malzahar speed 0 2

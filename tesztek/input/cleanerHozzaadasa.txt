@@ -1,4 +1,4 @@
 beginTest cleanerHozzaadasa
 loadMap Tesztmap
-run 2
+run 1
 listRobots
