@@ -136,7 +136,7 @@ public class PrototypeUtility {
 				} catch (MyFileNotFoundException e) {
 					// TODO Auto-generated catch block
 					outputWriter.println("No such map exists!");
-					System.out.println(e.getMessage());
+					if(allowDebug)System.out.println(e.getMessage());
 				}
 			}
 		}else if(comm.equals("setGameLength")){
