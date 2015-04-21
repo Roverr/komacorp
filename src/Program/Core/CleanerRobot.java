@@ -234,6 +234,7 @@ public class CleanerRobot extends Robot implements Serializable {
 			}
 		} else {
 			this.die(map);
+			map.addMapItem(new Olaj(this.position));
 		}
 	}
 	

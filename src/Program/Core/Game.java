@@ -130,7 +130,16 @@ public class Game {
 				    	cleanerId++;
 					}
 				}
-				
+			
+			int howManyDead = 0;
+			for(PlayerRobot pRobot : GameMap.getRobots()) {
+				if(pRobot.alive == false) {
+					howManyDead++;
+				}
+			}
+			if(howManyDead+1 >= GameMap.getRobots().size()) {
+				endGame();
+			}
 			if(elapsedTime == time){
 				endGame();
 			}
