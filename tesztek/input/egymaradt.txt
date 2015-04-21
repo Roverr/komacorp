@@ -1,5 +1,5 @@
 beginTest egymaradt
-loadMap Tesztmap
+loadMap kanyon
 add robot malzahar 70 60
 add robot corki 5 5
 run

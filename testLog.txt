@@ -1,1 +1,2 @@
-szolga1 0.0 0.0 CleanerRobot 0.0 1.0
+malzahar 0 KIESETT
+corki 0 KIESETT

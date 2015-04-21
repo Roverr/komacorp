@@ -1,5 +1,5 @@
 beginTest olajbaLep
-loadMap Tesztmap
+loadMap mezo
 add robot malzahar 1 0
 add olaj olaj1 1 2
 set malzahar speed 0 2
