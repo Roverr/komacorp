@@ -2,9 +2,27 @@ beginTest takaritas
 loadMap mezo
 add ragacs Ragacska 1 1
 add cleaner Takker 0 0
-run 4
+run 
+listRobots
+run 
+listRobots
+run 
+listRobots
+run 
+listRobots
+run 
+listRobots
 listRagacs
 add olaj Olajfolt 2 1
-run 4
+run 
+listRobots
+run 
+listRobots
+run 
+listRobots
+run 
+listRobots
+run 
+listRobots
 listOlaj
 listRobots
