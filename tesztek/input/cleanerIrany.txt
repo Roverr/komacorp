@@ -1,7 +1,7 @@
 beginTest cleanerIrany
 loadMap Tesztmap
-add olaj olaj2 1 1
-add olaj olaj3 0 10
+add olaj olaj1 1 1
+add olaj olaj2 0 10
 add cleaner Takker 0 0
 add cleaner Lolita 0 0
 add cleaner Joe 1 0

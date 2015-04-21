@@ -1,8 +1,10 @@
 beginTest takaritas
 loadMap Tesztmap
+add ragacs ragacs1 1 1
 add cleaner szolga1 0 0
 run 4
-listOlaj
-run 4
 listRagacs
+add olaj olaj1 2 1
+run 4
+listOlaj
 listRobots

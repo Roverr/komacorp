@@ -1,4 +1,5 @@
 beginTest olajEltunik
 loadMap Tesztmap
+add olaj1 0 0
 run 4
 listOlaj
