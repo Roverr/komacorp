@@ -33,15 +33,15 @@ public class CleanerRobot extends Robot implements Serializable {
 	private FloatPoint target;
 
 	private static final long serialVersionUID = 2858679422774498028L;
-	
 
 	public CleanerRobot(Map m) {
 		target = nextTarget(m, "normal");
-		state = CleanerState.moving;
-		
-		Vector sp = new Vector(target.getX()- position.getX(), target.getY()- position.getY());
+		state = CleanerState.waiting;
+
+		Vector sp = new Vector(target.getX() - position.getX(), target.getY()
+				- position.getY());
 		sp.normalize();
-		//System.out.println(sp.getX());
+		// System.out.println(sp.getX());
 		setCurrentSpeed(sp);
 	}
 
@@ -54,7 +54,16 @@ public class CleanerRobot extends Robot implements Serializable {
 	 */
 	public void setCurrentSpeed(Vector force) {
 		this.speed = force;
-	};
+	}
+
+	public CleanerState getState() {
+		return this.state;
+	}
+
+
+	public void setState(CleanerState state) {
+		this.state = state;
+	}
 
 	/**
 	 * Megöli a takarító robotot. Akkor hívódik ha rálépnek.
@@ -64,7 +73,7 @@ public class CleanerRobot extends Robot implements Serializable {
 		setCurrentSpeed(zero);
 		setAlive(false);
 		Olaj olaj = new Olaj(11, this.position);
-		PrototypeUtility.addClass(olaj, "olaj"+Game.olajId);
+		PrototypeUtility.addClass(olaj, "olaj" + Game.olajId);
 		Game.olajId++;
 		map.addMapItem(olaj); // ;)
 	}
@@ -94,9 +103,10 @@ public class CleanerRobot extends Robot implements Serializable {
 	public void jump(Map map) {
 		int roundItTakesToClean = 2;
 		position.add(speed);
-		boolean isItThere = (position.distance(target) < 1f && map.getMapItems().size() >= 1);
+		boolean isItThere = (position.distance(target) < 1f && map
+				.getMapItems().size() >= 1);
 		if (isItThere) {
-			speed = new Vector(0f,0f);
+			speed = new Vector(0f, 0f);
 			// Akadályra érkezés
 			if (state == CleanerState.moving) {
 				state = CleanerState.cleaning;
@@ -106,24 +116,28 @@ public class CleanerRobot extends Robot implements Serializable {
 			} else {
 				if (remainingClean <= 0) {
 					target = nextTarget(map, "");// VÁLTOZÁS! MIUTÁN
-															// VÉGZETT MEGY A
-															// KÖVETKEZÕHÖZ
-					Vector sp = new Vector(target.getX()- position.getX(), target.getY()- position.getY());
+													// VÉGZETT MEGY A
+													// KÖVETKEZÕHÖZ
+					Vector sp = new Vector(target.getX() - position.getX(),
+							target.getY() - position.getY());
 					sp.normalize();
 					setCurrentSpeed(sp);
-					//Sebesség beállítása, hogy 1 hosszú legyen;
+					// Sebesség beállítása, hogy 1 hosszú legyen;
 					if (target.equals(position)) {
 						state = CleanerState.waiting;
-					} else{
+					} else {
 						state = CleanerState.moving;
 					}
 					MapItem mI;
 					for (int i = 0; i < map.getMapItems().size(); i++) {
 						mI = map.getMapItems().get(i);
-						boolean isItTarget = (mI.getPosition().getX() == getTarget().getX() && mI.getPosition().getY() == getTarget().getY());
+						boolean isItTarget = (mI.getPosition().getX() == getTarget()
+								.getX() && mI.getPosition().getY() == getTarget()
+								.getY());
 						if (isItTarget) {
 							map.getMapItems().remove(mI);
-							System.out.println("Removed " + getNameFromType(mI));
+							System.out
+									.println("Removed " + getNameFromType(mI));
 						}
 					}
 				} else {
@@ -131,48 +145,50 @@ public class CleanerRobot extends Robot implements Serializable {
 				}
 			}
 			// Game osztály elpuszítja a targetet, itt már csak hibát kapunk el
-			
+
 		} else {
-			if(PrototypeUtility.allowDebug)System.out
-			.println("Error! CleanerRobot standing on shit, and it's still alive");
+			if (PrototypeUtility.allowDebug)
+				System.out
+						.println("Error! CleanerRobot standing on shit, and it's still alive");
 		}
 
 	}
-	
+
 	/**
-	 * Hacking........ Get name from Class's file name. 
+	 * Hacking........ Get name from Class's file name.
+	 * 
 	 * @param mi
 	 * @return
 	 */
-	private String getNameFromType(MapItem mi){
-		if(mi.toString().contains("Olaj")){
+	private String getNameFromType(MapItem mi) {
+		if (mi.toString().contains("Olaj")) {
 			return "Olaj";
 		} else {
 			return "Ragacs";
 		}
 	}
 
-	
 	/**
 	 * Kijelöli a következõ célpontot,azt a mapitemet ami a legközelebb van
 	 * 
 	 */
-	private FloatPoint nextTarget(Map map, String mode) {
+	/*private FloatPoint nextTarget(Map map, String mode) {
 		Line line = new Line(this.position.getX(), this.position.getY(), 0, 0);
-		FloatPoint hova = new FloatPoint(this.position.getX(), this.position.getY());
+		FloatPoint hova = new FloatPoint(this.position.getX(),
+				this.position.getY());
 		double minlength = 1000000;
 		if (mode.equals("abnormal")) {// ez az irányváltoztatáshoz kell, nem
 										// definiált irányba mennek tovább
 			int meret = map.getMapItems().size();
-			if(meret > 0) {
-			Random random = new Random();
-			int index = random.nextInt(meret);
-			hova = map.getMapItems().get(index).getPosition();
+			if (meret > 0) {
+				Random random = new Random();
+				int index = random.nextInt(meret);
+				hova = map.getMapItems().get(index).getPosition();
 			} else {
-				if(getTarget() != null) {
+				if (getTarget() != null) {
 					hova = getTarget();
 				} else {
-					hova = new FloatPoint(0,0);
+					hova = new FloatPoint(0, 0);
 				}
 			}
 		} else {
@@ -180,14 +196,14 @@ public class CleanerRobot extends Robot implements Serializable {
 				line.setX2(i.getPosition().getX());
 				line.setY2(i.getPosition().getY());
 				// rövidebb az út és olaj van ott
-				if (minlength > line.length()){
+				if (minlength > line.length()) {
 					minlength = line.length();
 					hova = i.getPosition();
 				}
 			}
 		}
 		return hova;
-	}
+	}*/
 
 	/**
 	 * Lekezeli a kisrobot ütközését valami mással ha másik kisrobottal ütköznek
@@ -195,33 +211,32 @@ public class CleanerRobot extends Robot implements Serializable {
 	 * folt felé
 	 * 
 	 * @author Barna
+	 * 
+	 * MÉG NEM JÓ A COLLIDE!!!!!!
 	 */
 	@Override
 	public void collide(Robot robot, Map map, boolean thesame) {
 		if (thesame) {
-			MapItem myTarget = findMyTarget(map);
-			if(myTarget!=null){
-			if(myTarget.state == CleaningState.beingCleaned && remainingClean==0) {
-				target = nextTarget(map,"abnormal");
-			}
+			if (this.target == null) {
+				this.target=(CleanerRobot)robot.getTarget();
 			} else {
-				target = nextTarget(map,"abnormal");
+				this.die(map);
+				map.addMapItem(new Olaj(this.position));
 			}
-		} else {
-			this.die(map);
-			map.addMapItem(new Olaj(this.position));
 		}
 	}
-	
+
 	/**
-	 * Megkeresi az adott cél objektumot a MapItemek között. 
+	 * Megkeresi az adott cél objektumot a MapItemek között.
+	 * 
 	 * @param map
 	 * @return - A célnak kijelölt takarítandó objektum
 	 */
 	private MapItem findMyTarget(Map map) {
-		for(MapItem mI : map.getMapItems()) {
-			boolean isItTarget = (mI.getPosition().getX() == target.getX() && mI.getPosition().getY() == target.getY());
-			if(isItTarget) {
+		for (MapItem mI : map.getMapItems()) {
+			boolean isItTarget = (mI.getPosition().getX() == target.getX() && mI
+					.getPosition().getY() == target.getY());
+			if (isItTarget) {
 				return mI;
 			}
 		}

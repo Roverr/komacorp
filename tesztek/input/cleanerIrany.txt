@@ -1,18 +1,23 @@
 beginTest cleanerIrany
 loadMap mezo
-add olaj olaj1 1 0
-add olaj olaj2 0 10
-add cleaner Takker 0 0
-add cleaner Lolita 0 0
-add cleaner Joe 1 0
-add cleaner Bob 5 5
+add olaj olaj1 5.0 0.0
+add olaj ragacs2 0.0 10.0
+add cleaner Takker 0.0 0.0
 run
 listRobots
+listOlaj
 run
 listRobots
+listOlaj
 run
 listRobots
+listOlaj
 run
 listRobots
+listOlaj
 run
 listRobots
+listOlaj
+run
+listRobots
+listOlaj
