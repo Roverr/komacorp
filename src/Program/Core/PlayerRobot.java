@@ -31,7 +31,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 	protected String pilot;
 	protected List<Integer> mapItemCarriedCounter;
 	private static final long serialVersionUID = -8700911186613988616L;
-	private int wantToDrop;
+	public int wantToDrop;
 	protected Vector modSpeed = new Vector(0,0);
 
 	/**
