@@ -2,5 +2,5 @@ beginTest egymaradt
 loadMap mezo
 add robot malzahar 150 150
 add robot corki 5 5
-run 2
+run 
 result

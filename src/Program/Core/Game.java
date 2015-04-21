@@ -116,9 +116,6 @@ public class Game {
 				//Az eltelt idõ nõ.
 				elapsedTime++;
 				if(PrototypeUtility.allowDebug)System.out.println("time = " + elapsedTime + " < " + time);
-				if(elapsedTime+1 == time) {
-					endGame();
-				}
 				//új cleaner robot felvétele.
 				//Mindíg 10 körönként történik, egyszerre 3 cleanerRobot van max a pályán.
 				List<CleanerRobot> takker= GameMap.getCleanerRobots();
@@ -138,25 +135,17 @@ public class Game {
 				    	cleanerId++;
 					}
 				}
-			}
-			int howManyDead = 0;
-			for (PlayerRobot pRobot : GameMap.getRobots()) {
-				if (pRobot.alive == false) {
-					howManyDead++;
-				}
-			}
-			if (howManyDead + 1 >= GameMap.getRobots().size()) {
 				endGame();
+			}else {
+				if (PrototypeUtility.allowDebug)
+					System.out.println("Game Ends now.");
+				throw new Exception("EndOfGame!");
 			}
-		
-		else {
-			if (PrototypeUtility.allowDebug)
-				System.out.println("Game Ends now.");
-			throw new Exception("EndOfGame!");
+			
+			SkeletonUtility.printReturn("Run", this);
 		}
 		
-		SkeletonUtility.printReturn("Run", this);
-	}
+
 
 
 	/**
