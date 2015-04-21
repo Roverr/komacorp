@@ -78,8 +78,8 @@ public class SkeletonUtility {
 			e.printStackTrace();
 		}		
 		dummyRobot = new PlayerRobot();
-		new Olaj(10, new Point(0,0));
-		new Ragacs(3, new Point(0,0));
+		//new Olaj(10, new Point(0,0));
+		//new Ragacs(3, new Point(0,0));
 
 		// Kiírások engedélyezése:
 		allowSkeleton = true;

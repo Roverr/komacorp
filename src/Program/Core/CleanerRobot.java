@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.io.Serializable;
 import java.util.Random;
 
+import Program.Core.MapItem.CleaningState;
 import Program.Helpers.FloatPoint;
 import Program.Helpers.Line;
 import Program.Helpers.Vector;
@@ -105,6 +106,8 @@ public class CleanerRobot extends Robot implements Serializable {
 			if (state == CleanerState.moving) {
 				state = CleanerState.cleaning;
 				remainingClean = roundItTakesToClean;
+				MapItem myTarget = findMyTarget(map);
+				myTarget.state = CleaningState.beingCleaned;
 			} else {
 				if (remainingClean <= 0) {
 					target = nextTarget(map, "");// VÁLTOZÁS! MIUTÁN
@@ -220,10 +223,28 @@ public class CleanerRobot extends Robot implements Serializable {
 	@Override
 	public void collide(Robot robot, Map map, boolean thesame) {
 		if (thesame) {
-			nextTarget(map, "abnormal");
+			MapItem myTarget = findMyTarget(map);
+			if(myTarget.state == CleaningState.beingCleaned) {
+				nextTarget(map,"abnormal");
+			}
 		} else {
 			this.die(map);
 		}
+	}
+	
+	/**
+	 * Megkeresi az adott cél objektumot a MapItemek között. 
+	 * @param map
+	 * @return - A célnak kijelölt takarítandó objektum
+	 */
+	private MapItem findMyTarget(Map map) {
+		for(MapItem mI : map.getMapItems()) {
+			boolean isItTarget = (mI.getPosition().getX() == target.getX() && mI.getPosition().getY() == target.getY());
+			if(isItTarget) {
+				return mI;
+			}
+		}
+		return null;
 	}
 
 }
