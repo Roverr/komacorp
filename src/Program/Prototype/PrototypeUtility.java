@@ -354,7 +354,7 @@ public class PrototypeUtility {
 			builder.append(name + " "+  
 					numOut(robot.getPosition().getX()) + " " + numOut(robot.getPosition().getY()) + 
 					" " + robotType +" " + 
-					numOut(robot.getSpeed().getX()) + " " + numOut(robot.getSpeed().getY() )+ alive + "\n");
+					numOut(robot.getSpeed().getX()) + " " + numOut(robot.getSpeed().getY() )+ " " + alive + "\n");
 			
 		}
 		return builder.toString();
