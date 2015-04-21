@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import Program.Helpers.FloatPoint;
 import Program.Helpers.Line;
 import Program.Helpers.Vector;
 import Program.Prototype.MyFileNotFoundException;
@@ -78,7 +80,7 @@ public class Map implements Serializable {
 	 */
 	public void setPlayerRobots(List<PlayerRobot> robots) throws Exception {
 		for (PlayerRobot r : robots) {
-			this.addPlayerRobot(r.getName(), r.getPosition().x,
+			this.addPlayerRobot(r.getName(), r.getPosition().getX(),
 					r.getPosition().y);
 		}
 	}
@@ -89,7 +91,7 @@ public class Map implements Serializable {
 	 * 
 	 * @throws Exception
 	 */
-	public void addPlayerRobot(String name, int x, int y) throws Exception {
+	public void addPlayerRobot(String name, float x, float y) throws Exception {
 		if (playerRobots.size() <= 3) {
 			PlayerRobot robot = new PlayerRobot();
 			PrototypeUtility.addClass(robot, name);
@@ -294,7 +296,7 @@ public class Map implements Serializable {
 	 *            akadályokhoz viszonyítva.
 	 * @author Bence
 	 */
-	private Boolean isOnTrack(Point point) {
+	private Boolean isOnTrack(FloatPoint point) {
 		// egy biztosan külsõ pont keresése
 		Point kulso = new Point(0, 0);
 		for (Line i : track) {

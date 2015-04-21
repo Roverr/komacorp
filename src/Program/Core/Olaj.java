@@ -2,6 +2,7 @@ package Program.Core;
 
 import java.awt.Point;
 
+import Program.Helpers.FloatPoint;
 import Program.Helpers.Vector;
 
 /**
@@ -24,7 +25,7 @@ public class Olaj extends MapItem {
 	 * Az olaj aktivitási idejét állítja be a konstruktor.
 	 * @param timing - Az idõ ameddig az olaj aktív
 	 */
-	public Olaj(int timing,Point position) {
+	public Olaj(int timing,FloatPoint position) {
 		this.setTimeLeft(timing);
 		this.position = position;
 	}
@@ -33,7 +34,7 @@ public class Olaj extends MapItem {
 	 * Publikus konstruktor ami az olaj pozíciójával képes beállítani
 	 * @param position
 	 */
-	public Olaj(Point position){
+	public Olaj(FloatPoint position){
 		this(20,position);
 	}
 	

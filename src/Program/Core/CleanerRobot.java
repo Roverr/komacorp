@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.io.Serializable;
 import java.util.Random;
 
+import Program.Helpers.FloatPoint;
 import Program.Helpers.Line;
 import Program.Helpers.Vector;
 import Program.Prototype.PrototypeUtility;
@@ -29,7 +30,7 @@ public class CleanerRobot extends Robot implements Serializable {
 	// Mit csinál a robot takarít, vagy a következõ oljfolthoz megy.
 	CleanerState state;
 
-	private Point target;
+	private FloatPoint target;
 
 	private static final long serialVersionUID = 2858679422774498028L;
 	
@@ -75,7 +76,7 @@ public class CleanerRobot extends Robot implements Serializable {
 	 * 
 	 * @return
 	 */
-	public Point getTarget() {
+	public FloatPoint getTarget() {
 		return target;
 	}
 
@@ -85,7 +86,7 @@ public class CleanerRobot extends Robot implements Serializable {
 	 * @param target
 	 *            - A célpontnak a helye
 	 */
-	public void setTarget(Point target) {
+	public void setTarget(FloatPoint target) {
 		this.target = target;
 	}
 

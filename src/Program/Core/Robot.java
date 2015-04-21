@@ -2,6 +2,7 @@ package Program.Core;
 
 import java.awt.Point;
 
+import Program.Helpers.FloatPoint;
 import Program.Helpers.Vector;
 /**
  * TODO: KOMMENTEZÉS
@@ -23,14 +24,14 @@ public abstract class Robot {
 	protected boolean alive;
 	protected int distance;
 	protected Vector speed;
-	protected Point position;
+	protected FloatPoint position;
 	
 	/**
 	 * Publikus Robot õskonstruktor
 	 */
 	public Robot() {
 		speed = new Vector(0,0);
-		position = new Point(0,0);
+		position = new FloatPoint(0,0);
 		alive = true;
 		distance = 0;
 	}
@@ -75,7 +76,7 @@ public abstract class Robot {
 	 * Visszadja az aktuális pozíciót
 	 * @return
 	 */
-	public Point getPosition() {
+	public FloatPoint getPosition() {
 		return position;
 	}
 	
@@ -83,17 +84,17 @@ public abstract class Robot {
 	 * Beállítja az akutális pozíciót.
 	 * @param position
 	 */
-	public void setPosition(Point position) {
+	public void setPosition(FloatPoint position) {
 		this.position= position;
 	}
 	
 	/**
-	 * Beállítja az aktuális pozíciót két int pont alapján.
+	 * Beállítja az aktuális pozíciót két float pont alapján.
 	 * @param x - X koordináta
 	 * @param y - Y koordináta
 	 */
-	public void setPosition(int x, int y) {
-		this.position = new Point(x,y);
+	public void setPosition(float x, float y) {
+		this.position = new FloatPoint(x,y);
 	}
 	
 	/**

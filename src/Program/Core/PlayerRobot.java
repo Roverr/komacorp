@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import Program.Helpers.FloatPoint;
 import Program.Helpers.Vector;
 import Program.Prototype.PrototypeUtility;
 import Program.Skeleton.SkeletonUtility;
@@ -163,9 +164,9 @@ public class PlayerRobot extends Robot implements Serializable  {
 		//Ha életben van, akkor távolságot számolunk
 		if (alive){
 			countDistance(time);
+			FloatPoint newPosition=new FloatPoint(this.position.getX()+Math.round(time*speed.getX()),this.position.getY()+Math.round(time*speed.getY()));
+			this.setPosition(newPosition);
 		}
-		this.position.x+=Math.round(time*speed.getX());
-		this.position.y+=Math.round(time*speed.getY());
 		
 		SkeletonUtility.printReturn("Jump", this);
 		}
@@ -190,7 +191,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 			/*Meghatározom az új pozíciót (hozzáadódik a mostanihoz a sebességvektor)*/
 			x += modSpeed.getX();
 			y += modSpeed.getY();
-			Point newPosition = new Point(x, y);
+			FloatPoint newPosition = new FloatPoint(x, y);
 			
 			/*Módosul a pozíció*/
 			this.setPosition(newPosition);
