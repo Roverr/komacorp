@@ -1,6 +1,6 @@
 olaj 3
 ragacs 3
-olaj1 5 5 Olaj 0
-malzahar 5 6 PlayerRobot 0 1
+olaj1 5.0 5.0 Olaj 0
+malzahar 5.0 6.0 PlayerRobot 0.0 1.0
 olaj 2
 ragacs 3
