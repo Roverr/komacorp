@@ -52,5 +52,8 @@ public class Ragacs extends MapItem{
 	public void stepIn(PlayerRobot playerRobot) {
 		setStepinCounter(getStepinCounter()-1);
 		playerRobot.modifySpeed(playerRobot.getModSpeed().cutIntoHalf());
+		if(stepInCounter == 0){
+			//TODO RemoveMapItem
+		}
 	}
 }

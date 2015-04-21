@@ -29,7 +29,7 @@ public class Game {
 		public Game(int seconds, String mapname, int numberOfPlayers) throws MyFileNotFoundException{
 			SkeletonUtility.addClass(this, "dummyGame");
 			SkeletonUtility.printCall("Game", this);
-			GameMap=new Map();
+			GameMap = new Map();
 			try {
 				GameMap.loadMap(mapname,numberOfPlayers);
 			} catch (FileNotFoundException e) {
@@ -37,7 +37,7 @@ public class Game {
 				e.printStackTrace();
 				throw new MyFileNotFoundException();
 			}
-			this.time=seconds;
+			this.time = seconds;
 			elapsedTime = 0;
 			SkeletonUtility.printReturn("Game", this);
 		}
@@ -57,7 +57,7 @@ public class Game {
 		/**
 		 * A játék véget érésénél hívódik meg, illetve ha már nincs aktív játékos a pályán
 		 */
-		public String endResult;
+		public String endResult; // Az eredmény, ez null egészen a játék végéig.
 		public void endGame(){
 			SkeletonUtility.printCall("EndGame", this);
 			
@@ -83,6 +83,9 @@ public class Game {
 			if(elapsedTime < time){
 				SkeletonUtility.printCall("Run", this);
 				GameMap.validateStates();
+				//TODO Update MapItems (Olajok felszáradnak)
+				//TODO Update PlayerRobots (if alive ValidateState, if still alive Jump)
+				//TODO dropOlaj, és dropRagacsot innen meghívni!
 				/*if(!GameMap.getMapItems().isEmpty()) {
 					
 				}
@@ -99,22 +102,27 @@ public class Game {
 					
 				}*/
 				
+				//TODO ValidateState for cleaner robot, for collison check.
 				for (CleanerRobot cl : GameMap.getCleanerRobots()) {
 					cl.jump(GameMap);
 				}
 				
+				//Az eltelt idõ nõ.
 				elapsedTime++;
 				System.out.println("time = " + elapsedTime + " < " + time);
-				//új cleaner robot felvétele
+				//új cleaner robot felvétele.
+				//Mindíg 10 körönként történik, egyszerre 3 cleanerRobot van max a pályán.
 				List<CleanerRobot> takker= GameMap.getCleanerRobots();
 				if (takker.size()<3 && elapsedTime % 10 == 1){
 					boolean ures = true;
-					for(CleanerRobot r : takker){						
+					for(CleanerRobot r : takker){
+						//TODO Check for PlayerRobots as well.
 						if(r.getPosition().getX() == 0 && r.getPosition().getY() == 0)
 						  ures = false;
 					}
 					if (ures){
 						CleanerRobot tmp= new CleanerRobot(GameMap);
+						//TODO This position should depend on map (Start checkpoint felezõ?)
 						tmp.setPosition(0, 0);
 				    	GameMap.getCleanerRobots().add(tmp);
 				    	PrototypeUtility.addClass(tmp, "szolga"+cleanerId);

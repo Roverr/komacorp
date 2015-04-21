@@ -32,6 +32,8 @@ public class CleanerRobot extends Robot implements Serializable {
 	private Point target;
 
 	private static final long serialVersionUID = 2858679422774498028L;
+	
+	//TODO A normal way to get the active Map, and thus the closest target.
 
 	public CleanerRobot(Map m) {
 		Vector speedConst = new Vector(0, 1);
@@ -92,6 +94,8 @@ public class CleanerRobot extends Robot implements Serializable {
 	 */
 	public void jump(Map map) {
 		int roundItTakesToClean = 2;
+		//TODO Position detection based on distance.
+		//TODO Moving = speed vektor a target irányába.
 		if (this.getPosition() == this.getTarget()) {
 			// Akadályra érkezés
 			if (state == CleanerState.moving) {
@@ -104,8 +108,9 @@ public class CleanerRobot extends Robot implements Serializable {
 															// KÖVETKEZÕHÖZ
 					if (target.equals(position)) {
 						state = CleanerState.waiting;
-					} else
+					} else{
 						state = CleanerState.moving;
+					}
 					for (MapItem mI : map.getMapItems()) {
 						if (mI.getPosition() == getTarget()) {
 							map.getMapItems().remove(mI);
@@ -130,11 +135,9 @@ public class CleanerRobot extends Robot implements Serializable {
 	 */
 	private void move() {
 		Point currentPosition = getPosition();
-		/**
-		 * TODO: Ide kell majd valami logika, ami ellenõrzi, hogy nem megy-e a
-		 * falnak a robot nem zuhan-e a szakadékba. Az se baj ha ezt a Game
-		 * osztály kezeli.
-		 */
+		
+		//TODO Ez itt hibásan mûködik.
+		//Pl mivan akkor ha egyenlõ az egyik kordináta?
 
 		// Ha lejebb van az X és Y tengelyen is
 		if (currentPosition.x < target.x && currentPosition.y < target.y) {

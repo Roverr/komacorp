@@ -246,6 +246,7 @@ public class Map implements Serializable {
 	 */
 	public void validateStates() throws IOException {
 		SkeletonUtility.printCall("ValidateState", this);
+		//TODO Checkpointon keresztülmenés (PlayerRobotban változtat valamit).
 		for (PlayerRobot probot : playerRobots) {
 
 			if (!this.isOnTrack(probot.getPosition()))

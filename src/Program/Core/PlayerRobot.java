@@ -96,7 +96,9 @@ public class PlayerRobot extends Robot implements Serializable  {
 	 * @author Hunor
 	 */
 	public void modifySpeed(Vector force) {
-		modSpeed.add(force);
+		//modSpeed.add(force)
+		//Ezt megváltoztattam, szerintem így helyes
+		setModSpeed(force);
 	}
 	
 	public Vector getModSpeed(){
@@ -154,8 +156,9 @@ public class PlayerRobot extends Robot implements Serializable  {
 		/**
 		 * TODO 
 		 * mennyi idõ egy ugrás??
+		 *  : 1 run hívás = 1 ugrás.
 		 */
-		int time=10;
+		int time=1;
 		this.speed.add(this.modSpeed);
 		//Ha életben van, akkor távolságot számolunk
 		if (alive){
@@ -166,24 +169,19 @@ public class PlayerRobot extends Robot implements Serializable  {
 		
 		SkeletonUtility.printReturn("Jump", this);
 		}
+	
+	
 	public void jump(Map map) {
 		if (this.isAlive()){
 			SkeletonUtility.printCall("Jump", this);
 			this.speed.add(this.modSpeed);
-			/*TODO 
-			 * 1) Miért a Point-et használjuk a pozícióra?
-			 * Miért nem használjuk a Vector-t, ha már megírtuk? 
-			 * Pozíciót csak int pontosságra tárolunk? (Mert a point az int pontosságú, ezért
-			 * kell kasztolnom egy csomót, mert a vektorunk meg double)
-			 * Nem utolsó sorban hozzá se tudok adni a pozícióhoz vektort (nem ez lett
-			 * volna a modSpeed lényege?).
-			 * 2) Miért van a doksiban egy move függvény? Nem az ugráskor mozdul el a robot?*/
-			
+
 			/*Lekérdezem az aktuális pozíciót*/
 			int x = (int) this.getPosition().getX();
 			int y = (int) this.getPosition().getY();
 			Point oldPosition = new Point(x, y);
 			/*Ha dobni akar valamit (1 = ragacs, 2 = olaj), akkor ledobja*/
+			//TODO Ezt a mapból kéne meghívni...
 			if (wantToDrop == 1)
 				dropRagacs(map);
 			else if (wantToDrop == 2)
