@@ -43,15 +43,6 @@ public class CleanerRobot extends Robot implements Serializable {
 		setCurrentSpeed(sp);
 	}
 
-	public CleanerRobot(MapItem trg) {
-		if(PrototypeUtility.allowDebug)System.out.println("Cleaner robot did jump?");
-		setTarget(trg.getPosition());
-		state = CleanerState.moving;
-		Vector sp = new Vector(target.getX()- position.getX(), target.getY()- position.getY());
-		sp.normalize();
-		setCurrentSpeed(sp);
-	}
-
 	/**
 	 * Beállítja az aktuális gyorsaságát a robotnak. A konstruktorban hívódik,
 	 * illetve ha meghal a robot.
