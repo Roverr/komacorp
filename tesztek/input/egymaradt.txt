@@ -1,6 +1,6 @@
 beginTest egymaradt
 loadMap Tesztmap
-add robot malzahar 70 60
-add robot corki 5 5
+add robot malzahar 0 0
+add robot corki 150 230
 run
 result
