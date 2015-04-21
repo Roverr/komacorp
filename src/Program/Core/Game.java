@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import Program.Helpers.FloatPoint;
 import Program.Helpers.Vector;
 import Program.Prototype.MyFileNotFoundException;
 import Program.Prototype.PrototypeUtility;
@@ -39,6 +40,7 @@ public class Game {
 			}
 			this.time = seconds;
 			elapsedTime = 0;
+			cleanerId = 1;
 			SkeletonUtility.printReturn("Game", this);
 		}
 		
@@ -86,10 +88,13 @@ public class Game {
 				//Ellenõrzi az !összes! robot pozícióját
 				GameMap.validateStates();
 				
+				
+				int aliveCount = 0;
 				//Update PlayerRobots (if alive ValidateState, if still alive Jump)
 				for (PlayerRobot r : GameMap.getRobots()) {
 					if(r.isAlive()){
 						r.jump(GameMap);
+						aliveCount++;
 					}
 				}
 				
@@ -97,7 +102,6 @@ public class Game {
 					cl.jump(GameMap);
 				}
 				
-
 				//Update MapItems (Olajok felszáradnak)
 				if(!GameMap.getMapItems().isEmpty()) {
 					for(MapItem mi : GameMap.getMapItems()){
@@ -110,7 +114,7 @@ public class Game {
 				
 				//Az eltelt idõ nõ.
 				elapsedTime++;
-				System.out.println("time = " + elapsedTime + " < " + time);
+				if(PrototypeUtility.allowDebug)System.out.println("time = " + elapsedTime + " < " + time);
 				//új cleaner robot felvétele.
 				//Mindíg 10 körönként történik, egyszerre 3 cleanerRobot van max a pályán.
 				List<CleanerRobot> takker= GameMap.getCleanerRobots();
@@ -118,7 +122,7 @@ public class Game {
 					boolean ures = true;
 					for(CleanerRobot r : takker){
 						//TODO Check for PlayerRobots as well.
-						if(r.getPosition().getX() == 0 && r.getPosition().getY() == 0)
+						if(r.getPosition().distance(new FloatPoint(0f,0f)) < 1f)
 						  ures = false;
 					}
 					if (ures){
