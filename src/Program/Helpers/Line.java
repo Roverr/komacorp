@@ -161,9 +161,12 @@ public class Line implements Serializable{
 	 * @author Bence
 	 */	
 	private float rollDirection(Vector a, Vector b, Vector c){
-		c.subtraction(a);
-		b.subtraction(a);
-		return c.descartesProduct(b);
+		Vector cc= new Vector(c.getX(),c.getY());
+		Vector bb= new Vector(b.getX(),b.getY());
+		Vector aa= new Vector(a.getX(),a.getY());
+		cc.subtraction(aa);
+		bb.subtraction(aa);
+		return cc.descartesProduct(bb);
 	}
 	
 	

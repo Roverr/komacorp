@@ -205,7 +205,7 @@ public class Map implements Serializable {
 			int y1 = input.get(i + 1);
 			int x2 = input.get(i + 2);
 			int y2 = input.get(i + 3);
-			track.add(new Line(x1, y1, x2, y2));
+			track.add(new Line(x1, x2, y1, y2));
 		}
 
 		/* A checkpointokat olvassa be */
@@ -214,7 +214,7 @@ public class Map implements Serializable {
 			int y1 = input.get(i + 1);
 			int x2 = input.get(i + 2);
 			int y2 = input.get(i + 3);
-			checkPoints.add(new Line(x1, y1, x2, y2));
+			checkPoints.add(new Line(x1, x2, y1, y2));
 		}
 	}
 
@@ -320,8 +320,9 @@ public class Map implements Serializable {
 				kulso.setY(i.y1);
 		}
 		// biztosan ne a bal alsó sarok legyen a külsõ pont
-		kulso.setX(kulso.getX()-5); 
-		Line tmpline = new Line(kulso.getX(), kulso.getY(), point.getX(), point.getY());
+		kulso.setX(kulso.getX()-5);
+		kulso.setY(kulso.getY()-7);
+		Line tmpline = new Line(kulso.getX(), point.getX(),  kulso.getY(), point.getY());
 		/*
 		 * megszámoljuk, hogy egy külsõ pont és az adott pont közötti szakasz
 		 * hány egyenest metsz. Ha páros, akkor pályán kívüli, ha páratlan
@@ -366,8 +367,7 @@ public class Map implements Serializable {
 	 */
 	public Boolean isCheckPointChecked(Robot robot, FloatPoint beforejump) {
 		// ugrás vonalának megadása
-		Line ugras = new Line(robot.position.getX(), robot.position.getY(), beforejump.getX(),
-				beforejump.getY());
+		Line ugras = new Line(robot.position.getX(),beforejump.getX(), robot.position.getY(),beforejump.getY());
 		Boolean metsz = false;
 		for (Line i : checkPoints) {
 			if (i.intersect(ugras))
