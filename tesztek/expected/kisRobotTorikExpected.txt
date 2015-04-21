@@ -1,2 +1,2 @@
-olaj1 0.0 0.0 Olaj 0
-malzahar 0.0 0.0 PlayerRobot 1.0 0.0
+malzahar 0.0 0.0 PlayerRobot -2.0 0.0
+szolga1 0.0 0.0 CleanerRobot 0.0 1.0

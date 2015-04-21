@@ -218,7 +218,7 @@ public class PrototypeUtility {
 					testGame.run();
 				} catch (Exception e) {
 					//itt az az exceptionnak a message, hogy EndOfGame!
-					//e.printStackTrace();
+					e.printStackTrace();
 					outputWriter.println(e.getMessage());
 				}
 			}

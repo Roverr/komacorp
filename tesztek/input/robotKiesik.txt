@@ -1,6 +1,6 @@
 beginTest robotKiesik
 loadMap kanyon
-add robot malzahar 10 0
-set malzahar speed 5 0
+add robot malzahar 65 0
+set malzahar speed 6 0
 run
 result

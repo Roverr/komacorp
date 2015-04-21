@@ -2,7 +2,6 @@ beginTest kisRobotTorik
 loadMap mezo
 add robot malzahar 2 0
 set malzahar modSpeed -2 0
-add cleaner szolga1 0 0
 run
-listOlaj
+run
 listRobots
