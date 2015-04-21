@@ -1,7 +1,7 @@
 Olaj 3
 Ragacs 3
 ragacs1 5.0 6.0 Ragacs 3
-malzahar 5.0 6.0 PlayerRobot 0.0 1.0
-szolga1 0.0 0.0 CleanerRobot 0.64 0.99
+malzahar 5.0 6.0 PlayerRobot 0.0 1.0 ALIVE
+szolga1 0.0 0.0 CleanerRobot 0.64 0.99 ALIVE
 Olaj 3
 Ragacs 2

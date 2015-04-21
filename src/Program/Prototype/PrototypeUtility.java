@@ -347,9 +347,9 @@ public class PrototypeUtility {
 			}
 			String alive = "";
 			if(robot.isAlive()) {
-				alive = "ALIVE";
+				alive = " ALIVE";
 			} else {
-				alive = "DEAD";
+				alive = " DEAD";
 			}
 			builder.append(name + " "+  
 					numOut(robot.getPosition().getX()) + " " + numOut(robot.getPosition().getY()) + 
