@@ -41,6 +41,9 @@ public class Game {
 		}
 		this.time = seconds;
 		elapsedTime = 0;
+		cleanerId = 1;
+		olajId = 1;
+		ragacsId = 1;
 		SkeletonUtility.printReturn("Game", this);
 	}
 
@@ -76,7 +79,9 @@ public class Game {
 
 		SkeletonUtility.printReturn("EndGame", this);
 	}	
-		private static int cleanerId = 1;
+		public static int cleanerId = 1;	
+		public static int ragacsId = 1;	
+		public static int olajId = 1;
 		/**
 		 * Körök szimulálását végzi
 		 * @throws Exception 
