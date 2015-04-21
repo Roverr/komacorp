@@ -41,6 +41,9 @@ public class Game {
 		}
 		this.time = seconds;
 		elapsedTime = 0;
+		cleanerId = 1;
+		olajId = 1;
+		ragacsId = 1;
 		SkeletonUtility.printReturn("Game", this);
 	}
 
@@ -76,7 +79,9 @@ public class Game {
 
 		SkeletonUtility.printReturn("EndGame", this);
 	}	
-		private static int cleanerId = 1;
+		public static int cleanerId = 1;	
+		public static int ragacsId = 1;	
+		public static int olajId = 1;
 		/**
 		 * Körök szimulálását végzi
 		 * @throws Exception 
@@ -111,7 +116,9 @@ public class Game {
 				
 				//Update MapItems (Olajok felszáradnak)
 				if(!GameMap.getMapItems().isEmpty()) {
-					for(MapItem mi : GameMap.getMapItems()){
+					MapItem mi = null;
+					for(int i = 0; i < GameMap.getMapItems().size(); i++){
+						mi = GameMap.getMapItems().get(i);
 						mi.update();
 						if(!mi.isAlive()){
 							GameMap.removeMapItem(mi);

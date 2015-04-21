@@ -4,7 +4,7 @@ add robot malzahar 5 5
 set malzahar modSpeed 0 1
 set malzahar dropOlaj yes
 listRobotItems malzahar
-run
+run 
 listOlaj
 listRobots
 listRobotItems malzahar

@@ -168,7 +168,7 @@ public class PrototypeUtility {
 					Olaj o = new Olaj(new FloatPoint(x,y));
 					addClass(o, name);
 					m.addMapItem(o);
-				}else if(command[1].equals("Ragacs")){
+				}else if(command[1].equals("ragacs")){
 					Map m = getTestMap();
 					Ragacs o = new Ragacs(3, new FloatPoint(x,y));
 					addClass(o, name);
@@ -185,20 +185,22 @@ public class PrototypeUtility {
 					float x = Float.parseFloat(command[3]);
 					float y = Float.parseFloat(command[4]);
 					r.setSpeed(new Vector(x,y));
-				}else if(attr.equals("modSpeed") && obj instanceof PlayerRobot && command.length >= 5){
+				}else if(attr.equals("modSpeed") && command.length >= 5){
 					PlayerRobot r = (PlayerRobot) obj;
 					float x = Float.parseFloat(command[3]);
 					float y = Float.parseFloat(command[4]);
 					r.setModSpeed(new Vector(x,y));
-				}else if(attr.equals("dropolaj") && obj instanceof PlayerRobot && command.length >= 4){
+				}else if(attr.equals("dropOlaj") && obj instanceof PlayerRobot && command.length >= 4){
+					if(allowDebug)System.out.println("Want Drop the Olaj got this far.");
 					PlayerRobot r = (PlayerRobot) obj;
 					boolean drop = yesOrNo(command[3]);
 					if(drop){
 						r.setWantToDrop(2);
+						if(allowDebug)System.out.println("Want Drop the Olaj set.");
 					}else{
 						r.setWantToDrop(0);
 					}
-				}else if(attr.equals("dropragacs") && obj instanceof PlayerRobot && command.length >= 4){
+				}else if(attr.equals("dropRagacs") && obj instanceof PlayerRobot && command.length >= 4){
 					PlayerRobot r = (PlayerRobot) obj;
 					boolean drop = yesOrNo(command[3]);
 					if(drop){
@@ -223,15 +225,19 @@ public class PrototypeUtility {
 				}
 			}
 		}else if(comm.equals("listOlaj")){
+			if(allowDebug)System.out.println(" Fuck. My. Life.");
 			Map m = getTestMap();
 			List<Olaj> olajok = new ArrayList<Olaj>();
 			for (MapItem item : m.getMapItems()) {
+					if(allowDebug)System.out.println(" (Not) Added an olaj ot the output list.");
 				if(item instanceof Olaj){
 					olajok.add((Olaj) item);
 				}
 			}
 			String output = listOlaj(olajok);
-			outputWriter.print(output);
+			if(output!= null){
+				outputWriter.print(output);
+			}
 		}else if(comm.equals("listRagacs")){
 			Map m = getTestMap();
 			List<Ragacs> ragacsok = new ArrayList<Ragacs>();
@@ -241,28 +247,30 @@ public class PrototypeUtility {
 				}
 			}
 			String output = listRagacs(ragacsok);
-			outputWriter.print(output);
+			if(output!= null){
+				outputWriter.print(output);
+			}
 		}else if(comm.equals("listRobots")){
-			if(allowDebug)System.out.println("listing them robotz:");
 			Map m = getTestMap();
 			List<Robot> robotok = new ArrayList<Robot>();
 			for (Robot robot : m.getRobots()) {
-				if(allowDebug)System.out.println("Booyaa DID my RESEArch");
 				robotok.add(robot);
 			}
 			for (Robot robot : m.getCleanerRobots()) {
 				robotok.add(robot);
 			}
 			String output = listRobots(robotok);
-			outputWriter.print(output);
+			if(output!= null){
+				outputWriter.print(output);
+			}
 			System.out.println(output);
 		}else if(comm.equals("listRobotItems")){
 			if (command.length >= 2) {
 				String name = command[1];
 				PlayerRobot r = (PlayerRobot)classTable.get(name);
 				List<Integer> items = r.getItemsContained();
-				outputWriter.println("Ragacs " + items.get(0));
 				outputWriter.println("Olaj " + items.get(1));
+				outputWriter.println("Ragacs " + items.get(0));
 			}
 				
 		}else if(comm.equals("result")){
