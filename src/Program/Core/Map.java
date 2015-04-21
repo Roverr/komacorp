@@ -117,7 +117,6 @@ public class Map implements Serializable {
 			}
 			temp.add(r.name + " " + r.distance + kiesett);
 		}
-
 		SkeletonUtility.printReturn("GetResult", this);
 		return temp;
 

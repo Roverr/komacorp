@@ -1,20 +1,2 @@
-Takker 1.0 0.0 CleanerRobot 0.0 1.0
-Lolita 1.0 0.0 CleanerRobot 0.0 1.0
-Joe 1.0 1.0 CleanerRobot 0.0 1.0
-Bob 4.0 5.0 CleanerRobot 0.0 1.0
-Takker 1.0 1.0 CleanerRobot 0.0 1.0
-Lolita 1.0 1.0 CleanerRobot 0.0 1.0
-Joe 1.0 1.0 CleanerRobot 0.0 1.0
-Bob 3.0 5.0 CleanerRobot 0.0 1.0
-Takker 0.0 1.0 CleanerRobot 0.0 1.0
-Lolita 0.0 1.0 CleanerRobot 0.0 1.0
-Joe 1.0 1.0 CleanerRobot 0.0 1.0
-Bob 2.0 5.0 CleanerRobot 0.0 1.0
-Takker 0.0 2.0 CleanerRobot 0.0 1.0
-Lolita 0.0 2.0 CleanerRobot 0.0 1.0
-Joe 1.0 1.0 CleanerRobot 0.0 1.0
-Bob 1.0 5.0 CleanerRobot 0.0 1.0
-Takker 0.0 3.0 CleanerRobot 0.0 1.0
-Lolita 0.0 3.0 CleanerRobot 0.0 1.0
-Joe 1.0 1.0 CleanerRobot 0.0 1.0
-Bob 1.0 4.0 CleanerRobot 0.0 1.0
+malzahar 0 KIESETT
+corki 0 KIESETT
