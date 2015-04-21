@@ -102,7 +102,7 @@ public class CleanerRobot extends Robot implements Serializable {
 				state = CleanerState.cleaning;
 				remainingClean = roundItTakesToClean;
 				MapItem myTarget = findMyTarget(map);
-				myTarget.state = CleaningState.beingCleaned;
+
 			} else {
 				if (remainingClean <= 0) {
 					target = nextTarget(map, "");// VÁLTOZÁS! MIUTÁN
