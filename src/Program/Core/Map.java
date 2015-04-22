@@ -290,44 +290,6 @@ public class Map implements Serializable {
 			}
 		}
 		
-		for (MapItem mi : mapItems) {
-			if (mi.getState().equals(CleaningState.canBeCleaned)) {
-				CleanerRobot nearestCleaner = null;
-				Vector nearestDistance=null;
-				for (CleanerRobot crobot : cleanerRobots) {
-					if (crobot.getState().equals(CleanerState.waiting)) {//olyan robotok közül választ akik épp várakoznak
-						Vector tempDistance=new Vector(  Math.abs(mi.getPosition().getX()-crobot.getPosition().getX()), Math.abs( mi.getPosition().getY()-crobot.getPosition().getY() ));
-						if (nearestCleaner == null){//ha még nincs szabad robot hozzárendelve
-							nearestCleaner = crobot;
-							nearestDistance = tempDistance;
-							nearestCleaner.setState(CleanerState.moving);
-						}else {
-							if(tempDistance.length()<nearestDistance.length()){
-								
-								nearestDistance=tempDistance;
-								nearestCleaner=crobot;
-							}
-
-						}
-					}
-				}
-				
-				if(!(nearestCleaner==null)){//tehát találtunk megfelelõ robotot
-					nearestCleaner.setTarget(mi.getPosition());
-					nearestCleaner.setState(CleanerState.moving);
-				}
-				
-			}
-		}
-		
-		//ez azért kell hogy azok a robotok amiknek nincs irányuk egy helyben várakozzanak
-		for (CleanerRobot crobot : cleanerRobots) {
-			if(crobot.getTarget()==null){
-				crobot.setSpeed(new Vector(0,0));
-				crobot.setState(CleanerState.waiting);
-			}
-		}
-
 		SkeletonUtility.printReturn("ValidateState", this);
 	}
 

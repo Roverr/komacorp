@@ -1,1 +1,7 @@
-szolga1 2.0 1.0 CleanerRobot 0.0 0.0 Alive
+Ragacska 2.0 0.0 Ragacs 3
+Takker 0.0 0.0 CleanerRobot 1.0 0.0 ALIVE
+No ragacs on the map
+Olajfolt 2.0 2.0 Olaj 10
+No olaj on the map
+Takker 2.0 2.0 CleanerRobot 0.0 0.0 ALIVE
+szolga1 1.0 1.0 CleanerRobot 0.0 0.0 ALIVE

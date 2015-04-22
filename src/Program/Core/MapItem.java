@@ -2,7 +2,9 @@ package Program.Core;
 
 import java.io.Serializable;
 
+import Program.Core.MapItem.CleaningState;
 import Program.Helpers.FloatPoint;
+import Program.Prototype.PrototypeUtility;
 import Program.Skeleton.SkeletonUtility;
 /**
  * Egy akadálynak az abasztrakt osztálya. Az akadályok tesztelésénél használt. 
@@ -23,7 +25,7 @@ public abstract class MapItem implements Serializable  {
 	 */
 	protected FloatPoint position;
 	
-	public CleaningState state;
+	public CleaningState state = CleaningState.canBeCleaned;
 	
 	/**
 	 * Visszaadja az akadály pozícióját.
@@ -62,5 +64,11 @@ public abstract class MapItem implements Serializable  {
 	}
 
 	public abstract boolean isAlive();
+
+	public void setCleaningState(CleaningState st) {
+		state = st;
+
+		if(PrototypeUtility.allowDebug)System.out.println("Einstand! - MapItem clamied by a Cleaner.");
+	}
 
 }

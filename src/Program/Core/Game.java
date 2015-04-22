@@ -141,7 +141,7 @@ public class Game {
 					}
 					if (ures){
 						
-						CleanerRobot tmp= new CleanerRobot(GameMap);
+						CleanerRobot tmp= new CleanerRobot(new FloatPoint(0f,0f),GameMap);
 						//TODO This position should depend on map (Start checkpoint felezõ?)
 						tmp.setPosition(0,0);
 						tmp.setSpeed(new Vector(1,1));

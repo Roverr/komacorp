@@ -28,6 +28,11 @@ public class FloatPoint {
 	 * @return
 	 */
 	public float distance(FloatPoint fp){
+		if(fp == null){
+			return 90; // Itt csak egy nagy számot returnolok azért, mert mindíg kicsire komparálunk. 
+			//Elvileg itt exceptiont kéne dobni, de annak az üzenetét kiírja a tesztprogram. Úgyhogy nem dobok.
+			//TODO
+		}
 		 float hor = x - fp.x;
 		 float ver = y - fp.y;
 		 return (float) Math.sqrt(hor*hor + ver*ver);

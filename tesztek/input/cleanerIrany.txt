@@ -1,23 +1,11 @@
 beginTest cleanerIrany
 loadMap mezo
-add olaj olaj1 5.0 0.0
-add olaj ragacs2 0.0 10.0
+add olaj TiredOlaj 5.0 0.0
+add olaj MessziOlaj 3.0 10.0
 add cleaner Takker 0.0 0.0
-run
+add cleaner Gyors 7.0 0.0
 listRobots
 listOlaj
-run
-listRobots
-listOlaj
-run
-listRobots
-listOlaj
-run
-listRobots
-listOlaj
-run
-listRobots
-listOlaj
-run
+run 3
 listRobots
 listOlaj

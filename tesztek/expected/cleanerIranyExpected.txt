@@ -1,20 +1,8 @@
-Takker 1.0 0.0 CleanerRobot 0.0 1.0 ALIVE
-Lolita 1.0 0.0 CleanerRobot 0.0 1.0 ALIVE
-Joe 1.0 1.0 CleanerRobot 0.0 1.0 ALIVE
-Bob 4.0 5.0 CleanerRobot 0.0 1.0 ALIVE
-Takker 1.0 1.0 CleanerRobot 0.0 1.0 ALIVE
-Lolita 1.0 1.0 CleanerRobot 0.0 1.0 ALIVE
-Joe 1.0 1.0 CleanerRobot 0.0 1.0 ALIVE
-Bob 3.0 5.0 CleanerRobot 0.0 1.0 ALIVE
-Takker 0.0 1.0 CleanerRobot 0.0 1.0 ALIVE
-Lolita 0.0 1.0 CleanerRobot 0.0 1.0 ALIVE
-Joe 1.0 1.0 CleanerRobot 0.0 1.0 ALIVE
-Bob 2.0 5.0 CleanerRobot 0.0 1.0 ALIVE
-Takker 0.0 2.0 CleanerRobot 0.0 1.0 ALIVE
-Lolita 0.0 2.0 CleanerRobot 0.0 1.0 ALIVE
-Joe 1.0 1.0 CleanerRobot 0.0 1.0 ALIVE
-Bob 1.0 5.0 CleanerRobot 0.0 1.0 ALIVE
-Takker 0.0 3.0 CleanerRobot 0.0 1.0 ALIVE
-Lolita 0.0 3.0 CleanerRobot 0.0 1.0 ALIVE
-Joe 1.0 1.0 CleanerRobot 0.0 1.0 ALIVE
-Bob 1.0 4.0 CleanerRobot 0.0 1.0 ALIVE
+Takker 0.0 0.0 CleanerRobot 1.0 0.0 ALIVE
+Gyors 7.0 0.0 CleanerRobot -1.0 0.0 ALIVE
+TiredOlaj 5.0 0.0 Olaj 10
+MessziOlaj 3.0 10.0 Olaj 10
+Takker 3.0 0.0 CleanerRobot 0.0 1.0 ALIVE
+Gyors 5.0 0.0 CleanerRobot 0.0 0.0 ALIVE
+TiredOlaj 5.0 0.0 Olaj 7
+MessziOlaj 3.0 10.0 Olaj 7

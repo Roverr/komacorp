@@ -156,7 +156,7 @@ public class PrototypeUtility {
 					}
 				}else if(command[1].equals("cleaner")){
 					Map m = getTestMap();
-					CleanerRobot c = new CleanerRobot(m);
+					CleanerRobot c = new CleanerRobot(new FloatPoint(x,y),m);
 					c.setPosition(x, y);
 					addClass(c, name);
 					m.getCleanerRobots().add(c);
