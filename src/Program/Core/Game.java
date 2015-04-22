@@ -31,14 +31,17 @@ public class Game {
 			throws MyFileNotFoundException {
 		SkeletonUtility.addClass(this, "dummyGame");
 		SkeletonUtility.printCall("Game", this);
-		GameMap = new Map();
-		try {
-			GameMap.loadMap(mapname, numberOfPlayers);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new MyFileNotFoundException();
-		}
+		if (mapname != null) {
+			GameMap = new Map();
+			try {
+				GameMap.loadMap(mapname, numberOfPlayers);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				throw new MyFileNotFoundException();
+			}
+		} else
+			GameMap = null;
 		this.time = seconds;
 		elapsedTime = 0;
 		cleanerId = 1;
@@ -51,12 +54,14 @@ public class Game {
 	 * A játék elindításáért felelõs metódus
 	 */
 	public void startGame() {
-		elapsedTime = 0;
-		SkeletonUtility.printCall("StartGame", this);
-		for (PlayerRobot r : GameMap.getRobots()) {
-			r.modifySpeed(new Vector(0, 0));
+		if (this.GameMap != null) {
+			elapsedTime = 0;
+			SkeletonUtility.printCall("StartGame", this);
+			for (PlayerRobot r : GameMap.getRobots()) {
+				r.modifySpeed(new Vector(0, 0));
+			}
+			SkeletonUtility.printReturn("StartGame", this);
 		}
-		SkeletonUtility.printReturn("StartGame", this);
 	}
 
 	/**
@@ -78,98 +83,106 @@ public class Game {
 		endResult = sb.toString();
 
 		SkeletonUtility.printReturn("EndGame", this);
-	}	
-		public static int cleanerId = 1;	
-		public static int ragacsId = 1;	
-		public static int olajId = 1;
-		/**
-		 * Körök szimulálását végzi
-		 * @throws Exception 
-		 * @throws IOException - Exception amit elkell kapni.
-		 */
-		public void run() throws Exception{
-			if(elapsedTime < time){
-				SkeletonUtility.printCall("Run", this);
-				//TODO dropOlaj, és dropRagacsot innen meghívni!
-				//Ellenõrzi az !összes! robot pozícióját
-				GameMap.validateStates();
-				
-				int aliveCount = 0;
-				//Update PlayerRobots (if alive ValidateState, if still alive Jump)
-				for (PlayerRobot r : GameMap.getRobots()) {
-					if(r.isAlive()){
-						r.jump(GameMap);
-						if(r.wantToDrop == 1){
-							r.dropRagacs(GameMap);
-						}else if(r.wantToDrop == 2){
-							r.dropOlaj(GameMap);
-						}
-						aliveCount++;
+	}
+
+	public static int cleanerId = 1;
+	public static int ragacsId = 1;
+	public static int olajId = 1;
+
+	/**
+	 * Körök szimulálását végzi
+	 * 
+	 * @throws Exception
+	 * @throws IOException
+	 *             - Exception amit elkell kapni.
+	 */
+	public void run() throws Exception {
+		if (elapsedTime < time) {
+			SkeletonUtility.printCall("Run", this);
+			// TODO dropOlaj, és dropRagacsot innen meghívni!
+			// Ellenõrzi az !összes! robot pozícióját
+			GameMap.validateStates();
+
+			int aliveCount = 0;
+			// Update PlayerRobots (if alive ValidateState, if still alive Jump)
+			for (PlayerRobot r : GameMap.getRobots()) {
+				if (r.isAlive()) {
+					r.jump(GameMap);
+					if (r.wantToDrop == 1) {
+						r.dropRagacs(GameMap);
+					} else if (r.wantToDrop == 2) {
+						r.dropOlaj(GameMap);
+					}
+					aliveCount++;
+				}
+			}
+
+			for (CleanerRobot cl : GameMap.getCleanerRobots()) {
+				// if(PrototypeUtility.allowDebug)System.out.println("Cleaner robot before jump: X:"
+				// + cl.getPosition().getX()+" Y:"+cl.getPosition().getY());
+				cl.jump(GameMap);
+				// if(PrototypeUtility.allowDebug)System.out.println("Cleaner robot did jump: X:"
+				// + cl.getPosition().getX()+" Y:"+cl.getPosition().getY());
+			}
+
+			// Update MapItems (Olajok felszáradnak)
+			if (!GameMap.getMapItems().isEmpty()) {
+				MapItem mi = null;
+				for (int i = 0; i < GameMap.getMapItems().size(); i++) {
+					mi = GameMap.getMapItems().get(i);
+					mi.update();
+					if (!mi.isAlive()) {
+						GameMap.removeMapItem(mi);
 					}
 				}
-				
-				for (CleanerRobot cl : GameMap.getCleanerRobots()) {
-					//if(PrototypeUtility.allowDebug)System.out.println("Cleaner robot before jump: X:" + cl.getPosition().getX()+" Y:"+cl.getPosition().getY());
-					cl.jump(GameMap);
-					//if(PrototypeUtility.allowDebug)System.out.println("Cleaner robot did jump: X:" + cl.getPosition().getX()+" Y:"+cl.getPosition().getY());
+			}
+
+			// Az eltelt idõ nõ.
+			elapsedTime++;
+			if (PrototypeUtility.allowDebug)
+				System.out.println("time = " + elapsedTime + " < " + time);
+			// új cleaner robot felvétele.
+			// Mindíg 10 körönként történik, egyszerre 3 cleanerRobot van max a
+			// pályán.
+			List<CleanerRobot> takker = GameMap.getCleanerRobots();
+			if (takker.size() < 3 && elapsedTime % 10 == 9) {
+				boolean ures = true;
+				for (CleanerRobot r : takker) {
+					// TODO Check for PlayerRobots as well.
+					if (r.getPosition().distance(new FloatPoint(0f, 0f)) < 1f)
+						ures = false;
 				}
-				
-				//Update MapItems (Olajok felszáradnak)
-				if(!GameMap.getMapItems().isEmpty()) {
-					MapItem mi = null;
-					for(int i = 0; i < GameMap.getMapItems().size(); i++){
-						mi = GameMap.getMapItems().get(i);
-						mi.update();
-						if(!mi.isAlive()){
-							GameMap.removeMapItem(mi);
-						}
-					}
+				if (ures) {
+
+					CleanerRobot tmp = new CleanerRobot(new FloatPoint(0f, 0f),
+							GameMap);
+					// TODO This position should depend on map (Start checkpoint
+					// felezõ?)
+					tmp.setPosition(0, 0);
+					tmp.setSpeed(new Vector(1, 1));
+					GameMap.getCleanerRobots().add(tmp);
+					PrototypeUtility.addClass(tmp, "szolga" + cleanerId);
+					cleanerId++;
 				}
-				
-				//Az eltelt idõ nõ.
-				elapsedTime++;
-				if(PrototypeUtility.allowDebug)System.out.println("time = " + elapsedTime + " < " + time);
-				//új cleaner robot felvétele.
-				//Mindíg 10 körönként történik, egyszerre 3 cleanerRobot van max a pályán.
-				List<CleanerRobot> takker= GameMap.getCleanerRobots();
-				if (takker.size()<3 && elapsedTime % 10 == 9){
-					boolean ures = true;
-					for(CleanerRobot r : takker){
-						//TODO Check for PlayerRobots as well.
-						if(r.getPosition().distance(new FloatPoint(0f,0f)) < 1f)
-						  ures = false;
-					}
-					if (ures){
-						
-						CleanerRobot tmp= new CleanerRobot(new FloatPoint(0f,0f),GameMap);
-						//TODO This position should depend on map (Start checkpoint felezõ?)
-						tmp.setPosition(0,0);
-						tmp.setSpeed(new Vector(1,1));
-				    	GameMap.getCleanerRobots().add(tmp);
-				    	PrototypeUtility.addClass(tmp, "szolga"+cleanerId);
-				    	cleanerId++;
-					}
-				}
+			}
 
 			/**
 			 * Ez nem kell most prototípusba.
 			 */
-//			if(aliveCount <= 1) {
-//				endGame();
-//			}
+			// if(aliveCount <= 1) {
+			// endGame();
+			// }
 			/**
-			 *  :(
+			 * :(
 			 */
 			endGame();
-			}else{
-				if(PrototypeUtility.allowDebug)System.out.println("Game Ended by now.");
-				throw new Exception("EndOfGame!");
-			}
-			SkeletonUtility.printReturn("Run", this);
+		} else {
+			if (PrototypeUtility.allowDebug)
+				System.out.println("Game Ended by now.");
+			throw new Exception("EndOfGame!");
 		}
-		
-
-
+		SkeletonUtility.printReturn("Run", this);
+	}
 
 	/**
 	 * Meghatározza lenyomott billentyû alapján, hogy felhasználó mit szeretne

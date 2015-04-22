@@ -114,7 +114,7 @@ public class PrototypeUtility {
 			if (command.length >= 2) {
 				if(allowDebug)System.out.println("begintest");
 				try {
-					testGame = new Game(100, "Tesztmap", 2);
+					testGame = new Game(100, null, 2);
 					testGame.startGame();
 				} catch (MyFileNotFoundException e) {
 					// TODO Auto-generated catch block

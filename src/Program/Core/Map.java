@@ -165,6 +165,7 @@ public class Map implements Serializable {
 	// A file felépítése: Soronként egy szám
 	public void loadMap(String file, int numberOfPlayers)
 			throws MyFileNotFoundException {
+		System.out.println(file);
 		SkeletonUtility.printCall("LoadMap(" + file + ")", this);
 		/* Inicializálás */
 		track = new ArrayList<Line>();
