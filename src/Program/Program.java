@@ -2,6 +2,7 @@ package Program;
 
 import java.io.IOException;
 
+import Program.Core.MainWindow;
 import Program.Prototype.TestRunner;
 
 /**
@@ -21,13 +22,15 @@ public class Program {
 	 * @author Karesz
 	 */
 	public static void main(String[] args) {
-		
-		TestRunner tr = new TestRunner();
+		System.out.println("bbabaóasdf");
+		MainWindow window=new MainWindow();
+		System.out.println("asdfasf");
+		/*TestRunner tr = new TestRunner();
 		try {
 			tr.handleInputs();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 	}
 
