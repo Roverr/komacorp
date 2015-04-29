@@ -5,7 +5,7 @@ import Program.Helpers.FloatPoint;
 import Program.Prototype.PrototypeUtility;
 
 /**
- * Ragacs oszt·ly, ami akad·lykÈnt dobhatÛ a p·ly·ra
+ * Ragacs oszt√°ly, ami akad√°lyk√©nt dobhat√≥ a p√°ly√°ra
  * 
  * @author Rover
  *
@@ -13,17 +13,17 @@ import Program.Prototype.PrototypeUtility;
 public class Ragacs extends MapItem {
 
 	/**
-	 * AzÈrt felelıs, hogy h·nyszor lehet a ragacsba lÈpni
+	 * Az√©rt felel√µs, hogy h√°nyszor lehet a ragacsba l√©pni
 	 */
 	private int stepInCounter;
 
 	/**
-	 * Szerializ·l·shoz kell.
+	 * Szerializ√°l√°shoz kell.
 	 */
 	private static final long serialVersionUID = 6191556765398850843L;
 
 	/**
-	 * A ragacsba valÛ belelÈpÈsek sz·m·t ·llÌtja be a konstruktor.
+	 * A ragacsba val√≥ belel√©p√©sek sz√°m√°t √°ll√≠tja be a konstruktor.
 	 * 
 	 * @param StepIn
 	 */
@@ -39,17 +39,17 @@ public class Ragacs extends MapItem {
 	}
 
 	/**
-	 * Be·llÌtja azt, hogy h·nyszor lehet belelÈpni a Ragacsba
+	 * Be√°ll√≠tja azt, hogy h√°nyszor lehet belel√©pni a Ragacsba
 	 * 
 	 * @param to
-	 *            - EgÈsz sz·m a Ragacs maxim·lis belelÈpÈsÈnek lehetısÈgÈrıl.
+	 *            - Eg√©sz sz√°m a Ragacs maxim√°lis belel√©p√©s√©nek lehet√µs√©g√©r√µl.
 	 */
 	public void setStepinCounter(int to) {
 		stepInCounter = to;
 	}
 
 	/**
-	 * Visszadja azt, hogy h·nyszor lehet mÈg belelÈpni a Ragacsba
+	 * Visszadja azt, hogy h√°nyszor lehet m√©g belel√©pni a Ragacsba
 	 * 
 	 * @return
 	 */
@@ -58,11 +58,11 @@ public class Ragacs extends MapItem {
 	}
 
 	/**
-	 * Be·llÌtja a negatÌv effektust, ha egy robot belelÈp, illetve csˆkkenti a
-	 * belelÈpÈs sz·m·t.
+	 * Be√°ll√≠tja a negat√≠v effektust, ha egy robot belel√©p, illetve cs√∂kkenti a
+	 * belel√©p√©s sz√°m√°t.
 	 * 
 	 * @param playerRobot
-	 *            - A robot, ami belelÈpett
+	 *            - A robot, ami belel√©pett
 	 */
 	public void stepIn(PlayerRobot playerRobot) {
 		if (PrototypeUtility.allowDebug)
@@ -72,13 +72,23 @@ public class Ragacs extends MapItem {
 	}
 
 	public void update() {
-		// Mivel kˆrˆnkÈnt nem kell frissÌteni, ide semmi nem ker¸l.
+		// Mivel k√∂r√∂nk√©nt nem kell friss√≠teni, ide semmi nem ker√ºl.
 		return;
 	}
 
 	@Override
 	public boolean isAlive() {
 		return (stepInCounter > 0);
+	}
+	
+	@Override
+	/**
+	 * Kirajzolja a k√©perny≈ëre a ragacsot
+	 * @author Hunor
+	 */
+	public void draw() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

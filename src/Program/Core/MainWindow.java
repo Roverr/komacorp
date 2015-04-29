@@ -3,15 +3,67 @@ package Program.Core;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+interface Drawable{
+	public void draw();
+}
+
+/**
+ * Osztály, JPanelből származik, alkalmas arra, 
+ * hogy kirajzolja a játék képernyőjét
+ * @author Hunor
+ *
+ */
+class Canvas extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int screenWidth = 1000;
+	private int screenHeight = 700;
+	BufferedImage background;
+	
+	public Canvas(int screenWidth, int screenHeight, String backgroundFileName){
+		/*Inicializálás*/
+		this.screenWidth = screenWidth;
+		this.screenHeight = screenHeight;
+		/*Háttérkép betöltése*/
+		try {
+			background = ImageIO.read(new File(backgroundFileName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Játék képernyő újrarajzolásáért felel*/
+    @Override
+	public void paint(Graphics g) {
+        super.paint(g);
+        Graphics2D g2 = (Graphics2D) g;
+        /*Háttér kirajzolása*/
+        g2.setColor(new Color(10, 100, 0));
+        g2.drawImage(background, 0, 0, null);
+        
+    }
+}
 
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {
@@ -29,10 +81,12 @@ public class MainWindow extends JFrame {
 	private PlayerRobot robotWhite;
 	private PlayerRobot robotGreen;
 	private ActionListener bl;
+	private final int screenWidth = 1000;
+	private final int screenHeight = 700;
 
 	public MainWindow() {
 		
-		this.setSize(/*1300*/1000,/*700*/700);
+		this.setSize(screenWidth, screenHeight);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -84,7 +138,7 @@ public class MainWindow extends JFrame {
 		exit.setBounds(250, 550, 463,67);
 		panel.add(exit);
 		
-		//ez csak a tesztel�shez kell, hogy l�ssam hogy n�z ki a results
+		//ez csak a teszteléshez kell, hogy lássam hogy néz ki a results
 		
 		JButton result=new JButton();
 		result.setActionCommand("results");
@@ -239,8 +293,13 @@ public class MainWindow extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			// TODO Auto-generated method stub
+			/*Új játéknál lecseréli a panel-t a játék vásznára*/
 			if (ae.getActionCommand().equals("newgame")) {
-				panel.setVisible(false);
+				remove(panel);
+				Canvas canvas = new Canvas(screenWidth, screenHeight, "C:\\Users\\Hunor\\Documents\\komacorp\\assets\\ingame\\background.jpeg");
+				add(canvas);
+				repaint();	
+				revalidate();
 			} else if (ae.getActionCommand().equals("options")) {
 				drawOptionsMenu();			
 			} else if (ae.getActionCommand().equals("exit")) {

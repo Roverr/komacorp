@@ -6,24 +6,24 @@ import Program.Helpers.Vector;
 import Program.Prototype.PrototypeUtility;
 
 /**
- * Olaj oszt·ly , ami akad·lykÈnt dobhatÛ a p·ly·ra.
+ * Olaj oszt√°ly , ami akad√°lyk√©nt dobhat√≥ a p√°ly√°ra.
  * @author Rover
  */
 public class Olaj extends MapItem {
 	
 	/**
-	 * timeLeft - Az olaj aktivit·si ideje, amÌg a p·ly·n marad
+	 * timeLeft - Az olaj aktivit√°si ideje, am√≠g a p√°ly√°n marad
 	 */
 	private int timeLeft;
 	
 	/**
-	 * Szerializ·l·shoz sz¸ksÈges
+	 * Szerializ√°l√°shoz sz√ºks√©ges
 	 */
 	private static final long serialVersionUID = -1668976720926783982L;
 	
 	/**
-	 * Az olaj aktivit·si idejÈt ·llÌtja be a konstruktor.
-	 * @param timing - Az idı ameddig az olaj aktÌv
+	 * Az olaj aktivit√°si idej√©t √°ll√≠tja be a konstruktor.
+	 * @param timing - Az id√µ ameddig az olaj akt√≠v
 	 */
 	public Olaj(int timing,FloatPoint position) {
 		this.setTimeLeft(timing);
@@ -32,7 +32,7 @@ public class Olaj extends MapItem {
 	}
 	
 	/**
-	 * Publikus konstruktor ami az olaj pozÌciÛj·val kÈpes be·llÌtani
+	 * Publikus konstruktor ami az olaj poz√≠ci√≥j√°val k√©pes be√°ll√≠tani
 	 * @param position
 	 */
 	public Olaj(FloatPoint position){
@@ -41,8 +41,8 @@ public class Olaj extends MapItem {
 	}
 	
 	/**
-	 * AzÈrt felelıs, hogy a belelÈpett roboton negatÌv effektet fejtsen ki.
-	 * @param playerRobot- Robot ami belelÈpet        
+	 * Az√©rt felel√µs, hogy a belel√©pett roboton negat√≠v effektet fejtsen ki.
+	 * @param playerRobot- Robot ami belel√©pet        
 	 */
 	public void stepIn(PlayerRobot playerRobot) {
 		if(PrototypeUtility.allowDebug)System.out.println("Olaj - stepin +" + playerRobot.name);
@@ -51,7 +51,7 @@ public class Olaj extends MapItem {
 	}
 	
 	/**
-	 * Visszadja mennyi idı van mÈg h·tra
+	 * Visszadja mennyi id√µ van m√©g h√°tra
 	 * @return
 	 */
 	public int getTimeLeft() {
@@ -59,7 +59,7 @@ public class Olaj extends MapItem {
 	}
 	
 	/**
-	 * Be·llÌtja mennyi idı van mÈg h·tra
+	 * Be√°ll√≠tja mennyi id√µ van m√©g h√°tra
 	 * @param timeLeft
 	 */
 	public void setTimeLeft(int timeLeft) {
@@ -67,7 +67,7 @@ public class Olaj extends MapItem {
 	}
 	
 	/**
-	 * ÷regÌti az olajat ha megvan hÌvÛdva.
+	 * √ñreg√≠ti az olajat ha megvan h√≠v√≥dva.
 	 */
 	public void update(){
 		timeLeft = timeLeft-1;
@@ -76,6 +76,16 @@ public class Olaj extends MapItem {
 	@Override
 	public boolean isAlive() {
 		return (timeLeft > 0);
+	}
+
+	@Override
+	/**
+	 * Kirajzolja a k√©perny≈ëre az olajat
+	 * @author Hunor
+	 */
+	public void draw() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

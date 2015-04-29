@@ -11,7 +11,7 @@ import Program.Skeleton.SkeletonUtility;
  * @author Rover
  *
  */
-public abstract class MapItem implements Serializable  {
+public abstract class MapItem implements Serializable, Drawable  {
 	enum CleaningState {
 		beingCleaned,
 		canBeCleaned
@@ -71,4 +71,6 @@ public abstract class MapItem implements Serializable  {
 		if(PrototypeUtility.allowDebug)System.out.println("Einstand! - MapItem clamied by a Cleaner.");
 	}
 
+	
+	public abstract void draw();
 }
