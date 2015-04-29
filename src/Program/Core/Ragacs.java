@@ -1,6 +1,12 @@
 package Program.Core;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import Program.Core.MapItem.CleaningState;
 import Program.Helpers.FloatPoint;
@@ -18,6 +24,11 @@ public class Ragacs extends MapItem {
 	 * Azért felelõs, hogy hányszor lehet a ragacsba lépni
 	 */
 	private int stepInCounter;
+	
+	/**
+	 * Robot grafikus képe
+	 */
+	BufferedImage ragacsImage;
 
 	/**
 	 * Szerializáláshoz kell.
@@ -33,11 +44,27 @@ public class Ragacs extends MapItem {
 		setPosition(position);
 		setStepinCounter(stepIn);
 		state = CleaningState.canBeCleaned;
+		
+		//Ragacs képének betöltése
+		try {
+			ragacsImage = ImageIO.read(new File("assets\\ingame\\Ragacs.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Ragacs(FloatPoint position) {
 		this(3, position);
 		state = CleaningState.canBeCleaned;
+		
+		//Ragacs képének betöltése
+		try {
+			ragacsImage = ImageIO.read(new File("assets\\ingame\\Ragacs.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -89,8 +116,9 @@ public class Ragacs extends MapItem {
 	 * @author Hunor
 	 */
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		
+		Graphics2D g2 = (Graphics2D) g;
+		//TODO koordinátakonvertálás
+		g2.drawImage(ragacsImage, 0, 0, null);
 	}
 
 }

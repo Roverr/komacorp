@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Program.Helpers.FloatPoint;
 import Program.Prototype.MyFileNotFoundException;
 
 interface Drawable{
@@ -43,7 +44,7 @@ class Canvas extends JPanel{
 	BufferedImage background;
 	Map gameMap;
 	
-	public Canvas(int screenWidth, int screenHeight, String backgroundFileName, Map Gamemap){
+	public Canvas(int screenWidth, int screenHeight, String backgroundFileName, Map gameMap){
 		/*Inicializálás*/
 		this.screenWidth = screenWidth;
 		this.screenHeight = screenHeight;
@@ -66,6 +67,7 @@ class Canvas extends JPanel{
         g2.setColor(new Color(10, 100, 0));
         g2.drawImage(background, 0, 0, null);
         
+        
         /*Mapon szereplő objektumokat kirajzolja*/
 	    for (PlayerRobot pRobot : gameMap.getRobots())
 	       		pRobot.draw(g);
@@ -74,8 +76,7 @@ class Canvas extends JPanel{
         for (MapItem mItem : gameMap.getMapItems())
 	       	mItem.draw(g);
 	        
-        PlayerRobot p = new PlayerRobot();
-        p.draw(g);
+        
     }
 }
 
@@ -316,20 +317,20 @@ public class MainWindow extends JFrame {
 			/*Új játéknál lecseréli a panel-t a játék vásznára
 			 * és elindít egy új játékot*/
 			if (ae.getActionCommand().equals("newgame")) {
+				/*Játék indítása*/
+				try {
+					Game game = new Game(screenHeight, "kanyon", screenHeight);
+					map = game.getMap();
+				} catch (MyFileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				/*Vászon csere*/
 				remove(panel);
 				canvas = new Canvas(screenWidth, screenHeight, "assets\\ingame\\background.jpeg", map);
 				add(canvas);
 				repaint();	
 				revalidate();
-				/*Játék indítása*/
-				try {
-					Game game = new Game(screenHeight, "kanyon.txt", screenHeight);
-					map = game.getMap();
-				} catch (MyFileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			} else if (ae.getActionCommand().equals("options")) {
 				drawOptionsMenu();			
 			} else if (ae.getActionCommand().equals("exit")) {

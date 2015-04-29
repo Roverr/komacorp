@@ -1,10 +1,16 @@
 package Program.Core;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
 
 import Program.Core.MapItem.CleaningState;
 import Program.Helpers.FloatPoint;
@@ -37,12 +43,23 @@ public class CleanerRobot extends Robot implements Serializable, Drawable {
 	CleanerState state;
 	//A kiválasztott Pont amit takarít.
 	private FloatPoint target;
-
+	//A robot képe
+	BufferedImage cleanerImage;
+	
+	
 	private static final long serialVersionUID = 2858679422774498028L;
 
 	public CleanerRobot(FloatPoint f , Map m) {
 		position = f;
 		setNewTarget(m, false);
+		
+		//Képének betöltése
+		try {
+			cleanerImage = ImageIO.read(new File("assets\\ingame\\CleanerRobot.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -271,8 +288,9 @@ public class CleanerRobot extends Robot implements Serializable, Drawable {
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		
+		Graphics2D g2 = (Graphics2D) g;
+		//TODO koordinátakonvertálás
+		g2.drawImage(cleanerImage, 0, 0, null);
 	}
 
 }

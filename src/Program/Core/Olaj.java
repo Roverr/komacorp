@@ -2,6 +2,12 @@ package Program.Core;
 
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import Program.Helpers.FloatPoint;
 import Program.Helpers.Vector;
@@ -19,6 +25,11 @@ public class Olaj extends MapItem {
 	private int timeLeft;
 	
 	/**
+	 * Ragacs grafikus képe
+	 */
+	BufferedImage olajImage;
+	
+	/**
 	 * Szerializáláshoz szükséges
 	 */
 	private static final long serialVersionUID = -1668976720926783982L;
@@ -31,6 +42,14 @@ public class Olaj extends MapItem {
 		this.setTimeLeft(timing);
 		this.position = position;
 		state = CleaningState.canBeCleaned;
+		
+		//Olaj képének betöltése
+		try {
+			olajImage = ImageIO.read(new File("assets\\ingame\\Olaj.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -40,6 +59,14 @@ public class Olaj extends MapItem {
 	public Olaj(FloatPoint position){
 		this(10,position);
 		state = CleaningState.canBeCleaned;
+		
+		//Olaj képének betöltése
+		try {
+			olajImage = ImageIO.read(new File("assets\\ingame\\Olaj.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -86,8 +113,9 @@ public class Olaj extends MapItem {
 	 * @author Hunor
 	 */
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		
+		Graphics2D g2 = (Graphics2D) g;
+		//TODO koordinátakonvertálás
+		g2.drawImage(olajImage, 0, 0, null);
 	}
 
 }
