@@ -1,5 +1,6 @@
 package Program.Core;
 
+import java.awt.Graphics2D;
 import java.io.Serializable;
 
 import Program.Core.MapItem.CleaningState;
@@ -71,6 +72,4 @@ public abstract class MapItem implements Serializable, Drawable  {
 		if(PrototypeUtility.allowDebug)System.out.println("Einstand! - MapItem clamied by a Cleaner.");
 	}
 
-	
-	public abstract void draw();
 }

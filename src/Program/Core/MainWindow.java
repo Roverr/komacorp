@@ -21,8 +21,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Program.Prototype.MyFileNotFoundException;
+
 interface Drawable{
-	public void draw();
+	public abstract void draw(Graphics g);
 }
 
 /**
@@ -39,11 +41,13 @@ class Canvas extends JPanel{
 	private int screenWidth = 1000;
 	private int screenHeight = 700;
 	BufferedImage background;
+	Map gameMap;
 	
-	public Canvas(int screenWidth, int screenHeight, String backgroundFileName){
+	public Canvas(int screenWidth, int screenHeight, String backgroundFileName, Map Gamemap){
 		/*Inicializálás*/
 		this.screenWidth = screenWidth;
 		this.screenHeight = screenHeight;
+		this.gameMap = gameMap;
 		/*Háttérkép betöltése*/
 		try {
 			background = ImageIO.read(new File(backgroundFileName));
@@ -62,6 +66,16 @@ class Canvas extends JPanel{
         g2.setColor(new Color(10, 100, 0));
         g2.drawImage(background, 0, 0, null);
         
+        /*Mapon szereplő objektumokat kirajzolja*/
+	    for (PlayerRobot pRobot : gameMap.getRobots())
+	       		pRobot.draw(g);
+        for (CleanerRobot cRobot : gameMap.getCleanerRobots())
+	       	cRobot.draw(g);
+        for (MapItem mItem : gameMap.getMapItems())
+	       	mItem.draw(g);
+	        
+        PlayerRobot p = new PlayerRobot();
+        p.draw(g);
     }
 }
 
@@ -69,6 +83,7 @@ class Canvas extends JPanel{
 public class MainWindow extends JFrame {
 	private Map map;
 	private JPanel panel;
+	Canvas canvas;
 	String reds;
 	String whites;
 	String greens;
@@ -109,8 +124,13 @@ public class MainWindow extends JFrame {
 
 	}
 
-	public void showGame() {
-
+	/**
+	 * Újrafesti a pályát (run hívogatja)
+	 * TODO Remélhetőleg ez csak a new game hívása után hívódik meg, igaz?
+	 * @author Hunor
+	 */
+	public void showGame(Map GameMap) {
+		canvas.repaint();
 	}
 
 	public void showResult() {
@@ -293,13 +313,23 @@ public class MainWindow extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			// TODO Auto-generated method stub
-			/*Új játéknál lecseréli a panel-t a játék vásznára*/
+			/*Új játéknál lecseréli a panel-t a játék vásznára
+			 * és elindít egy új játékot*/
 			if (ae.getActionCommand().equals("newgame")) {
+				/*Vászon csere*/
 				remove(panel);
-				Canvas canvas = new Canvas(screenWidth, screenHeight, "C:\\Users\\Hunor\\Documents\\komacorp\\assets\\ingame\\background.jpeg");
+				canvas = new Canvas(screenWidth, screenHeight, "assets\\ingame\\background.jpeg", map);
 				add(canvas);
 				repaint();	
 				revalidate();
+				/*Játék indítása*/
+				try {
+					Game game = new Game(screenHeight, "kanyon.txt", screenHeight);
+					map = game.getMap();
+				} catch (MyFileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} else if (ae.getActionCommand().equals("options")) {
 				drawOptionsMenu();			
 			} else if (ae.getActionCommand().equals("exit")) {

@@ -14,6 +14,7 @@ public class Game {
 	private Map GameMap;
 	private int time;
 	private int elapsedTime;
+	private MainWindow mWindow;
 
 	/**
 	 * Csinálok egy construktort amit a Program.java main metódusa hív meg Ez
@@ -182,6 +183,9 @@ public class Game {
 			throw new Exception("EndOfGame!");
 		}
 		SkeletonUtility.printReturn("Run", this);
+		
+		/*Rendereli a pályát*/
+		mWindow.showGame(GameMap);
 	}
 
 	/**
@@ -280,6 +284,17 @@ public class Game {
 
 	public void setMap(Map m) {
 		GameMap = m;
+	}
+
+	/**
+	 * Visszaadja a map-ot a játéknak
+	 * @author Hunor
+	 * TODO ez nem volt rajta osztálydiagramon, de kell,
+	 * hogy mainwindow megkaphassa a játék mapját játék indításakor
+	 * @return
+	 */
+	public Map getMap() {
+		return GameMap;
 	}
 
 }

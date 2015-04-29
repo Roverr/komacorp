@@ -1,6 +1,8 @@
 package Program.Core;
 
 
+import java.awt.Graphics;
+
 import Program.Helpers.FloatPoint;
 import Program.Helpers.Vector;
 import Program.Prototype.PrototypeUtility;
@@ -83,7 +85,7 @@ public class Olaj extends MapItem {
 	 * Kirajzolja a képernyőre az olajat
 	 * @author Hunor
 	 */
-	public void draw() {
+	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 		
 	}

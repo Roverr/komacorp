@@ -1,5 +1,6 @@
 package Program.Core;
 
+import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ import Program.Prototype.PrototypeUtility;
  * @author Rover
  *
  */
-public class CleanerRobot extends Robot implements Serializable {
+public class CleanerRobot extends Robot implements Serializable, Drawable {
 
 	enum CleanerState {
 		cleaning, //Akkor ha a folton áll, és takarítja
@@ -266,6 +267,12 @@ public class CleanerRobot extends Robot implements Serializable {
 				}
 		}
 		return null;
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

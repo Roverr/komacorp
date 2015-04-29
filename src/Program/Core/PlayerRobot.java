@@ -1,8 +1,16 @@
 package Program.Core;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import Program.Helpers.FloatPoint;
 import Program.Helpers.Vector;
@@ -10,22 +18,22 @@ import Program.Prototype.PrototypeUtility;
 import Program.Skeleton.SkeletonUtility;
 
 /**
- * A szkeleton modell m˚kÈdÈsÈnek szimul·l·s·ra lÈtrehozott Robot oszt·ly,
- * ami viselkedÈsÈben megegyezik a kÈsıbbi robot oszt·llyal. 
+ * A szkeleton modell m√ªk√©d√©s√©nek szimul√°l√°s√°ra l√©trehozott Robot oszt√°ly,
+ * ami viselked√©s√©ben megegyezik a k√©s√µbbi robot oszt√°llyal. 
  * @author Rover
  *
  */
-public class PlayerRobot extends Robot implements Serializable  {
+public class PlayerRobot extends Robot implements Serializable, Drawable  {
 	
 	
 	/**
-	 * pilot-legyen gazd·ja/versenyzıje
-	 * MapItemCarriedCounter - Map itemek amik mÈg a robotn·l vannak.
+	 * pilot-legyen gazd√°ja/versenyz√µje
+	 * MapItemCarriedCounter - Map itemek amik m√©g a robotn√°l vannak.
 	 * wantToDrop 
 	 * - 0, ha nem szeretne dobni a robot,
 	 * - 1, ha a robot ragacsot szeretne dobni
 	 * - 2, ha a robot olajat szeretne dobni
-	 * modSpeed - A sebessÈg v·ltoztat·snak Ès ir·ny v·ltoztat·snak a vektor·t t·rolja
+	 * modSpeed - A sebess√©g v√°ltoztat√°snak √©s ir√°ny v√°ltoztat√°snak a vektor√°t t√°rolja
 	 * @author Barna,Rover
 	 */
 	protected String pilot;
@@ -33,9 +41,10 @@ public class PlayerRobot extends Robot implements Serializable  {
 	private static final long serialVersionUID = -8700911186613988616L;
 	public int wantToDrop;
 	protected Vector modSpeed = new Vector(0,0);
+	private BufferedImage playerImage;
 
 	/**
-	 * Konstruktor a j·tÈkosok ·lltal ir·nyÌtott Robothoz
+	 * Konstruktor a j√°t√©kosok √°lltal ir√°ny√≠tott Robothoz
 	 * @author Barna
 	 */
 	public PlayerRobot() {
@@ -45,17 +54,25 @@ public class PlayerRobot extends Robot implements Serializable  {
 		SkeletonUtility.robotCounter++;
 		SkeletonUtility.printCall("create Robot", this);
 		//SKELETON PART
-		/**TODO POSITION + List feltˆltÈs akad·lyokkal**/
+		/**TODO POSITION + List felt√∂lt√©s akad√°lyokkal**/
 		mapItemCarriedCounter = new ArrayList<Integer>();
 		pilot="AutoPilot";
 		mapItemCarriedCounter=new ArrayList<Integer>();
 		mapItemCarriedCounter.add(3);
 		mapItemCarriedCounter.add(3);
 		SkeletonUtility.printReturn("create Robot", this);
+		
+		/*Robot k√©p√©nek inicializ√°l√°sa*/
+		try {
+			playerImage = ImageIO.read(new File("assets\\ingame\\PlayerRobot.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
-	 * Ha a robot leesik a p·ly·rÛl ez a f¸ggvÈny hÌvÛdik meg. 
+	 * Ha a robot leesik a p√°ly√°r√≥l ez a f√ºggv√©ny h√≠v√≥dik meg. 
 	 */
 	public void die(Map map) {
 		SkeletonUtility.printCall("Die", this);
@@ -66,9 +83,9 @@ public class PlayerRobot extends Robot implements Serializable  {
 		SkeletonUtility.printReturn("Die", this);
 	}
 	/**
-	 * SebessÈget mÛdosÌtja (ami a kˆvetkezı ugr·st hat·rozza meg)
-	 * A sebessÈgvektorhoz hozz·adja a paramÈterkÈnt kapott vektort,
-	 * majd a hossz·t egysÈgnyire v·ltoztatja (normaliz·lja)
+	 * Sebess√©get m√≥dos√≠tja (ami a k√∂vetkez√µ ugr√°st hat√°rozza meg)
+	 * A sebess√©gvektorhoz hozz√°adja a param√©terk√©nt kapott vektort,
+	 * majd a hossz√°t egys√©gnyire v√°ltoztatja (normaliz√°lja)
 	 * @param force
 	 * @author Hunor
 	 */
@@ -98,12 +115,12 @@ public class PlayerRobot extends Robot implements Serializable  {
 	}
 	
 	/**
-	 * Olajat dob a p·ly·ra
-	 * @param map - A p·lya ahova dobja
+	 * Olajat dob a p√°ly√°ra
+	 * @param map - A p√°lya ahova dobja
 	 */
 	public void dropOlaj(Map map) {
-		// 10 kˆrig lesz Èletben az olaj
-		int time = 11; //Plusz 1 kell, mert az elsı run is ˆregÌti m·r. 
+		// 10 k√∂rig lesz √©letben az olaj
+		int time = 11; //Plusz 1 kell, mert az els√µ run is √∂reg√≠ti m√°r. 
 		int olajNumberInList = 1;
 		int olajLeft = mapItemCarriedCounter.get(olajNumberInList);
 		
@@ -123,15 +140,15 @@ public class PlayerRobot extends Robot implements Serializable  {
 
 	
 	/**
-	 * Ragacsot dob a p·ly·ra ha van, ha nem akkor nem csin·l semmit. 
-	 * @param map - P·lya amire ledobja
+	 * Ragacsot dob a p√°ly√°ra ha van, ha nem akkor nem csin√°l semmit. 
+	 * @param map - P√°lya amire ledobja
 	 */
 	public void dropRagacs(Map map) {
-		// 3 -szor lehet belelÈpni
+		// 3 -szor lehet belel√©pni
 		int stepInCount = 3;
 		int ragacsNumberInList = 0;
 		int ragacsLeft = mapItemCarriedCounter.get(ragacsNumberInList);
-		//Ha tˆbb ragacs van mÈg a t·rban, dobunk
+		//Ha t√∂bb ragacs van m√©g a t√°rban, dobunk
 		if(ragacsLeft >0 ) {
 			int ragacsNumberInDropping = 1;
 			Ragacs ragacs = new Ragacs(stepInCount,getPosition());
@@ -141,7 +158,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 			mapItemCarriedCounter.set(ragacsNumberInList, ragacsLeft-1);
 			setWantToDrop(0);
 		} else {
-			//Ha m·r nincs, akkor jelezz¸k, hogy nem tudunk dobni. 
+			//Ha m√°r nincs, akkor jelezz√ºk, hogy nem tudunk dobni. 
 			if(PrototypeUtility.allowDebug)System.out.println("No ragacs left, sorryka");
 		}
 
@@ -149,10 +166,10 @@ public class PlayerRobot extends Robot implements Serializable  {
 	}
 	
 	/**
-	 * A robot frissÌtı f¸ggvÈnye
-	 * Elugr·skor a pozÌciÛja v·ltozik a robotnak, a mÛdosÌtandÛ sebessÈgvektor(modSpeed)
-	 * f¸ggvÈnyÈben.
-	 * @param map - P·lya, amire ledobja (dropRagacs/Olaj kapja majd paramÈterkÈnt) 
+	 * A robot friss√≠t√µ f√ºggv√©nye
+	 * Elugr√°skor a poz√≠ci√≥ja v√°ltozik a robotnak, a m√≥dos√≠tand√≥ sebess√©gvektor(modSpeed)
+	 * f√ºggv√©ny√©ben.
+	 * @param map - P√°lya, amire ledobja (dropRagacs/Olaj kapja majd param√©terk√©nt) 
 	 * @author Hunor
 	 */
 	public void jump(Map map) {
@@ -160,7 +177,7 @@ public class PlayerRobot extends Robot implements Serializable  {
 		int time=1;
 		this.speed.add(this.modSpeed);
 		this.setModSpeed(new Vector(0,0));
-		//Ha Èletben van, akkor t·vols·got sz·molunk
+		//Ha √©letben van, akkor t√°vols√°got sz√°molunk
 		if (alive){
 			distance += speed.length();
 			this.setPosition(new FloatPoint(position.getX()+speed.getX() , position.getY()+speed.getY()  ));
@@ -175,25 +192,25 @@ public class PlayerRobot extends Robot implements Serializable  {
 	}
 	
 	/**
-	 * Visszadja a bitet ami jelzi, hogy a robot szeretne akad·lyt dobni
+	 * Visszadja a bitet ami jelzi, hogy a robot szeretne akad√°lyt dobni
 	 * @return 
 	 * - 0, ha a robot nem szeretne dobni
 	 * - 1, ha a robot ragacsot szeretne dobni
 	 * - 2, ha a robot olajat szeretne dobni
-	 * DEV:Minden m·s ÈrtÈket errorkÈnt elkapunk.
+	 * DEV:Minden m√°s √©rt√©ket errork√©nt elkapunk.
 	 */
 	public int getWantToDrop() {
 		return wantToDrop;
 	}
 	
 	/**
-	 * Be·llÌtja a wantToDrop ÈrtÈkÈt. 
-	 * @param to - Az ÈrtÈk, amire szeretnÈnk ·llÌtani
+	 * Be√°ll√≠tja a wantToDrop √©rt√©k√©t. 
+	 * @param to - Az √©rt√©k, amire szeretn√©nk √°ll√≠tani
 	 */
 	public void setWantToDrop(int to) {
 		wantToDrop = to;
 	}
-	/**Lekezeli a PlayerRobot ¸tkˆzÈsÈt valami m·ssal
+	/**Lekezeli a PlayerRobot √ºtk√∂z√©s√©t valami m√°ssal
 	 * @author Barna
 	 */
 	@Override
@@ -215,6 +232,22 @@ public class PlayerRobot extends Robot implements Serializable  {
 		}
 		
 	}
+
+	/**
+	 * Kirajzolja a robotot a k√©perny≈ëre
+	 * @author Hunor
+	 */
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		Graphics2D g2 = (Graphics2D) g;
+		/*TODO NoteToSelf: Poz√≠ci√≥t majd konvert√°lgatni k√©ne, ehhez
+		 * k√ºl√∂n f√ºggv√©nyeket kell m√©g √≠rnom
+		 * Facebook csoportb√≥l v√°rom a v√°laszt*/
+		g2.drawImage(playerImage, (int)position.getX(), (int)position.getY(), null);
+	}
+
+
 	
 	
 }

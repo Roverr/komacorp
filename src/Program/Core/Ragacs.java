@@ -1,5 +1,7 @@
 package Program.Core;
 
+import java.awt.Graphics;
+
 import Program.Core.MapItem.CleaningState;
 import Program.Helpers.FloatPoint;
 import Program.Prototype.PrototypeUtility;
@@ -86,7 +88,7 @@ public class Ragacs extends MapItem {
 	 * Kirajzolja a képernyőre a ragacsot
 	 * @author Hunor
 	 */
-	public void draw() {
+	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 		
 	}

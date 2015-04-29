@@ -22,9 +22,7 @@ public class Program {
 	 * @author Karesz
 	 */
 	public static void main(String[] args) {
-		System.out.println("bbabaóasdf");
 		MainWindow window=new MainWindow();
-		System.out.println("asdfasf");
 		/*TestRunner tr = new TestRunner();
 		try {
 			tr.handleInputs();
