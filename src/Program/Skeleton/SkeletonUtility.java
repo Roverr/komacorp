@@ -64,7 +64,7 @@ public class SkeletonUtility {
 		
 		// Create Dummy classes
 		try {
-			dummyGame = new Game(270, "halal_kanyon.txt", 3);
+			dummyGame = new Game(270, "halal_kanyon.txt", 3, null);
 		} catch (MyFileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

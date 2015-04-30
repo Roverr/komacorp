@@ -2,11 +2,15 @@ package Program.Core;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -134,6 +138,13 @@ public class MainWindow extends JFrame {
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
+		
+		Toolkit toolkit=Toolkit.getDefaultToolkit();
+		Image image = toolkit.getImage("assets\\cursors\\hajo.png");		
+		Cursor chajo = toolkit.createCustomCursor(image , new Point(0,0), "hajo");
+		this.setCursor (chajo);
+		
+		
 		robotRed=new PlayerRobot();
 		robotWhite=new PlayerRobot();
 		robotGreen=new PlayerRobot();
@@ -144,14 +155,11 @@ public class MainWindow extends JFrame {
 		panel.setBackground(Color.BLACK);
 		panel.setLayout(null);
 		panel.setVisible(true);
-		drawMainMenu();
+		showMenu();
 
 		this.setVisible(true);
 	}
 
-	public void showMenu() {
-
-	}
 
 	/**
 	 * Újrafesti a pályát (run hívogatja)
@@ -162,29 +170,41 @@ public class MainWindow extends JFrame {
 		canvas.repaint();
 	}
 
-	public void showResult() {
-
-	}
-
-	private void drawMainMenu() {
+	private void showMenu() {
 		panel.setVisible(false);
 		panel.removeAll();
-		JButton newGame = new JButton(new ImageIcon("newgame.jpg"));
+		Toolkit toolkit=Toolkit.getDefaultToolkit();
+		
+		Image robot = toolkit.getImage("assets\\cursors\\robot.png");		
+		Cursor crobot = toolkit.createCustomCursor(robot , new Point(16,16), "robot");
+		Image katona = toolkit.getImage("assets\\cursors\\katona.png");		
+		Cursor ckatona = toolkit.createCustomCursor(katona , new Point(16,16), "katona");
+		Image vader = toolkit.getImage("assets\\cursors\\vader.png");		
+		Cursor cvader = toolkit.createCustomCursor(vader , new Point(16,16), "vader");
+		
+		JButton newGame = new JButton(new ImageIcon("assets\\menus\\newgame.jpg"));
 		newGame.setActionCommand("newgame");
 		newGame.addActionListener(bl);
 		newGame.setBounds(250, 50, 463,67);
+		newGame.setCursor(crobot);
 		panel.add(newGame);
 
-		JButton options = new JButton(new ImageIcon("options.jpg"));
+		
+
+		
+		JButton options = new JButton(new ImageIcon("assets\\menus\\options.jpg"));
 		options.setActionCommand("options");
 		options.addActionListener(bl);
 		options.setBounds(250, 300, 463,67);
+		options.setCursor(ckatona);
 		panel.add(options);
 
-		JButton exit = new JButton(new ImageIcon("exit.jpg"));
+		
+		JButton exit = new JButton(new ImageIcon("assets\\menus\\exit.jpg"));
 		exit.setActionCommand("exit");
 		exit.addActionListener(bl);
 		exit.setBounds(250, 550, 463,67);
+		exit.setCursor(cvader);
 		panel.add(exit);
 		
 		//ez csak a teszteléshez kell, hogy lássam hogy néz ki a results
@@ -201,14 +221,28 @@ public class MainWindow extends JFrame {
 
 	}
 
-	private void drawOptionsMenu() {
+	private void showOptionsMenu() {
 		panel.setVisible(false);
 		panel.removeAll();
-		JButton back=new JButton(new ImageIcon("back.jpg"));
+		
+		Toolkit toolkit=Toolkit.getDefaultToolkit();
+		
+		Image redimage = toolkit.getImage("assets\\cursors\\red.png");		
+		Cursor cred = toolkit.createCustomCursor(redimage , new Point(16,16), "red");
+		Image whiteimage = toolkit.getImage("assets\\cursors\\white.png");		
+		Cursor cwhite = toolkit.createCustomCursor(whiteimage , new Point(16,16), "white");
+		Image greenimage = toolkit.getImage("assets\\cursors\\green.png");		
+		Cursor cgreen = toolkit.createCustomCursor(greenimage , new Point(16,16), "green");
+		Image orangeimage = toolkit.getImage("assets\\cursors\\orange.png");		
+		Cursor corange = toolkit.createCustomCursor(orangeimage , new Point(16,16), "orange");
+		Image vader = toolkit.getImage("assets\\cursors\\vader.png");		
+		Cursor cvader = toolkit.createCustomCursor(vader , new Point(16,16), "vader");
+		
+		JButton back=new JButton(new ImageIcon("assets\\menus\\back.jpg"));
 	    back.setActionCommand("back");
 	    back.addActionListener(bl);
 	    back.setBounds(50, 550, 467, 68);
-	   
+	    back.setCursor(cvader);
 	    panel.add(back);
 	    
 	    
@@ -220,6 +254,7 @@ public class MainWindow extends JFrame {
 	    red.setForeground(Color.BLACK);
 	    red.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 	    red.setBounds(400, 250, 400, 50);
+	    red.setCursor(cred);
 	    panel.add(red);
 	    
 	    white=new JTextField(whites);
@@ -229,6 +264,7 @@ public class MainWindow extends JFrame {
 	    white.setForeground(Color.BLACK);
 	    white.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 	    white.setBounds(400, 310, 400, 50);
+	    white.setCursor(cwhite);
 	    panel.add(white);
 	    
 	    
@@ -239,6 +275,7 @@ public class MainWindow extends JFrame {
 	    green.setForeground(Color.BLACK);
 	    green.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 	    green.setBounds(400, 370, 400, 50);
+	    green.setCursor(cgreen);
 	    panel.add(green);
 	    
 	    lap=new JTextField(laps);
@@ -247,17 +284,18 @@ public class MainWindow extends JFrame {
 	    lap.setSelectedTextColor(Color.BLUE);
 	    lap.setForeground(Color.BLACK);
 	    lap.setHorizontalAlignment((int) CENTER_ALIGNMENT);
-	    lap.setBounds(400, 450, 400, 50);
+	    lap.setBounds(450, 450, 300, 50);
+	    lap.setCursor(corange);
 	    panel.add(lap);
 	    
 	    
-	    JLabel mapicon=new JLabel(new ImageIcon("maps.jpg"));
+	    JLabel mapicon=new JLabel(new ImageIcon("assets\\menus\\maps.jpg"));
 	    mapicon.setBounds(50, 50, 180, 70); 
 	    panel.add(mapicon);
-	    JLabel playericon=new JLabel(new ImageIcon("players.jpg"));
+	    JLabel playericon=new JLabel(new ImageIcon("assets\\menus\\players.jpg"));
 	    playericon.setBounds(50, 250, 340, 80); 
 	    panel.add(playericon);
-	    JLabel lapicon=new JLabel(new ImageIcon("laps.jpg"));
+	    JLabel lapicon=new JLabel(new ImageIcon("assets\\menus\\laps.jpg"));
 	    lapicon.setBounds(50, 450, 340, 80); 
 	    panel.add(lapicon);
 	    
@@ -265,14 +303,18 @@ public class MainWindow extends JFrame {
 		panel.setVisible(true);
 	}
 
-	private void drawResult() {
+	private void showResult() {
 		panel.setVisible(false);
 		panel.removeAll();
 		
-		JLabel playericon=new JLabel(new ImageIcon("players.jpg"));
+		Toolkit toolkit=Toolkit.getDefaultToolkit();
+		Image vader = toolkit.getImage("assets\\cursors\\vader.png");		
+		Cursor cvader = toolkit.createCustomCursor(vader , new Point(16,16), "vader");
+		
+		JLabel playericon=new JLabel(new ImageIcon("assets\\menus\\players.jpg"));
 	    playericon.setBounds(160, 100, 340, 80); 
 	    panel.add(playericon);
-	    JLabel pointicon=new JLabel(new ImageIcon("points.jpg"));
+	    JLabel pointicon=new JLabel(new ImageIcon("assets\\menus\\points.jpg"));
 	    pointicon.setBounds(500, 100, 340, 80); 
 	    panel.add(pointicon);
 	    
@@ -327,10 +369,11 @@ public class MainWindow extends JFrame {
 	    panel.add(greenPoint);
 	    
 	    
-	    JButton next=new JButton(new ImageIcon("next.jpg"));
+	    JButton next=new JButton(new ImageIcon("assets\\menus\\next.jpg"));
 	    next.setActionCommand("next");
 	    next.addActionListener(bl);
 	    next.setBounds(410, 550, 180, 70);
+	    next.setCursor(cvader);
 	    panel.add(next);
 	    
 	    this.setTitle("Results");
@@ -385,11 +428,11 @@ public class MainWindow extends JFrame {
 				repaint();	
 				revalidate();
 			} else if (ae.getActionCommand().equals("options")) {
-				drawOptionsMenu();			
+				showOptionsMenu();			
 			} else if (ae.getActionCommand().equals("exit")) {
 				System.exit(0);
 			} else if (ae.getActionCommand().equals("next")) {
-				drawMainMenu();				
+				showMenu();				
 			} else if (ae.getActionCommand().equals("back")) {
 				reds=red.getText();
 				whites=white.getText();
@@ -397,10 +440,10 @@ public class MainWindow extends JFrame {
 				robotRed.setPilot(reds);
 				robotWhite.setPilot(whites);
 				robotGreen.setPilot(greens);
-				drawMainMenu();
+				showMenu();
 				
 			} else if(ae.getActionCommand().equals("results")){
-				drawResult();
+				showResult();
 			}
 
 		}
