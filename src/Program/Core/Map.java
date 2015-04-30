@@ -19,8 +19,8 @@ import Program.Prototype.PrototypeUtility;
 import Program.Skeleton.SkeletonUtility;
 
 /**
- * Olyan oszt·ly, ami a kÈsıbbi p·ly·t fogja szimul·lni a skeletonban valÛ
- * tesztelÈsnÈl.
+ * Olyan oszt√°ly, ami a k√©s√µbbi p√°ly√°t fogja szimul√°lni a skeletonban val√≥
+ * tesztel√©sn√©l.
  * 
  * @author Rover
  *
@@ -28,13 +28,13 @@ import Program.Skeleton.SkeletonUtility;
 public class Map implements Serializable {
 
 	/**
-	 * Szerializ·l·shoz kell
+	 * Szerializ√°l√°shoz kell
 	 */
 	private static final long serialVersionUID = -5351272359744547434L;
 	/**
-	 * T·rol minden p·yaelemet CheckPoints - A j·tÈkosok menetir·ny·nak
-	 * ellenˆrzÈsÈre szolg·l. MapItems - A p·ly·n lÈvı akad·lyok list·ja. Robots
-	 * - A versenyben lÈvı robotok list·ja. Track - A p·lya szÈlÈt defini·lÛ
+	 * T√°rol minden p√°yaelemet CheckPoints - A j√°t√©kosok menetir√°ny√°nak
+	 * ellen√∂rz√©s√©re szolg√°l. MapItems - A p√°ly√°n l√©v√µ akad√°lyok list√°ja. Robots
+	 * - A versenyben l√©v√µ robotok list√°ja. Track - A p√°lya sz√©l√©t defini√°l√≥
 	 * vonalakat tartalmazza.
 	 */
 	private List<Line> checkPoints;
@@ -44,8 +44,8 @@ public class Map implements Serializable {
 	private List<Line> track;
 
 	/**
-	 * LÈtrehoz·sn·l lÈtrehozzuk az ¸res list·kat, amik ¸resek, mert mÈg nincs
-	 * p·lya betˆlve, ebbıl kifolyÛlag nincsenek j·tÈkosok se.
+	 * L√©trehoz√°sn√°l l√©trehozzuk az √ºres list√°kat, amik √ºresek, mert m√©g nincs
+	 * p√°lya bet√∂lve, ebb√µl kifoly√≥lag nincsenek j√°t√©kosok se.
 	 */
 	public Map() {
 		PrototypeUtility.addClass(this, "GameMap");
@@ -61,10 +61,10 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * Felvesz az akad·lyok list·j·ra egy ˙jat.
+	 * Felvesz az akad√°lyok list√°j√°ra egy √∫jat.
 	 * 
 	 * @param item
-	 *            - Akad·ly amit a list·ra kell felvenni.
+	 *            - Akad√°ly amit a list√°ra kell felvenni.
 	 */
 	public void addMapItem(MapItem item) {
 		SkeletonUtility.printCall("AddMapItem", this);
@@ -73,7 +73,7 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * Ez azÈrt kell, hogy a men¸ben kiv·lasztott robotokat be·llÌtsuk
+	 * Ez az√©rt kell, hogy a men√ºben kiv√°lasztott robotokat be√°ll√≠tsuk
 	 * 
 	 * @param robots
 	 * @author Barna
@@ -87,7 +87,7 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * Ez meg azÈrt, hogy a PrototÌpusbÛl elÈrj¸k a robotokat, Ès tudjunk
+	 * Ez meg az√©rt, hogy a Protot√≠pusb√≥l el√©rj√ºk a robotokat, √©s tudjunk
 	 * addolni a testhez
 	 * 
 	 * @throws Exception
@@ -104,9 +104,9 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * Visszadja az eredmÈnyt
+	 * Visszadja az eredm√©nyt
 	 * 
-	 * @return - EredmÈny lista a robotokkal.
+	 * @return - Eredm√©ny lista a robotokkal.
 	 */
 	public List<String> getResult() {
 		SkeletonUtility.printCall("GetResult", this);
@@ -124,7 +124,7 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * Visszaadja a robotok list·j·t.
+	 * Visszaadja a robotok list√°j√°t.
 	 * 
 	 * @return - Lista a robotokkal.
 	 */
@@ -135,9 +135,9 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * Visszaadja az akad·lyok list·j·t.
+	 * Visszaadja az akad√°lyok list√°j√°t.
 	 * 
-	 * @return - Lista az akad·lyokrÛl.
+	 * @return - Lista az akad√°lyokr√≥l.
 	 */
 	public List<MapItem> getMapItems() {
 
@@ -145,35 +145,22 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * Betˆlti a mappot egy filebÛl.
-	 * 
-	 * @param file
-	 *            - Amibıl belehet olvasni a mappot.
-	 */
-	/**
-	 * Szerintem ez sz¸ksÈges mÈg a LoadMaphoz, ne legyenek rajta fˆlˆs robotok
-	 * Lehet 0 robottal is?!?!?!?!, ekkor csak a p·lya megnÈzÈse a cÈl de mivel
-	 * ·llapotot nem t·rolunk, teh·t meg kell kÈrdezni a felhaszn·lÛtÛl h h·ny
-	 * robottal akarjuk megcsin·lni
-	 * 
-	 * @author Barna
+	 * Beolvassa a map le√≠r√°s√°t fileb√≥l
+	 * @param file - Amib√µl belehet olvasni a mappot.
+	 * @author Barna, Hunor
 	 * @param numberOfPlayers
 	 * @throws MyFileNotFoundException
-	 * @throws FileNotFoundException
 	 */
-	// Beolvassa a map leÌr·s·t filebÛl
-	// A file felÈpÌtÈse: SoronkÈnt egy sz·m
-	public void loadMap(String file, int numberOfPlayers)
-			throws MyFileNotFoundException {
+	public void loadMap(String file, int numberOfPlayers) throws MyFileNotFoundException {
 		System.out.println(file);
 		SkeletonUtility.printCall("LoadMap(" + file + ")", this);
-		/* Inicializ·l·s */
+		/* Inicializ√°l√°s */
 		track = new ArrayList<Line>();
 		checkPoints = new ArrayList<Line>();
 
 		File f = new File(System.getProperty("user.dir") + "\\" + file + ".txt");
 		BufferedReader reader = null;
-		// Ebben fognak t·rolÛdni a sz·mok
+		// Ebben fognak t√°rol√≥dni a sz√°mok
 		ArrayList<Integer> input = new ArrayList<Integer>();
 		try {
 			reader = new BufferedReader(new FileReader(f));
@@ -181,7 +168,7 @@ public class Map implements Serializable {
 			throw new MyFileNotFoundException();
 		}
 		String text = null;
-		/* Beolvasunk mindent az input list·ba */
+		/* Beolvasunk mindent az input list√°ba */
 		try {
 			while ((text = reader.readLine()) != null)
 				input.add(Integer.parseInt(text));
@@ -196,8 +183,8 @@ public class Map implements Serializable {
 			e.printStackTrace();
 		}
 
-		/* A bemenet feldolgoz·sa */
-		// A file elsı sz·ma a vonalak sz·ma, a m·sodik a checkpointok sz·ma
+		/* A bemenet feldolgoz√°sa */
+		// A file els√µ sz√°ma a vonalak sz√°ma, a m√°sodik a checkpointok sz√°ma
 		Integer number_of_lines = input.get(0);
 		Integer number_of_checkpoints = input.get(1);
 
@@ -218,13 +205,31 @@ public class Map implements Serializable {
 			int y2 = input.get(i + 3);
 			checkPoints.add(new Line(x1, x2, y1, y2));
 		}
+		
+		/*Lerakja a robotokat a startvonalra*/
+		for (int i = 0; i < numberOfPlayers; i++){
+			/*A nulladik eleme a checkpointoknak a startvonal */
+			Line start = checkPoints.get(0);
+			/*A startvonalra √∫gy tessz√ºk, hogy balr√≥l √©s jobbr√≥l 5%-√°t a startvonalnak lev√°gjuk,
+			az lesz a marg√≥. A megmaradt r√©szen ar√°nyosan helyezz√ºk el ≈ëket.
+			 */
+			//TODO NoteToSelf: nincs k√©sz, most csak az els≈ë robotot rakom le a p√°lya k√∂zep√©re
+			float ratio = ((float)start.length() - (float) start.length() / 10.0f) / (float) numberOfPlayers;
+			if (numberOfPlayers >= 1)
+				try {
+					addPlayerRobot("Teszt", 500.0f, 350.0f);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
 	}
 
 	/**
-	 * Leszed a p·ly·rÛl egy akad·lyt
+	 * Leszed a p√°ly√°r√≥l egy akad√°lyt
 	 * 
 	 * @param item
-	 *            - Akad·ly amit lekell szedni.
+	 *            - Akad√°ly amit lekell szedni.
 	 */
 	public void removeMapItem(MapItem item) {
 		SkeletonUtility.printCall("RemoveMapItem", this);
@@ -237,19 +242,19 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * VÈgignÈzi az ˆsszes
+	 * V√©gign√©zi az √∂sszes
 	 * PlayerRobot-PlayerRobot,PlayerRobot-CleanerRobot,PlayerRobot-MapItem
-	 * objektumokat, ¸tkˆzÈst, belelÈpÈst detekt·l CleanerRobot-CleanerRobot
-	 * ¸tkˆzÈst is CleanerRobot-Mapitem ¸tkˆzÈs k¸lˆnleges eset, nem itt
-	 * kezelj¸k MapItem-Mapitem, nem kell kezelni
+	 * objektumokat, √ºtk√∂z√©st, belel√©p√©st detekt√°l CleanerRobot-CleanerRobot
+	 * √ºtk√∂z√©st is CleanerRobot-Mapitem √ºtk√∂z√©s k√ºl√∂nleges eset, nem itt
+	 * kezelj√ºk MapItem-Mapitem, nem kell kezelni
 	 * 
 	 * @param playerRobot
-	 *            - Akit vizsg·lni kell az akad·lyokhoz viszonyÌtva.
+	 *            - Akit vizsg√°lni kell az akad√°lyokhoz viszony√≠tva.
 	 * @throws IOException
 	 */
 	public void validateStates() {
 		SkeletonUtility.printCall("ValidateStates", this);
-		// TODO Checkpointon kereszt¸lmenÈs (PlayerRobotban v·ltoztat valamit).
+		// TODO Checkpointon kereszt√ºlmen√©s (PlayerRobotban v√°ltoztat valamit).
 		for (PlayerRobot probot : playerRobots) {
 
 			if (!this.isOnTrack(probot.getPosition()))
@@ -309,15 +314,15 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * Eldˆnti, hogy egy adott pont a p·ly·n bel¸l tal·lhatÛ vagy sem
+	 * Eld√∂nti, hogy egy adott pont a p√°ly√°n bel√ºl tal√°lhat√≥ vagy sem
 	 * 
 	 * @param point
-	 *            a pont amelyre kÌv·ncsiak vagyunk - Akit vizsg·lni kell az
-	 *            akad·lyokhoz viszonyÌtva.
+	 *            a pont amelyre k√≠v√°ncsiak vagyunk - Akit vizsg√°lni kell az
+	 *            akad√°lyokhoz viszony√≠tva.
 	 * @author Bence
 	 */
 	private Boolean isOnTrack(FloatPoint point) {
-		// egy biztosan k¸lsı pont keresÈse
+		// egy biztosan k√ºls√µ pont keres√©se
 		FloatPoint kulso = new FloatPoint(0, 0);
 		for (Line i : track) {
 			if (i.x1 < kulso.getX())
@@ -329,30 +334,30 @@ public class Map implements Serializable {
 			if (i.y2 < kulso.getY())
 				kulso.setY(i.y1);
 		}
-		// biztosan ne a bal alsÛ sarok legyen a k¸lsı pont
+		// biztosan ne a bal als√≥ sarok legyen a k√ºls√µ pont
 		kulso.setX(kulso.getX()-5); 
 		kulso.setY(kulso.getY()-7);
 		Line tmpline = new Line(kulso.getX(), point.getX(),  kulso.getY(), point.getY());
 		/*
-		 * megsz·moljuk, hogy egy k¸lsı pont Ès az adott pont kˆzˆtti szakasz
-		 * h·ny egyenest metsz. Ha p·ros, akkor p·ly·n kÌv¸li, ha p·ratlan
-		 * p·ly·n bel¸li
+		 * megsz√°moljuk, hogy egy k√ºls√µ pont √©s az adott pont k√∂z√∂tti szakasz
+		 * h√°ny egyenest metsz. Ha p√°ros, akkor p√°ly√°n k√≠v√ºli, ha p√°ratlan
+		 * p√°ly√°n bel√ºli
 		 */
 		int metszesszam = 0;
 		for (Line i : track) {
 
-			// Van metszÈs
+			// Van metsz√©s
 			if (i.intersect(tmpline)) {
-				// Addig toljuk lefelÈ a k¸lsı pontot, amÌg a k¸lsı pont Ès a
-				// vizsg·lt pont
-				// kˆzˆtti szakaszon nem lesz egy p·lya tˆrÈs pont sem
+				// Addig toljuk lefel√© a k√ºls√µ pontot, am√≠g a k√ºls√µ pont √©s a
+				// vizsg√°lt pont
+				// k√∂z√∂tti szakaszon nem lesz egy p√°lya t√∂r√©s pont sem
 				Vector v = new Vector(i.getX1(), i.getY1());
 				while (tmpline.isOnLine(v))
 					tmpline.setY1(tmpline.getY1() - 1);
 				v = new Vector(i.getX2(), i.getY2());
-				// Ha a vonal m·sik vÈgÈre lÛgna r·, akkor biztosan bennt van a
+				// Ha a vonal m√°sik v√©g√©re l√≥gna r√°, akkor biztosan bennt van a
 				// pont,
-				// Ìgy nem romlik a p·ly·nmarad·s feltÈtele
+				// √≠gy nem romlik a p√°ly√°nmarad√°s felt√©tele
 				while (tmpline.isOnLine(v))
 					tmpline.setY1(tmpline.getY1() - 1);
 				if (i.intersect(tmpline))
@@ -366,17 +371,17 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * Megadja, hogy az elızı ugr·sba ·thaladt-e az ellenırzı ponton.
-	 * Kˆzvetlen¸l ugr·s ut·n kell meghÌvni a helyes m˚kˆdÈshez
+	 * Megadja, hogy az el√µz√µ ugr√°sba √°thaladt-e az ellen√µrz√µ ponton.
+	 * K√∂zvetlen√ºl ugr√°s ut√°n kell megh√≠vni a helyes m√ªk√∂d√©shez
 	 *
 	 * @param robot
-	 *            a megadott robotra ellenırzi az ·thalad·s tÈnyÈt.
+	 *            a megadott robotra ellen√µrzi az √°thalad√°s t√©ny√©t.
 	 * @param beforejump
-	 *            - az ugr·s elıtti pozÌciÛ
+	 *            - az ugr√°s el√µtti poz√≠ci√≥
 	 * @author Bence
 	 */
 	public Boolean isCheckPointChecked(Robot robot, FloatPoint beforejump) {
-		// ugr·s vonal·nak megad·sa
+		// ugr√°s vonal√°nak megad√°sa
 		Line ugras = new Line(robot.position.getX(),beforejump.getX(), robot.position.getY(),beforejump.getY());
 		Boolean metsz = false;
 		for (Line i : checkPoints) {
@@ -387,7 +392,7 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * Visszadja a takarÌtÛ robotok list·j·t
+	 * Visszadja a takar√≠t√≥ robotok list√°j√°t
 	 * 
 	 * @return
 	 */
@@ -396,7 +401,7 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * Be·llÌtja a takarÌtÛ robotok list·j·t
+	 * Be√°ll√≠tja a takar√≠t√≥ robotok list√°j√°t
 	 * 
 	 * @param cleanerRobots
 	 */

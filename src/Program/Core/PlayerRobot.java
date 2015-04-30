@@ -241,9 +241,7 @@ public class PlayerRobot extends Robot implements Serializable, Drawable  {
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 		Graphics2D g2 = (Graphics2D) g;
-		/*TODO NoteToSelf: Pozíciót majd konvertálgatni kéne, ehhez
-		 * külön függvényeket kell még írnom
-		 * Facebook csoportból várom a választ*/
+		/*TODO NoteToSelf: Pozíciót szorozni egységgel később*/
 		g2.drawImage(playerImage, (int)position.getX(), (int)position.getY(), null);
 	}
 

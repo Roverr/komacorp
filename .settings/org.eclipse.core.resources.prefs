@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/Program/Core/Game.java=UTF-8
 encoding//src/Program/Core/MainWindow.java=UTF-8
+encoding//src/Program/Core/Map.java=UTF-8
 encoding//src/Program/Core/Olaj.java=UTF-8
 encoding//src/Program/Core/PlayerRobot.java=UTF-8
 encoding//src/Program/Core/Ragacs.java=UTF-8

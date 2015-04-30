@@ -9,6 +9,8 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -34,7 +36,7 @@ interface Drawable{
  * @author Hunor
  *
  */
-class Canvas extends JPanel{
+class Canvas extends JPanel implements KeyListener{
 	/**
 	 * 
 	 */
@@ -66,18 +68,44 @@ class Canvas extends JPanel{
         /*Háttér kirajzolása*/
         g2.setColor(new Color(10, 100, 0));
         g2.drawImage(background, 0, 0, null);
-        
-        
+              
         /*Mapon szereplő objektumokat kirajzolja*/
 	    for (PlayerRobot pRobot : gameMap.getRobots())
 	       		pRobot.draw(g);
         for (CleanerRobot cRobot : gameMap.getCleanerRobots())
 	       	cRobot.draw(g);
         for (MapItem mItem : gameMap.getMapItems())
-	       	mItem.draw(g);
-	        
-        
+	       	mItem.draw(g);    
     }
+
+	
+    /**
+     * Fókusz elkérése (billentyűleütéseket érzékelje)
+     * Automatikusan lefut
+     */
+    public void addNotify() {
+        super.addNotify();
+        requestFocus();
+    }
+    
+    @Override
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyChar() == 'e')
+			System.exit(0);
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
 @SuppressWarnings("serial")
@@ -318,17 +346,42 @@ public class MainWindow extends JFrame {
 			 * és elindít egy új játékot*/
 			if (ae.getActionCommand().equals("newgame")) {
 				/*Játék indítása*/
+				Game game = null;
 				try {
-					Game game = new Game(screenHeight, "kanyon", screenHeight);
+					//TODO játékidő és játékosok száma ne konstans legyen, hanem menüben beállított
+					game = new Game(100, "kanyon", 1, MainWindow.this);
 					map = game.getMap();
 				} catch (MyFileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				/*Vászon létrehozása*/
+				canvas = new Canvas(screenWidth, screenHeight, "assets\\ingame\\background.jpeg", map);
+				
+				/*Vászon eseménykezelője*/
+				canvas.setFocusable(true);
+				canvas.requestFocusInWindow(); //Fókusz elkérése
+				final Game gameFinal = game;  //Ez kell, anoním osztály miatt
+				canvas.addKeyListener(new KeyListener(){
+
+					@Override
+					public void keyPressed(KeyEvent e) {
+						gameFinal.userControl(e.getKeyChar());
+					}
+
+					@Override
+					public void keyReleased(KeyEvent e) {}
+
+					@Override
+					public void keyTyped(KeyEvent e) {}
+					
+				});
 				/*Vászon csere*/
 				remove(panel);
-				canvas = new Canvas(screenWidth, screenHeight, "assets\\ingame\\background.jpeg", map);
 				add(canvas);
+				//Játék indítása
+				game.startGame();
 				repaint();	
 				revalidate();
 			} else if (ae.getActionCommand().equals("options")) {
