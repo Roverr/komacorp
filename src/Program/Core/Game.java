@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 import Program.Helpers.FloatPoint;
@@ -188,13 +189,16 @@ public class Game {
 					}
 		
 					/*Ha már csak 1 maradt, vége a játéknak*/
-					if(aliveCount <= 1) 
+					if(aliveCount <= 1) {
 						endGame();
+						JOptionPane.showMessageDialog(null, "Game Over! \n(Only one survived)");
+					}
 				} else {
 					//Letelt az idő, vége a játéknak
 					endGame();
 					if (PrototypeUtility.allowDebug)
 						System.out.println("Game Ended by now.");
+					JOptionPane.showMessageDialog(null, "Game Over! \n(Time is out)");
 				}
 				SkeletonUtility.printReturn("Run", this);
 				
