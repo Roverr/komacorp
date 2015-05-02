@@ -33,6 +33,7 @@ public abstract class Robot {
 		position = new FloatPoint(0,0);
 		alive = true;
 		distance = 0;
+		alive = true;
 	}
 	
 	public abstract void die(Map map);

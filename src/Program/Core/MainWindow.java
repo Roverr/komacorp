@@ -22,6 +22,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -48,13 +49,13 @@ class Canvas extends JPanel implements KeyListener{
 	private int screenWidth = 1000;
 	private int screenHeight = 700;
 	BufferedImage background;
-	Map gameMap;
+	Game game;
 	
-	public Canvas(int screenWidth, int screenHeight, String backgroundFileName, Map gameMap){
+	public Canvas(int screenWidth, int screenHeight, String backgroundFileName, Game game){
 		/*Inicializálás*/
 		this.screenWidth = screenWidth;
 		this.screenHeight = screenHeight;
-		this.gameMap = gameMap;
+		this.game = game;
 		/*Háttérkép betöltése*/
 		try {
 			background = ImageIO.read(new File(backgroundFileName));
@@ -74,40 +75,26 @@ class Canvas extends JPanel implements KeyListener{
         g2.drawImage(background, 0, 0, null);
               
         /*Mapon szereplő objektumokat kirajzolja*/
-	    for (PlayerRobot pRobot : gameMap.getRobots())
+	    for (PlayerRobot pRobot : game.getMap().getRobots())
 	       		pRobot.draw(g);
-        for (CleanerRobot cRobot : gameMap.getCleanerRobots())
+        for (CleanerRobot cRobot : game.getMap().getCleanerRobots())
 	       	cRobot.draw(g);
-        for (MapItem mItem : gameMap.getMapItems())
+        for (MapItem mItem : game.getMap().getMapItems())
 	       	mItem.draw(g);    
-    }
-
-	
-    /**
-     * Fókusz elkérése (billentyűleütéseket érzékelje)
-     * Automatikusan lefut
-     */
-    public void addNotify() {
-        super.addNotify();
-        requestFocus();
     }
     
     @Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyChar() == 'e')
-			System.exit(0);
+    	//Értelmezi a gombnyomást és a megfelelő robotot mozgatja
+		game.userControl(e.getKeyChar());
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void keyReleased(KeyEvent e) {		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
@@ -400,29 +387,16 @@ public class MainWindow extends JFrame {
 				}
 				
 				/*Vászon létrehozása*/
-				canvas = new Canvas(screenWidth, screenHeight, "assets\\ingame\\background.jpeg", map);
+				canvas = new Canvas(screenWidth, screenHeight, "assets\\ingame\\background.jpeg", game);
 				
-				/*Vászon eseménykezelője*/
-				canvas.setFocusable(true);
-				canvas.requestFocusInWindow(); //Fókusz elkérése
-				final Game gameFinal = game;  //Ez kell, anoním osztály miatt
-				canvas.addKeyListener(new KeyListener(){
 
-					@Override
-					public void keyPressed(KeyEvent e) {
-						gameFinal.userControl(e.getKeyChar());
-					}
-
-					@Override
-					public void keyReleased(KeyEvent e) {}
-
-					@Override
-					public void keyTyped(KeyEvent e) {}
-					
-				});
 				/*Vászon csere*/
 				remove(panel);
 				add(canvas);
+				/*Vászon eseménykezelője*/
+				canvas.addKeyListener(canvas);
+				canvas.setFocusable(true);
+				canvas.requestFocusInWindow(); //Fókusz elkérése
 				//Játék indítása
 				game.startGame();
 				repaint();	

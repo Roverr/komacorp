@@ -82,7 +82,7 @@ public class Game {
 		/*Elindítja az időzítő motort (külön szálon)
 		 * Másodpercenként fog a run függvény meghívódni*/
 		final Game rThis = this; //anonim osztály miatt kell
-		t = new Timer(100, new ActionListener(){
+		t = new Timer(1000, new ActionListener(){
 			int i = 0;
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -124,6 +124,8 @@ public class Game {
 		t.stop();
 		//TODO Debuggolni kellene, hogy erre miért nem tér vissza a főmenübe
 		mWindow.showMenu();
+		//TODO Ezt delete, csak debug miatt kellett
+		System.exit(0);
 	}
 
 	public static int cleanerId = 1;
@@ -138,10 +140,9 @@ public class Game {
 	 *             - Exception amit elkell kapni.
 	 */
 	public void run() throws Exception {
-		boolean gameOver = false;
-		while(!gameOver){
 				/*Ha még nem járt le a játék időkorlátja, léptet*/
 				if (elapsedTime < time) {
+					System.out.println("Tick");
 					SkeletonUtility.printCall("Run", this);
 					// TODO dropOlaj, és dropRagacsot innen meghívni!
 					// Ellenõrzi az !összes! robot pozícióját
@@ -211,11 +212,12 @@ public class Game {
 					}
 		
 					/*Ha már csak 1 maradt, jelez, hogy vége a játéknak*/
-					if(aliveCount <= 1) 
-						gameOver = true; 
+					//TODO kommentezést kivenni, debug miatt van így
+					//if(aliveCount <= 1) 
+					//	endGame();
 					//Letelt az idő, vége a játéknak
 				} else {
-					gameOver = true;
+					endGame();
 					if (PrototypeUtility.allowDebug)
 						System.out.println("Game Ended by now.");
 				}
@@ -223,8 +225,6 @@ public class Game {
 				
 				/*Rendereli a pályát*/
 				mWindow.showGame(GameMap);
-			}
-		endGame();
 	}
 
 	/**
@@ -247,7 +247,7 @@ public class Game {
 		switch (interact) {
 		// Fel
 		case 'w':
-			playerOne.modifySpeed(new Vector(0, 1));
+			playerOne.modifySpeed(new Vector(0.0f, 1.0f));
 			break;
 		// Le
 		case 's':
