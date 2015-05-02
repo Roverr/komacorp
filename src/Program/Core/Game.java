@@ -168,10 +168,10 @@ public class Game {
 					if (PrototypeUtility.allowDebug)
 						System.out.println("time = " + elapsedTime + " < " + time);
 					// új cleaner robot felvétele.
-					// Mindíg 10 körönként történik, egyszerre 3 cleanerRobot van max a
+					// Mindíg 249 körönként történik, egyszerre 3 cleanerRobot van max a
 					// pályán.
 					List<CleanerRobot> takker = GameMap.getCleanerRobots();
-					if (takker.size() < 3 && elapsedTime % 10 == 9) {
+					if (takker.size() < 3 && elapsedTime % 250 == 249) {
 						boolean ures = true;
 						for (CleanerRobot r : takker) {
 							// TODO Check for PlayerRobots as well.
