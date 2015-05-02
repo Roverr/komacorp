@@ -144,10 +144,6 @@ public class MainWindow extends JFrame {
 		
 		panel = new JPanel();
 		bl = new ButtonListener();
-		this.add(panel, BorderLayout.CENTER);
-		panel.setBackground(Color.BLACK);
-		panel.setLayout(null);
-		panel.setVisible(true);
 		showMenu();
 
 		this.setVisible(true);
@@ -164,6 +160,9 @@ public class MainWindow extends JFrame {
 	}
 
 	public void showMenu() {
+		this.add(panel, BorderLayout.CENTER);
+		panel.setBackground(Color.BLACK);
+		panel.setLayout(null);
 		panel.setVisible(false);
 		panel.removeAll();
 		Toolkit toolkit=Toolkit.getDefaultToolkit();

@@ -21,20 +21,6 @@ public class Game {
 	private int elapsedTime;
 	private MainWindow mWindow;
 	private Timer t;
-	
-	/**
-	 * Az időzítő ennek a változón keresztül jelez,
-	 * hogy futtatható a run függvény
-	 * (Hasonlóan mint C#-ban autoResetEvent)
-	 */
-	private boolean canRun = false;
-	
-	/*Ezen a függvényen keresztül jelzünk, hogy eltelt a kör, futtatható a run*/
-	public void canRun(){
-		synchronized (this){
-			canRun = true;
-		}
-	}
 
 	/**
 	 * Konstruktor játék indításához
@@ -83,15 +69,11 @@ public class Game {
 		/*Elindítja az időzítő motort (külön szálon)
 		 * Másodpercenként fog a run függvény meghívódni*/
 		final Game rThis = this; //anonim osztály miatt kell
-		t = new Timer(1000, new ActionListener(){
-			int i = 0;
+		t = new Timer(50, new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					i++;
 					rThis.run();
-					if (i > 10)
-						System.exit(0);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -125,8 +107,6 @@ public class Game {
 		t.stop();
 		//TODO Debuggolni kellene, hogy erre miért nem tér vissza a főmenübe
 		mWindow.showMenu();
-		//TODO Ezt delete, csak debug miatt kellett
-		System.exit(0);
 	}
 
 	public static int cleanerId = 1;
@@ -215,8 +195,8 @@ public class Game {
 		
 					/*Ha már csak 1 maradt, jelez, hogy vége a játéknak*/
 					//TODO kommentezést kivenni, debug miatt van így
-					//if(aliveCount <= 1) 
-					//	endGame();
+					if(aliveCount <= 1) 
+						endGame();
 					//Letelt az idő, vége a játéknak
 				} else {
 					endGame();
