@@ -243,6 +243,14 @@ public class Game {
 		case 'd':
 			playerOne.modifySpeed(new Vector(1, 0));
 			break;
+		//Olajdobás
+		case 'q':
+			playerOne.dropOlaj(GameMap);
+			break;
+		//Ragacsdobás
+		case 'e':
+			playerOne.dropRagacs(GameMap);
+			break;
 		}
 
 		/**
@@ -268,6 +276,14 @@ public class Game {
 			case 'h':
 				playerTwo.modifySpeed(new Vector(1, 0));
 				break;
+			//Olajdobás
+			case 'r':
+				playerTwo.dropOlaj(GameMap);
+				break;
+			//Ragacsdobás
+			case 'z':
+				playerTwo.dropRagacs(GameMap);
+				break;
 			}
 		}
 
@@ -291,6 +307,14 @@ public class Game {
 			case 'l':
 				playerThree.modifySpeed(new Vector(1, 0));
 				break;
+			//Olajdobás
+			case 'u':
+				playerThree.dropOlaj(GameMap);
+				break;
+			//Ragacsdobás
+			case 'o':
+				playerThree.dropRagacs(GameMap);
+				break;			
 			}
 
 			SkeletonUtility.printCall("UserControl", this);
