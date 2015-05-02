@@ -208,11 +208,7 @@ public class Map implements Serializable {
 		/*Lerakja a robotokat a startvonalra*/
 			/*A nulladik eleme a checkpointoknak a startvonal */
 			Line start = checkPoints.get(0);
-			/*A startvonalra úgy tesszük, hogy balról és jobbról 5%-át a startvonalnak levágjuk,
-			az lesz a margó. A megmaradt részen arányosan helyezzük el őket.
-			 */
 			//TODO A robotok neve ide kellene az optionsből
-			float ratio = ((float)start.length() - (float) start.length() / 10.0f) / (float) numberOfPlayers;
 			//Első játékos pályára tétele (ha van (mivel a menü nem kötelez a létrehozására))
 			if (numberOfPlayers >= 1)
 				try {

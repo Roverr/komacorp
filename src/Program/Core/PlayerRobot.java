@@ -1,8 +1,12 @@
 package Program.Core;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Polygon;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -234,15 +238,47 @@ public class PlayerRobot extends Robot implements Serializable, Drawable  {
 	}
 
 	/**
-	 * Kirajzolja a robotot a képernyőre
+	 * Kirajzolja a robotot a képernyőre, és a sebességvektorát
 	 * @author Hunor
 	 */
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
 		Graphics2D g2 = (Graphics2D) g;
+		/*Robot kirajzolása*/
 		/*TODO NoteToSelf: Pozíciót szorozni egységgel később*/
 		g2.drawImage(playerImage, (int)position.getX(), (int)position.getY(), null);
+		
+		
+		/*Sebességvektor kirajzolása*/
+        g2.setColor(new Color(0, 255, 255));
+        AffineTransform tx = new AffineTransform();
+        /*A vonalat eltolom a robot középpontjára és kirajzolom*/
+        Line2D.Double line = new Line2D.Double(position.getX(),
+        									   position.getY(),
+        									   position.getX() + (speed.getX() * speed.length()),
+        									   position.getY() + (speed.getY() * speed.length()));
+        g2.draw(line);
+
+        /*Ha van sebessége, kirajzolja a nyílfejet*/
+        if (speed.length() > 0.0f){
+	        /*Nyílfej létrehozása*/
+	        Polygon arrowHead = new Polygon();  
+	        arrowHead.addPoint( 0,5);
+	        arrowHead.addPoint( -5, -5);
+	        arrowHead.addPoint( 5,-5);
+	
+	        /*Nyílfej forgatása*/
+	        tx.setToIdentity();
+	        double angle = Math.atan2(line.y2-line.y1, line.x2-line.x1);
+	        tx.translate(line.x2, line.y2);
+	        tx.rotate((angle-Math.PI/2d));  
+	
+	        /*Nyílfej kirajzolása*/
+	        Graphics2D gTemp = (Graphics2D) g2.create(); 
+	        gTemp.setTransform(tx);   
+	        gTemp.fill(arrowHead);
+	        gTemp.dispose();
+        }
 	}
 
 
