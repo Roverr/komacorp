@@ -1,8 +1,12 @@
 package Program.Core;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+
+import javax.swing.Timer;
 
 import Program.Helpers.FloatPoint;
 import Program.Helpers.Vector;
@@ -75,16 +79,26 @@ public class Game {
 			r.modifySpeed(new Vector(0, 0));
 		SkeletonUtility.printReturn("StartGame", this);
 		
-		/*Elindítja az időzítő motort (külön szálon)*/
-		t = new Timer(this);
+		/*Elindítja az időzítő motort (külön szálon)
+		 * Másodpercenként fog a run függvény meghívódni*/
+		final Game rThis = this; //anonim osztály miatt kell
+		t = new Timer(100, new ActionListener(){
+			int i = 0;
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					i++;
+					rThis.run();
+					if (i > 10)
+						System.exit(0);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		t.setRepeats(true);
 		t.start();
-		/*Elindítja a játékmotor futását*/
-		try {
-			run();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	/**
@@ -107,8 +121,9 @@ public class Game {
 
 		SkeletonUtility.printReturn("EndGame", this);
 		
-		/*leállítja az időzítő motort*/
-		t.stop = true;
+		t.stop();
+		//TODO Debuggolni kellene, hogy erre miért nem tér vissza a főmenübe
+		mWindow.showMenu();
 	}
 
 	public static int cleanerId = 1;
@@ -124,11 +139,7 @@ public class Game {
 	 */
 	public void run() throws Exception {
 		boolean gameOver = false;
-		while(!gameOver)
-			if (canRun){			
-				/*Beállítja, hogy ne fusson addig, amíg jelt nem ad az időzítő*/
-				canRun = false;
-				
+		while(!gameOver){
 				/*Ha még nem járt le a játék időkorlátja, léptet*/
 				if (elapsedTime < time) {
 					SkeletonUtility.printCall("Run", this);

@@ -170,7 +170,7 @@ public class MainWindow extends JFrame {
 		canvas.repaint();
 	}
 
-	private void showMenu() {
+	public void showMenu() {
 		panel.setVisible(false);
 		panel.removeAll();
 		Toolkit toolkit=Toolkit.getDefaultToolkit();
