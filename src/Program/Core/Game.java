@@ -142,7 +142,7 @@ public class Game {
 	public void run() throws Exception {
 				/*Ha még nem járt le a játék időkorlátja, léptet*/
 				if (elapsedTime < time) {
-					System.out.println("Tick");
+					System.out.println("Tick " + elapsedTime);
 					SkeletonUtility.printCall("Run", this);
 					// TODO dropOlaj, és dropRagacsot innen meghívni!
 					// Ellenõrzi az !összes! robot pozícióját

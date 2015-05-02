@@ -152,7 +152,6 @@ public class Map implements Serializable {
 	 * @throws MyFileNotFoundException
 	 */
 	public void loadMap(String file, int numberOfPlayers) throws MyFileNotFoundException {
-		System.out.println(file);
 		SkeletonUtility.printCall("LoadMap(" + file + ")", this);
 		/* Inicializálás */
 		track = new ArrayList<Line>();
@@ -207,22 +206,42 @@ public class Map implements Serializable {
 		}
 		
 		/*Lerakja a robotokat a startvonalra*/
-		for (int i = 0; i < numberOfPlayers; i++){
 			/*A nulladik eleme a checkpointoknak a startvonal */
 			Line start = checkPoints.get(0);
 			/*A startvonalra úgy tesszük, hogy balról és jobbról 5%-át a startvonalnak levágjuk,
 			az lesz a margó. A megmaradt részen arányosan helyezzük el őket.
 			 */
-			//TODO NoteToSelf: nincs kész, most csak az első robotot rakom le a pálya közepére
+			//TODO A robotok neve ide kellene az optionsből
 			float ratio = ((float)start.length() - (float) start.length() / 10.0f) / (float) numberOfPlayers;
+			//Első játékos pályára tétele (ha van (mivel a menü nem kötelez a létrehozására))
 			if (numberOfPlayers >= 1)
 				try {
-					addPlayerRobot("Teszt", 500.0f, 350.0f);
+					//Startvonal balszélére helyezi
+					addPlayerRobot("Teszt1", start.getX1(), start.getY1());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		}
+			//Második játékos pályára tétele (ha van)
+			if (numberOfPlayers >= 2)
+				try {
+					//Startvonal közepére helyezi
+					addPlayerRobot("Teszt2", 
+									(start.getX1() + start.getX2())/2,
+									(start.getY1() + start.getY2()) / 2);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			//Harmadik játékos pályára tétele (ha van)
+			if (numberOfPlayers == 3)
+				try {
+					//Startvonal jobbszélére helyezi
+					addPlayerRobot("Teszt3", start.getX2(), start.getY2());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	}
 
 	/**

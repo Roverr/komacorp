@@ -379,7 +379,7 @@ public class MainWindow extends JFrame {
 				Game game = null;
 				try {
 					//TODO játékidő és játékosok száma ne konstans legyen, hanem menüben beállított
-					game = new Game(100, "Tesztmap", 1, MainWindow.this);
+					game = new Game(1000, "Tesztmap", 3, MainWindow.this);
 					map = game.getMap();
 				} catch (MyFileNotFoundException e) {
 					// TODO Auto-generated catch block
