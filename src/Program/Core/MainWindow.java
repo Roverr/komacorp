@@ -143,6 +143,7 @@ public class MainWindow extends JFrame {
 		robotGreen=new PlayerRobot();
 		
 		panel = new JPanel();
+		canvas = null;
 		bl = new ButtonListener();
 		showMenu();
 
@@ -160,7 +161,11 @@ public class MainWindow extends JFrame {
 	}
 
 	public void showMenu() {
+		/*Ha játékból léptünk ide vissza, letakarítja a képernyőt*/
+		if (canvas != null)
+			remove(canvas);
 		this.add(panel, BorderLayout.CENTER);
+		panel.setVisible(true);
 		panel.setBackground(Color.BLACK);
 		panel.setLayout(null);
 		panel.setVisible(false);
