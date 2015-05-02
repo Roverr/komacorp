@@ -1,7 +1,5 @@
 package Program.Helpers;
 
-//TODO Mindenhol replacelni a java.awt.Point-ot ezzel.
-
 public class Vector {
 	private float x;
 	private float y;

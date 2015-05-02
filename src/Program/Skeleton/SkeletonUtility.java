@@ -57,23 +57,18 @@ public class SkeletonUtility {
 	 * osztályokat. Beállítja a kellõ statikus változókat.
 	 * 
 	 */
-	public SkeletonUtility() {
-		/*Létrehozza és kiszerializálja a tesztpályát*/
-		/*TODO delete véglegesben*/
-		
+	public SkeletonUtility() {	
 		
 		// Create Dummy classes
 		try {
-			dummyGame = new Game(270, "halal_kanyon.txt", 3, null);
+			dummyGame = new Game(270, "halal_kanyon.txt", 3, null, null);
 		} catch (MyFileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		dummyMap = new Map();
 		try {
-			dummyMap.loadMap("halal_kanyon.txt", 3);
+			dummyMap.loadMap("halal_kanyon.txt", 3, null);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 		dummyRobot = new PlayerRobot();
@@ -481,9 +476,8 @@ public class SkeletonUtility {
 	private static void chooseMap(String name) {
 
 		try {
-			dummyMap.loadMap(name, previousnumberofplayers);
+			dummyMap.loadMap(name, previousnumberofplayers, null);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -563,9 +557,8 @@ public class SkeletonUtility {
 	private void chooseNumberOfPlayers(int number) {
 
 		try {
-			dummyMap.loadMap(previousname, number);
+			dummyMap.loadMap(previousname, number, null);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

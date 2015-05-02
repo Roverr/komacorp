@@ -3,6 +3,7 @@ package Program.Core;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Timer;
@@ -30,7 +31,7 @@ public class Game {
 	 * @author Barna, Hunor
 	 * @throws MyFileNotFoundException
 	 */
-	public Game(int seconds, String mapname, int numberOfPlayers, MainWindow mWindow) throws MyFileNotFoundException 
+	public Game(int seconds, String mapname, int numberOfPlayers, MainWindow mWindow, ArrayList<String> robotNames) throws MyFileNotFoundException 
 	{
 		SkeletonUtility.addClass(this, "dummyGame");
 		SkeletonUtility.printCall("Game", this);
@@ -38,7 +39,7 @@ public class Game {
 		/*Pálya betöltése*/
 		GameMap = new Map();
 		try {
-			GameMap.loadMap(mapname, numberOfPlayers);
+			GameMap.loadMap(mapname, numberOfPlayers, robotNames);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			throw new MyFileNotFoundException();

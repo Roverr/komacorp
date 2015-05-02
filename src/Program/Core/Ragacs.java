@@ -48,7 +48,6 @@ public class Ragacs extends MapItem {
 		try {
 			ragacsImage = ImageIO.read(new File("assets\\ingame\\Ragacs.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -61,7 +60,6 @@ public class Ragacs extends MapItem {
 		try {
 			ragacsImage = ImageIO.read(new File("assets\\ingame\\Ragacs.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

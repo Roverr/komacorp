@@ -76,26 +76,18 @@ public class Editor extends JFrame{
 
 				@Override
 				public void mouseEntered(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
 				}
 
 				@Override
 				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
 				}
 
 				@Override
 				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
 				}
 
 				@Override
 				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
 				}
 				
 			});
@@ -106,7 +98,6 @@ public class Editor extends JFrame{
 			try {
 				background = ImageIO.read(backgroundFile);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			/*Meghatározza a kép magasságát és szélességét*/
@@ -161,7 +152,6 @@ public class Editor extends JFrame{
 		public void paint(Graphics g){
 			Graphics2D g2 = (Graphics2D) g;
 			forceRepaint(g2);
-			//TODO tetszõleges képméret
 			g2.drawImage(background, 0, 0, null);
 			g2.finalize();
 			
@@ -272,7 +262,6 @@ public class Editor extends JFrame{
 		}
 	}
 	
-	//TODO átírni, netrõl szedtem
 	/*Egy fájl kiterjesztését határozza meg*/
     private static String getFileExtension(File file) {
         String fileName = file.getName();
@@ -287,7 +276,7 @@ public class Editor extends JFrame{
 		
 		/*Alapbeállítások (méret, cím, satöbbi)*/
 		frame.setTitle("Phoebe Map Editor");
-		frame.setSize(600,600);
+		frame.setSize(1000,700);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.add(canvas);
 		frame.setVisible(true);
@@ -309,16 +298,15 @@ public class Editor extends JFrame{
 								return true;
 							/*Meghatározza a file kiterjesztését*/
 							String extension = getFileExtension(file);
-							/*Ha bmp, akkor jó*/
-							//TODO más filetípusokra is
-							if (extension.equals("bmp"))
+							/*Ha bmp, png vagy jpeg, akkor jó*/
+							if (extension.equals("bmp") || extension.equals("png") || extension.equals("jpeg"))
 								return true;
 							return false;
 						}
 
 						@Override
 						public String getDescription() {
-							return ".bmp";
+							return ".bmp, .png, .jpeg";
 						}});;
 					/*Ha a user választott, elmenti a filet, az ablakot és a hátteret is hozzá igazítja*/
 					if (jfc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
@@ -345,14 +333,10 @@ public class Editor extends JFrame{
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 		});

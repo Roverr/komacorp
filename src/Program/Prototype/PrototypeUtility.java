@@ -112,7 +112,7 @@ public class PrototypeUtility {
 			if (command.length >= 2) {
 				if(allowDebug)System.out.println("begintest");
 				try {
-					testGame = new Game(100, null, 2, null);
+					testGame = new Game(100, null, 2, null, null);
 					testGame.startGame();
 				} catch (MyFileNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -126,7 +126,7 @@ public class PrototypeUtility {
 				String mapName = command[1];
 				Map m =new Map();// getTestMap();
 				try {
-					m.loadMap(mapName, 0);
+					m.loadMap(mapName, 0, null);
 					testGame.setMap(m);
 				} catch (MyFileNotFoundException e) {
 					// TODO Auto-generated catch block

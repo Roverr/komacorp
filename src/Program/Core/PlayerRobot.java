@@ -69,7 +69,6 @@ public class PlayerRobot extends Robot implements Serializable, Drawable  {
 		try {
 			playerImage = ImageIO.read(new File("assets\\ingame\\PlayerRobot.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -215,7 +214,6 @@ public class PlayerRobot extends Robot implements Serializable, Drawable  {
 	 */
 	@Override
 	public void collide(Robot robot,Map map,boolean thesame) {
-		// TODO Auto-generated method stub
 		if(thesame){
 			if(this.speed.length()<robot.getSpeed().length()){
 				this.die(map);
@@ -241,7 +239,6 @@ public class PlayerRobot extends Robot implements Serializable, Drawable  {
 	public void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		/*Robot kirajzolása*/
-		/*TODO NoteToSelf: Pozíciót szorozni egységgel később?*/
 		int x = (int) position.getX();
 		int y = (int) position.getY();
 		x = x - (playerImage.getWidth() / 2); //Eltolás, hogy a középponton legyen a közepe

@@ -47,7 +47,6 @@ public class Olaj extends MapItem {
 		try {
 			olajImage = ImageIO.read(new File("assets\\ingame\\Olaj.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -64,7 +63,6 @@ public class Olaj extends MapItem {
 		try {
 			olajImage = ImageIO.read(new File("assets\\ingame\\Olaj.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

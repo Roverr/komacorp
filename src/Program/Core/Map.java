@@ -148,7 +148,7 @@ public class Map implements Serializable {
 	 * @param numberOfPlayers
 	 * @throws MyFileNotFoundException
 	 */
-	public void loadMap(String file, int numberOfPlayers) throws MyFileNotFoundException {
+	public void loadMap(String file, int numberOfPlayers, ArrayList<String> robotNames) throws MyFileNotFoundException {
 		SkeletonUtility.printCall("LoadMap(" + file + ")", this);
 		/* Inicializálás */
 		track = new ArrayList<Line>();
@@ -205,34 +205,30 @@ public class Map implements Serializable {
 		/*Lerakja a robotokat a startvonalra*/
 			/*A nulladik eleme a checkpointoknak a startvonal */
 			Line start = checkPoints.get(0);
-			//TODO A robotok neve ide kellene az optionsből
 			//Első játékos pályára tétele (ha van (mivel a menü nem kötelez a létrehozására))
 			if (numberOfPlayers >= 1)
 				try {
 					//Startvonal balszélére helyezi
-					addPlayerRobot("Teszt1", start.getX1(), start.getY1());
+					addPlayerRobot(robotNames.get(0), start.getX1(), start.getY1());
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			//Második játékos pályára tétele (ha van)
 			if (numberOfPlayers >= 2)
 				try {
 					//Startvonal közepére helyezi
-					addPlayerRobot("Teszt2", 
+					addPlayerRobot(robotNames.get(1), 
 									(start.getX1() + start.getX2())/2,
 									(start.getY1() + start.getY2()) / 2);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			//Harmadik játékos pályára tétele (ha van)
 			if (numberOfPlayers == 3)
 				try {
 					//Startvonal jobbszélére helyezi
-					addPlayerRobot("Teszt3", start.getX2(), start.getY2());
+					addPlayerRobot(robotNames.get(2), start.getX2(), start.getY2());
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 	}
@@ -309,20 +305,6 @@ public class Map implements Serializable {
 		}
 		
 		SkeletonUtility.printReturn("ValidateState", this);
-	}
-
-	/**
-	 * Give back true, if the two given position are the same
-	 * 
-	 * @param a
-	 * @param b
-	 * @return
-	 */
-	private boolean samePosition(FloatPoint a, FloatPoint b) {
-		if (a.getX() == b.getX() && a.getY() == b.getY()) {
-			return true;
-		}
-		return false;
 	}
 
 	/**

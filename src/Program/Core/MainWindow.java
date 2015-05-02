@@ -16,6 +16,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -103,7 +104,7 @@ public class MainWindow extends JFrame {
 	String reds;
 	String whites;
 	String greens;
-	String laps="20";
+	String laps="500";
 	JTextField red;
 	JTextField white;
 	JTextField green;
@@ -387,8 +388,20 @@ public class MainWindow extends JFrame {
 					/*Játék indítása*/
 					Game game = null;
 					try {
-						//TODO játékidő és játékosok száma ne konstans legyen, hanem menüben beállított
-						game = new Game(Integer.parseInt(lap.getText()), "Tesztmap", 3, MainWindow.this);
+						/*Robotnevek megszerzése az optionsból*/
+						ArrayList<String> robotNames = new ArrayList<String>();
+						if (!red.getText().equals(""))
+							robotNames.add(red.getText());
+						if (!white.getText().equals(""))
+							robotNames.add(red.getText());
+						if (!green.getText().equals(""))
+							robotNames.add(red.getText());
+						/*Ha a játékos nem adott meg 2 játékost legalább, figyelmezteti*/
+						if (robotNames.size() < 2){
+							JOptionPane.showMessageDialog(null, "You didn't name at least 2 robots. (Click on options!)");
+							return;
+						}
+						game = new Game(Integer.parseInt(lap.getText()), "Tesztmap", robotNames.size(), MainWindow.this, robotNames);
 					} catch (MyFileNotFoundException e) {
 						e.printStackTrace();
 					}
