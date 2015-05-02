@@ -113,9 +113,13 @@ public class Olaj extends MapItem {
 	 * @author Hunor
 	 */
 	public void draw(Graphics g) {
+		/*Olajfolt kirajzolása*/
 		Graphics2D g2 = (Graphics2D) g;
-		//TODO koordinátakonvertálás
-		g2.drawImage(olajImage, 0, 0, null);
+		int x = (int) position.getX();
+		int y = (int) position.getY();
+		x = x - (olajImage.getWidth() / 2); //Eltolás, hogy a középponton legyen a közepe
+		y = y - (olajImage.getHeight() / 2);
+		g2.drawImage(olajImage, x, y, null);
 	}
 
 }

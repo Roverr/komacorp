@@ -423,5 +423,13 @@ public class Map implements Serializable {
 	public void setCleanerRobots(List<CleanerRobot> cleanerRobots) {
 		this.cleanerRobots = cleanerRobots;
 	}
+	
+	/**
+	 * Visszaadja a startvonalat
+	 * @author Hunor
+	 */
+	public Line getStartLine(){
+		return checkPoints.get(0);
+	}
 
 }

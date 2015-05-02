@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.Timer;
 
 import Program.Helpers.FloatPoint;
+import Program.Helpers.Line;
 import Program.Helpers.Vector;
 import Program.Prototype.MyFileNotFoundException;
 import Program.Prototype.PrototypeUtility;
@@ -201,9 +202,10 @@ public class Game {
 		
 							CleanerRobot tmp = new CleanerRobot(new FloatPoint(0f, 0f),
 									GameMap);
-							// TODO This position should depend on map (Start checkpoint
-							// felezõ?)
-							tmp.setPosition(0, 0);
+							//Startvonal közepére teszi
+							Line start = GameMap.getStartLine();
+							tmp.setPosition((start.getX1() + start.getX2()) / 2, 
+											(start.getY1() + start.getY2()) / 2);
 							tmp.setSpeed(new Vector(1, 1));
 							GameMap.getCleanerRobots().add(tmp);
 							PrototypeUtility.addClass(tmp, "szolga" + cleanerId);

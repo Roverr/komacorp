@@ -288,9 +288,13 @@ public class CleanerRobot extends Robot implements Serializable, Drawable {
 
 	@Override
 	public void draw(Graphics g) {
+		/*Cleaner kirajzolása*/
 		Graphics2D g2 = (Graphics2D) g;
-		//TODO koordinátakonvertálás
-		g2.drawImage(cleanerImage, 0, 0, null);
+		int x = (int) position.getX();
+		int y = (int) position.getY();
+		x = x - (cleanerImage.getWidth() / 2); //Eltolás, hogy a középponton legyen a közepe
+		y = y - (cleanerImage.getHeight() / 2);
+		g2.drawImage(cleanerImage, x, y, null);
 	}
 
 }

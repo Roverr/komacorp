@@ -245,8 +245,12 @@ public class PlayerRobot extends Robot implements Serializable, Drawable  {
 	public void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		/*Robot kirajzolása*/
-		/*TODO NoteToSelf: Pozíciót szorozni egységgel később*/
-		g2.drawImage(playerImage, (int)position.getX(), (int)position.getY(), null);
+		/*TODO NoteToSelf: Pozíciót szorozni egységgel később?*/
+		int x = (int) position.getX();
+		int y = (int) position.getY();
+		x = x - (playerImage.getWidth() / 2); //Eltolás, hogy a középponton legyen a közepe
+		y = y - (playerImage.getHeight() / 2);
+		g2.drawImage(playerImage, x, y, null);
 		
 		
 		/*Sebességvektor kirajzolása*/
