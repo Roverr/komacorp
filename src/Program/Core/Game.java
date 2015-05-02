@@ -247,19 +247,19 @@ public class Game {
 		switch (interact) {
 		// Fel
 		case 'w':
-			playerOne.modifySpeed(new Vector(0.0f, 1.0f));
+			playerOne.modifySpeed(new Vector(0, -1));
 			break;
 		// Le
 		case 's':
-			playerOne.modifySpeed(new Vector(0, -1));
+			playerOne.modifySpeed(new Vector(0, 1));
 			break;
 		// Balra
 		case 'a':
-			playerOne.modifySpeed(new Vector(1, 0));
+			playerOne.modifySpeed(new Vector(-1, 0));
 			break;
 		// Jobbra
 		case 'd':
-			playerOne.modifySpeed(new Vector(-1, 0));
+			playerOne.modifySpeed(new Vector(1, 0));
 			break;
 		}
 
@@ -272,19 +272,19 @@ public class Game {
 			switch (interact) {
 			// Fel
 			case 't':
-				playerTwo.modifySpeed(new Vector(0, 1));
+				playerTwo.modifySpeed(new Vector(0, -1));
 				break;
 			// Le
 			case 'g':
-				playerTwo.modifySpeed(new Vector(0, -1));
+				playerTwo.modifySpeed(new Vector(0, 1));
 				break;
 			// Balra
 			case 'f':
-				playerTwo.modifySpeed(new Vector(1, 0));
+				playerTwo.modifySpeed(new Vector(-1, 0));
 				break;
 			// Jobbra
 			case 'h':
-				playerTwo.modifySpeed(new Vector(-1, 0));
+				playerTwo.modifySpeed(new Vector(1, 0));
 				break;
 			}
 		}
@@ -295,19 +295,19 @@ public class Game {
 			switch (interact) {
 			// Fel
 			case 'i':
-				playerThree.modifySpeed(new Vector(0, 1));
+				playerThree.modifySpeed(new Vector(0, -1));
 				break;
 			// Le
 			case 'k':
-				playerThree.modifySpeed(new Vector(0, -1));
+				playerThree.modifySpeed(new Vector(0, 1));
 				break;
 			// Balra
 			case 'j':
-				playerThree.modifySpeed(new Vector(1, 0));
+				playerThree.modifySpeed(new Vector(-1, 0));
 				break;
 			// Jobbra
 			case 'l':
-				playerThree.modifySpeed(new Vector(-1, 0));
+				playerThree.modifySpeed(new Vector(1, 0));
 				break;
 			}
 
