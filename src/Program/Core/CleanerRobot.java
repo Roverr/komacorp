@@ -53,7 +53,6 @@ public class CleanerRobot extends Robot implements Serializable, Drawable {
 		try {
 			cleanerImage = ImageIO.read(new File("assets\\ingame\\CleanerRobot.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

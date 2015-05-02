@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -113,6 +114,10 @@ public class MainWindow extends JFrame {
 	private ActionListener bl;
 	private final int screenWidth = 1000;
 	private final int screenHeight = 700;
+	
+	/*Az intuitív UI designunk megköveteli, hogy előbb az Options menüben
+	 * beállításra kerüljenek a játékosok adatai*/
+	private boolean optionsSet = false;
 
 	public MainWindow() {
 		
@@ -207,6 +212,9 @@ public class MainWindow extends JFrame {
 	}
 
 	private void showOptionsMenu() {
+		/*A felhasználó rájött, hogy nem a new game-re kell kattintania először*/
+		optionsSet = true;
+		
 		panel.setVisible(false);
 		panel.removeAll();
 		
@@ -372,30 +380,35 @@ public class MainWindow extends JFrame {
 			/*Új játéknál lecseréli a panel-t a játék vásznára
 			 * és elindít egy új játékot*/
 			if (ae.getActionCommand().equals("newgame")) {
-				/*Játék indítása*/
-				Game game = null;
-				try {
-					//TODO játékidő és játékosok száma ne konstans legyen, hanem menüben beállított
-					game = new Game(1000, "Tesztmap", 3, MainWindow.this);
-				} catch (MyFileNotFoundException e) {
-					e.printStackTrace();
+				/*Ha a játékos még nem állított be robotneveket, szólunk neki*/
+				if (!optionsSet)
+					JOptionPane.showMessageDialog(null, "Click on options!");
+				else{
+					/*Játék indítása*/
+					Game game = null;
+					try {
+						//TODO játékidő és játékosok száma ne konstans legyen, hanem menüben beállított
+						game = new Game(Integer.parseInt(lap.getText()), "Tesztmap", 3, MainWindow.this);
+					} catch (MyFileNotFoundException e) {
+						e.printStackTrace();
+					}
+					
+					/*Vászon létrehozása*/
+					canvas = new Canvas("assets\\ingame\\background.jpeg", game);
+					
+	
+					/*Vászon csere*/
+					remove(panel);
+					add(canvas);
+					/*Vászon eseménykezelője*/
+					canvas.addKeyListener(canvas);
+					canvas.setFocusable(true);
+					canvas.requestFocusInWindow(); //Fókusz elkérése
+					//Játék indítása
+					game.startGame();
+					repaint();	
+					revalidate();
 				}
-				
-				/*Vászon létrehozása*/
-				canvas = new Canvas("assets\\ingame\\background.jpeg", game);
-				
-
-				/*Vászon csere*/
-				remove(panel);
-				add(canvas);
-				/*Vászon eseménykezelője*/
-				canvas.addKeyListener(canvas);
-				canvas.setFocusable(true);
-				canvas.requestFocusInWindow(); //Fókusz elkérése
-				//Játék indítása
-				game.startGame();
-				repaint();	
-				revalidate();
 			} else if (ae.getActionCommand().equals("options")) {
 				showOptionsMenu();			
 			} else if (ae.getActionCommand().equals("exit")) {
