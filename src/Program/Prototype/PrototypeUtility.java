@@ -10,8 +10,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
-
 import Program.Core.CleanerRobot;
 import Program.Core.Game;
 import Program.Core.Map;

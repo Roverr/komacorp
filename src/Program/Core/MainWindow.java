@@ -3,21 +3,16 @@ package Program.Core;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.Polygon;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -25,13 +20,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Program.Helpers.FloatPoint;
 import Program.Prototype.MyFileNotFoundException;
 
 interface Drawable{
@@ -49,15 +42,11 @@ class Canvas extends JPanel implements KeyListener{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int screenWidth = 1000;
-	private int screenHeight = 700;
 	BufferedImage background;
 	Game game;
 	
-	public Canvas(int screenWidth, int screenHeight, String backgroundFileName, Game game){
+	public Canvas(String backgroundFileName, Game game){
 		/*Inicializálás*/
-		this.screenWidth = screenWidth;
-		this.screenHeight = screenHeight;
 		this.game = game;
 		/*Háttérkép betöltése*/
 		try {
@@ -105,9 +94,9 @@ class Canvas extends JPanel implements KeyListener{
 
 }
 
-@SuppressWarnings("serial")
 public class MainWindow extends JFrame {
-	private Map map;
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel panel;
 	Canvas canvas;
 	String reds;
@@ -152,8 +141,7 @@ public class MainWindow extends JFrame {
 
 
 	/**
-	 * Újrafesti a pályát (run hívogatja)
-	 * TODO Remélhetőleg ez csak a new game hívása után hívódik meg, igaz?
+	 * Újrafesti a pályát (Game.run() hívogatja)
 	 * @author Hunor
 	 */
 	public void showGame(Map GameMap) {
@@ -381,7 +369,6 @@ public class MainWindow extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent ae) {
-			// TODO Auto-generated method stub
 			/*Új játéknál lecseréli a panel-t a játék vásznára
 			 * és elindít egy új játékot*/
 			if (ae.getActionCommand().equals("newgame")) {
@@ -390,14 +377,12 @@ public class MainWindow extends JFrame {
 				try {
 					//TODO játékidő és játékosok száma ne konstans legyen, hanem menüben beállított
 					game = new Game(1000, "Tesztmap", 3, MainWindow.this);
-					map = game.getMap();
 				} catch (MyFileNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
 				/*Vászon létrehozása*/
-				canvas = new Canvas(screenWidth, screenHeight, "assets\\ingame\\background.jpeg", game);
+				canvas = new Canvas("assets\\ingame\\background.jpeg", game);
 				
 
 				/*Vászon csere*/

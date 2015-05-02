@@ -8,7 +8,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import Program.Core.MapItem.CleaningState;
 import Program.Helpers.FloatPoint;
 import Program.Prototype.PrototypeUtility;
 

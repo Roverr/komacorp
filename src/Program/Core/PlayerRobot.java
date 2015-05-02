@@ -3,7 +3,6 @@ package Program.Core;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Polygon;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
@@ -129,7 +128,6 @@ public class PlayerRobot extends Robot implements Serializable, Drawable  {
 		int olajLeft = mapItemCarriedCounter.get(olajNumberInList);
 		
 		if(olajLeft > 0) {
-			int olajNumberInDropping = 2;
 			Olaj olaj = new Olaj(time,getPosition());
 			PrototypeUtility.addClass(olaj, "olaj"+Game.olajId);
 			Game.olajId++;
@@ -154,7 +152,6 @@ public class PlayerRobot extends Robot implements Serializable, Drawable  {
 		int ragacsLeft = mapItemCarriedCounter.get(ragacsNumberInList);
 		//Ha több ragacs van még a tárban, dobunk
 		if(ragacsLeft >0 ) {
-			int ragacsNumberInDropping = 1;
 			Ragacs ragacs = new Ragacs(stepInCount,getPosition());
 			PrototypeUtility.addClass(ragacs, "ragacs"+Game.ragacsId);
 			Game.ragacsId++;
@@ -178,7 +175,6 @@ public class PlayerRobot extends Robot implements Serializable, Drawable  {
 	 */
 	public void jump(Map map) {
 		SkeletonUtility.printCall("Jump", this);
-		int time=1;
 		this.speed.add(this.modSpeed);
 		this.setModSpeed(new Vector(0,0));
 		//Ha életben van, akkor távolságot számolunk

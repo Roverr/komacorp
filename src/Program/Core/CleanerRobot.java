@@ -6,15 +6,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
 import javax.imageio.ImageIO;
 
 import Program.Core.MapItem.CleaningState;
 import Program.Helpers.FloatPoint;
-import Program.Helpers.Line;
 import Program.Helpers.Vector;
 import Program.Prototype.PrototypeUtility;
 

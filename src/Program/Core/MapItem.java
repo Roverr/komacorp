@@ -1,9 +1,7 @@
 package Program.Core;
 
-import java.awt.Graphics2D;
 import java.io.Serializable;
 
-import Program.Core.MapItem.CleaningState;
 import Program.Helpers.FloatPoint;
 import Program.Prototype.PrototypeUtility;
 import Program.Skeleton.SkeletonUtility;

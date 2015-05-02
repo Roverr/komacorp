@@ -1,9 +1,6 @@
 package Program;
 
-import java.io.IOException;
-
 import Program.Core.MainWindow;
-import Program.Prototype.TestRunner;
 
 /**
  * Az egész projekt belépési pontja. Ez készíti el a menüket, és játék indításakor a Game osztályt.
@@ -22,7 +19,7 @@ public class Program {
 	 * @author Karesz
 	 */
 	public static void main(String[] args) {
-		MainWindow window=new MainWindow();
+		final MainWindow window = new MainWindow();
 		/*TestRunner tr = new TestRunner();
 		try {
 			tr.handleInputs();

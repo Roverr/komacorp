@@ -3,7 +3,6 @@ package Program.Core;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 import javax.swing.Timer;
@@ -41,7 +40,6 @@ public class Game {
 		try {
 			GameMap.loadMap(mapname, numberOfPlayers);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new MyFileNotFoundException();
 		}
@@ -75,7 +73,6 @@ public class Game {
 				try {
 					rThis.run();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -105,7 +102,6 @@ public class Game {
 		SkeletonUtility.printReturn("EndGame", this);
 		
 		t.stop();
-		//TODO Debuggolni kellene, hogy erre miért nem tér vissza a főmenübe
 		mWindow.showMenu();
 	}
 
@@ -115,10 +111,7 @@ public class Game {
 
 	/**
 	 * Körök szimulálását végzi
-	 * 
-	 * @throws Exception
-	 * @throws IOException
-	 *             - Exception amit elkell kapni.
+	 * @throws Exception - Exception amit elkell kapni.
 	 */
 	public void run() throws Exception {
 				/*Ha még nem járt le a játék időkorlátja, léptet*/
@@ -193,12 +186,11 @@ public class Game {
 						}
 					}
 		
-					/*Ha már csak 1 maradt, jelez, hogy vége a játéknak*/
-					//TODO kommentezést kivenni, debug miatt van így
+					/*Ha már csak 1 maradt, vége a játéknak*/
 					if(aliveCount <= 1) 
 						endGame();
-					//Letelt az idő, vége a játéknak
 				} else {
+					//Letelt az idő, vége a játéknak
 					endGame();
 					if (PrototypeUtility.allowDebug)
 						System.out.println("Game Ended by now.");
@@ -212,13 +204,9 @@ public class Game {
 	/**
 	 * Meghatározza lenyomott billentyû alapján, hogy felhasználó mit szeretne
 	 * csinálni, és meghívja a megfelelõ mûveleteket
+	 * @author Hunor
 	 * */
 	public void userControl(char interact) {
-		/**
-		 * TODO kérdések 3) A robotnál a modifySpeed ugye még nincs kész? Mert
-		 * olyasmi rémlik még megbeszélésekrõl, hogy billentyûnyomás hozzáad a
-		 * módosító sebességvektorhoz, nem felülírja
-		 */
 		int numberOfRobots = GameMap.getRobots().size();
 
 		/**
@@ -334,9 +322,7 @@ public class Game {
 	/**
 	 * Visszaadja a map-ot a játéknak
 	 * @author Hunor
-	 * TODO ez nem volt rajta osztálydiagramon, de kell,
-	 * hogy mainwindow megkaphassa a játék mapját játék indításakor
-	 * @return
+	 * @return Map - A pálya, amin a játék folyik.
 	 */
 	public Map getMap() {
 		return GameMap;
