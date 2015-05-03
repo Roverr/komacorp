@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import Program.Program;
 import Program.Helpers.FloatPoint;
 import Program.Helpers.Line;
 import Program.Helpers.Vector;
@@ -109,16 +110,16 @@ public class Map implements Serializable {
 	 * @return - Eredmény lista a robotokkal.
 	 */
 	public List<String> getResult() {
-		SkeletonUtility.printCall("GetResult", this);
+		//SkeletonUtility.printCall("GetResult", this);
 		List<String> temp = new ArrayList<String>();
 		for (PlayerRobot r : playerRobots) {
 			String kiesett = "";
 			if (!r.isAlive()) {
 				kiesett = " KIESETT";
 			}
-			temp.add(r.name + " " + r.distance + kiesett);
+			temp.add(r.name + " " + r.distance +" "+ kiesett);
 		}
-		SkeletonUtility.printReturn("GetResult", this);
+		//SkeletonUtility.printReturn("GetResult", this);
 		return temp;
 
 	}
@@ -285,6 +286,8 @@ public class Map implements Serializable {
 
 			if (!this.isOnTrack(probot.getPosition()))
 				probot.die(this);
+            this.isCheckPointChecked(probot);
+			
 			for (PlayerRobot probotcompare : playerRobots) {
 				if (!probot.equals(probotcompare)
 						&& probotcompare.getPosition().distance(
@@ -392,13 +395,17 @@ public class Map implements Serializable {
 	 *            - az ugrás elõtti pozíció
 	 * @author Bence
 	 */
-	public Boolean isCheckPointChecked(Robot robot, FloatPoint beforejump) {
+	public Boolean isCheckPointChecked(PlayerRobot robot) {
 		// ugrás vonalának megadása
+		FloatPoint beforejump=new FloatPoint(robot.getPosition().getX()-robot.getSpeed().getX(),robot.getPosition().getY()-robot.getSpeed().getY());
 		Line ugras = new Line(robot.position.getX(),beforejump.getX(), robot.position.getY(),beforejump.getY());
 		Boolean metsz = false;
-		for (Line i : checkPoints) {
-			if (i.intersect(ugras))
+		for (int i=0;i<checkPoints.size();i++) {
+			if (checkPoints.get(i).intersect(ugras))
+			{	
 				metsz = true;
+				robot.CheckCheckpoint(i);
+			}
 		}
 		return metsz;
 	}

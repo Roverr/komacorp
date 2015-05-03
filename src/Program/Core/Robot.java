@@ -23,7 +23,8 @@ public abstract class Robot {
 	protected boolean alive;
 	protected int distance;
 	protected Vector speed;
-	protected FloatPoint position;
+	protected FloatPoint position;	
+	
 	
 	/**
 	 * Publikus Robot õskonstruktor
