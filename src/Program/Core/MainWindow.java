@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.List;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -16,7 +17,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -109,18 +110,22 @@ public class MainWindow extends JFrame {
 	JTextField green;
 	JTextField lap;
 	private PlayerRobot robotRed;
+	private int redPoint=0;
 	private PlayerRobot robotWhite;
+	private int whitePoint=0;
 	private PlayerRobot robotGreen;
+	private int greenPoint=0;
 	private ActionListener bl;
 	private final int screenWidth = 1000;
 	private final int screenHeight = 700;
+	Game game;
 	
 	/*Az intuitív UI designunk megköveteli, hogy előbb az Options menüben
 	 * beállításra kerüljenek a játékosok adatai*/
 	private boolean optionsSet = false;
 
 	public MainWindow() {
-		
+
 		this.setSize(screenWidth, screenHeight);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -296,7 +301,23 @@ public class MainWindow extends JFrame {
 		panel.setVisible(true);
 	}
 
-	private void showResult() {
+	public void showResult() {
+		//átpakolja az eredményeket
+		this.greenPoint=0;
+		this.redPoint=0;
+		this.whitePoint=0;
+		ArrayList<String> result=this.game.getMap().getResult();
+		for(String s : result){
+			String[] tmp=s.split(":");
+			if (tmp[0].equals(robotGreen.pilot))
+				this.greenPoint=Integer.parseInt(tmp[1]);
+			if (tmp[0].equals(robotWhite.pilot))
+				this.whitePoint=Integer.parseInt(tmp[1]);
+			if (tmp[0].equals(robotRed.pilot))
+				this.redPoint=Integer.parseInt(tmp[1]);				
+		}
+			
+		
 		panel.setVisible(false);
 		panel.removeAll();
 		
@@ -336,7 +357,7 @@ public class MainWindow extends JFrame {
 	    greenName.setForeground(Color.BLACK);
 	    panel.add(greenName);
 	    
-	    JLabel redPoint =new JLabel(Integer.toString(robotRed.getDistance()));
+	    JLabel redPoint =new JLabel(Integer.toString(this.redPoint));
 	    redPoint.setOpaque(true);
 	    redPoint.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 	    redPoint.setBounds(505, 200, 330, 50);
@@ -344,7 +365,7 @@ public class MainWindow extends JFrame {
 	    redPoint.setBackground(Color.RED);
 	    redPoint.setForeground(Color.BLACK);
 	    panel.add(redPoint);
-	    JLabel whitePoint =new JLabel(Integer.toString(robotWhite.getDistance()));
+	    JLabel whitePoint =new JLabel(Integer.toString(this.whitePoint));
 	    whitePoint.setOpaque(true);
 	    whitePoint.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 	    whitePoint.setBounds(505, 260, 330, 50);
@@ -352,7 +373,7 @@ public class MainWindow extends JFrame {
 	    whitePoint.setBackground(Color.WHITE);
 	    whitePoint.setForeground(Color.BLACK);
 	    panel.add(whitePoint);
-	    JLabel greenPoint =new JLabel(Integer.toString(robotGreen.getDistance()));
+	    JLabel greenPoint =new JLabel(Integer.toString(this.greenPoint));
 	    greenPoint.setOpaque(true);
 	    greenPoint.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 	    greenPoint.setBounds(505, 320, 330, 50);
@@ -385,16 +406,16 @@ public class MainWindow extends JFrame {
 					JOptionPane.showMessageDialog(null, "Click on options!");
 				else{
 					/*Játék indítása*/
-					Game game = null;
+					game = null;
 					try {
 						/*Robotnevek megszerzése az optionsból*/
 						ArrayList<String> robotNames = new ArrayList<String>();
 						if (!red.getText().equals(""))
 							robotNames.add(red.getText());
 						if (!white.getText().equals(""))
-							robotNames.add(red.getText());
+							robotNames.add(white.getText());
 						if (!green.getText().equals(""))
-							robotNames.add(red.getText());
+							robotNames.add(green.getText());
 						/*Ha a játékos nem adott meg 2 játékost legalább, figyelmezteti*/
 						if (robotNames.size() < 2){
 							JOptionPane.showMessageDialog(null, "You didn't name at least 2 robots. (Click on options!)");

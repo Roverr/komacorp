@@ -110,15 +110,15 @@ public class Map implements Serializable {
 	 * 
 	 * @return - Eredmény lista a robotokkal.
 	 */
-	public List<String> getResult() {
+	public ArrayList<String> getResult() {
 		//SkeletonUtility.printCall("GetResult", this);
-		List<String> temp = new ArrayList<String>();
+		ArrayList<String> temp = new ArrayList<String>();
 		for (PlayerRobot r : playerRobots) {
-			String kiesett = "";
+			String kiesett = " ";
 			if (!r.isAlive()) {
 				kiesett = " KIESETT";
 			}
-			temp.add(r.name + " " + r.distance +" "+ kiesett);
+			temp.add(r.name + ":" + r.distance +":"+ kiesett);
 		}
 		//SkeletonUtility.printReturn("GetResult", this);
 		return temp;
