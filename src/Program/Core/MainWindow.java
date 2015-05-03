@@ -74,10 +74,9 @@ class Canvas extends JPanel implements KeyListener{
 	       	cRobot.draw(g);
         for (MapItem mItem : game.getMap().getMapItems())
 	       	mItem.draw(g);  
-        
-     // create an AffineTransform 
-     // and a triangle centered on (0,0) and pointing downward
-     // somewhere outside Swing's paint loop
+
+        /**TODO Csak debugolásra, később törölni*/
+        game.getMap().drawDebug(g);
     }
     
     @Override

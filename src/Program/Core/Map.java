@@ -1,5 +1,8 @@
 package Program.Core;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -247,6 +250,21 @@ public class Map implements Serializable {
 			System.out.println(e.getMessage());
 		}
 		SkeletonUtility.printReturn("RemoveMapItem", this);
+	}
+	
+	/**
+	 * Debugoláshoz a páyla ívét kirajzolja
+	@author Hunor
+	 */
+	public void drawDebug(Graphics g){
+		Graphics2D g2 = (Graphics2D)g;
+		
+		g2.setColor(new Color(255, 0, 0));
+		for (Line l : track)
+			g2.drawLine((int)l.getX1(), (int)l.getY1(), (int)l.getX2(), (int)l.getY2());
+		
+		for (Line l : checkPoints)
+			g2.drawLine((int)l.getX1(), (int)l.getY1(), (int)l.getX2(), (int)l.getY2());
 	}
 
 	/**

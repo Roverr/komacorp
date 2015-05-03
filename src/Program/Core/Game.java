@@ -111,6 +111,7 @@ public class Game {
 	public static int ragacsId = 1;
 	public static int olajId = 1;
 
+	
 	/**
 	 * Körök szimulálását végzi
 	 * @throws Exception - Exception amit elkell kapni.
