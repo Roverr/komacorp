@@ -47,7 +47,7 @@ public class PlayerRobot extends Robot implements Serializable, Drawable  {
 	private BufferedImage playerImage;
 	
 	//Checkpoint nyilvántartó
-	protected  Boolean[] checkPointChecked;
+	protected  boolean[] checkPointChecked;
 
 	/**
 	 * Konstruktor a játékosok álltal irányított Robothoz
@@ -288,22 +288,23 @@ public class PlayerRobot extends Robot implements Serializable, Drawable  {
 	 * @author Bence
 	 */
     public void CheckCheckpoint(int number){
-    	if (checkPointChecked!=null && number>=0 && number<checkPointChecked.length)
+    	if (checkPointChecked!=null && number>=0 && number<checkPointChecked.length){
     	  checkPointChecked[number]=true;
-    	boolean complete=true;
-    	for(boolean i :checkPointChecked)
-    	{
+    	  boolean complete=true;
+    	  for(Boolean i :checkPointChecked)
+    	  {
     		if(!i)
     			complete=false;
-    	}
-    	//befejeződött egy kör
-    	if (complete){
+    	  }
+    	  //befejeződött egy kör
+    	  if (number==0 && complete){
     		this.distance+=10000;
     		
-    		for(int i=0;i<checkPointChecked.length;i++)
-        	{
-        		checkPointChecked[i]=false;
-        	}
+    	  for(int i=0;i<checkPointChecked.length;i++)
+          {
+        	checkPointChecked[i]=false;
+          }
+    	}
     	}
     }
     
@@ -313,7 +314,7 @@ public class PlayerRobot extends Robot implements Serializable, Drawable  {
 	 * @author Bence
 	 */
     public void setCheckpointNumber(int count){
-    	checkPointChecked= new Boolean[count];
+    	checkPointChecked= new boolean[count];
     }
 	
 	

@@ -99,6 +99,7 @@ public class Map implements Serializable {
 			PrototypeUtility.addClass(robot, name);
 			robot.setName(name);
 			robot.setPosition(x, y);
+			robot.setCheckpointNumber(checkPoints.size());
 			this.playerRobots.add(robot);
 		} else
 			throw new Exception("Too Many Robots!");
