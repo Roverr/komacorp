@@ -227,7 +227,7 @@ public class Editor extends JFrame{
 					}
 					/*És zárttá teszi a vonalat*/
 					writePointToFile(b, lineStrip1.get(0));
-					writePointToFile(b, lineStrip1.get(0));
+					writePointToFile(b, current);
 				}
 				if (lineStrip2.size() > 1){
 					for (int i = 0; i < lineStrip2.size() - 1; i++){
@@ -238,7 +238,7 @@ public class Editor extends JFrame{
 					}
 					/*És zárttá teszi a vonalat*/
 					writePointToFile(b, lineStrip2.get(0));
-					writePointToFile(b, lineStrip2.get(0));
+					writePointToFile(b, current);
 				}
 				
 				/*Kiírja a checkpointok koordinátáit*/
