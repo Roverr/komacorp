@@ -104,7 +104,7 @@ public class Game {
 		SkeletonUtility.printReturn("EndGame", this);
 		
 		t.stop();
-		mWindow.showMenu();
+		mWindow.showResult();
 	}
 
 	public static int cleanerId = 1;

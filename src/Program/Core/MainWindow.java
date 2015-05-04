@@ -159,9 +159,6 @@ public class MainWindow extends JFrame {
 	}
 
 	public void showMenu() {
-		/*Ha játékból léptünk ide vissza, letakarítja a képernyőt*/
-		if (canvas != null)
-			remove(canvas);
 		this.add(panel, BorderLayout.CENTER);
 		panel.setVisible(true);
 		panel.setBackground(Color.BLACK);
@@ -202,21 +199,13 @@ public class MainWindow extends JFrame {
 		exit.setCursor(cvader);
 		panel.add(exit);
 		
-		//ez csak a teszteléshez kell, hogy lássam hogy néz ki a results
-		
-		JButton result=new JButton();
-		result.setActionCommand("results");
-		result.addActionListener(bl);
-		result.setBounds(0,0,50,50);
-		panel.add(result);
-		//eddig
 		
 		this.setTitle("Koma Corp");
 		panel.setVisible(true);
 
 	}
 
-	private void showOptionsMenu() {
+	private void showOptionsMenu() {		
 		/*A felhasználó rájött, hogy nem a new game-re kell kattintania először*/
 		optionsSet = true;
 		
@@ -302,6 +291,11 @@ public class MainWindow extends JFrame {
 	}
 
 	public void showResult() {
+		/*Ha játékból léptünk ide vissza, letakarítja a képernyőt*/
+		if (canvas != null)
+			remove(canvas);
+		this.add(panel, BorderLayout.CENTER);
+		
 		//átpakolja az eredményeket
 		this.greenPoint=0;
 		this.redPoint=0;
