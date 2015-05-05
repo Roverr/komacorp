@@ -125,7 +125,7 @@ public class PlayerRobot extends Robot implements Serializable, Drawable  {
 	 */
 	public void dropOlaj(Map map) {
 		// 10 körig lesz életben az olaj
-		int time = 11; //Plusz 1 kell, mert az elsõ run is öregíti már. 
+		int time = 201; //Plusz 1 kell, mert az elsõ run is öregíti már. 
 		int olajNumberInList = 1;
 		int olajLeft = mapItemCarriedCounter.get(olajNumberInList);
 		
