@@ -24,6 +24,8 @@ public abstract class MapItem implements Serializable, Drawable  {
 	 */
 	protected FloatPoint position;
 	
+	protected boolean isActive;
+	
 	public CleaningState state = CleaningState.canBeCleaned;
 	
 	/**

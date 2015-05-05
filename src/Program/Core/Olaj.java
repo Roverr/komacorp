@@ -42,6 +42,7 @@ public class Olaj extends MapItem {
 		this.setTimeLeft(timing);
 		this.position = position;
 		state = CleaningState.canBeCleaned;
+		isActive = false;
 		
 		//Olaj képének betöltése
 		try {
@@ -72,9 +73,11 @@ public class Olaj extends MapItem {
 	 * @param playerRobot- Robot ami belelépet        
 	 */
 	public void stepIn(PlayerRobot playerRobot) {
-		if(PrototypeUtility.allowDebug)System.out.println("Olaj - stepin +" + playerRobot.name);
-		Vector zero = new Vector(0,0);
-		playerRobot.setModSpeed(zero);
+		if(isActive){
+			if(PrototypeUtility.allowDebug)System.out.println("Olaj - stepin +" + playerRobot.name);
+			Vector zero = new Vector(0,0);
+			playerRobot.setModSpeed(zero);
+		}
 	}
 	
 	/**
@@ -98,6 +101,7 @@ public class Olaj extends MapItem {
 	 */
 	public void update(){
 		timeLeft = timeLeft-1;
+		isActive = true;
 	}
 
 	@Override

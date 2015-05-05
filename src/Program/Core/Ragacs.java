@@ -43,6 +43,7 @@ public class Ragacs extends MapItem {
 		setPosition(position);
 		setStepinCounter(stepIn);
 		state = CleaningState.canBeCleaned;
+		isActive = false;
 		
 		//Ragacs képének betöltése
 		try {
@@ -91,13 +92,16 @@ public class Ragacs extends MapItem {
 	 *            - A robot, ami belelépett
 	 */
 	public void stepIn(PlayerRobot playerRobot) {
-		if (PrototypeUtility.allowDebug)
-			System.out.println("Ragacs - stepin +" + playerRobot.name);
-		stepInCounter = stepInCounter - 1;
-		playerRobot.setSpeed(playerRobot.getSpeed().cutIntoHalf());
+		if(isActive){
+			if (PrototypeUtility.allowDebug)
+				System.out.println("Ragacs - stepin +" + playerRobot.name);
+			stepInCounter = stepInCounter - 1;
+			playerRobot.setSpeed(playerRobot.getSpeed().cutIntoHalf());
+		}
 	}
 
 	public void update() {
+		isActive = true;
 		// Mivel körönként nem kell frissíteni, ide semmi nem kerül.
 		return;
 	}
