@@ -110,11 +110,11 @@ public class MainWindow extends JFrame {
 	JTextField green;
 	JTextField lap;
 	private PlayerRobot robotRed;
-	private int redPoint=0;
+	private String redPoint=null;
 	private PlayerRobot robotWhite;
-	private int whitePoint=0;
+	private String whitePoint=null;
 	private PlayerRobot robotGreen;
-	private int greenPoint=0;
+	private String greenPoint=null;
 	private ActionListener bl;
 	private final int screenWidth = 1000;
 	private final int screenHeight = 700;
@@ -297,18 +297,28 @@ public class MainWindow extends JFrame {
 		this.add(panel, BorderLayout.CENTER);
 		
 		//átpakolja az eredményeket
-		this.greenPoint=0;
-		this.redPoint=0;
-		this.whitePoint=0;
+		this.greenPoint=null;
+		this.redPoint=null;
+		this.whitePoint=null;
 		ArrayList<String> result=this.game.getMap().getResult();
 		for(String s : result){
 			String[] tmp=s.split(":");
-			if (tmp[0].equals(robotGreen.pilot))
-				this.greenPoint=Integer.parseInt(tmp[1]);
-			if (tmp[0].equals(robotWhite.pilot))
-				this.whitePoint=Integer.parseInt(tmp[1]);
-			if (tmp[0].equals(robotRed.pilot))
-				this.redPoint=Integer.parseInt(tmp[1]);				
+			if (tmp[0].equals(robotGreen.pilot)){
+				this.greenPoint=tmp[1];
+				if(tmp[2].equals("KIESETT"))
+					this.greenPoint=tmp[2];
+			}
+				
+			if (tmp[0].equals(robotWhite.pilot)){
+				this.whitePoint=tmp[1];
+				if(tmp[2].equals("KIESETT"))
+					this.whitePoint=tmp[2];
+			}
+			if (tmp[0].equals(robotRed.pilot)){
+				this.redPoint=tmp[1];	
+				if(tmp[2].equals("KIESETT"))
+					this.redPoint=tmp[2];
+			}
 		}
 			
 		
@@ -351,7 +361,7 @@ public class MainWindow extends JFrame {
 	    greenName.setForeground(Color.BLACK);
 	    panel.add(greenName);
 	    
-	    JLabel redPoint =new JLabel(Integer.toString(this.redPoint));
+	    JLabel redPoint =new JLabel(this.redPoint);
 	    redPoint.setOpaque(true);
 	    redPoint.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 	    redPoint.setBounds(505, 200, 330, 50);
@@ -359,7 +369,7 @@ public class MainWindow extends JFrame {
 	    redPoint.setBackground(Color.RED);
 	    redPoint.setForeground(Color.BLACK);
 	    panel.add(redPoint);
-	    JLabel whitePoint =new JLabel(Integer.toString(this.whitePoint));
+	    JLabel whitePoint =new JLabel(this.whitePoint);
 	    whitePoint.setOpaque(true);
 	    whitePoint.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 	    whitePoint.setBounds(505, 260, 330, 50);
@@ -367,7 +377,7 @@ public class MainWindow extends JFrame {
 	    whitePoint.setBackground(Color.WHITE);
 	    whitePoint.setForeground(Color.BLACK);
 	    panel.add(whitePoint);
-	    JLabel greenPoint =new JLabel(Integer.toString(this.greenPoint));
+	    JLabel greenPoint =new JLabel(this.greenPoint);
 	    greenPoint.setOpaque(true);
 	    greenPoint.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 	    greenPoint.setBounds(505, 320, 330, 50);

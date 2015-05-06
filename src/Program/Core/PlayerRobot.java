@@ -83,6 +83,8 @@ public class PlayerRobot extends Robot implements Serializable, Drawable  {
 		SkeletonUtility.printCall("Die", this);
 		mapItemCarriedCounter.clear();
 		alive = false;
+		//this.distance=-1;
+		System.out.println("Meghaltam:"+this.pilot);
 		if(PrototypeUtility.allowDebug)System.out.println("Felt down!");
 
 		SkeletonUtility.printReturn("Die", this);

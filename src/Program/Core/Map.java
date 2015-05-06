@@ -114,9 +114,9 @@ public class Map implements Serializable {
 		//SkeletonUtility.printCall("GetResult", this);
 		ArrayList<String> temp = new ArrayList<String>();
 		for (PlayerRobot r : playerRobots) {
-			String kiesett = " ";
+			String kiesett = "él";
 			if (!r.isAlive()) {
-				kiesett = " KIESETT";
+				kiesett = "KIESETT";
 			}
 			temp.add(r.name + ":" + r.distance +":"+ kiesett);
 		}
