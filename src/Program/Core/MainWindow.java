@@ -455,7 +455,7 @@ public class MainWindow extends JFrame {
 					}
 					
 					/*Vászon létrehozása*/
-					canvas = new Canvas("assets\\ingame\\background.jpeg", game);
+					canvas = new Canvas("assets\\ingame\\backgroundWithControls.jpg", game);
 					
 	
 					/*Vászon csere*/
