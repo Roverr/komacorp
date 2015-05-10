@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.List;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -279,6 +280,10 @@ public class MainWindow extends JFrame {
 	    JLabel mapicon=new JLabel(new ImageIcon("assets\\menus\\maps.jpg"));
 	    mapicon.setBounds(50, 50, 180, 70); 
 	    panel.add(mapicon);
+	    ImageIcon thumbnailIMG= new ImageIcon("assets\\ingame\\background.jpeg");
+	    JLabel thumbnail = new JLabel(new ImageIcon(getScaledImage(thumbnailIMG.getImage(),180,80)));
+	    thumbnail.setBounds(450,50,180,80);
+	    panel.add(thumbnail);
 	    JLabel playericon=new JLabel(new ImageIcon("assets\\menus\\players.jpg"));
 	    playericon.setBounds(50, 250, 340, 80); 
 	    panel.add(playericon);
@@ -289,7 +294,26 @@ public class MainWindow extends JFrame {
 	    this.setTitle("Options");
 		panel.setVisible(true);
 	}
-
+	
+	/**
+	 * Új méretet ad egy ImageIconnak
+	 * @param srcImg - image amit átméretezünk.
+	 * @param w - Width
+	 * @param h - Height
+	 * @return - image 
+	 */
+	  private Image getScaledImage(Image srcImg, int w, int h){
+		    BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		    Graphics2D g2 = resizedImg.createGraphics();
+		    g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		    g2.drawImage(srcImg, 0, 0, w, h, null);
+		    g2.dispose();
+		    return resizedImg;
+		}
+	  
+	/**
+	 * Az eredményeket mutatja meg. 
+	 */
 	public void showResult() {
 		/*Ha játékból léptünk ide vissza, letakarítja a képernyőt*/
 		if (canvas != null)
